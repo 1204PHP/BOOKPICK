@@ -1,0 +1,8 @@
+.LoginArea {
+    width: 500px;
+    height: 700px;
+    background-color: aquamarine;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+}
