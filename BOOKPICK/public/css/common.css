@@ -85,3 +85,13 @@ body {
 .navbar1 {
 	padding: 0;
 }
+/* --------------------- */
+#menu-icon {
+	display: none;
+}
+
+@media only screen and (max-width: 995px) {
+    #menu-icon {
+        display: block;
+    }
+}
