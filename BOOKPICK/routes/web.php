@@ -17,6 +17,6 @@ Route::get('/', function () {
     return view('main');
 });
 
-Route::get('/userlogin', function () {
-    return view('userlogin');
+Route::get('/user/login', function () {
+    return view('user_login');
 })->name('user.login');
