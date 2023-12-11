@@ -11,11 +11,11 @@ body {
 .Container {
 	display: flex;
 	flex-direction: column;
-	width: 15%;
+	justify-content: space-between;
+	width: 20%;
 	height: 100%;
 	border-right: 1px solid #6D6D6D;
 }
-
 .Header {
 	height: 80px;
 	font-size: 1.3rem;
@@ -75,4 +75,13 @@ body {
 	margin-bottom: 5px;
 	text-decoration: none;
 	color: #fff;
+}
+
+.sidebar {
+	height: 100vh;
+	background-color: #000;
+}
+
+.navbar1 {
+	padding: 0;
 }
