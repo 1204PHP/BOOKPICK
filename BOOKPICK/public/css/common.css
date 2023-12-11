@@ -82,15 +82,15 @@ body {
 	background-color: #000;
 }
 
-.navbar1 {
+/* .navbar1 {
 	padding: 0;
-}
+} */
 /* --------------------- */
 #menu-icon {
 	display: none;
 }
 
-@media only screen and (max-width: 995px) {
+@media only screen and (max-width: 505px) {
     #menu-icon {
         display: block;
     }
