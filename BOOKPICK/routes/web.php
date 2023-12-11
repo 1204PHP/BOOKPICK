@@ -13,10 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get( '/', function () {
+    return view( 'main' );
+})->name( 'main_home' );
 
-Route::get('/user/login', function () {
-    return view('user_login');
-})->name('user.login');
+
+// 유저관련 ( 로그인, 회원가입, 회원정보 )
+Route::get( '/user/login', function () {
+    return view( 'user_login' );
+})->name( 'user_login' );
+
+Route::get( '/user/register', function () {
+    return view( 'user_register' );
+})->name( 'user_register' );
+
+Route::get('/user/info', function () {
+    return view( 'user_info' );
+})->name( 'user_info' );
+
