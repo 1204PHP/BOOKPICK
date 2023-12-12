@@ -17,6 +17,9 @@ Route::get( '/', function () {
     return view( 'main' );
 })->name( 'main_home' );
 
+Route::get( '/test', function () {
+    return view( 'main2' );
+})->name( 'main_home2' );
 
 // 유저관련 ( 로그인, 회원가입, 회원정보 )
 Route::get( '/user/login', function () {
