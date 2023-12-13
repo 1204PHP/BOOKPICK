@@ -13,13 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// 메인 메뉴
 Route::get( '/', function () {
-    return view( 'main' );
-})->name( 'main_home' );
+    return view( 'home' );
+})->name( 'home' );
 
-Route::get( '/test', function () {
-    return view( 'main2' );
-})->name( 'main_home2' );
+Route::get( '/home', function () {
+    return view( 'home' );
+})->name( 'home' );
+
+Route::get( '/cate', function () {
+    return view( 'cate' );
+})->name( 'cate' );
+
+Route::get( '/bestseller', function () {
+    return view( 'bestseller' );
+})->name( 'bestseller' );
+
+Route::get( '/recommend', function () {
+    return view( 'recommend' );
+})->name( 'recommend' );
+
+
+// 세부 메뉴
+
 
 // 유저관련 ( 로그인, 회원가입, 회원정보 )
 Route::get( '/user/login', function () {

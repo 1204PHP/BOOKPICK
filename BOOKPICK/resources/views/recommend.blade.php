@@ -1,8 +1,7 @@
 @extends('layout.layout')
 {{-- layout.blade.php 상속 --}}
-@section('title', 'Main')
+@section('title', 'recommend')
 {{-- title로 Main 표기 --}}
 @section('content')
-	<h1>About Us</h1>
-	<p>This is the about us page content.</p>
+	<h1>recommend</h1>
 @endsection

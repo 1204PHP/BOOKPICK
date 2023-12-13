@@ -73,11 +73,6 @@ body {
 	padding-left: 0px;
 }
 
-.sidebar-text {
-	color: white;
-	text-decoration: none;
-}
-
 .dp-block {
 	display: block;
 }
@@ -133,3 +128,21 @@ body {
 #btn-toggle {
 	margin-right: 10px;
 }
+
+.sidebar-text {
+	color: #fff;
+	text-decoration: none;
+}
+
+.sidebar-link {
+	color: rgba(255, 255, 255, 0.8);
+	text-decoration: none;
+}
+
+.sidebar-link:hover {
+	color: #ffffff;
+}
+
+.sidebar-link.active {
+	color:#FF0050;
+} /* .active 클래스가 함께 존재하는 경우에는 빨간색 표시 */
