@@ -8,20 +8,24 @@ body {
 	color: #fff;
 }
 
-#menu-icon {
+/* #menu-icon {
 	display: none;
-}
+} */
 
-@media only screen and (min-width: 991px) {
+@media only screen and (min-width: 992px) {
 	.main {
 		margin-top: 20px;
 		margin-left: 17%;
 		width: 82%;
 		background-color: darkcyan;
 	}
+	#menu-icon {
+		display: none;
+	}
+	
 }
 
-@media only screen and (max-width: 990.99px) {
+@media only screen and (max-width: 991.5px) {
     #menu-icon {
         display: block;
     }

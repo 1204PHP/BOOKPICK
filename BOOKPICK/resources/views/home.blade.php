@@ -4,4 +4,5 @@
 {{-- title로 Main 표기 --}}
 @section('content')
 	<h1>home</h1>
+
 @endsection

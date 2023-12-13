@@ -17,6 +17,7 @@ $currentRoute = Route::currentRouteName();
                     <a href="#" class="sidebar-layout-title sidebar-padding sidebar-text dp-block">BOOK PICK'</a>
                     @if(Auth::check())
                         {{-- 로그인 후 표시될 내용 --}}
+                        {{-- TODO: 클릭이벤트 드롭다운 추가 --}}
                         <a href="#" class="sidebar-layout-login sidebar-padding sidebar-text dp-block">환영합니다 ㅇㅇㅇ씨</a>
                     @else
                         {{-- 로그인 전 표시될 내용 --}}
