@@ -26,7 +26,7 @@
                     <div class= "sidebar-layout-box">
                         <a href="#" class="sidebar-text dp-inline sidebar-padding">
                             <img src="{{ asset('img/category3-ByCategory.png') }}">
-                            카테고리 별 도서
+                            카테고리별 도서
                         </a>
                     </div>
                     <div class= "sidebar-layout-box">
