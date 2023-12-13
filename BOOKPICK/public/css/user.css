@@ -1,8 +1,188 @@
-.LoginArea {
-    width: 500px;
-    height: 700px;
-    background-color: aquamarine;
+/* 로그인 페이지 */
+
+.login-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 97vh;
+}
+
+.login-container {
+    width: 400px;
+    height: 550px;
     margin: 0 auto;
-    position: absolute;
-    top: 0;
+    padding: 35px;
+    background-color: rgb(29, 29, 29);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.login-kakaologin-button {
+    height: 43px;
+    background-color: #FEE500;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.login-line-or-line {
+    display: flex;
+    align-items: center;
+}
+
+.login-line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: #868688;
+}
+
+.login-or {
+    padding: 10px 10px;
+}
+
+.login-p {
+    font-size: 18px;
+}
+
+.login-input {
+    height: 43px;
+    padding: 12px;
+    margin-bottom: 15px;
+    background-color: #131313;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.login-input::placeholder {
+    color: #fff;
+}
+
+.login-button {
+    height: 43px;
+    background-color: #868688;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.login-text {
+    text-align: center;
+    padding: 10px;
+}
+
+.login-register-link {
+    text-decoration: none;
+    color: #4c9adc;
+}
+
+/* 회원가입 페이지 */
+
+.register-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 97vh;
+}
+
+.register-container {
+    width: 400px;
+    height: 825px;
+    margin: 0 auto;
+    padding: 35px;
+    background-color: rgb(29, 29, 29);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.register-input {
+    height: 43px;
+    padding: 12px;
+    margin-bottom: 15px;
+    background-color: #131313;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.register-input::placeholder {
+    color: #fff;
+}
+
+/* 우편번호 스피너, 화살표 제거 */
+#u_postcode::-webkit-inner-spin-button,
+#u_postcode::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#u_postcode {
+    -moz-appearance: textfield;
+}
+/* 우편번호 스피너, 화살표 제거 */
+
+.register-gender-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.register-gender-button {
+    height: 43px;
+    width: 150px;
+    background-color: #131313;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.register-warning {
+    color:red;
+    visibility:hidden;
+}
+
+.register-warning.on {
+    visibility:visible;
+}
+/* https://velog.io/@hi_young/input-%EB%82%A0%EC%A7%9C%EC%9E%90%EB%8F%99-%ED%95%98%EC%9D%B4%ED%94%88-%EC%88%AB%EC%9E%90%EB%A7%8C-%EC%9E%85%EB%A0%A5 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.register-button {
+    height: 43px;
+    background-color: #868688;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.register-text {
+    text-align: center;
+    padding: 10px;
+}
+
+.register-login-link {
+    text-decoration: none;
+    color: #4c9adc;
 }

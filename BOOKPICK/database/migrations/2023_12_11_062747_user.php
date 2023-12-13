@@ -13,28 +13,28 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
+        Schema::create('user', function (Blueprint $table) {
+            $table->id('u_id');
             // default : big_int, pk, auto_increment
-            $table->string('email')->unique();
+            $table->string('u_email')->unique();
             // varchar 생성 / default : unique, not null
-            $table->string('password');
+            $table->string('u_password');
             // varchar 생성 / default : not null
-            $table->string('nickname', 20)->unique();
+            $table->string('u_nickname', 20)->unique();
             // varchar 생성(20) / default : unique, not null
-            $table->integer('postcode'); 
+            $table->integer('u_postcode', 20); 
             // integer 생성 / default : not null
-            $table->string('basic_address');
+            $table->string('u_basic_address', 1000);
             // varchar 생성 / default : not null
-            $table->string('detail_address');
+            $table->string('u_detail_address', 1000);
             // varchar 생성 / default : not null
-            $table->string('gender');
-            // varchar 생성 / default : not null
-            $table->string('name', 50);
+            $table->char('u_gender', 4);
+            // char 생성 / default : not null
+            $table->string('u_name', 50);
             // varchar 생성(50) / default : not null
-            $table->date('birthdate');
+            $table->date('u_birthdate');
             // date 날짜 형식 생성 / default : not null
-            $table->string('tel', 11);
+            $table->string('u_tel', 11);
             // varchar 생성(11) / default : not null
             $table->timestamp('email_verified_at')->nullable();
             // 이메일 인증 날짜, 시간 저장 / default : nullable
