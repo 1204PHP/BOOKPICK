@@ -21,7 +21,7 @@ $currentRoute = Route::currentRouteName();
                         <a href="#" class="sidebar-layout-login sidebar-padding sidebar-text dp-block">환영합니다 ㅇㅇㅇ씨</a>
                     @else
                         {{-- 로그인 전 표시될 내용 --}}
-                        <a href="{{route('user_login')}}" class="sidebar-layout-login sidebar-padding sidebar-text dp-block">로그인 후 이용하기</a>
+                        <a href="{{ route('login') }}" class="sidebar-layout-login sidebar-padding sidebar-text dp-block">로그인 후 이용하기</a>
                     @endif
                     <div class= "sidebar-layout-search">
                         <span class="sidebar-text dp-inline sidebar-padding">
