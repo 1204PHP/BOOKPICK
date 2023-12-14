@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 // 메인 메뉴
 Route::get( '/', function () {
     return view( 'home' );
-})->name( 'home' );
+})->name( 'index' );
 
 Route::get( '/home', function () {
     return view( 'home' );
@@ -38,16 +38,25 @@ Route::get( '/recommend', function () {
 // 세부 메뉴
 
 
-// 유저관련 ( 로그인, 회원가입, 회원정보 )
-Route::get( '/user/login', function () {
+// 유저관련 [ 로그인( 유효성체크 ), 회원가입( 유효성체크 ), 회원정보( 유효성체크 ) ]
+Route::get( '/login', function () {
     return view( 'user_login' );
-})->name( 'user_login' );
+})->name( 'login' );
 
-Route::get( '/user/register', function () {
+Route::post('/login-validate-ajax', 'UserValidationController@validateDataAjax')
+->name( 'login-validate' );
+
+Route::get( '/register', function () {
     return view( 'user_register' );
-})->name( 'user_register' );
+})->name( 'register' );
 
-Route::get('/user/info', function () {
+Route::post('/register-validate-ajax', 'UserValidationController@validateDataAjax')
+->name( 'register-validate' );
+
+Route::get('/info', function () {
     return view( 'user_info' );
-})->name( 'user_info' );
+})->name( 'info' );
+
+Route::post('/info-validate-ajax', 'UserValidationController@validateDataAjax')
+->name( 'info-validate' );
 
