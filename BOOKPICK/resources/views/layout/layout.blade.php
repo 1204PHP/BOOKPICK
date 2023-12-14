@@ -15,6 +15,8 @@
 </head>
 <body class="body">
     @include('layout.sidebar')
+    <main class="main">
     @yield('content')
+    </main>
 </body>
 </html>

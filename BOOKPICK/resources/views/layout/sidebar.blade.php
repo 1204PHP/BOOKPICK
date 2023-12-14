@@ -12,12 +12,12 @@ $currentRoute = Route::currentRouteName();
 		@if(Auth::check())
 			{{-- 로그인 후 표시될 내용 --}}
 			{{-- TODO: 클릭이벤트 드롭다운 추가 --}}
-			<a href="#" class="sidebar_signin_area">
+			<a href="{{ route('login') }}" class="sidebar_signin_area">
 				<span class="login_txt">로그인 후 이용하기</span>
 			</a>
 		@else
 			{{-- 로그인 전 표시될 내용 --}}
-			<a href="#" class="sidebar_signin_area">
+			<a href="{{ route('login') }}" class="sidebar_signin_area">
 				<span class="login_txt">로그인 후 이용하기</span>
 			</a>
 		@endif
