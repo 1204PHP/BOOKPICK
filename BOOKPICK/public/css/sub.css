@@ -1,0 +1,55 @@
+.best-container{
+	margin: 0px auto;
+    margin-top: 50px;
+    overflow: hidden;
+    width: 69%;
+    height: 410px;
+}
+.best-h2 {
+	margin: 0px;
+	padding-left: 25px;
+}
+.best-gird-box1 {
+	margin: 1vh auto;
+	height: 380px;
+	display: grid;
+	grid-template-columns: repeat(20, 200px);
+	transition: transform 0.5s ease-in-out;
+	list-style: none;
+	gap: 20px;
+	position: relative;
+}
+.carousel-prev{
+	position: absolute;
+	top: 200px;
+	left: 540px;
+}
+.carousel-next{
+	position: absolute;
+	top: 200px;
+	right: 230px;
+}
+.best-p{
+	font-size: 0.6rem;
+	width: 200px;
+	margin: 0px;
+	padding-top: 10px;
+}
+.best-content {
+	font-size: 0.8rem;
+}
+.imgsize {
+	height: 250px;
+	width: 100%;
+}
+
+.best-container2{
+	margin: 0px auto;
+    overflow: hidden;
+    width: 70%;
+    height: 410px;
+}
+
+ul {
+	padding: 0px;
+}
