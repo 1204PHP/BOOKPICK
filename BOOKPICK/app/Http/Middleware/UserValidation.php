@@ -1,20 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Middleware;
 
+use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class UserValidationController extends Controller
+class UserValidation
 {
-    public function validateData(Request $request)
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    public function handle(Request $request, Closure $next)
     {
         $validator = Validator::make($request->all(), [
             'u_email' => 'required|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/|unique:user,u_email',
             // RFC5322 표준 정규 표현식
             'u_password' => 'required|string|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/',
             // 최소 8자 이상, 최소 하나의 문자&하나의 숫자&하나의 특수문자(!@#$%^&*) 포함된 비밀번호 정규 표현식
-            'u_name' => 'required|regex:/^[\p{L}]+$/u',
+            'u_name' => 'required|regex:/^[\p{L}]+$/u|max:50',
             // 영문이름&한글이름만 허용, 특수문자&숫자&공백 불허, 최대 50글자 허용
             'u_birthdate' => 'required|regex:/^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/',
             // YYYY-MM-DD 허용
@@ -23,13 +31,13 @@ class UserValidationController extends Controller
         ], $this->errorMsg());
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()]);
+            $errormsg = $this->errormsg();
+            return response()->json(['errors' => $errormsg]);
         }
-
-        return response()->json(['success' => 'Data is valid']);
+        return $next($request);
     }
 
-    public function errorMsg() {
+    public function errormsg() {
         return [
             'u_email.required' => '이메일: 필수 정보입니다.',
             'u_email.regex' => '올바른 이메일 형식이 아닙니다.',
@@ -45,3 +53,4 @@ class UserValidationController extends Controller
         ];
     }
 }
+

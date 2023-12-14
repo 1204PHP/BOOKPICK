@@ -17,22 +17,29 @@ return new class extends Migration
             $table->id('u_id');
             // default : big_int, pk, auto_increment
             $table->string('u_email')->unique();
+            // 이메일
             // varchar 생성 / default : unique, not null
             $table->string('u_password');
+            // 비밀번호
             // varchar 생성 / default : not null            
             $table->string('u_name', 50);
+            // 이름
             // varchar 생성(50) / default : not null
             $table->date('u_birthdate');
+            // 생년월일
             // date 날짜 형식 생성 / default : not null
             $table->string('u_tel', 11);
+            // 휴대폰 번호
             // varchar 생성(11) / default : not null
-            $table->integer('u_postcode', 20); 
+            $table->integer('u_postcode', 20);
+            // 우편번호
             // integer 생성 / default : not null
             $table->string('u_basic_address', 1000);
+            // 기본주소
             // varchar 생성 / default : not null
             $table->string('u_detail_address', 1000);
-            // varchar 생성 / default : not null
-            
+            // 상세주소
+            // varchar 생성 / default : not null            
             $table->timestamp('email_verified_at')->nullable();
             // 이메일 인증 날짜, 시간 저장 / default : nullable
             $table->rememberToken();

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\UserValidation;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,26 +38,29 @@ Route::get( '/recommend', function () {
 
 // 세부 메뉴
 
-
 // 유저관련 [ 로그인( 유효성체크 ), 회원가입( 유효성체크 ), 회원정보( 유효성체크 ) ]
-Route::get( '/login', function () {
-    return view( 'user_login' );
-})->name( 'login' );
+Route::middleware([UserValidation::class])->group(function () {
+    Route::get( '/login', [UserController::class, 'getLogin'])
+    ->name( 'getLogin' );
 
-Route::post('/login-validate-ajax', 'UserValidationController@validateDataAjax')
-->name( 'login-validate' );
+    Route::post(' /login ', [UserController::class, 'postLogin'])
+    ->name( 'postLogin' );
 
-Route::get( '/register', function () {
-    return view( 'user_register' );
-})->name( 'register' );
+    Route::get( '/register', [UserController::class, 'getRegister'])
+    ->name( 'getRegister' );
 
-Route::post('/register-validate-ajax', 'UserValidationController@validateDataAjax')
-->name( 'register-validate' );
+    Route::post(' /register ', [UserController::class, 'postRegister'])
+    ->name( 'postRegister' );
 
-Route::get('/info', function () {
-    return view( 'user_info' );
-})->name( 'info' );
+    Route::get( '/info', [UserController::class, 'getInfo'])
+    ->name( 'getInfo' );
 
-Route::post('/info-validate-ajax', 'UserValidationController@validateDataAjax')
-->name( 'info-validate' );
+    Route::put( '/info/{id}', [UserController::class, 'putInfo'])
+    ->name( 'putInfo' );
+
+    Route::get('/logout', [UserController::class, 'getLogout'])
+    ->name( 'getLogout' );
+});
+
+
 

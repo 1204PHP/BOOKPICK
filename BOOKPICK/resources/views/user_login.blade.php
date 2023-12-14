@@ -21,11 +21,16 @@
 			<div class="login-line"></div>
 		</div>
 		<p class="login-p">이메일 로그인</p>
+		<br>
 		<div class="login-input-area">
-		<input class="login-input" type="text" id="email" name="email" required autocomplete="off" placeholder="이메일 주소">
+		<input class="login-input" type="text" id="email" name="email" 
+		required autocomplete="off" placeholder="이메일 주소">
+		<span class="error-msg" data-field="u_email"></span>
 		</div>
 		<div class="login-input-area">
-		<input class="login-input" type="password" id="password" name="password" required autocomplete="off" placeholder="비밀번호">
+		<input class="login-input" type="password" id="password" name="password" 
+		required autocomplete="off" placeholder="비밀번호">
+		<span class="error-msg" data-field="u_password"></span>
 		</div>
 		<br>
 		<div class="login-button-area">

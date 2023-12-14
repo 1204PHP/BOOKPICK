@@ -13,43 +13,46 @@
     @csrf
         <div class="register-container">
             <div class="register-input-area">
-                <input class="register-input" type="email" name="u_email" required placeholder="이메일 주소">
-                <span>유효하지 않은 날짜입니다.</span>
+                <input class="register-input" type="email" name="u_email" 
+                required placeholder="이메일 주소">
+                <span class="error-msg" data-field="u_email"></span>
             </div>
             <div class="register-input-area">
-                <input class="register-input" type="password" name="u_password" required placeholder="비밀번호">
-                <span>유효하지 않은 날짜입니다.</span>
+                <input class="register-input" type="password" name="u_password" 
+                required placeholder="비밀번호">
+                <span class="error-msg" data-field="u_password"></span>
             </div>
             <div class="register-input-area">
-                <input class="register-input" type="text" name="u_name" required placeholder="이름">
-                <span>유효하지 않은 날짜입니다.</span>
+                <input class="register-input" type="text" name="u_name" 
+                required placeholder="이름">
+                <span class="error-msg" data-field="u_name"></span>
             </div>
             <div class="register-input-area">
-                <input class="register-input" type="text" name="u_birthdate" required placeholder="생년월일 YYYY:MM:DD"
+                <input class="register-input" type="text" name="u_birthdate" 
+                required placeholder="생년월일 YYYY:MM:DD"
                 id="birthdate" maxlength="10">
-                <span>유효하지 않은 날짜입니다.</span>
+                <span class="error-msg" data-field="u_birthdate"></span>
             </div>
             <div class="register-input-area">
-                <input class="register-input" type="tel" name="u_tel" required placeholder="휴대폰 번호">
-                <span>유효하지 않은 날짜입니다.</span>
+                <input class="register-input" type="tel" name="u_tel" 
+                required placeholder="휴대폰 번호">
+                <span class="error-msg" data-field="u_tel"></span>
             </div>
             <div class="register-input-area">
-                <input class="register-input" type="text" required placeholder="우편번호">
-                <span>유효하지 않은 날짜입니다.</span>
+                <input class="register-input" type="text" 
+                required placeholder="우편번호">
+                <span></span>
             </div>
             <div class="register-input-area">
-                <input class="register-input" type="text" required placeholder="기본주소">
-                <span>유효하지 않은 날짜입니다.</span>
+                <input class="register-input" type="text" 
+                required placeholder="기본주소">
+                <span></span>
             </div>
             <div class="register-input-area">
-                <input class="register-input" type="text" required placeholder="상세주소">
-                <span>유효하지 않은 날짜입니다.</span>
+                <input class="register-input" type="text" 
+                required placeholder="상세주소">
+                <span></span>
             </div>
-            
-
-
-
-
             <br>
             <div class="register-button-area">
                 <button class="register-button" type="submit">가입하기</button>
