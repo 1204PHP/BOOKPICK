@@ -23,7 +23,7 @@
 		<input class="login-input" type="password" id="password" name="password" autocomplete="off" placeholder="비밀번호">
 		<button class="login-button" type="submit">로그인</button>
 		<div class="login-text">
-			<span>북픽에 처음이신가요?</span> <a class="login-register-link" href="">회원가입하기</a>
+			<span>북픽에 처음이신가요?</span> <a class="login-register-link" href="{{route('user_register')}}">회원가입하기</a>
 		</div>
 	</div>
 </form>

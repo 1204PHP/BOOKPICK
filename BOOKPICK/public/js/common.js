@@ -22,9 +22,9 @@ function limitPostalCodeLength(inputElement) {
 	// 값 설정
 };
 
-// user_register 생년월일 - 자동 입력 & 유효성 체크
+// user_register 생년월일 - 자동 입력유효성 체크
 let date = document.querySelector("#date");
-let warning = document.querySelector(".warning");
+let warning = document.querySelector("#register-warning");
 
 const onInputHandler = () => {
     let val = date.value.replace(/\D/g, "");
@@ -52,6 +52,7 @@ const onInputHandler = () => {
     date.value = result;
 }
 
+// user_register 생년월일 유효성 체크
 const checkValidDate = (value) => {
     let result = true;
     try {

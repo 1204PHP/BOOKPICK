@@ -8,7 +8,7 @@
 }
 
 .login-container {
-    width: 400px;
+    width: 400px;jj
     height: 550px;
     margin: 0 auto;
     padding: 35px;
@@ -88,17 +88,28 @@
 }
 
 .register-container {
-    width: 400px;
-    height: 825px;
-    margin: 0 auto;
-    padding: 35px;
-    background-color: rgb(29, 29, 29);
+    width: 700px;
+    /* height: 750px; */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    margin: 0 auto;
+    padding: 35px;
+    background-color: rgb(29, 29, 29);   
     border: 1px solid transparent;
     border-radius: 10px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 .register-input {
     height: 43px;
@@ -129,7 +140,7 @@
 .register-gender-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 15px;
 }
 
@@ -142,16 +153,15 @@
     color: #fff;
 }
 
-.register-warning {
-    color:red;
-    visibility:hidden;
+#register-warning {
+    color: red;
+    /* font-size: 0.8rem; */
+    visibility: hidden;
 }
 
-.register-warning.on {
-    visibility:visible;
+#register-warning.on {
+    visibility: visible;
 }
-/* https://velog.io/@hi_young/input-%EB%82%A0%EC%A7%9C%EC%9E%90%EB%8F%99-%ED%95%98%EC%9D%B4%ED%94%88-%EC%88%AB%EC%9E%90%EB%A7%8C-%EC%9E%85%EB%A0%A5 */
-
 
 
 
