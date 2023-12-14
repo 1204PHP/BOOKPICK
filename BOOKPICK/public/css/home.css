@@ -14,4 +14,9 @@
 	width: 87%;
 	height: 45vh;
 	margin: 0 auto;
+	border-radius: 20px;
+}
+
+.home-pick {
+	background: linear-gradient( to bottom, rgba(121, 121, 121, 1), rgba(121, 121, 121, 0));
 }
