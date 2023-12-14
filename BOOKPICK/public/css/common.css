@@ -13,16 +13,14 @@ body {
 } */
 
 @media only screen and (min-width: 992px) {
-	.main {
-		margin-top: 20px;
-		margin-left: 17%;
-		width: 82%;
-		background-color: darkcyan;
-	}
 	#menu-icon {
 		display: none;
 	}
-	
+	.main {
+		margin-top: 20px;
+		margin-left: 17%;
+		width: 83%;
+	}
 }
 
 @media only screen and (max-width: 991.5px) {
@@ -32,7 +30,6 @@ body {
 	.main {
 		margin-top: 50px;
 		width: 100%;
-		background-color: darkcyan;
 	}
 }
 
@@ -45,6 +42,7 @@ body {
 	right: 0px;
 	left: 0px;
 	z-index: 1000;
+	border-right: hsla(0,0%,100%,.1);
 }
 .scrollbar {
 	overflow-x: hidden;
@@ -52,7 +50,7 @@ body {
 }
   /* 스크롤바의 폭 너비 */
 .scrollbar::-webkit-scrollbar {
-	width: 10px;  
+	width: 10px;
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
@@ -88,13 +86,13 @@ body {
 .sidebar-layout-title {
 	font-size: 1.3rem;
 	font-weight: 600;
-	border-bottom: 1px solid #6D6D6D;
+	border-bottom: hsla(0,0%,100%,.1);
 }
 
 .sidebar-layout-login {
 	color: #cdcdcd;
 	font-size: 15px;
-	border-bottom: 1px solid #6D6D6D;
+	border-bottom: hsla(0,0%,100%,.1);
 }
 
 .sidebar-padding {
