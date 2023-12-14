@@ -53,7 +53,6 @@ $currentRoute = Route::currentRouteName();
                             북픽 추천 도서
                         </a>
                     </div>
-
                 </div>
             </div>
         </div>

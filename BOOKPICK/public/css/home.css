@@ -1,0 +1,17 @@
+.home-carousel-div {
+	margin: 3vw auto;
+	width: 87%;
+}
+
+.home-title {
+	width: 87%;
+	height: 10vh;
+	background-color: rgb(61, 136, 68);
+	margin: 0 auto;
+}
+
+.home-layout {
+	width: 87%;
+	height: 45vh;
+	margin: 0 auto;
+}
