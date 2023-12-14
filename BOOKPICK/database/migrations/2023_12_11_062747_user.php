@@ -19,23 +19,20 @@ return new class extends Migration
             $table->string('u_email')->unique();
             // varchar 생성 / default : unique, not null
             $table->string('u_password');
-            // varchar 생성 / default : not null
-            $table->string('u_nickname', 20)->unique();
-            // varchar 생성(20) / default : unique, not null
-            $table->integer('u_postcode', 20); 
-            // integer 생성 / default : not null
-            $table->string('u_basic_address', 1000);
-            // varchar 생성 / default : not null
-            $table->string('u_detail_address', 1000);
-            // varchar 생성 / default : not null
-            $table->char('u_gender', 4);
-            // char 생성 / default : not null
+            // varchar 생성 / default : not null            
             $table->string('u_name', 50);
             // varchar 생성(50) / default : not null
             $table->date('u_birthdate');
             // date 날짜 형식 생성 / default : not null
             $table->string('u_tel', 11);
             // varchar 생성(11) / default : not null
+            $table->integer('u_postcode', 20); 
+            // integer 생성 / default : not null
+            $table->string('u_basic_address', 1000);
+            // varchar 생성 / default : not null
+            $table->string('u_detail_address', 1000);
+            // varchar 생성 / default : not null
+            
             $table->timestamp('email_verified_at')->nullable();
             // 이메일 인증 날짜, 시간 저장 / default : nullable
             $table->rememberToken();
