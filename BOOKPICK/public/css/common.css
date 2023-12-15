@@ -50,8 +50,7 @@
 .sidebar_submenu {
 	overflow-x: hidden;
 	overflow-y: scroll;
-	backdrop-filter: blur(20px);
-	height: 500px;
+	height: 100%;
 }
 .sidebar_submenu::-webkit-scrollbar {
 	background: hsla(0,0%,53.7%,0);
@@ -190,8 +189,8 @@
 /* 미디어 쿼리 */
 @media only screen and (max-width: 767.99px) {
 	.main {
-		margin-top: 70px;
-		width: 100%;
+		width: 90%;
+		margin: 70px auto 0;
 	}
 	.sidebar {
 		width: 100%;
@@ -213,7 +212,6 @@
 	.sidebar_submenu {
         display: none; /* 화면 크기가 작을 때 서브메뉴 숨김 */
     }
-	/* 여기하는중 0 100  */
 	.hamburger_menu {
         display: block;
     }
@@ -257,7 +255,7 @@
 @media only screen and (min-width: 768px) and (max-width: 1279.99px)  {
 	.main {
 		margin-top: 20px;
-		padding-left: 225px;
+		padding-left: 265px;
 		width: 100%;
 	}
 	.sidebar {
@@ -272,7 +270,7 @@
 @media only screen and (min-width: 1280px) {
 	.main {
 		margin-top: 20px;
-		padding-left: 245px;
+		padding-left: 285px;
 		width: 100%;
 	}
 	.sidebar {
