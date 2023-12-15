@@ -93,14 +93,14 @@
 	width: 1.3rem;
 }
 .member_text {
-	font-weight: 800;
+	font-weight: bold;
 	margin: 0 5px;
 }
 
 /* 검색 영역 */
 .sidebar_search {
 	margin: 0 auto;
-	padding: 0.7rem 1rem;
+	padding: 0.6rem 1rem;
 	display: flex;
 	flex-direction: initial;
 	justify-content: center;
@@ -109,7 +109,7 @@
 }
 .search_input {
 	width: 100%;
-	height: 2.8rem;
+	height: 2.7rem;
 	box-sizing: border-box;
     background-color: #1a1a1a;
 	padding-left: 50px;
@@ -148,7 +148,8 @@
 /* 리스트 영역 */
 .sidebar_menu {
 	margin: 0 auto;
-	width: 80%;
+	padding: 0.3rem 1rem;
+	width: 100%;
 	height: 500px;
 }
 .sidebar_menu li > a {
@@ -165,11 +166,12 @@
 	color: #ffffff;
 }
 .sidebar_menu img {
-	width: 23px;
-	height: 23px;
+	width: 20px;
+	height: 20px;
 }
 .sidebar-link.active span {
 	color:#FF0050;
+	font-weight: bold;
 }
 
 /* 햄버거 메뉴 */
@@ -222,6 +224,9 @@
 	.sidebar_blur {
 		display: none;
 	}
+	/* .sidebar_hamburger_div {
+		z-index: 10000;
+	} */
 }
 
 @media only screen and (min-width: 768px) {

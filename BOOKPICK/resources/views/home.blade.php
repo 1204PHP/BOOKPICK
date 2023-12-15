@@ -3,32 +3,12 @@
 @section('title', 'home')
 {{-- title로 Main 표기 --}}
 @section('content')
-	{{-- <div id="carouselExampleCaptions" class="carousel slide home-carousel-div" data-bs-ride="carousel">
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img src="{{ asset('img/home-book1.png') }}" class="d-block w-100 home-layout" alt="...">
-			</div>
-			<div class="carousel-item">
-				<img src="{{ asset('img/home-book2.png') }}" class="d-block w-100 home-layout" alt="...">
-			</div>
-			<div class="carousel-item">
-				<img src="{{ asset('img/home-book3.png') }}" class="d-block w-100 home-layout" alt="...">
-			</div>
-			<div class="carousel-item">
-				<img src="{{ asset('img/home-book4.png') }}" class="d-block w-100 home-layout" alt="...">
-			</div>
-			<div class="carousel-item">
-				<img src="{{ asset('img/home-book5.png') }}" class="d-block w-100 home-layout" alt="...">
-			</div>
-		</div>
-		<div class="carousel-indicators">
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+	<div class="carousel-container">
+		<div class="carousel-wrapper" id="carouselWrapper">
+			<div class="carousel-item">1</div>
+			<div class="carousel-item">2</div>
+			<div class="carousel-item">3</div>
+			<!-- 추가적인 캐러셀 아이템들 -->
 		</div>
 	</div>
-	<div class="home-layout home-pick">
-	</div> --}}
 @endsection
