@@ -13,52 +13,49 @@ function limitPostalCodeLength(inputElement) {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-    // 폼 요소 참조
-    const form = document.querySelector('.login-form');
+    var form = document.getElementsByClassName("login-form");
 
-    // 폼 제출 이벤트 리스너 추가
-    form.addEventListener('submit', async function (event) {
-        event.preventDefault(); // 폼 제출 중단
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // 기본 제출 동작을 막음
 
-        // FormData를 사용하여 폼 데이터를 가져옴
-        const formData = new FormData(form);
+        // 각 입력 필드에 대한 유효성 검사
+        var userEmailValid = validationEmailForm();
 
-        try {
-            // 서버로 데이터를 전송하고 응답을 받음
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: formData
-            });
-
-            // JSON 형태로 변환된 응답을 가져옴
-            const responseData = await response.json();
-
-            // 유효성 검사 오류 메시지를 동적으로 표시
-            validationErrors(responseData.errors);
-        } catch (error) {
-            console.error('Error during form submission:', error);
+        // 유효성 검사를 통과하면 폼을 제출
+        if (userEmailValid) {
+            form.submit();
+        } else if(userPasswordValid) {
+            form.submit();
         }
     });
 
-    // 유효성 검사 오류 메시지를 동적으로 표시하는 함수
-    function validationErrors(errors) {
-        // 모든 오류 메시지 초기화
-        clearErrorMsg();
-
-        // 각 필드에 대한 오류 메시지 표시
-        for (const fieldName in errors) {
-            if (errors.hasOwnProperty(fieldName)) {
-                const errorSpan = form.querySelector(`.error-msg[data-field="${fieldName}"]`);
-                if (errorSpan) {
-                    errorSpan.textContent = errors[fieldName][0];
+    // 각 입력 필드에 대한 유효성 검사를 수행하는 함수
+    function validationEmailForm() {
+        var userEmailValid = true;
+    
+        // 이메일 유효성 검사
+        var emailInput = document.getElementById("u_email");
+        var emailErrorSpan = document.getElementsByClassName("u_mail_errormsg");
+        var emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
+    
+        if (!emailInput.value) {
+            userEmailValid = false;
+            emailErrorSpan.innerText = "이메일: 필수 정보입니다.";
+        } else if (!emailRegex.test(emailInput.value)) {
+            userEmailValid = false;
+            emailErrorSpan.innerText = "이메일: 올바른 이메일 형식이 아닙니다.";
+        } else {
+            // 서버에 중복 여부 확인 (unique)
+            // 예를 들어, 서버 측에 Ajax 요청을 보내서 중복 여부를 확인할 수 있음
+            emailUniqueCheck(emailInput.value, function (isUnique) {
+                if (!isUnique) {
+                    userEmailValid = false;
+                    emailErrorSpan.innerText = "이메일: 이미 사용 중인 이메일입니다.";
+                } else {
+                    emailErrorSpan.innerText = "";
                 }
-            }
-        }
-    }
-
-    // 모든 오류 메시지를 초기화하는 함수
-    function clearErrorMsg() {
-        const errorMsgs = form.querySelectorAll('.error-msg');
-        errorMsgs.forEach(span => span.textContent = '');
+            });
+        }    
+        return userEmailValid;
     }
 });
