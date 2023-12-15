@@ -13,7 +13,6 @@
 	flex-direction: row;
 	/* font-family: 맑은 고딕,Malgun Gothic,돋움,Dotum,sans-serif; */
 }
-
 /* sidebar */
 .sidebar {
 	height: 100vh;
@@ -51,16 +50,24 @@
 .sidebar_submenu {
 	overflow-x: hidden;
 	overflow-y: scroll;
+	backdrop-filter: blur(20px);
 	height: 100%;
 }
 .sidebar_submenu::-webkit-scrollbar {
+	background: hsla(0,0%,53.7%,0);
+	border-radius: 10px;
 	width: 8px;
 }
 .sidebar_submenu::-webkit-scrollbar-thumb {
-	  background: hsla(0,0%,53.7%,.6); /* 스크롤바 색상 */
-	  border-radius: 10px; /* 스크롤바 둥근 테두리 */
+	background: hsla(0,0%,53.7%,0);
+	border-radius: 10px;
 }
-
+.sidebar_submenu:hover::-webkit-scrollbar {
+	background: linear-gradient(to bottom, hsla(0,0%,84.3%,.23), hsla(0,0%,84.3%,.03));
+}
+.sidebar_submenu:hover::-webkit-scrollbar-thumb {
+	background: hsla(0,0%,53.7%,0.6);
+}
 .login_txt {
 	color: #cdcdcd;
 	margin: 10px 0 10px 0;
@@ -163,14 +170,16 @@
 }
 .sidebar-link.active span {
 	color:#FF0050;
-} /* .active 클래스가 함께 존재하는 경우에는 빨간색 표시 */
+}
 
+/* 햄버거 메뉴 */
 .hamburger_menu {
 	width: 30px;
 	height: 30px;
 	position: absolute;
 	top: 22px;
 	right: 30px;
+	cursor:pointer;
 }
 .sidebar_hamburger_div {
 	position: relative;
@@ -210,14 +219,12 @@
 	.sidebar_menu {
 		font-size: 1.2rem;
 	}
+	.sidebar_blur {
+		display: none;
+	}
 }
 
 @media only screen and (min-width: 768px) {
-	.main {
-		margin-top: 20px;
-		padding-left: 225px;
-		width: 100%;
-	}
 	.sidebar_logo {
 		text-align: center;
 	}
@@ -227,9 +234,22 @@
 	.sidebar_button_area {
 		height: 2.8rem;
 	}
+	.sidebar_blur {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 200px;
+		height: 50px;
+		background: linear-gradient(180deg,transparent,#000 34%,#000);
+	}
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1279px)  {
+	.main {
+		margin-top: 20px;
+		padding-left: 225px;
+		width: 100%;
+	}
 	.sidebar {
 		width: 225px;
 	}
@@ -240,6 +260,11 @@
 
 
 @media only screen and (min-width: 1280px) {
+	.main {
+		margin-top: 20px;
+		padding-left: 245px;
+		width: 100%;
+	}
 	.sidebar {
 		width: 245px;
 	}

@@ -65,4 +65,6 @@ $currentRoute = Route::currentRouteName();
 			</ul>
         </div>
 	</div>
+	<div class="sidebar_blur">
+	</div>
 </div>
