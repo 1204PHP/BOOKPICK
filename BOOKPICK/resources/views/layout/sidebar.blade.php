@@ -4,10 +4,12 @@ $currentRoute = Route::currentRouteName();
 @endphp
 
 <div class="sidebar">
-	<a href="{{ route('home') }}" class="sidebar_logo">
-        <span class="logo_bookpick">BOOK PICK'</span>
-    </a>
-
+	<div class="sidebar_hamburger_div">
+		<a href="{{ route('home') }}" class="sidebar_logo">
+			<span class="logo_bookpick">BOOK PICK'</span>
+		</a>
+		<img src="{{ asset('img/sidebar-hamburger.png') }}" class="hamburger_menu" onclick="toggleSidebar()">
+	</div>
 	<div class="sidebar_submenu">
 		@if(Auth::check())
 			{{-- 로그인 후 표시될 내용 --}}
