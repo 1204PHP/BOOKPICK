@@ -5,6 +5,7 @@ function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
     const hamburgerMenu = document.querySelector('.hamburger_menu');
     sidebarSubMenu.classList.toggle('active');
+    sidebar.classList.toggle('active');
     sidebar.classList.toggle('position_top');
 	isImage = !isImage;
 	if(isImage) {

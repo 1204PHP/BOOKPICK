@@ -1,23 +1,27 @@
 /* ******************주간 베스트셀러 ****************** */
+.best-main-box {
+	position: relative;
+	width: 100%;
+}
 .best-container{
 	margin: 0px auto;
     margin-top: 50px;
     overflow: hidden;
     width: 64%;
-    height: 410px;
+    height: 47%;
 }
 .best-gird-box1 {
 	margin: 1vh auto;
-	height: 240px;
 	display: grid;
+	height: 40vh;
 	grid-template-columns: repeat(20, 200px);
 	transition: transform 0.5s ease-in-out;
 	list-style: none;
 	gap: 15px;
-	position: relative;
+	
 }
 .imgsize {
-	height: 240px;
+	height: 27vh;
 	width: 95%;
 }
 .imgsize {
@@ -30,24 +34,27 @@
 }
 
 /* ************월간 베스트 영역 */
+.best-main-box2 {
+	position: relative;
+	width: 100%;
+}
 .best-container2{
 	margin: 0px auto;
     overflow: hidden;
     width: 64%;
-    height: 410px;
+    height: 47%;
 }
 .best-gird-box2 {
 	margin: 1vh auto;
-	height: 240px;
+	height: 40vh;
 	display: grid;
 	grid-template-columns: repeat(20, 200px);
 	transition: transform 0.5s ease-in-out;
 	list-style: none;
 	gap: 15px;
-	position: relative;
 }
 .imgsize2 {
-	height: 240px;
+	height: 27vh;
 	width: 95%;
 }
 .imgsize2 {
@@ -63,23 +70,23 @@
 
 .carousel-prev{
 	position: absolute;
-	top: 200px;
-	left: 480px;
+	top: 35%;
+	left: 15%;
 }
 .carousel-next{
 	position: absolute;
-	top: 200px;
-	right: 240px;
+	top: 35%;
+	right: 15%;
 }
 .carousel-prev-m{
 	position: absolute;
-	bottom: 250px;
-	left: 480px;
+	top: 35%;
+	left: 15%;
 }
 .carousel-next-m{
 	position: absolute;
-	bottom: 250px;
-	right: 240px;
+	top: 35%;
+	right: 15%;
 }
 .best-text-box {
 	display: flex;
@@ -93,6 +100,7 @@
 	width: 200px;
 	margin: 5px 0px 0px 10px;
 	padding-top: 10px;
+	color: white;
 }
 .best-content {
 	font-size: 0.8rem;
