@@ -40,8 +40,8 @@ class UserValidation
     public function errormsg() {
         return [
             'u_email.required' => '이메일: 필수 정보입니다.',
-            'u_email.regex' => '올바른 이메일 형식이 아닙니다.',
-            'u_email.unique' => '이미 사용 중인 이메일입니다.',
+            'u_email.regex' => '이메일: 올바른 이메일 형식이 아닙니다.',
+            'u_email.unique' => '이메일: 이미 사용 중인 이메일입니다.',
             'u_password.required' => '비밀번호: 필수 정보입니다.',
             'u_password.regex' => '비밀번호: 보안이 취약합니다.',
             'u_name.required' => '이름: 필수 정보입니다.',
