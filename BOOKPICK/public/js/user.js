@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function validatePassword(passwordInput) {        
         var passwordValid = true;
         var passwordErrorSpan = document.getElementsByClassName("u_password_errormsg")[0];
-        var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/;
+        var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
         
         if(passwordInput) {
             if (!passwordInput.value) {
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 openErrorMsg(passwordErrorSpan, "비밀번호: 필수 정보입니다.");
             } else if (!passwordRegex.test(passwordInput.value)) {
                 passwordValid = false;
-                openErrorMsg(passwordErrorSpan, "비밀번호: 보안이 취약합니다.");
+                openErrorMsg(passwordErrorSpan, "비밀번호: 보안강도 낮음(1개의 문자, 숫자, 특수문자 포함 필요)");
             } else {
                 clearErrorMsg(passwordErrorSpan);
             }
@@ -238,166 +238,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // 상세주소 유효성
-    function validateDetailAddress(detailAddressInput) {
-        var detailAddressValid = true;
-        var detailAddressErrorSpan = document.getElementsByClassName("u_postcode_errormsg")[0];
-        
-        if(detailAddressInput) {
-            if (!detailAddressInput.value) {
-                detailAddressValid = false;
-                openErrorMsg(detailAddressErrorSpan, "상세주소: 필수 정보입니다.");
-            } else {
-                clearErrorMsg(detailAddressErrorSpan);
-            }
-        }  
-        return detailAddressValid;
-    }
-
-    function openErrorMsg(element, message) {
-        if (element) {
-            element.innerText = message;
-        }
-    }
-
-    function clearErrorMsg(element) {
-        if (element) {
-            element.innerText = "";
-        }
-    }
-});
-
-
-// ### 회원정보 수정 실시간 유효성 검사 ###
-
-document.addEventListener("DOMContentLoaded", function () {
-    var forms = document.getElementsByClassName("info-form");
-
-    for (let i = 0; i < forms.length; i++) {
-        var form = forms[i];
-
-        // 각 입력 필드에 대한 유효성 검사를 수행 함수 등록
-        var inputFields = form.getElementsByClassName("info-input");
-        for (var j = 0; j < inputFields.length; j++) {
-            inputFields[j].addEventListener("input", function (event) {
-                validateInput(event.target);
-            });
-        }
-
-        // form 제출 동작 막음
-        form.addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            // 각 입력 필드에 대한 유효성 검사
-            var userPasswordValid = validateInput(document.getElementById("u_password"));
-            var userPostCodeValid = validateInput(document.getElementById("u_postcode"));
-            var userBasicAddressValid = validateInput(document.getElementById("u_basic_address"));
-            var userDetailAddressValid = validateInput(document.getElementById("u_detail_address"));
-
-            // 유효성 검사를 통과하면 해당 폼을 제출
-            if (userPasswordValid && userPostCodeValid && userBasicAddressValid && userDetailAddressValid) {
-                event.currentTarget.submit();
-            }
-        });
-    }
-
-    // 각 입력 필드에 대한 유효성 검사를 수행하는 함수
-    function validateInput(inputField) {
-        var isValid = true;
-        var errorSpan = inputField.nextElementSibling; // 다음 형제 요소에 오류 메시지가 있다고 가정
-
-        if (!inputField.value) {
-            isValid = false;
-            openErrorMsg(errorSpan, inputField.placeholder + ": 필수 정보입니다.");
-        } else {
-            // 각 필드에 따른 추가적인 유효성 검사 규칙을 적용하고 결과에 따라 isValid를 업데이트
-            if (inputField.id === "u_password") {
-                isValid = validatePassword(inputField);
-            } else if (inputField.id === "u_postcode") {
-                isValid = validatePostcode(inputField);
-            } else if (inputField.id === "u_basic_address") {
-                isValid = validateBasicAddress(inputField);
-            } else if (inputField.id === "u_detail_address") {
-                isValid = validateDetailAddress(inputField);
-            }
-
-            if (isValid) {
-                clearErrorMsg(errorSpan);
-            }
-        }
-        return isValid;
-    }    
-    
-    // password 유효성 검사
-    function validatePassword(passwordInput) {        
-        var passwordValid = true;
-        var passwordErrorSpan = document.getElementsByClassName("u_password_errormsg")[0];
-        var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/;
-        
-        if(passwordInput) {
-            if (!passwordInput.value) {
-                passwordValid = false;
-                openErrorMsg(passwordErrorSpan, "비밀번호: 필수 정보입니다.");
-            } else if (!passwordRegex.test(passwordInput.value)) {
-                passwordValid = false;
-                openErrorMsg(passwordErrorSpan, "비밀번호: 보안이 취약합니다.");
-            } else {
-                clearErrorMsg(passwordErrorSpan);
-            }
-        }  
-        return passwordValid;
-    }
-
-    // ### password 중복 체크 처리 ###
-    // else {
-    //     // 서버에 중복 여부 확인 (unique)
-    //     // 예를 들어, 서버 측에 Ajax 요청을 보내서 중복 여부를 확인할 수 있음
-    //     passwordUniqueCheck(passwordInputField.value, function (isUnique) {
-    //         if (!isUnique) {
-    //             passwordValid = false;
-    //             openErrorMsg(passwordErrorSpan, "비밀번호: 사용 중인 비밀번호입니다.");
-    //         } else {
-    //             clearErrorMsg(passwordErrorSpan);
-    //         }
-    //     });
-    // }
-
-   // 우편번호 유효성 검사
-    function validatePostcode(postcodeInput) {
-        var postcodeValid = true;
-        var postcodeErrorSpan = document.getElementsByClassName("u_postcode_errormsg")[0];
-        var postcodeRegex = /^\d{5}$/;
-        
-        if(postcodeInput) {
-            if (!postcodeInput.value) {
-                postcodeValid = false;
-                openErrorMsg(postcodeErrorSpan, "우편번호: 필수 정보입니다.");
-            } else if (!postcodeRegex.test(postcodeInput.value || birthdateInput.value.length > 7)) {
-                postcodeValid = false;
-                openErrorMsg(postcodeErrorSpan, "우편번호: 5~6자리 숫자로만 입력가능 합니다.");
-            } else {
-                clearErrorMsg(postcodeErrorSpan);
-            }
-        }  
-        return postcodeValid;
-    }
-
-    // 기본주소 유효성 검사
-    function validateBasicAddress(basicAddressInput) {
-        var basicAddressValid = true;
-        var basicAddressErrorSpan = document.getElementsByClassName("u_postcode_errormsg")[0];
-        
-        if(basicAddressInput) {
-            if (!basicAddressInput.value) {
-                basicAddressValid = false;
-                openErrorMsg(basicAddressErrorSpan, "기본주소: 필수 정보입니다.");
-            } else {
-                clearErrorMsg(basicAddressErrorSpan);
-            }
-        }  
-        return basicAddressValid;
-    }
-
-    // 상세정보 유효성 검사
     function validateDetailAddress(detailAddressInput) {
         var detailAddressValid = true;
         var detailAddressErrorSpan = document.getElementsByClassName("u_postcode_errormsg")[0];

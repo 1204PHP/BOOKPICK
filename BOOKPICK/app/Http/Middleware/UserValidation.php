@@ -17,7 +17,24 @@ class UserValidation
      */
     public function handle(Request $request, Closure $next)
     {
-        $validator = Validator::make($request->all(), [
+        Log::debug( "### User 유효성 검사 시작 ###" );
+
+        // User 정보 목록
+        $userBaseKey = [
+            'u_email'
+            ,'u_password'
+            ,'u_name'
+            ,'u_birthdate'
+            ,'u_tel'
+            ,'u_postcode'
+            ,'u_basic_address'
+            ,'u_detail_address'
+        ];
+
+        // 유효성 검사 목록
+        // 회원가입 : user.js 처리
+        // 로그인, 회원정보 수정 : UserValiation.php 처리
+        $userBaseValidation = [
             'u_email' => 'required|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/|unique:user,u_email',
             // 필수입력, RFC5322 표준 정규 표현식
             'u_password' => 'required|string|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/',
@@ -27,22 +44,44 @@ class UserValidation
             'u_birthdate' => 'required|regex:/^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/',
             // 필수입력, YYYY-MM-DD 허용
             'u_tel' => 'required|regex:/^010[0-9]{3,4}[0-9]{4}$/|max:11',
-            // 필수입력, 대한민국 기준 휴대폰 번호 형식만 허용
+            // 필수입력, 대한민국 기준 휴대폰 번호 형식만 허용, 최대 11글자 허용
             'u_postcode' => 'required|regex:/^\d{5}$/|max:6',
-            // 필수입력, 대한민국 기준 우편번호 5자리
+            // 필수입력, 대한민국 기준 우편번호 5~6자리
             'u_basic_address' => 'required',
             // 필수입력
             'u_detail_address' => 'required',
             // 필수입력
-        ], $this->errorMsg());
+        ];
 
-        if ($validator->fails()) {
-            $errormsg = $this->errormsg();
-            return response()->json(['errors' => $errormsg]);
+        // User Request Parameter
+        $userRequestParam = [];
+        foreach($userBaseKey as $val) {
+            if($request->has($val)) {
+                $userRequestParam[$val] = $request->$val;
+            } else {
+                unset($userBaseValidation[$val]);
+            }
         }
+
+        Log::debug(" ### User Request Parameter 획득 ### ", $userRequestParam);
+
+        Log::debug(" ### 유효성 검사 목록 획득 ", $userBaseValidation);
+
+        // 유효성 검사 진행
+        $validator = Validator::make($userRequestParam, $userBaseValidation);
+
+        // 유효성 검사 실패시 처리
+        if($validator->fails()){
+            Log::debug( "### User 유효성 검사 실패 ###" );
+            $errorMsg = $this->errormsg();
+            return redirect( '/' . $request->path())->withErrors($validator->errors()->first() );
+        }
+
+        Log::debug( "### User 유효성 검사 성공 ###" );
         return $next($request);
     }
 
+    // 에러메세지 설정
     public function errormsg() {
         return [
             'u_email.required' => '이메일: 필수 정보입니다.',

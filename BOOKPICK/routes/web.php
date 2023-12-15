@@ -37,50 +37,35 @@ Route::get( '/recommend', function () {
 })->name( 'recommend' );
 
 
-// 세부 메뉴
+// 유저관련 [ 로그인( 유효성 검사 ), 회원가입( 유효성체크 ), 회원정보 수정 ]
 
-// 유저관련 [ 로그인( 유효성체크 ), 회원가입( 유효성체크 ), 회원정보( 유효성체크 ) ]
-// Route::middleware([UserValidation::class])->group(function () {
-//     Route::get( '/login', [UserController::class, 'getLogin'])
-//     ->name( 'getLogin' );
-
-//     Route::post(' /login ', [UserController::class, 'postLogin'])
-//     ->name( 'postLogin' );
-
-//     Route::get( '/register', [UserController::class, 'getRegister'])
-//     ->name( 'getRegister' );
-
-//     Route::post(' /register ', [UserController::class, 'postRegister'])
-//     ->name( 'postRegister' );
-
-//     Route::get( '/info', [UserController::class, 'getInfo'])
-//     ->name( 'getInfo' );
-
-//     Route::put( '/info/{id}', [UserController::class, 'putInfo'])
-//     ->name( 'putInfo' );
-
-//     Route::get('/logout', [UserController::class, 'getLogout'])
-//     ->name( 'getLogout' );
-// });
-
+// 로그인 화면 이동
 Route::get( '/login', [UserController::class, 'getLogin'])
     ->name( 'getLogin' );
 
-Route::post(' /login ', [UserController::class, 'postLogin'])
-->name( 'postLogin' );
+// 로그인 처리
+Route::middleware( 'uservalidation' )
+    ->post('/login', [UserController::class, 'postLogin'])
+    ->name('postLogin'); 
 
+// 회원가입 화면 이동
 Route::get( '/register', [UserController::class, 'getRegister'])
 ->name( 'getRegister' );
 
-Route::post(' /register ', [UserController::class, 'postRegister'])
-->name( 'postRegister' );
+// 회원가입 처리
+Route::middleware( 'uservalidation' )
+    ->post('/register', [UserController::class, 'postRegister'])
+    ->name('postRegister');
 
+// 회원정보 수정 화면 이동
 Route::get( '/info', [UserController::class, 'getInfo'])
 ->name( 'getInfo' );
 
+// 회원정보 수정 처리
 Route::put( '/info/{id}', [UserController::class, 'putInfo'])
 ->name( 'putInfo' );
 
+// 로그아웃 처리
 Route::get('/logout', [UserController::class, 'getLogout'])
 ->name( 'getLogout' );
 
