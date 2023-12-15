@@ -4,7 +4,7 @@
 {{-- title로 Login 표기 --}}
 @section('content')
 {{-- layout.blade.php의 상속을 받지 않고 독자적으로 구성 --}}
-<form class="login-form" action="" method="POST" >
+<form class="login-form" action="{{route('postLogin')}}" method="POST" >
 	{{-- action="{{ route('user.login.post') }}" --}}
 	@csrf
 	{{-- form 태그에서는 의도하지 않은 요청을 악의적으로 전송하여 다른 유저계정에서 실행되는 액션을 
@@ -23,12 +23,12 @@
 		<p class="login-p">이메일 로그인</p>
 		<br>
 		<div class="login-input-area">
-		<input class="login-input" type="text" id="email" name="u_email" 
+		<input class="login-input" type="text" id="u_email" name="u_email" value=""
 		required autocomplete="off" placeholder="이메일 주소">
 		<span class="u_mail_errormsg"></span>
 		</div>
 		<div class="login-input-area">
-		<input class="login-input" type="password" id="password" name="u_password" 
+		<input class="login-input" type="password" id="u_password" name="u_password" 
 		required autocomplete="off" placeholder="비밀번호">
 		<span class="u_password_errormsg"></span>
 		</div>
@@ -37,7 +37,7 @@
 			<button class="login-button" type="submit">로그인</button>
 		</div>
 		<div class="login-text">
-			<span>북픽에 처음이신가요?</span> <a class="login-register-link" href="{{ route('register') }}">회원가입하기</a>
+			<span>북픽에 처음이신가요?</span> <a class="login-register-link" href="{{ route('getRegister') }}">회원가입하기</a>
 		</div>
 	</div>
 </form>

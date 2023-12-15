@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\UserValidation;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,28 +40,49 @@ Route::get( '/recommend', function () {
 // 세부 메뉴
 
 // 유저관련 [ 로그인( 유효성체크 ), 회원가입( 유효성체크 ), 회원정보( 유효성체크 ) ]
-Route::middleware([UserValidation::class])->group(function () {
-    Route::get( '/login', [UserController::class, 'getLogin'])
+// Route::middleware([UserValidation::class])->group(function () {
+//     Route::get( '/login', [UserController::class, 'getLogin'])
+//     ->name( 'getLogin' );
+
+//     Route::post(' /login ', [UserController::class, 'postLogin'])
+//     ->name( 'postLogin' );
+
+//     Route::get( '/register', [UserController::class, 'getRegister'])
+//     ->name( 'getRegister' );
+
+//     Route::post(' /register ', [UserController::class, 'postRegister'])
+//     ->name( 'postRegister' );
+
+//     Route::get( '/info', [UserController::class, 'getInfo'])
+//     ->name( 'getInfo' );
+
+//     Route::put( '/info/{id}', [UserController::class, 'putInfo'])
+//     ->name( 'putInfo' );
+
+//     Route::get('/logout', [UserController::class, 'getLogout'])
+//     ->name( 'getLogout' );
+// });
+
+Route::get( '/login', [UserController::class, 'getLogin'])
     ->name( 'getLogin' );
 
-    Route::post(' /login ', [UserController::class, 'postLogin'])
-    ->name( 'postLogin' );
+Route::post(' /login ', [UserController::class, 'postLogin'])
+->name( 'postLogin' );
 
-    Route::get( '/register', [UserController::class, 'getRegister'])
-    ->name( 'getRegister' );
+Route::get( '/register', [UserController::class, 'getRegister'])
+->name( 'getRegister' );
 
-    Route::post(' /register ', [UserController::class, 'postRegister'])
-    ->name( 'postRegister' );
+Route::post(' /register ', [UserController::class, 'postRegister'])
+->name( 'postRegister' );
 
-    Route::get( '/info', [UserController::class, 'getInfo'])
-    ->name( 'getInfo' );
+Route::get( '/info', [UserController::class, 'getInfo'])
+->name( 'getInfo' );
 
-    Route::put( '/info/{id}', [UserController::class, 'putInfo'])
-    ->name( 'putInfo' );
+Route::put( '/info/{id}', [UserController::class, 'putInfo'])
+->name( 'putInfo' );
 
-    Route::get('/logout', [UserController::class, 'getLogout'])
-    ->name( 'getLogout' );
-});
+Route::get('/logout', [UserController::class, 'getLogout'])
+->name( 'getLogout' );
 
 
 
