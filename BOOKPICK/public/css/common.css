@@ -11,7 +11,7 @@
 	background-color: black;
 	display: flex;
 	flex-direction: row;
-	/* font-family: 맑은 고딕,Malgun Gothic,돋움,Dotum,sans-serif; */
+	font-family: -apple-system,BlinkMacSystemFont,AppleSDGothicNeo,Helvetica,맑은 고딕,Malgun Gothic,돋움,Dotum,sans-serif;
 }
 /* sidebar */
 .sidebar {
@@ -27,7 +27,6 @@
 	display: block;
 	color: white;
 	padding: 1.25rem 1rem;
-	border-bottom: 1px solid hsla(0,0%,100%,.1);
 }
 .sidebar_logo * {
 	vertical-align: middle;
@@ -45,6 +44,7 @@
 	align-items: center;
 	justify-content: center;
 	padding: 0.3rem 1rem;
+	border-top: 1px solid hsla(0,0%,100%,.1);
 	border-bottom: 1px solid hsla(0,0%,100%,.1);
 }
 .sidebar_submenu {
@@ -262,7 +262,7 @@
 		width: 225px;
 	}
 	.sidebar_menu {
-		font-size: 1.0rem;
+		font-size: 1.05rem;
 	}
 }
 
@@ -277,6 +277,6 @@
 		width: 245px;
 	}
 	.sidebar_menu {
-		font-size: 1.1rem;
+		font-size: 1.2rem;
 	}
 }
