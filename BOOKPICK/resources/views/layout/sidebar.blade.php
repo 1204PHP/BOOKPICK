@@ -4,20 +4,22 @@ $currentRoute = Route::currentRouteName();
 @endphp
 
 <div class="sidebar">
-	<a href="{{ route('home') }}" class="sidebar_logo">
-        <span class="logo_bookpick">BOOK PICK'</span>
-    </a>
-
+	<div class="sidebar_hamburger_div">
+		<a href="{{ route('home') }}" class="sidebar_logo">
+			<span class="logo_bookpick">BOOK PICK'</span>
+		</a>
+		<img src="{{ asset('img/sidebar-hamburger.png') }}" class="hamburger_menu" onclick="toggleSidebar()">
+	</div>
 	<div class="sidebar_submenu">
 		@if(Auth::check())
 			{{-- 로그인 후 표시될 내용 --}}
 			{{-- TODO: 클릭이벤트 드롭다운 추가 --}}
-			<a href="{{ route('login') }}" class="sidebar_signin_area">
+			<a href="{{ route('getLogin') }}" class="sidebar_signin_area">
 				<span class="login_txt">로그인 후 이용하기</span>
 			</a>
 		@else
 			{{-- 로그인 전 표시될 내용 --}}
-			<a href="{{ route('login') }}" class="sidebar_signin_area">
+			<a href="{{ route('getLogin') }}" class="sidebar_signin_area">
 				<span class="login_txt">로그인 후 이용하기</span>
 			</a>
 		@endif
