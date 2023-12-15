@@ -3,5 +3,6 @@
 @section('title', 'recommend')
 {{-- title로 Main 표기 --}}
 @section('content')
-	<h1>recommend</h1>
+	<h1>북픽 추천 도서</h1>
+	<div><img src="{{ asset('img/recommendimg1.png') }}" alt="..."></div>
 @endsection

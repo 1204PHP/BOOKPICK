@@ -1,55 +1,105 @@
+/* ******************주간 베스트셀러 ****************** */
 .best-container{
 	margin: 0px auto;
     margin-top: 50px;
     overflow: hidden;
-    width: 69%;
+    width: 64%;
     height: 410px;
-}
-.best-h2 {
-	margin: 0px;
-	padding-left: 25px;
 }
 .best-gird-box1 {
 	margin: 1vh auto;
-	height: 380px;
+	height: 240px;
 	display: grid;
 	grid-template-columns: repeat(20, 200px);
 	transition: transform 0.5s ease-in-out;
 	list-style: none;
-	gap: 20px;
+	gap: 15px;
 	position: relative;
 }
+.imgsize {
+	height: 240px;
+	width: 95%;
+}
+.imgsize {
+	/* transition: all 0.3s linear; */
+	transition-duration: 0.3s;
+	margin-left: 10px;
+}
+.imgsize:hover {
+	transform: scale(1.1);
+}
+
+/* ************월간 베스트 영역 */
+.best-container2{
+	margin: 0px auto;
+    overflow: hidden;
+    width: 64%;
+    height: 410px;
+}
+.best-gird-box2 {
+	margin: 1vh auto;
+	height: 240px;
+	display: grid;
+	grid-template-columns: repeat(20, 200px);
+	transition: transform 0.5s ease-in-out;
+	list-style: none;
+	gap: 15px;
+	position: relative;
+}
+.imgsize2 {
+	height: 240px;
+	width: 95%;
+}
+.imgsize2 {
+	/* transition: all 0.3s linear; */
+	transition-duration: 0.3s;
+	margin-left: 10px;
+}
+.imgsize2:hover {
+	transform: scale(1.1);
+}
+
+/* 버튼영역 & 공통 text */
+
 .carousel-prev{
 	position: absolute;
 	top: 200px;
-	left: 540px;
+	left: 480px;
 }
 .carousel-next{
 	position: absolute;
 	top: 200px;
-	right: 230px;
+	right: 240px;
+}
+.carousel-prev-m{
+	position: absolute;
+	bottom: 250px;
+	left: 480px;
+}
+.carousel-next-m{
+	position: absolute;
+	bottom: 250px;
+	right: 240px;
+}
+.best-text-box {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+	margin-bottom: 15px;
+	margin-left: 10px;
 }
 .best-p{
 	font-size: 0.6rem;
 	width: 200px;
-	margin: 0px;
+	margin: 5px 0px 0px 10px;
 	padding-top: 10px;
 }
 .best-content {
 	font-size: 0.8rem;
 }
-.imgsize {
-	height: 250px;
-	width: 100%;
+.best-price {
+	margin: 5px 0px 0px 10px;
 }
-
-.best-container2{
-	margin: 0px auto;
-    overflow: hidden;
-    width: 70%;
-    height: 410px;
-}
-
 ul {
 	padding: 0px;
 }
