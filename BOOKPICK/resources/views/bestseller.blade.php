@@ -51,18 +51,63 @@
 							문상훈·위너스북</p></div>
 						<div><p class="best-price">가격: 13,500 원</p></div>
 					</li>
-					<li><div class="img-best2"><img src="{{ asset('img/best2.jpg') }}" class="imgsize2" alt="..."></div></li>
-					<li><div class="img-best2"><img src="{{ asset('img/best3.jpg') }}" class="imgsize2" alt="..."></div></li>
-					<li><div class="img-best2"><img src="{{ asset('img/best4.jpg') }}" class="imgsize2" alt="..."></div></li>
-					<li><div class="img-best2"><img src="{{ asset('img/best5.jpg') }}" class="imgsize2" alt="..."></div></li>
-					<li><div class="img-best2"><img src="{{ asset('img/best6.jpg') }}" class="imgsize2" alt="..."></div></li>
+					<li>
+						<div class="img-best2"><img src="{{ asset('img/best2.jpg') }}" class="imgsize2" alt="..."></div>
+						<div><p class="best-p">
+							시/에세이
+							<br>
+							<span class="best-content">내가 한 말을 내가 오해하지 않기로 함</span>
+							<br>
+							문상훈·위너스북</p></div>
+						<div><p class="best-price">가격: 13,500 원</p></div>
+					</li>
+					<li>
+						<div class="img-best2"><img src="{{ asset('img/best3.jpg') }}" class="imgsize2" alt="..."></div>
+						<div><p class="best-p">
+							시/에세이
+							<br>
+							<span class="best-content">내가 한 말을 내가 오해하지 않기로 함</span>
+							<br>
+							문상훈·위너스북</p></div>
+						<div><p class="best-price">가격: 13,500 원</p></div>
+					</li>
+					<li>
+						<div class="img-best2"><img src="{{ asset('img/best4.jpg') }}" class="imgsize2" alt="..."></div>
+						<div><p class="best-p">
+							시/에세이
+							<br>
+							<span class="best-content">내가 한 말을 내가 오해하지 않기로 함</span>
+							<br>
+							문상훈·위너스북</p></div>
+						<div><p class="best-price">가격: 13,500 원</p></div>
+					</li>
+					<li>
+						<div class="img-best2"><img src="{{ asset('img/best5.jpg') }}" class="imgsize2" alt="..."></div>
+						<div><p class="best-p">
+							시/에세이
+							<br>
+							<span class="best-content">내가 한 말을 내가 오해하지 않기로 함</span>
+							<br>
+							문상훈·위너스북</p></div>
+						<div><p class="best-price">가격: 13,500 원</p></div>
+					</li>
+					<li>
+						<div class="img-best2"><img src="{{ asset('img/best6.jpg') }}" class="imgsize2" alt="..."></div>
+						<div><p class="best-p">
+							시/에세이
+							<br>
+							<span class="best-content">내가 한 말을 내가 오해하지 않기로 함</span>
+							<br>
+							문상훈·위너스북</p></div>
+						<div><p class="best-price">가격: 13,500 원</p></div>
+					</li>
 					<li><div class="img-best2"><img src="{{ asset('img/best7.jpg') }}" class="imgsize2" alt="..."></div></li>
 					<li><div class="img-best2"><img src="{{ asset('img/best8.jpg') }}" class="imgsize2" alt="..."></div></li>
 					<li><div class="img-best2"><img src="{{ asset('img/best9.jpg') }}" class="imgsize2" alt="..."></div></li>
 					<li><div class="img-best2"><img src="{{ asset('img/best10.jpg') }}" class="imgsize2" alt="..."></div></li>
 				</ul>
 				<img src="{{ asset('img/p-btn.png')}}" class="carousel-prev-m" alt="...">
-				<img src="{{ asset('img/n-btn.png')}}" class="carousel-next-m" alt="...">
+				<img src="{{ asset('img/n-btn.png')}}" class="carousel-next-m" onclick="my_next()" alt="...">
 		</div>
 	</div>
 @endsection

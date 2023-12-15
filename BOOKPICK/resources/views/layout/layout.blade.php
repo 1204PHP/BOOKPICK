@@ -9,8 +9,9 @@
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sub.css') }}" rel="stylesheet">
     <script src="{{ asset('/js/common.js') }}" defer></script>
-    <script src="{{ asset('/js/sub.js') }}" defer></script>
     <script src="{{ asset('/js/user.js') }}" defer></script>
+    <script src="{{ asset('/js/home.js') }}" defer></script>
+    <script src="{{ asset('/js/sub.js') }}" defer></script>
     <title>@yield('title', 'bookpick')</title>
 </head>
 <body class="body">
