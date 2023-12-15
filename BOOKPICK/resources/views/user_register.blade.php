@@ -14,43 +14,42 @@
         <div class="register-container">
             <div class="register-input-area">
                 <input class="register-input" type="email" id="u_email" name="u_email" 
-                required placeholder="이메일 주소">
+                placeholder="이메일 주소" autocomplete="off">
                 <span class="u_mail_errormsg"></span>
             </div>
             <div class="register-input-area">
                 <input class="register-input" type="password" id="u_password" name="u_password" 
-                required placeholder="비밀번호">
+                placeholder="비밀번호" autocomplete="off">
                 <span class="u_password_errormsg"></span>
             </div>
             <div class="register-input-area">
                 <input class="register-input" type="text" id="u_name" name="u_name" 
-                required placeholder="이름">
+                maxlength="50" placeholder="이름" autocomplete="off">
                 <span class="u_name_errormsg"></span>
             </div>
             <div class="register-input-area">
                 <input class="register-input" type="text" id="u_birthdate" name="u_birthdate" 
-                required placeholder="생년월일 YYYY:MM:DD"
-                id="birthdate" maxlength="10">
+                maxlength="10" placeholder="생년월일" autocomplete="off">
                 <span class="u_birthdate_errormsg"></span>
             </div>
             <div class="register-input-area">
                 <input class="register-input" type="tel" id="u_tel" name="u_tel" 
-                required placeholder="휴대폰 번호">
+                maxlength="11" placeholder="휴대폰 번호" autocomplete="off">
                 <span class="u_tel_errormsg"></span>
             </div>
             <div class="register-input-area">
                 <input class="register-input" type="text" id="u_postcode" name="u_postcode"
-                required placeholder="우편번호">
+                maxlength="6" placeholder="우편번호" autocomplete="off">
                 <span class="u_postcode_errormsg"></span>
             </div>
             <div class="register-input-area">
                 <input class="register-input" type="text" id="u_basic_address" name="u_basic_address"
-                required placeholder="기본주소">
+                placeholder="기본주소" autocomplete="off">
                 <span class="u_basic_address_errormsg"></span>
             </div>
             <div class="register-input-area">
                 <input class="register-input" type="text" id="u_detail_address" name="u_detail_address"
-                required placeholder="상세주소">
+                placeholder="상세주소" autocomplete="off">
                 <span class="u_detail_address_errormsg"></span>
             </div>
             <br>
