@@ -3,7 +3,7 @@
 	margin: 0px auto;
     margin-top: 50px;
     overflow: hidden;
-    width: 64%;
+    width: 56vw;
     height: 410px;
 }
 .best-gird-box1 {
@@ -33,7 +33,7 @@
 .best-container2{
 	margin: 0px auto;
     overflow: hidden;
-    width: 64%;
+    width: 56vw;
     height: 410px;
 }
 .best-gird-box2 {
@@ -63,13 +63,13 @@
 
 .carousel-prev{
 	position: absolute;
-	top: 200px;
-	left: 480px;
+	top: 22vh;
+	left: 25vw;
 }
 .carousel-next{
 	position: absolute;
-	top: 200px;
-	right: 240px;
+	top: 22vh;
+	right: 13.5vw;
 }
 .carousel-prev-m{
 	position: absolute;
