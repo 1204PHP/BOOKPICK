@@ -1,0 +1,282 @@
+/* common */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color: white;
+	list-style: none;
+	text-decoration: none;
+}
+.body {
+	background-color: black;
+	display: flex;
+	flex-direction: row;
+	font-family: -apple-system,BlinkMacSystemFont,AppleSDGothicNeo,Helvetica,맑은 고딕,Malgun Gothic,돋움,Dotum,sans-serif;
+}
+/* sidebar */
+.sidebar {
+	position: fixed;
+	overflow: none;
+	flex-shrink: 0;
+	background-color: #000000;
+	z-index: 9999;
+}
+
+/* 로고 영역 */
+.sidebar_logo {
+	display: block;
+	color: white;
+	padding: 1.25rem 1rem;
+}
+.sidebar_logo * {
+	vertical-align: middle;
+}
+.logo_bookpick {
+	font-weight: 600;
+	font-size: 25px;
+}
+
+/* 로그인 영역 */
+.sidebar_signin_area {
+	font-size: 15px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	padding: 0.3rem 1rem;
+	border-top: 1px solid hsla(0,0%,100%,.1);
+	border-bottom: 1px solid hsla(0,0%,100%,.1);
+}
+.sidebar_submenu {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 100%;
+}
+.sidebar_submenu::-webkit-scrollbar {
+	background: hsla(0,0%,53.7%,0);
+	border-radius: 10px;
+	width: 8px;
+}
+.sidebar_submenu::-webkit-scrollbar-thumb {
+	background: hsla(0,0%,53.7%,0);
+	border-radius: 10px;
+}
+.sidebar_submenu:hover::-webkit-scrollbar {
+	background: linear-gradient(to bottom, hsla(0,0%,84.3%,.23), hsla(0,0%,84.3%,.03));
+}
+.sidebar_submenu:hover::-webkit-scrollbar-thumb {
+	background: hsla(0,0%,53.7%,0.6);
+}
+.login_txt {
+	color: #cdcdcd;
+	margin: 10px 0 10px 0;
+}
+
+/* 그라데이션 영역 */
+.sidebar_member {
+	margin: 0 auto;
+	padding: 0.7rem 1rem;
+}
+.sidebar_button_area {
+	display: block;
+	cursor: pointer;
+	width: 100%;
+	border-radius: 0.3rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient( to left, #8000ff, #FD0B31 );
+}
+.member_icon {
+	width: 1.3rem;
+}
+.member_text {
+	font-weight: bold;
+	margin: 0 5px;
+}
+
+/* 검색 영역 */
+.sidebar_search {
+	margin: 0 auto;
+	padding: 0.6rem 1rem;
+	display: flex;
+	flex-direction: initial;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+.search_input {
+	width: 100%;
+	height: 2.7rem;
+	box-sizing: border-box;
+    background-color: #1a1a1a;
+	padding-left: 50px;
+	border-radius: 5px;
+	border: none;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
+	font-size: 1.1rem;
+}
+
+.icon_search {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 23px;
+    left: 30px;
+	background-size: 1.3rem 1.3rem;
+	background-repeat: no-repeat;
+	opacity: 50%;
+	background-image:url("../img/category1-Search.png");
+}
+
+.search_input:focus + .icon_search {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 23px;
+    left: 30px;
+	background-size: 1.3rem 1.3rem;
+	background-repeat: no-repeat;
+	opacity:100%;
+	background-image:url("../img/category1-Search.png");
+}
+
+/* 리스트 영역 */
+.sidebar_menu {
+	margin: 0 auto;
+	padding: 0.3rem 1rem;
+	width: 100%;
+	height: 500px;
+}
+.sidebar_menu li > a {
+	padding: 0.6rem 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.sidebar_menu li > a > span {
+	margin-left: 0.5rem;
+	color: rgba(255, 255, 255, 0.8);
+}
+.sidebar-link:hover span {
+	color: #ffffff;
+}
+.sidebar_menu img {
+	width: 20px;
+	height: 20px;
+}
+.sidebar-link.active span {
+	color:#FF0050;
+	font-weight: bold;
+}
+
+/* 햄버거 메뉴 */
+.hamburger_menu {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 22px;
+	right: 30px;
+	cursor:pointer;
+}
+/* .sidebar_hamburger_div {
+	
+} */
+
+/* 미디어 쿼리 */
+@media only screen and (max-width: 767.99px) {
+	.main {
+		width: 90%;
+		margin: 70px auto 0;
+	}
+	.sidebar {
+		width: 100%;
+		height: 70px;
+	}
+	.sidebar.active {
+		height: 100%;
+	}
+	.sidebar.position_top {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 9999;
+	}
+	.sidebar_logo {
+		width: 40%;
+		height: 70px;
+	}
+	.sidebar_submenu {
+        display: none; /* 화면 크기가 작을 때 서브메뉴 숨김 */
+    }
+	.hamburger_menu {
+        display: block;
+    }
+	.sidebar_submenu.active {
+        display: block; /* 햄버거 버튼 클릭 시 서브메뉴 표시 */
+    }
+	.sidebar_button_area {
+		height: 3.6rem;
+	}
+	.sidebar_menu {
+		font-size: 1.2rem;
+	}
+	.sidebar_blur {
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.sidebar {
+		height: 100%;
+	}
+	.sidebar_logo {
+		text-align: center;
+	}
+	.hamburger_menu {
+        display: none;
+    }
+	.sidebar_button_area {
+		height: 2.8rem;
+	}
+	.sidebar_blur {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 200px;
+		height: 50px;
+		background: linear-gradient(180deg,transparent,#000 34%,#000);
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1279.99px)  {
+	.main {
+		margin-top: 20px;
+		padding-left: 265px;
+		width: 100%;
+	}
+	.sidebar {
+		width: 225px;
+	}
+	.sidebar_menu {
+		font-size: 1.05rem;
+	}
+}
+
+
+@media only screen and (min-width: 1280px) {
+	.main {
+		margin-top: 20px;
+		padding-left: 285px;
+		width: 100%;
+	}
+	.sidebar {
+		width: 245px;
+	}
+	.sidebar_menu {
+		font-size: 1.2rem;
+	}
+}
