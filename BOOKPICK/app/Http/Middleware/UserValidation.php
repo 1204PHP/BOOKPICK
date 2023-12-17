@@ -35,22 +35,22 @@ class UserValidation
         // 회원가입 : user.js 처리
         // 로그인, 회원정보 수정 : UserValiation.php 처리
         $userBaseValidation = [
-            'u_email' => 'required|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/|unique:user,u_email',
-            // 필수입력, RFC5322 표준 정규 표현식
-            'u_password' => 'required|string|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/',
-            // 필수입력, 최소 8자 이상, 최소 하나의 문자&하나의 숫자&하나의 특수문자(!@#$%^&*) 포함된 비밀번호 정규 표현식
+            'u_email' => 'required|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/|unique:user,u_email|max:50',
+            // 필수입력, RFC5322 표준 정규 표현식, 최대 50자 허용
+            'u_password' => 'required|string|min:8|max:30|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/',
+            // 필수입력, 최소 8자 이상, 최대 30자, 최소 하나의 문자&하나의 숫자&하나의 특수문자(!@#$%^&*) 포함된 비밀번호 정규 표현식
             'u_name' => 'required|regex:/^[가-힣]{1,50}$/|max:50',
-            // 필수입력, 한글이름만 허용, 특수문자&숫자&공백 불허, 최대 50글자 허용
+            // 필수입력, 한글이름만 허용, 특수문자&숫자&공백 불허, 최대 50자 허용
             'u_birthdate' => 'required|regex:/^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/',
             // 필수입력, YYYY-MM-DD 허용
             'u_tel' => 'required|regex:/^010[0-9]{3,4}[0-9]{4}$/|max:11',
-            // 필수입력, 대한민국 기준 휴대폰 번호 형식만 허용, 최대 11글자 허용
+            // 필수입력, 대한민국 기준 휴대폰 번호 형식만 허용, 최대 11자 허용
             'u_postcode' => 'required|regex:/^\d{5}$/|max:6',
-            // 필수입력, 대한민국 기준 우편번호 5~6자리
-            'u_basic_address' => 'required',
-            // 필수입력
-            'u_detail_address' => 'required',
-            // 필수입력
+            // 필수입력, 대한민국 기준 우편번호 5~6자리, 최대 6자 허용
+            'u_basic_address' => 'required|max:200',
+            // 필수입력, 최대 200자 허용
+            'u_detail_address' => 'max:50',
+            // 필수입력, 최대 50자 허용
         ];
 
         // User Request Parameter
