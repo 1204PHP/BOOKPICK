@@ -131,9 +131,9 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!passwordInput.value) {
                 passwordValid = false;
                 openErrorMsg(passwordErrorSpan, "비밀번호: 필수 정보입니다.");
-            } else if (!passwordRegex.test(passwordInput.value)) {
+            } else if (!passwordRegex.test(passwordInput.value || nameInput.value.length > 21)) {
                 passwordValid = false;
-                openErrorMsg(passwordErrorSpan, "비밀번호: 보안강도 낮음(1개의 문자, 숫자, 특수문자 포함 필요)");
+                openErrorMsg(passwordErrorSpan, "비밀번호: 보안강도 약함(8~20자 문자+숫자+특수문자 포함필요)");
             } else {
                 clearErrorMsg(passwordErrorSpan);
             }
@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!birthdateInput.value) {
                 birthdateValid = false;
                 openErrorMsg(birthdateErrorSpan, "생년월일: 필수 정보입니다.");
-            } else if (!birthdateRegex.test(birthdateInput.value || birthdateInput.value.length > 9)) {
+            } else if (!birthdateRegex.test(birthdateInput.value || birthdateInput.value.length > 12)) {
                 birthdateValid = false;
                 openErrorMsg(birthdateErrorSpan, "생년월일: 8자리 숫자로만 입력가능 합니다.");
             } else {
@@ -225,11 +225,15 @@ document.addEventListener("DOMContentLoaded", function () {
     function validateBasicAddress(basicAddressInput) {
         var basicAddressValid = true;
         var basicAddressErrorSpan = document.getElementsByClassName("u_postcode_errormsg")[0];
+        var basicAddressValidRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z-]*$/;
         
         if(basicAddressInput) {
             if (!basicAddressInput.value) {
                 basicAddressValid = false;
                 openErrorMsg(basicAddressErrorSpan, "기본주소: 필수 정보입니다.");
+            } else if (!basicAddressValidRegex.test(basicAddressInput.value || basicAddressInput.value.length > 201)) {
+                basicAddressValid = false;
+                openErrorMsg(basicAddressErrorSpan, "기본주소: 한글, 숫자, 영어, - 만 입력가능 합니다.");
             } else {
                 clearErrorMsg(basicAddressErrorSpan);
             }
@@ -241,11 +245,12 @@ document.addEventListener("DOMContentLoaded", function () {
     function validateDetailAddress(detailAddressInput) {
         var detailAddressValid = true;
         var detailAddressErrorSpan = document.getElementsByClassName("u_postcode_errormsg")[0];
+        var detailAddressRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z-]*$/;
         
         if(detailAddressInput) {
-            if (!detailAddressInput.value) {
+            if (!detailAddressRegex.test(detailAddressInput.value || detailAddressInput.value.length > 51)) {
                 detailAddressValid = false;
-                openErrorMsg(detailAddressErrorSpan, "상세주소: 필수 정보입니다.");
+                openErrorMsg(postcodeErrorSpan, "상세주소: 한글, 숫자, 영어, - 만 입력가능 합니다.");
             } else {
                 clearErrorMsg(detailAddressErrorSpan);
             }
@@ -265,10 +270,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
-
-
-
-
-
-
-
