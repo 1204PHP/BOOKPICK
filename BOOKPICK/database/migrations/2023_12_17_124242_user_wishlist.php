@@ -19,6 +19,12 @@ return new class extends Migration
             // 책 api PK
             // default : big_int, pk, auto_increment
 
+            $table->timestamps();
+            // created_at, updated_at 라라벨 내부 설정 값으로 자동 생성 / default : null
+            
+            $table->softDeletes();
+            // deleted_at 라라벨 내부 설정 값으로 자동 생성 / default : nullable
+
         });
     }
 

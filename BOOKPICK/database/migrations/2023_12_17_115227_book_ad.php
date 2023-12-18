@@ -31,6 +31,12 @@ return new class extends Migration
             // 책 번호
             // unsignedBigInteger 생성 / default : nullable
             // 책 번호는 음수가 될 수 없는 값으로, 부호 없는 정수형으로 정의
+
+            $table->timestamps();
+            // created_at, updated_at 라라벨 내부 설정 값으로 자동 생성 / default : null
+            
+            $table->softDeletes();
+            // deleted_at 라라벨 내부 설정 값으로 자동 생성 / default : nullable
             
         });
     }

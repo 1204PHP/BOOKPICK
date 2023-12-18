@@ -81,10 +81,7 @@ return new class extends Migration
             $table->foreignId('ul_id')->constrained('user_library')
             ->onDelete('set null')->index('book_info_ul_id_foreign');
             // book_info 테이블->user_library 테이블
-            $table->foreignId('ulc_id')->constrained('user_library_comment')
-            ->onDelete('set null')->index('book_info_ulc_id_foreign');
-            // book_info 테이블->user_library_comment 테이블
-
+            
             // 인덱스 생성 이유
             // 1) 조인 연산 속도 향상
             // 2) 코드 가독성 향상

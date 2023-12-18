@@ -22,6 +22,11 @@ return new class extends Migration
             // api 종류
             // varchar 생성(50) / default : not null
 
+            // 외래키 추가
+            $table->foreignId('ba_id')->constrained('book_api')
+            ->onDelete('set null')->index('api_cate_ba_id_foreign');
+            // api_cate 테이블->book_api 테이블
+            
         });
     }
 
