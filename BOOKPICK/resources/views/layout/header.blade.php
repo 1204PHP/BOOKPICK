@@ -13,8 +13,10 @@ $currentRoute = Route::currentRouteName();
 		<li><a href="{{ route('bookTour') }}" class="header-link {{ $currentRoute == 'bookTour' ? 'active' : '' }}">둘러보기</a></li>
 	</ul>
 	<div class="header_search">
-		<input type="search" class="header_input" placeholder="검색어를 입력해 주세요"/>
-		<span class=icon_search></span>
+		<form action="{{ route('search.index') }}" method="get">
+			<input type="search" name="result" value="" class="header_input" placeholder="검색어를 입력해 주세요"/>
+			<button type="submit">Search</button>
+		</form>
 	</div>
 	<div class="header_signin">
 		@if(Auth::check())

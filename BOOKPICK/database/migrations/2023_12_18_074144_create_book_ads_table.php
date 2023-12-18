@@ -13,8 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('book_ad', function (Blueprint $table) {
-
+        Schema::create('book_ads', function (Blueprint $table) {
             $table->id('b_ad_id');
             // 책 api PK
             // default : big_int, pk, auto_increment
@@ -48,6 +47,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_ad');
+        Schema::dropIfExists('book_ads');
     }
 };

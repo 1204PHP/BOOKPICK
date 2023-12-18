@@ -13,8 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('book_info', function (Blueprint $table) {
-            
+        Schema::create('book_infos', function (Blueprint $table) {
             $table->id('b_id');
             // 책 정보 PK
             // default : big_int, pk, auto_increment
@@ -47,10 +46,8 @@ return new class extends Migration
             // 주 카테고리
             // varchar 생성(60) / default : not null
             
-            $table->unsignedBigInteger('b_sub_cate')->nullable();
+            $table->string('b_sub_cate', 150)->nullable();
             // 부 카테고리
-            // unsignedBigInteger 생성 / default : nullable
-            // 부 카테고리는 음수가 될 수 없는 값으로, 부호 없는 정수형으로 정의
             
             $table->date('b_publication_date');
             // 출판일
@@ -62,31 +59,16 @@ return new class extends Migration
             
             $table->string('b_img_url', 300);
             // 책 이미지 주소
-            // varchar 생성(300) / ddefault : not null
+            // varchar 생성(300) / default : not null
             
             $table->string('b_product_url', 300);
             // 책 상품링크 주소
-            // varchar 생성(300) / ddefault : not null
-
-            // 외래키 추가
-            $table->foreignId('ba_id')->constrained('book_api')
-            ->onDelete('set null')->index('book_info_ba_id_foreign');
-            // book_info 테이블->book_api 테이블
-            $table->foreignId('bdc_id')->constrained('book_detail_comment')
-            ->onDelete('set null')->index('book_info_bdc_id_foreign');
-            // book_info 테이블->book_detail_comment 테이블
-            $table->foreignId('uw_id')->constrained('user_wishlist')
-            ->onDelete('set null')->index('book_info_uw_id_foreign');
-            // book_info 테이블->user_wishlist 테이블
-            $table->foreignId('ul_id')->constrained('user_library')
-            ->onDelete('set null')->index('book_info_ul_id_foreign');
-            // book_info 테이블->user_library 테이블
+            // varchar 생성(300) / default : not null
+            $table->timestamps();
+            // created_at, updated_at 라라벨 내부 설정 값으로 자동 생성 / default : null
             
-            // 인덱스 생성 이유
-            // 1) 조인 연산 속도 향상
-            // 2) 코드 가독성 향상
-            // 3) 관례 : 라라벨은 자동으로 인덱스 생성하지만, 명시적 지정이 의도 전달 확실
-
+            $table->softDeletes();
+            // deleted_at 라라벨 내부 설정 값으로 자동 생성 / default : nullable
         });
     }
 
@@ -97,6 +79,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_info');
+        Schema::dropIfExists('book_infos');
     }
 };
