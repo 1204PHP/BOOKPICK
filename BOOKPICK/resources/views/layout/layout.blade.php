@@ -10,6 +10,7 @@
     {{-- <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sub.css') }}" rel="stylesheet"> --}}
     <script src="{{ asset('/js/common.js') }}" defer></script>
+    <script src="{{ asset('/js/home.js') }}" defer></script>
     <script src="{{ asset('/js/UserValidation.js') }}" defer></script>
     {{-- <script src="{{ asset('/js/home.js') }}" defer></script>
     <script src="{{ asset('/js/sub.js') }}" defer></script> --}}
