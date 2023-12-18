@@ -21,10 +21,8 @@ a {
 /* 레이아웃 영역 */
 .layout_header {
 	border-bottom: 1px solid #ccc;
-	margin: 0 auto;
 }
 .layout_body {
-	background-color: black;
 	margin: 0 auto;
 }
 
@@ -35,6 +33,7 @@ a {
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
 	justify-content: space-between;
+	margin: 0 auto;
 }
 
 /* 로고영역 */
@@ -148,7 +147,7 @@ a {
 }
 
 @media only screen and (min-width: 1300px) {
-	.layout_body, .layout_header {
+	.layout_body, .navbar {
 		width: 1300px;
 	}
 	/* .navbar {
