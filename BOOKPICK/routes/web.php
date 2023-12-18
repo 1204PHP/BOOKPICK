@@ -15,29 +15,44 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// 메인 메뉴
+// ### 헤더 ###
+
+// 메인 페이지
 Route::get( '/', function () {
     return view( 'home' );
 })->name( 'index' );
-
 Route::get( '/home', function () {
     return view( 'home' );
 })->name( 'home' );
 
-Route::get( '/cate', function () {
-    return view( 'cate' );
-})->name( 'cate' );
+// 나의 서재 페이지
+Route::get( '/library', function () {
+    return view( 'user_library' );
+})->name( 'library' );
 
-Route::get( '/bestseller', function () {
-    return view( 'bestseller' );
-})->name( 'bestseller' );
+// 둘러보기 페이지
+Route::get( '/book/tour', function () {
+    return view( 'book_tour' );
+})->name( 'bookTour' );
 
-Route::get( '/recommend', function () {
-    return view( 'recommend' );
-})->name( 'recommend' );
+// ### 세부 페이지 ###
 
+// 서재 도서 상세 페이지
+Route::get( '/library/detail', function () {
+    return view( 'user_library_detail' );
+})->name( 'libraryDetail' );
 
-// 유저관련 [ 로그인( 유효성 검사 ), 회원가입( 유효성체크 ), 회원정보 수정 ]
+// 검색 결과 페이지
+Route::get( '/search/result', function () {
+    return view( 'user_search_result' );
+})->name( 'searchResult' );
+
+// 도서 상세 페이지
+Route::get( '/book/detail', function () {
+    return view( 'book_detail' );
+})->name( 'bookDetail' );
+
+// ### 유저관련(유효성 검사 포함) ###
 
 // 로그인 화면 이동
 Route::get( '/login', [UserController::class, 'getLogin'])
@@ -69,5 +84,12 @@ Route::put( '/info/{id}', [UserController::class, 'putInfo'])
 Route::get('/logout', [UserController::class, 'getLogout'])
 ->name( 'getLogout' );
 
+// 회원탈퇴 화면 이동
+Route::get( '/withdrawal', [UserController::class, 'getWithdrawal'])
+->name( 'getWithdrawal' );
+
+// 회원탈퇴 처리
+Route::post('/withdrawl', [UserController::class, 'postWithdrawal'])
+->name( 'postWithdrawal' );
 
 
