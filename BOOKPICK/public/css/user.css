@@ -6,7 +6,7 @@
 }
 
 .login-form {
-    margin-top: 150px;
+    margin: 100px auto;
 }
 
 
@@ -16,37 +16,18 @@
     max-width: 30em;
     padding: 1em 3em 2em 3em;
     margin: 0em auto;
+    border: 1px solid #D8D8D8;
     border-radius: 10px;
-    background-color: rgb(29, 29, 29);    
-    box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
-}
-
-.login-kakaologin-button {
-    width: 100%;
-    height: 43px;
-    background-color: #FEE500;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    color: #000;
-}
-
-.login-line-or-line {
-    display: flex;
-    align-items: center;
-}
-
-.login-line {
-    flex-grow: 1;
-    height: 2px;
-    background-color: #868688;
-}
-
-.login-or {
-    padding: 10px 10px;
+    background-color: #FCFDFD;
+    
 }
 
 .login-p {
-    font-size: 18px;
+    margin: 60px auto;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #53A73C;
+    text-align: center;
 }
 
 /* .login-kakaologin-button-area,
@@ -63,10 +44,10 @@
     padding: 1em;
     margin-bottom: 15px;
     line-height: 1.4;
-    background-color: #131313;
-    border: 1px solid transparent;
+    background-color: #F9FAFA;
+    border: 1px solid #E1E1E1;
     border-radius: 10px;
-    color: #fff;
+    color: #000;
     -webkit-transition: 0.35s ease-in-out;
     -moz-transition: 0.35s ease-in-out;
     -o-transition: 0.35s ease-in-out;
@@ -76,7 +57,7 @@
 
 .login-input:focus,
 .register-input:focus {
-    color: #fff;
+    color: #A6A6A6;
     outline: 0;
     border-color: #ccc;
 }
@@ -84,32 +65,64 @@
 .login-input::placeholder,
 .register-input::placeholder,
 .info-input::placeholder {
-    color: #fff;
+    color: #A6A6A6;
 }
 
 .login-button-area,
 .register-button-area,
 .info-button-area {
+    display: flex;
+    flex-direction: column;
     text-align: center;
 }
 
 .login-button,
 .register-button,
 .info-button {
-    width: 50%;
+    width: 100%;
     height: 43px;
     background-color: #868688;
+    font-size: 1.2rem;
+    font-weight: bold;
     border: 1px solid transparent;
     border-radius: 10px;
-    margin: 0 auto;    
     margin-bottom: 15px;
     color: #fff;
+}
+
+.login-kakaologin-button {
+    width: 100%;
+    height: 43px;
+    background-color: #FEE500;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.login-span {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.login-register-button {
+    width: 100%;
+    height: 43px;
+    background-color: #F9FAFA;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 1px solid #53A73C;
+    border-radius: 10px;
+    /* margin-bottom: 15px; */
+    color: #53A73C;
 }
 
 .login-text,
 .register-text {
     text-align: center;
-    padding: 10px;
 }
 
 .login-register-link,
