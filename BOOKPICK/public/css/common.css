@@ -5,6 +5,8 @@
 	box-sizing: border-box;
 }
 body { 
+	width: 99vw;
+	height: 99vh;
 	margin: 0;
 	background-color: #fff;
 }
@@ -16,22 +18,30 @@ a {
 	color:black;
 }
 
+/* 레이아웃 영역 */
+.layout_header {
+	border-bottom: 1px solid #ccc;
+	margin: 0 auto;
+}
+.layout_body {
+	background-color: black;
+	margin: 0 auto;
+}
+
 /* header */
 .navbar {
 	display: flex;
 	align-items: center;
-	border-bottom: 1px solid #ccc;
-	padding-bottom: 0.5rem;
 	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	justify-content: space-between;
 }
 
 /* 로고영역 */
 .navbar__logo {
 	height: 38px;
-	
 	display: flex;
 	align-items: center;
-	justify-content: center;
 }
 .logo_txt {
 	font-size: 1.8rem;
@@ -64,7 +74,7 @@ a {
 	height: 30px;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: right;
 }
 .header_signin_area {
 	border: 1px solid #4dac27;
@@ -90,7 +100,10 @@ a {
 }
 
 /* 미디어쿼리 */
-@media screen and (max-width: 1099.99px) {
+@media screen and (max-width: 1299.99px) {
+	.layout_body {
+		width: 100vw;
+	}
 	.navbar {
 		flex-direction: column;
 		align-items: flex-start;
@@ -131,13 +144,19 @@ a {
 	.logo_txt.active {
 		display: none;
 	}
+	
 
 }
 
-@media only screen and (min-width: 1100px) {
+@media only screen and (min-width: 1300px) {
+	.layout_body, .layout_header {
+		width: 1300px;
+	}
+	/* .navbar {
+		padding: 0.5rem 18rem;
+	} */
 	.navbar__logo {
 		width: 230px;
-		padding: 0.5rem;
 	}
 	.navbar__menu{
 		width: 200px;
@@ -145,36 +164,41 @@ a {
 	.navbar__menu li{
 		width: 100px;
 	}
+	.header_search{
+		width: 450px;
+		height: 35px;
+		margin: 0 3rem;
+	}
 }
 
 @media only screen and (min-width: 1100px) and (max-width: 1279.99px)  {
-	.navbar {
+	/* .navbar {
 		padding: 0.5rem 10vh;
 		}
 	.header_search{
 		width: 300px;
 		height: 35px;
 		margin: 0 3rem;
-	}
+	} */
 }
 
 @media only screen and (min-width: 1280px)  {
-	.navbar {
+	/* .navbar {
 		padding: 0.5rem 20vh;
 		}
 	.header_search{
 		width: 300px;
 		height: 35px;
 		margin: 0 3rem;
-	}
+	} */
 }
 @media only screen and (min-width: 1600px)  {	
-	.navbar {
+	/* .navbar {
 	padding: 0.5rem 30vh;
 	}
 	.header_search{
 		width: 450px;
 		height: 35px;
 		margin: 0 3rem;
-	}
+	} */
 }

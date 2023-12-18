@@ -15,7 +15,11 @@
     <title>@yield('title', 'bookpick')</title>
 </head>
 <body>
-    @include('layout.header')
+    <div class="layout_header">
+        @include('layout.header')
+    </div>
+    <div class="layout_body">
     @yield('content')
+    </div>
 </body>
 </html>
