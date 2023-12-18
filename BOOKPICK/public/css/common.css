@@ -8,7 +8,7 @@ body {
 	width: 99vw;
 	height: 99vh;
 	margin: 0;
-	background-color: #fff;
+	background-color: rgba(249, 250, 250, 1);
 }
 ul, ol {
     list-style: none;
@@ -21,7 +21,6 @@ a {
 /* 레이아웃 영역 */
 .layout_header {
 	border-bottom: 1px solid #ccc;
-	margin: 0 auto;
 }
 .layout_body {
 	margin: 0 auto;
@@ -34,6 +33,7 @@ a {
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
 	justify-content: space-between;
+	margin: 0 auto;
 }
 
 /* 로고영역 */
@@ -53,8 +53,12 @@ a {
 	display: flex;
 	margin: 0;
 }
-.navbar__menu li {
+.header-link {
 	padding: 0.5rem 0.7rem;
+}
+.header-link.active {
+	color: #4dac27;
+	font-weight: bold;
 }
 
 /* 검색영역 */
@@ -115,7 +119,7 @@ a {
 		align-items: center;
 		width: 100%;
 	}
-	.navbar__menu li {
+	.header-link {
 		width: 100%;
 		text-align: center;
 	}
@@ -147,7 +151,7 @@ a {
 }
 
 @media only screen and (min-width: 1300px) {
-	.layout_body, .layout_header {
+	.layout_body, .navbar {
 		width: 1300px;
 	}
 	/* .navbar {
@@ -159,7 +163,7 @@ a {
 	.navbar__menu{
 		width: 200px;
 	}
-	.navbar__menu li{
+	.header-link{
 		width: 100px;
 	}
 	.header_search{

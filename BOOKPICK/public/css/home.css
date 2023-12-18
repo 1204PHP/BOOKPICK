@@ -1,0 +1,67 @@
+.home-container {
+	margin: 50px auto 0px auto;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+/* 홈 광고 배너 부분 */
+.home-baaner {
+	/* background-color: white; */
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+}
+.Hbaaner {
+	width: 100%;
+	height: 100%;
+}
+
+.home-box1 {
+	background-color: white;
+	width: 100%;
+	height: 250px;
+	margin-top: 50px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+}
+.home-box2 {
+	background-color: white;
+	width: 100%;
+	height: 250px;
+	margin-top: 50px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+}
+.home-box3 {
+	background-color: white;
+	width: 100%;
+	height: 250px;
+	margin-top: 50px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+}
+
+.home-box {
+	position: absolute;
+	top: 27%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	transform: translateY(-50%);
+}
+
+.home-box div {
+	background-color: #ddd;
+	border-radius: 50%;
+	width: 12px;
+	height: 12px;
+	margin: 0 4px;
+	cursor: pointer;
+}
+
+.home-box div.active {
+	background-color: #555;
+}

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\UserValidation;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,9 +44,8 @@ Route::get( '/library/detail', function () {
 })->name( 'libraryDetail' );
 
 // 검색 결과 페이지
-Route::get( '/search/result', function () {
-    return view( 'user_search_result' );
-})->name( 'searchResult' );
+Route::get('/search', [SearchController::class, 'index'])
+    ->name('search.index');
 
 // 도서 상세 페이지
 Route::get( '/book/detail', function () {
