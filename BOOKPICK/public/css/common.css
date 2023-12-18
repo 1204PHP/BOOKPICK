@@ -53,8 +53,12 @@ a {
 	display: flex;
 	margin: 0;
 }
-.navbar__menu li {
+.header-link {
 	padding: 0.5rem 0.7rem;
+}
+.header-link.active {
+	color: #4dac27;
+	font-weight: bold;
 }
 
 /* 검색영역 */
@@ -115,7 +119,7 @@ a {
 		align-items: center;
 		width: 100%;
 	}
-	.navbar__menu li {
+	.header-link {
 		width: 100%;
 		text-align: center;
 	}
@@ -159,7 +163,7 @@ a {
 	.navbar__menu{
 		width: 200px;
 	}
-	.navbar__menu li{
+	.header-link{
 		width: 100px;
 	}
 	.header_search{
