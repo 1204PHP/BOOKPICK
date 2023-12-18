@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -36,7 +37,7 @@ class UserController extends Controller
 
         if ($this->hasTooManyLoginAttempts($request)) {
             $seconds = $this->limiter()->availableIn($throttleKey);
-            $minutes - ceil($seconds / 60);
+            $minutes = ceil($seconds / 60);
             $errorMsg = '로그인 시도가 너무 많습니다. 잠시 후 다시 시도해주세요. ' . $minutes . ' 분 후에 다시 시도할 수 있습니다.';
 
             throw ValidationException::withMessages([
@@ -61,7 +62,7 @@ class UserController extends Controller
         Auth::login( $result );
 
         if(Auth::check()) {
-            $this->cleaLoginAttempts($request);
+            $this->clearLoginAttempts($request);
             // 정상 로그인 시 로그인 시도 제한 횟수 초기화
             session( $result->only( 'u_id' ) );
             // 세션 내 u_id 데이터 저장
@@ -103,7 +104,7 @@ class UserController extends Controller
             DB::rollback();
             Log::debug( "# 예외발생 : 롤백완료 #" );
             $errorMsg = '회원가입에 실패했습니다. 새로고침 후 재가입 해주세요.';
-            return redirect()->route( 'getRegister' )->withError( $errorMsg );
+            return redirect()->route( 'getRegister' )->withErrors( $errorMsg );
         } finally {
         Log::debug( "# 회원가입(회원정보 저장) 종료 #" );
         }

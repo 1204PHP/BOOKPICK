@@ -39,8 +39,8 @@ Route::get( '/book/tour', function () {
 // ### 세부 페이지 ###
 
 // 서재 도서 상세 페이지
-Route::get( '/library/detail', function () {
-    return view( 'user_library_detail' );
+Route::get( '/library/detail/{id}', function ($id) {
+    return view( 'user_library_detail', ['id' => $id] );
 })->name( 'libraryDetail' );
 
 // 검색 결과 페이지
@@ -48,8 +48,8 @@ Route::get('/search', [SearchController::class, 'index'])
     ->name('search.index');
 
 // 도서 상세 페이지
-Route::get( '/book/detail', function () {
-    return view( 'book_detail' );
+Route::get( '/book/detail/{id}', function ($id) {
+    return view( 'book_detail', ['id' => $id] );
 })->name( 'bookDetail' );
 
 // ### 유저관련(유효성 검사 포함) ###
@@ -89,7 +89,7 @@ Route::get( '/withdrawal', [UserController::class, 'getWithdrawal'])
 ->name( 'getWithdrawal' );
 
 // 회원탈퇴 처리
-Route::post('/withdrawl', [UserController::class, 'postWithdrawal'])
+Route::post( '/withdrawal', [UserController::class, 'postWithdrawal'])
 ->name( 'postWithdrawal' );
 
 

@@ -3,6 +3,7 @@
 $currentRoute = Route::currentRouteName();
 @endphp
 
+@if(!in_array(Route::currentRouteName(), ['getLogin', 'getRegister']))
 <nav class="navbar">
 	<div class="navbar__logo">
 		<a href="{{ route('home') }}" class="logo_txt">BOOK PICK'</a>
@@ -43,3 +44,4 @@ $currentRoute = Route::currentRouteName();
         <i>검색</i>
     </button>
 </nav>
+@endif

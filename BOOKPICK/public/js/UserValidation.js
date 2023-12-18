@@ -241,20 +241,19 @@ document.addEventListener("DOMContentLoaded", function () {
         return basicAddressValid;
     }
 
-    // 상세주소 유효성
+    // 상세주소 유효성 검사
     function validateDetailAddress(detailAddressInput) {
         var detailAddressValid = true;
         var detailAddressErrorSpan = document.getElementsByClassName("u_postcode_errormsg")[0];
         var detailAddressRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z-]*$/;
-        
-        if(detailAddressInput) {
-            if (!detailAddressRegex.test(detailAddressInput.value || detailAddressInput.value.length > 51)) {
-                detailAddressValid = false;
-                openErrorMsg(postcodeErrorSpan, "상세주소: 한글, 숫자, 영어, - 만 입력가능 합니다.");
-            } else {
-                clearErrorMsg(detailAddressErrorSpan);
-            }
-        }  
+    
+        if (detailAddressInput.value && !detailAddressRegex.test(detailAddressInput.value) || detailAddressInput.value.length > 51) {
+            detailAddressValid = false;
+            openErrorMsg(detailAddressErrorSpan, "상세주소: 한글, 숫자, 영어, - 만 입력가능 합니다.");
+        } else {
+            clearErrorMsg(detailAddressErrorSpan);
+        }
+    
         return detailAddressValid;
     }
 

@@ -4,7 +4,7 @@
 {{-- title로 Login 표기 --}}
 @section('content')
 {{-- layout.blade.php의 상속을 받지 않고 독자적으로 구성 --}}
-    <form class="register-form" action="{{route('postRegister')}}" method="POST" >
+    <form class="register-form" action="{{route('postRegister')}}" method="POST">
     @csrf
         <div class="register-container">
             <p class="register-h1">북픽 가입</p>
@@ -50,7 +50,7 @@
             <div class="register-input-area">
                 <input class="register-input" type="text" id="u_detail_address" name="u_detail_address"
                 placeholder="상세주소" autocomplete="off">
-                <span class="u_detail_address_errormsg"></span>
+                {{-- <span class="u_detail_address_errormsg"></span> --}}
             </div>
             <br>
             <div class="register-button-area">

@@ -1,11 +1,11 @@
-/* 로그인 페이지 */
-/* .login-form,
-.register-form,
-.info-form,
-.withdrawal-form {
-    margin-top: 30px;
-} */
+/* 에러메세지 */
+.error-text {
+    font-size: 1rem;
+    color: red;
+}
 
+
+/* 로그인 페이지 */
 /* 휴대폰 */
 @media only screen and (max-width: 767px) {
 
@@ -387,6 +387,7 @@
         color: #000;
         font-weight: bold;
         font-size: 0.7rem;
+        cursor: pointer;
     }
 
     .register-button {
@@ -403,6 +404,7 @@
         color: #53A73C;
         font-size: 1rem;
         font-weight: bold;
+        cursor: pointer;
     }
 
     .register-input-area .register-errormsg {
@@ -417,10 +419,6 @@
 
     .register-button-area {
         align-items: center;
-    }
-
-    .register-button {
-        font-size: 0.8rem;
     }
 
     .register-text {
@@ -502,20 +500,7 @@
         border-radius: 7px;
         color: #000;
         font-weight: bold;
-    }
-
-    .register-button {
-        width: 70%;
-        height: 43px;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        font-weight: bold;
+        cursor: pointer;
     }
     
     .register-input-area .register-errormsg {
@@ -541,6 +526,7 @@
         border: 1px solid #53A73C;
         border-radius: 7px;
         color: #53A73C;
+        cursor: pointer;
     }
 
     .register-text {
@@ -613,8 +599,7 @@
         color: #000;
     }
 
-    .register-postcode-button,
-    .register-button {
+    .register-postcode-button {
         width: 100px;
         height: 43px;
         display: flex;
@@ -625,6 +610,7 @@
         border-radius: 7px;
         color: #000;
         font-weight: bold;
+        cursor: pointer;
     }
 
     .register-input-area .register-errormsg {
@@ -650,6 +636,7 @@
     border: 1px solid #53A73C;
     border-radius: 7px;
     color: #53A73C;
+    cursor: pointer;
 }
 
     .register-text {
@@ -750,6 +737,7 @@
         color: #000;
         font-weight: bold;
         font-size: 0.7rem;
+        cursor: pointer;
     }
 
     .info-button {
@@ -766,6 +754,7 @@
         color: #53A73C;
         font-size: 1rem;
         font-weight: bold;
+        cursor: pointer;
     }
 
     .info-input-area .register-errormsg {
@@ -780,10 +769,6 @@
 
     .info-button-area {
         align-items: center;
-    }
-
-    .info-button {
-        font-size: 0.8rem;
     }
 
     .info-text {
@@ -868,20 +853,7 @@
         border-radius: 7px;
         color: #000;
         font-weight: bold;
-    }
-
-    .info-button {
-        width: 70%;
-        height: 43px;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        font-weight: bold;
+        cursor: pointer;
     }
     
     .info-input-area .register-errormsg {
@@ -907,6 +879,7 @@
         border: 1px solid #53A73C;
         border-radius: 7px;
         color: #53A73C;
+        cursor: pointer;
     }
 
     .info-text {
@@ -922,7 +895,6 @@
         margin-top: 20px;
         font-size: 0.8rem;
     }
-    /* ------------------------------------------------ */
 }
 
 /* 데스크탑 */
@@ -982,8 +954,7 @@
         color: #000;
     }
 
-    .info-postcode-button,
-    .info-button {
+    .info-postcode-button{
         width: 100px;
         height: 43px;
         display: flex;
@@ -994,6 +965,7 @@
         border-radius: 7px;
         color: #000;
         font-weight: bold;
+        cursor: pointer;
     }
 
     .info-input-area .register-errormsg {
@@ -1019,6 +991,7 @@
     border: 1px solid #53A73C;
     border-radius: 7px;
     color: #53A73C;
+    cursor: pointer;
 }
 
     .info-text {
@@ -1110,6 +1083,7 @@
         justify-content: center;
         border: 1px solid transparent;
         border-radius: 7px;
+        cursor: pointer;
     }
 
     .withdrawal-button {
@@ -1197,6 +1171,7 @@
         justify-content: center;
         border: 1px solid transparent;
         border-radius: 7px;
+        cursor: pointer;
     }
 
     .withdrawal-button {
@@ -1283,6 +1258,7 @@
         justify-content: center;
         border: 1px solid transparent;
         border-radius: 7px;
+        cursor: pointer;
     }
 
     .withdrawal-button {

@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
+use App\Models\User;
 
 class UserValidation
 {
@@ -54,6 +55,9 @@ class UserValidation
             // 필수입력, 최대 50자 허용
         ];
 
+        // 아이디 중복 체크
+        $userBaseValidation['u_email'] .= ',' . $this->getUserIdRule();
+
         // User Request Parameter
         $userRequestParam = [];
         foreach($userBaseKey as $val) {
@@ -75,11 +79,29 @@ class UserValidation
         if($validator->fails()){
             Log::debug( "### User 유효성 검사 실패 ###" );
             $errorMsg = $this->errormsg();
-            return redirect( '/' . $request->path())->withErrors($validator->errors()->first() );
+
+            // 요청 경로에 따라 리다이렉트 경로 결정
+            $redirectPath = '/'; 
+            // 기본값 : 홈페이지로 리다이렉트
+
+            if ($request->path() == 'getLogin') {
+                $redirectPath = '/login'; // 로그인 페이지 경로
+            } elseif ($request->path() == 'getRegister') {
+                $redirectPath = '/register'; // 회원가입 페이지 경로
+            } elseif ($request->path() == 'getInfo') {
+                $redirectPath = '/info'; // 회원정보 수정 페이지 경로
+            }
+            return redirect($redirectPath)->withErrors($errorMsg);
         }
 
         Log::debug( "### User 유효성 검사 성공 ###" );
         return $next($request);
+    }
+
+    // 아이디 중복 체크 규칙 설정
+    private function getUserIdRule() {
+        $userModel = app(User::class);
+        return 'unique:' . $userModel->getTable() . ',u_email';
     }
 
     // 에러메세지 설정
