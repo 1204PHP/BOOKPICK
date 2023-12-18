@@ -1,165 +1,671 @@
 /* 로그인 페이지 */
-@media only screen and (max-width: 540px) {
-    .info-form {
+/* .login-form,
+.register-form,
+.info-form,
+.withdrawal-form {
+    margin-top: 30px;
+} */
+
+/* 휴대폰 */
+@media only screen and (max-width: 767px) {
+
+    .login-form {
+        margin-top: 20px;
+    }
+
+    .login-container {
+        max-width: 60%;
+        margin: 0 auto;
+        padding: 1em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .login-h1 {
+        margin: 40px auto;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #53A73C;
+        text-align: center;
+    }
+
+    .login-input {
         width: 100%;
+        height: 43px;
+        margin: 0 auto;
+        padding: 1em;
+        font-size: 1rem;
+        margin-bottom: 15px;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        -webkit-transition: 0.35s ease-in-out;
+        -moz-transition: 0.35s ease-in-out;
+        -o-transition: 0.35s ease-in-out;
+        transition: 0.35s ease-in-out;
+        transition: all 0.35s ease-in-out;
+    }
+
+    .login-input:focus {
+        color: #A6A6A6;
+        outline: 0;
+        border-color: #ccc;
+    }
+
+    .login-input::placeholder {
+        font-size: 0.9rem;
+        color: #A6A6A6;
+    }
+
+    .login-button-area {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .login-button,
+    .login-kakaologin-button {
+        width: 100%;
+        height: 43px;        
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        margin-bottom: 15px;
+        
+        cursor: pointer;
+    }
+
+    .login-button {
+        color: #fff;
+        background-color: #868688;
+    }
+
+    .login-kakaologin-button {
+        color: #000;
+        background-color: #FEE500;
+    }
+
+    .login-register-button {
+        width: 100%;
+        height: 43px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFA;
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid #53A73C;
+        border-radius: 7px;
+        margin-bottom: 40px;
+        color: #53A73C;
+    }
+
+    .login-span {
+        font-size: 0.7rem;
+        margin-bottom: 15px;
     }
 }
 
-.login-form {
-    margin: 100px auto;
+
+/* 태블릿 */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .login-form {
+        margin-top: 30px;
+    }
+
+    .login-container {
+        max-width: 60%;
+        margin: 0 auto;
+        padding: 1em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .login-h1 {
+        margin: 60px auto;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #53A73C;
+        text-align: center;
+    }
+
+    .login-input {
+        width: 100%;
+        height: 43px;
+        margin: 0 auto;
+        padding: 1em;
+        font-size: 1rem;
+        margin-bottom: 15px;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        -webkit-transition: 0.35s ease-in-out;
+        -moz-transition: 0.35s ease-in-out;
+        -o-transition: 0.35s ease-in-out;
+        transition: 0.35s ease-in-out;
+        transition: all 0.35s ease-in-out;
+    }
+
+    .login-input:focus {
+        color: #A6A6A6;
+        outline: 0;
+        border-color: #ccc;
+    }
+
+    .login-input::placeholder {
+        font-size: 1rem;
+        color: #A6A6A6;
+    }
+
+    .login-button-area {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .login-button,
+    .login-kakaologin-button {
+        width: 100%;
+        height: 43px;        
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        margin-bottom: 15px;
+        
+        cursor: pointer;
+    }
+
+    .login-button {
+        color: #fff;
+        background-color: #868688;
+    }
+
+    .login-kakaologin-button {
+        color: #000;
+        background-color: #FEE500;
+    }
+
+    .login-register-button {
+        width: 100%;
+        height: 43px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFA;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border: 1px solid #53A73C;
+        border-radius: 7px;
+        margin-bottom: 80px;
+        color: #53A73C;
+    }
+
+    .login-span {
+        font-size: 0.7rem;
+        margin-bottom: 15px;
+    }
+}
+
+/* 데스크탑 */
+@media only screen and (min-width: 1024px) {
+
+    .login-form {
+        margin-top: 30px;
+    }
+
+    .login-container {
+        max-width: 60%;
+        margin: 0 auto;
+        padding: 1em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .login-h1 {
+        margin: 60px auto;
+        font-size: 1.7rem;
+        font-weight: bold;
+        color: #53A73C;
+        text-align: center;
+    }
+
+    .login-input {
+        width: 100%;
+        height: 43px;
+        margin: 0 auto;
+        padding: 1em;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        -webkit-transition: 0.35s ease-in-out;
+        -moz-transition: 0.35s ease-in-out;
+        -o-transition: 0.35s ease-in-out;
+        transition: 0.35s ease-in-out;
+        transition: all 0.35s ease-in-out;
+    }
+
+    .login-input:focus {
+        color: #A6A6A6;
+        outline: 0;
+        border-color: #ccc;
+    }
+
+    .login-input::placeholder {
+        color: #A6A6A6;
+    }
+
+    .login-button-area {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .login-button,
+    .login-kakaologin-button {
+        width: 100%;
+        height: 43px;        
+        font-size: 1.2rem;
+        font-weight: bold;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        margin-bottom: 15px;
+        
+        cursor: pointer;
+    }
+
+    .login-button {
+        color: #fff;
+        background-color: #868688;
+    }
+
+    .login-kakaologin-button {
+        color: #000;
+        background-color: #FEE500;
+    }
+
+    .login-register-button {
+        width: 100%;
+        height: 43px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFA;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border: 1px solid #53A73C;
+        border-radius: 7px;
+        margin-bottom: 80px;
+        color: #53A73C;
+    }
+
+    .login-span {
+        font-size: 0.8rem;
+        margin-bottom: 15px;
+    }
 }
 
 
-.login-container,
-.register-container,
-.info-container {
-    max-width: 30em;
-    padding: 1em 3em 2em 3em;
-    margin: 0em auto;
-    border: 1px solid #D8D8D8;
-    border-radius: 10px;
-    background-color: #FCFDFD;
+
+
+/* 회원가입 페이지 */
+/* 휴대폰 */
+@media only screen and (max-width: 767px) {
+
+    .register-form {
+        margin-top: 30px;
+    }
+
+    .register-container {
+        max-width: 60%;
+        margin: 0 auto;
+        padding: 1em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .register-h1 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    .register-h2 {
+        font-size: 0.8rem;
+        margin-bottom: 25px;
+    }
+
+    .register-input {
+        width: 100%;
+        height: 43px;
+        padding: 1em;
+        font-size: 0.7rem;
+        margin-bottom: 15px;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+        -webkit-transition: 0.35s ease-in-out;
+        -moz-transition: 0.35s ease-in-out;
+        -o-transition: 0.35s ease-in-out;
+        transition: 0.35s ease-in-out;
+        transition: all 0.35s ease-in-out;
+    }
+
+    .register-input::placeholder {
+        color: #000;
+    }
+
+    .register-input-postcode-area {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }   
+
+    .register-postcode-button {
+        width: 20%;
+        height: 43px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+        font-size: 0.7rem;
+    }
+
+    .register-button {
+        width: 100%;
+        height: 43px;
+        margin-bottom: 20px;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFA;
+        border: 1px solid #53A73C;
+        border-radius: 7px;
+        color: #53A73C;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .register-input-area .register-errormsg {
+        font-size: 0.8rem;
+        color: red;
+        visibility: hidden;
+    }
+
+    .register-input-area .register-errormsg.on {
+        visibility: visible;
+    }
+
+    .register-button-area {
+        align-items: center;
+    }
+
+    .register-button {
+        font-size: 0.8rem;
+    }
+
+    .register-text {
+        font-size: 0.8rem;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .register-login-link {
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #53A73C;
+    }
+}
+
+/* 태블릿 */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .register-form {
+        margin-top: 30px;
+    }
+
+    .register-container {
+        max-width: 60%;
+        margin: 0 auto;
+        padding: 1em 2em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .register-h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .register-h2 {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .register-input {
+        width: 100%;
+        height: 43px;
+        padding: 1em;
+        margin-bottom: 15px;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+        -webkit-transition: 0.35s ease-in-out;
+        -moz-transition: 0.35s ease-in-out;
+        -o-transition: 0.35s ease-in-out;
+        transition: 0.35s ease-in-out;
+        transition: all 0.35s ease-in-out;
+    }
+
+    .register-input-postcode-area {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .register-input::placeholder {
+        color: #000;
+    }
+
+    .register-postcode-button {
+        width: 20%;
+        height: 43px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+    }
+
+    .register-button {
+        width: 70%;
+        height: 43px;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+    }
     
+    .register-input-area .register-errormsg {
+        font-size: 1rem;
+        color: red;
+        visibility: hidden;
+    }
+
+    .register-input-area .register-errormsg.on {
+        visibility: visible;
+    }
+
+    .register-button {
+        width: 100%;
+        height: 43px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFA;
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid #53A73C;
+        border-radius: 7px;
+        color: #53A73C;
+    }
+
+    .register-text {
+        font-size: 1rem;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .register-login-link {
+        font-size: 1rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #53A73C;
+    }
 }
 
-.login-p {
-    margin: 60px auto;
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #53A73C;
-    text-align: center;
-}
+/* 데스크탑 */
+@media only screen and (min-width: 1024px) {
 
-/* .login-kakaologin-button-area,
-.login-input-area,
-.register-input-area,
-.info-input-area {
-    margin-bottom: 1em;
-} */
+    .register-form {
+        margin-top: 30px;
+    }
 
-.login-input {
+    .register-container {
+        max-width: 60%;
+        margin: 0 auto;
+        padding: 1em 3em 2em 3em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .register-h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .register-h2 {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .register-input {
+        width: 100%;
+        height: 43px;
+        padding: 1em;
+        margin-bottom: 15px;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+        -webkit-transition: 0.35s ease-in-out;
+        -moz-transition: 0.35s ease-in-out;
+        -o-transition: 0.35s ease-in-out;
+        transition: 0.35s ease-in-out;
+        transition: all 0.35s ease-in-out;
+    }
+
+    .register-input-postcode-area {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .register-input::placeholder {
+        color: #000;
+    }
+
+    .register-postcode-button,
+    .register-button {
+        width: 100px;
+        height: 43px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+    }
+
+    .register-input-area .register-errormsg {
+        font-size: 1.2rem;
+        color: red;
+        visibility: hidden;
+    }
+
+    .register-input-area .register-errormsg.on {
+        visibility: visible;
+    }
+
+    .register-button {
     width: 100%;
     height: 43px;
-    margin: 0 auto;
-    padding: 1em;
-    margin-bottom: 15px;
-    line-height: 1.4;
-    background-color: #F9FAFA;
-    border: 1px solid #E1E1E1;
-    border-radius: 10px;
-    color: #000;
-    -webkit-transition: 0.35s ease-in-out;
-    -moz-transition: 0.35s ease-in-out;
-    -o-transition: 0.35s ease-in-out;
-    transition: 0.35s ease-in-out;
-    transition: all 0.35s ease-in-out;
-}
-
-.login-input:focus,
-.register-input:focus {
-    color: #A6A6A6;
-    outline: 0;
-    border-color: #ccc;
-}
-
-.login-input::placeholder,
-.register-input::placeholder,
-.info-input::placeholder {
-    color: #A6A6A6;
-}
-
-.login-button-area,
-.register-button-area,
-.info-button-area {
+    margin-bottom: 20px;
     display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-.login-button,
-.register-button,
-.info-button {
-    width: 100%;
-    height: 43px;
-    background-color: #868688;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    color: #fff;
-}
-
-.login-kakaologin-button {
-    width: 100%;
-    height: 43px;
-    background-color: #FEE500;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    color: #000;
-}
-
-.login-span {
-    font-size: 0.8rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.login-register-button {
-    width: 100%;
-    height: 43px;
+    align-items: center;
+    justify-content: center;
     background-color: #F9FAFA;
     font-size: 1.2rem;
     font-weight: bold;
     border: 1px solid #53A73C;
-    border-radius: 10px;
-    /* margin-bottom: 15px; */
+    border-radius: 7px;
     color: #53A73C;
 }
 
-.login-text,
-.register-text {
-    text-align: center;
-}
+    .register-text {
+        font-size: 1.2rem;
+        text-align: center;
+    }
 
-.login-register-link,
-.register-login-link {
-    text-decoration: none;
-    color: #4c9adc;
-}
-
-/* 회원가입 페이지 */
-@media only screen and (max-width: 540px) {
-    .register-form {
-        width: 100%;
+    .register-login-link {
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #53A73C;
     }
 }
 
-.register-form,
-.info-form {
-    margin-top: 55px;
-}
 
-.register-input {
-    width: 100%;
-    height: 43px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    padding: 1em;
-    line-height: 1.4;
-    background-color: #131313;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    color: #fff;
-    -webkit-transition: 0.35s ease-in-out;
-    -moz-transition: 0.35s ease-in-out;
-    -o-transition: 0.35s ease-in-out;
-    transition: 0.35s ease-in-out;
-    transition: all 0.35s ease-in-out;
-}
 
 /* 우편번호 스피너, 화살표 제거 */
 #u_postcode::-webkit-inner-spin-button,
@@ -174,54 +680,618 @@
 /* 우편번호 스피너, 화살표 제거 */
 
 
-.register-input-area .register-errormsg {
-    color: red;
-    font-size: 12px;
-    visibility: hidden;
-}
-
-.register-input-area .register-errormsg.on {
-    visibility: visible;
-}
-
 /* 회원정보 수정 페이지 */
-@media only screen and (max-width: 540px) {
+/* 휴대폰 */
+@media only screen and (max-width: 767px) {
+
     .info-form {
+        margin-top: 30px;
+    }
+
+    .info-container {
+        max-width: 60%;
+        margin: 0 auto;
+        padding: 1em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .info-h1 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    .info-h2 {
+        font-size: 0.8rem;
+        margin-bottom: 25px;
+    }
+
+    .info-input,
+    .info-input-readonly {
         width: 100%;
+        height: 43px;
+        padding: 1em;
+        font-size: 0.7rem;
+        margin-bottom: 15px;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+        -webkit-transition: 0.35s ease-in-out;
+        -moz-transition: 0.35s ease-in-out;
+        -o-transition: 0.35s ease-in-out;
+        transition: 0.35s ease-in-out;
+        transition: all 0.35s ease-in-out;
+    }
+
+    .info-input::placeholder {
+        color: #000;
+    }
+
+    .info-input-postcode-area {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }   
+
+    .info-postcode-button {
+        width: 20%;
+        height: 43px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+        font-size: 0.7rem;
+    }
+
+    .info-button {
+        width: 100%;
+        height: 43px;
+        margin-bottom: 20px;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFA;
+        border: 1px solid #53A73C;
+        border-radius: 7px;
+        color: #53A73C;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .info-input-area .register-errormsg {
+        font-size: 0.8rem;
+        color: red;
+        visibility: hidden;
+    }
+
+    .info-input-area .register-errormsg.on {
+        visibility: visible;
+    }
+
+    .info-button-area {
+        align-items: center;
+    }
+
+    .info-button {
+        font-size: 0.8rem;
+    }
+
+    .info-text {
+        font-size: 0.8rem;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .info-withdrawal-link {
+        text-decoration: none;
+        font-weight: bold;
+        color: #4c9adc;
+        margin-top: 20px;
+        font-size: 0.6rem;
     }
 }
 
-.info-input {
-    width: 100%;
-    height: 43px;
-    margin: 0 auto;
-    padding: 1em;
-    margin-bottom: 15px;
-    line-height: 1.4;
-    background-color: #131313;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    color: #fff;
-    -webkit-transition: 0.35s ease-in-out;
-    -moz-transition: 0.35s ease-in-out;
-    -o-transition: 0.35s ease-in-out;
-    transition: 0.35s ease-in-out;
-    transition: all 0.35s ease-in-out;
+/* 태블릿 */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .info-form {
+        margin-top: 30px;
+    }
+
+    .info-container {
+        max-width: 60%;
+        margin: 0 auto;
+        padding: 1em 3em 2em 3em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .info-h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .info-h2 {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .info-input,
+    .info-input-readonly {
+        width: 100%;
+        height: 43px;
+        padding: 1em;
+        margin-bottom: 15px;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+        -webkit-transition: 0.35s ease-in-out;
+        -moz-transition: 0.35s ease-in-out;
+        -o-transition: 0.35s ease-in-out;
+        transition: 0.35s ease-in-out;
+        transition: all 0.35s ease-in-out;
+    }
+
+    .info-input-postcode-area {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .info-input::placeholder {
+        color: #000;
+    }
+
+    .info-postcode-button {
+        width: 20%;
+        height: 43px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+    }
+
+    .info-button {
+        width: 70%;
+        height: 43px;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+    }
+    
+    .info-input-area .register-errormsg {
+        font-size: 1rem;
+        color: red;
+        visibility: hidden;
+    }
+
+    .info-input-area .register-errormsg.on {
+        visibility: visible;
+    }
+
+    .info-button {
+        width: 100%;
+        height: 43px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFA;
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid #53A73C;
+        border-radius: 7px;
+        color: #53A73C;
+    }
+
+    .info-text {
+        font-size: 1rem;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .info-withdrawal-link {
+        text-decoration: none;
+        font-weight: bold;
+        color: #4c9adc;
+        margin-top: 20px;
+        font-size: 0.8rem;
+    }
+    /* ------------------------------------------------ */
 }
 
-.info-input-readonly {
+/* 데스크탑 */
+@media only screen and (min-width: 1024px) {
+
+    .info-form {
+        margin-top: 30px;
+    }
+
+    .info-container {
+        max-width: 60%;
+        margin: 0 auto;
+        padding: 1em 3em 2em 3em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .info-h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .info-h2 {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .info-input,
+    .info-input-readonly {
+        width: 100%;
+        height: 43px;
+        padding: 1em;
+        margin-bottom: 15px;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+        -webkit-transition: 0.35s ease-in-out;
+        -moz-transition: 0.35s ease-in-out;
+        -o-transition: 0.35s ease-in-out;
+        transition: 0.35s ease-in-out;
+        transition: all 0.35s ease-in-out;
+    }
+
+    .info-input-postcode-area {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .info-input::placeholder {
+        color: #000;
+    }
+
+    .info-postcode-button,
+    .info-button {
+        width: 100px;
+        height: 43px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+    }
+
+    .info-input-area .register-errormsg {
+        font-size: 1.2rem;
+        color: red;
+        visibility: hidden;
+    }
+
+    .info-input-area .register-errormsg.on {
+        visibility: visible;
+    }
+
+    .info-button {
     width: 100%;
     height: 43px;
-    margin: 0 auto;
-    padding: 1em;
-    margin-bottom: 15px;
-    line-height: 1.4;
-    background-color: #131313;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    color: #fff;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F9FAFA;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 1px solid #53A73C;
+    border-radius: 7px;
+    color: #53A73C;
 }
 
-.info-input-readonly:focus {
-    outline: none;
+    .info-text {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .info-withdrawal-link {
+        text-decoration: none;
+        font-weight: bold;
+        color: #4c9adc;
+        margin-top: 20px;
+        font-size: 1rem;
+    }
+}
+
+/* ### 회원탈퇴 페이지 ### */
+/* 휴대폰 */
+@media only screen and (max-width: 767px) {
+
+    .withdrawal-form {
+        margin-top: 20px;
+    }
+
+    .withdrawal-container {
+        max-width: 60%;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .withdrawal-h1 {
+        font-size: 0.9rem;
+        margin: 30px auto;
+        font-weight: bold;
+        color: #53A73C;
+        text-align: center;
+    }
+
+    .withdrawal-area {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .withdrawal-text-area {
+        width: 80%;
+        padding: 15px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #F1F1F1;
+        overflow: hidden;
+    }
+
+    .withdrawal-h2 {
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: #000;
+    }
+
+    .withdrawal-li-area {
+        margin: 20px auto;
+    }
+
+    .withdrawal-li {
+        font-size: 0.7rem;
+        font-weight: bold;
+        color: #000;
+    }
+
+    .withdrawal-button-area {
+        width: 100%;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .withdrawal-button,
+    .withdrawal-index-button {
+        width: 100px;
+        height: 43px;
+        margin: 0 20px;
+        font-size: 0.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid transparent;
+        border-radius: 7px;
+    }
+
+    .withdrawal-button {
+        background-color: #53A73C;
+        color: #fff;
+    }
+
+    .withdrawal-index-button {
+        background-color: #D9D9D9;
+        color: #000;
+    }
+}
+
+/* 태블릿 */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .withdrawal-form {
+        margin-top: 20px;
+    }
+
+    .withdrawal-container {
+        max-width: 60%;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .withdrawal-h1 {
+        font-size: 1.1rem;
+        margin: 40px auto;
+        font-weight: bold;
+        color: #53A73C;
+        text-align: center;
+    }
+
+    .withdrawal-area {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .withdrawal-text-area {
+        width: 70%;
+        padding: 15px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #F1F1F1;
+        overflow: hidden;
+    }
+
+    .withdrawal-h2 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #000;
+    }
+
+    .withdrawal-li-area {
+        margin: 20px auto;
+    }
+
+    .withdrawal-li {
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: #000;
+    }
+
+    .withdrawal-button-area {
+        width: 100%;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .withdrawal-button,
+    .withdrawal-index-button {
+        width: 120px;
+        height: 43px;
+        margin: 0 20px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid transparent;
+        border-radius: 7px;
+    }
+
+    .withdrawal-button {
+        background-color: #53A73C;
+        color: #fff;
+    }
+
+    .withdrawal-index-button {
+        background-color: #D9D9D9;
+        color: #000;
+    }
+}
+
+/* 데스크탑 */
+@media only screen and (min-width: 1024px) {
+    .withdrawal-form {
+        margin-top: 20px;
+    }
+
+    .withdrawal-container {
+        max-width: 60%;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .withdrawal-h1 {
+        font-size: 1.5rem;
+        margin: 50px auto;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #53A73C;
+        text-align: center;
+    }
+
+    .withdrawal-area {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .withdrawal-text-area {
+        width: 80%;
+        padding: 20px;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #F1F1F1;
+        overflow: hidden;
+    }
+
+    .withdrawal-h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #000;
+    }
+
+    .withdrawal-li-area {
+        margin: 30px auto;
+    }
+
+    .withdrawal-li {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #000;
+    }
+
+    .withdrawal-button-area {
+        width: 100%;
+        margin-bottom: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .withdrawal-button,
+    .withdrawal-index-button {
+        width: 170px;
+        height: 43px;
+        margin: 0 20px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid transparent;
+        border-radius: 7px;
+    }
+
+    .withdrawal-button {
+        background-color: #53A73C;
+        color: #fff;
+    }
+
+    .withdrawal-index-button {
+        background-color: #D9D9D9;
+        color: #000;
+    }
 }

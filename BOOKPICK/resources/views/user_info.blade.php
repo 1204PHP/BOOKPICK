@@ -1,6 +1,6 @@
 @extends('layout.layout')
 {{-- layout.blade.php 상속 --}}
-@section('title', 'info')
+@section('title', '회원정보 수정')
 {{-- title로 Login 표기 --}}
 @section('content')
 {{-- layout.blade.php의 상속을 받지 않고 독자적으로 구성 --}}
@@ -8,10 +8,11 @@
     {{-- action="{{ route('user.login.post') }}" --}}    
     {{-- form 태그에서는 의도하지 않은 요청을 악의적으로 전송하여 다른 유저계정에서 실행되는 액션을 
         트리거하는 공격방어 목적으로 @csrf 사용 --}}        
-    <form class="info-form" action="{{route('putInfo')}}" method="POST" >
+    <form class="info-form" action="{{route('putInfo', ['id' => $user->id])}}" method="POST" >
     @csrf
     @method('PUT')
         <div class="info-container">
+            <p class="info-h1">회원정보 수정</p>
             <div class="info-input-area">
                 <input class="info-input-readonly" type="email" readonly 
                 id="u_email" name="u_email" value="">
@@ -33,10 +34,13 @@
                 <input class="info-input-readonly" type="tel" readonly 
                 id="u_tel" name="u_tel" value="">
             </div>
-            <div class="info-input-area">
-                <input class="info-input" type="text" 
-                id="u_postcode" name="u_postcode" value="">
-                <span class="u_postcode_errormsg"></span>
+            <div class="info-input-postcode-area">
+                <div class="info-input-area">
+                    <input class="info-input" type="text" id="u_postcode" name="u_postcode"
+                    value="" maxlength="6">
+                    <span class="u_postcode_errormsg"></span>
+                </div>
+                <button class="info-postcode-button" type="button">주소검색</button>
             </div>
             <div class="info-input-area">
                 <input class="info-input" type="text" 
@@ -50,9 +54,9 @@
             </div>
             <br>         
             <div class="info-button-area">
-                <button class="info-button" type="submit">수정</button>
-                <button class="info-button" type="button" onclick="{{ route('index') }}">취소</button>
+                <button class="info-button" type="submit">수정하기</button>
             </div>
+            <a class="info-withdrawal-link" href="{{ route('getWithdrawal') }}">회원탈퇴</a>
         </div>
     </form>
 @endsection

@@ -132,7 +132,7 @@ class UserController extends Controller
     }
 
     // 회원정보 수정 처리
-    public function putInfoUpdate(Request $request, $id)
+    public function putInfo(Request $request, $id)
     {
         // 로그인User 수정User 일치여부 확인
         $loginUser = Auth::user();
