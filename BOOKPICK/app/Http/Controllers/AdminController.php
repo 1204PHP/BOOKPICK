@@ -15,7 +15,7 @@ class AdminController extends Controller
     public function index()
     {
         $bookTableColumn = DB::getSchemaBuilder()->getColumnListing("book_infos");
-        $bookTableData = DB::table('book_infos')->get();
+        $bookTableData = DB::table('book_infos')->orderBy('b_id')->Paginate(10);
         return view( 'admin' )
             ->with('bookTableColumn', $bookTableColumn)
             ->with('bookTableData', $bookTableData);
@@ -24,7 +24,7 @@ class AdminController extends Controller
     {
         try {
         $Faker = Faker::create();
-        $apiUrl = 'http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbckstjddh11142001&QueryType=Bestseller&MaxResults=100&start=1&SearchTarget=Book&output=JS&Version=20131101';
+        $apiUrl = 'http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbckstjddh11142001&QueryType=Bestseller&MaxResults=50&start=1&SearchTarget=Book&output=JS&Version=20131101&cover=big';
         $response = Http::get($apiUrl);
         $responseData = $response->json();
 

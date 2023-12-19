@@ -1,0 +1,29 @@
+.search_layout_div {
+	width: 100%;
+	height: 80px;
+	font-size: 20px;
+	font-weight: bold;
+	display: flex;
+	align-items:end;
+	margin-bottom: 10px;
+}
+.search_div_span_txt {
+	color: #4dac27;
+}
+
+.txt_p {
+	font-size: 12px;
+}
+.search_layout_container {
+	display:grid;
+	grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); /*this */
+	gap:15px;
+}
+.search_layout_container_div {
+	height:350px;
+}
+.search_layout_container_img {
+	width: 200px;
+	height: 250px;
+	border: 1px solid #ccc;
+}

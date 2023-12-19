@@ -11,19 +11,33 @@ class SearchController extends Controller
 {
     public function index( Request $request )
     {
-        $searchTerm = $request->input('result');
+        $searchResult = trim($request->input('result'));
+        $searchStrNoSpacing = str_replace(" ","", trim($request->input('result')));
+        $searchFullTxt = str_replace(" ","* ", trim($request->input('result')))."*";
+        
+        // $request->input('result');
+        if ($searchResult) {
+            // 검색어가 제공된 경우
+            $searchCnt = BOOK_info::WhereRaw("REPLACE(b_title,' ', '') LIKE ?", ['%' . $searchStrNoSpacing . '%'])
+            ->orwhereRaw("REPLACE(b_author,' ', '') LIKE ?", ['%'. $searchStrNoSpacing. '%'])
+            ->orwhereRaw("MATCH(b_title, b_author) AGAINST (? IN BOOLEAN MODE)", [$searchFullTxt])
+            ->count();
 
-        if ($searchTerm) {
-            // 검색어가 제공된 경우, 모델을 이용하여 검색 수행
-            $result = Book_info::where('b_title', 'like', '%' . $searchTerm . '%')->get();
-            $result = Book_info::where('b_title', 'like', '%' . $searchTerm . '%')
-                    ->orWhere('b_author', 'like', '%' . $searchTerm . '%')
-                    ->get();
+            $result = BOOK_info::WhereRaw("REPLACE(b_title,' ', '') LIKE ?", ['%' . $searchStrNoSpacing . '%'])
+            ->orwhereRaw("REPLACE(b_author,' ', '') LIKE ?", ['%'. $searchStrNoSpacing. '%'])
+            ->orwhereRaw("MATCH(b_title, b_author) AGAINST (? IN BOOLEAN MODE)", [$searchFullTxt])
+            ->Paginate(6);
         } else {
-            // 검색어가 없는 경우 모든 데이터를 가져옴
-            $result = Book_info::all();
+            // 검색어가 없는 경우 모든 데이터 
+            $result = Book_info::Paginate(6);
+            $searchCnt = Book_info::all()->count();
         }
 
-        return view('search', ['result' => $result, 'searchTerm' => $searchTerm]);
+        // TODO: 페이지 네이션할때 참고
+        // 'posts' => $query->paginate()->appends(request()->input())
+        return view('search',
+                    ['result' => $result,
+                    'searchResult' => $searchResult,
+                    'searchCnt' => $searchCnt]);
     }
 }

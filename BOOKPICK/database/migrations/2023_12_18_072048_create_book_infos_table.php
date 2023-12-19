@@ -69,6 +69,9 @@ return new class extends Migration
             
             $table->softDeletes();
             // deleted_at 라라벨 내부 설정 값으로 자동 생성 / default : nullable
+
+            $table->fullText(['b_title', 'b_author']);
+            // 검색시 fulltext사용
         });
     }
 
