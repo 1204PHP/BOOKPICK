@@ -30,11 +30,11 @@ return new class extends Migration
             // unsignedBigInteger 생성 / default : not null
             // 책 가격은 음수가 될 수 없는 값으로, 부호 없는 정수형으로 정의
             
-            $table->string('b_title', 100);
+            $table->string('b_title', 500);
             // 책 제목
             // varchar 생성(100) / default : not null
             
-            $table->string('b_author', 100);
+            $table->string('b_author', 200);
             // 책 저자
             // varchar 생성(100) / default : not null
             
