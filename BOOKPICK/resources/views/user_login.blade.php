@@ -13,11 +13,11 @@
 		<a href="{{ route('index') }}"><p class="login-h1">BOOK PICK'</p></a>
 		<div class="login-input-area">
 		<input class="login-input" type="text" id="u_email" name="u_email" value=""
-		required autocomplete="off" placeholder="이메일 주소">
+		autocomplete="off" placeholder="이메일 주소">
 		</div>
 		<div class="login-input-area">
 		<input class="login-input" type="password" id="u_password" name="u_password" 
-		required autocomplete="off" placeholder="비밀번호">
+		autocomplete="off" placeholder="비밀번호">
 		</div>
 		@if ($errors->any())
 			@foreach ($errors->all() as $error)

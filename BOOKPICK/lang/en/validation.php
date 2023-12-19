@@ -107,7 +107,7 @@ return [
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'prohibits' => 'The :attribute field prohibits :other from being present.',
     'regex' => 'The :attribute format is invalid.',
-    'required' => 'The :attribute field is required.',
+    'required' => ':attribute : 필수 정보입니다.',
     'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
@@ -145,6 +145,46 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        'u_email' => [
+            'required' => ':attribute: 필수 정보입니다.',
+            'regex' => ':attribute: 올바른 이메일 형식이 아닙니다.',
+            'unique' => ':attribute: 이미 사용 중인 이메일입니다.',
+        ],
+
+        'u_password' => [
+            'required' => ':attribute: 필수 정보입니다.',
+            'regex' => ':attribute: 보안강도 약함(8~20자 문자+숫자+특수문자 포함필요)',
+        ],
+
+        'u_name' => [
+            'required' => ':attribute: 필수 정보입니다.',
+            'regex' => ':attribute: 한글로만 입력가능 합니다',
+        ],
+
+        'u_birthdate' => [
+            'required' => ':attribute: 필수 정보입니다.',
+            'regex' => ':attribute: 8자리 숫자로만 입력가능 합니다.',
+        ],
+
+        'u_tel' => [
+            'required' => ':attribute: 필수 정보입니다.',
+            'regex' => ':attribute:휴대폰 번호가 정확하지 않습니다.',
+        ],
+
+        'u_postcode' => [
+            'required' => ':attribute: 필수 정보입니다.',
+            'regex' => ':attribute: 5자리 숫자로만 입력가능 합니다.',
+        ],
+
+        'u_basic_address' => [
+            'required' => ':attribute: 필수 정보입니다.',
+            'regex' => ':attribute: 한글, 숫자, 영어, - 만 입력가능 합니다.',
+        ],
+
+        'u_detail_address' => [
+            'regex' => ':attribute: 한글, 숫자, 영어, - 만 입력가능 합니다.',
+        ],
     ],
 
     /*
@@ -158,6 +198,15 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'u_email' => '이메일',
+        'u_password' => '비밀번호',
+        'u_name' => '비밀번호',
+        'u_birthdate' => '생년월일',
+        // 'u_tel' => '휴대폰 번호',
+        'u_postcode' => '우편번호',
+        'u_basic_address' => '기본주소',
+        'u_detail_address' => '상세주소',
+    ],
 
 ];

@@ -365,7 +365,33 @@
         transition: all 0.35s ease-in-out;
     }
 
-    .register-input::placeholder {
+    .register-postcode-input {
+        width: 200px;
+        height: 43px;
+        padding: 1em;
+        font-size: 0.7rem;
+        margin-bottom: 15px;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+        -webkit-transition: 0.35s ease-in-out;
+        -moz-transition: 0.35s ease-in-out;
+        -o-transition: 0.35s ease-in-out;
+        transition: 0.35s ease-in-out;
+        transition: all 0.35s ease-in-out;
+    }
+
+    .register-input-postcode-area {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .register-input::placeholder,
+    .register-postcode-input::placeholder {
         color: #000;
     }
 
@@ -479,13 +505,32 @@
         transition: all 0.35s ease-in-out;
     }
 
+    .register-postcode-input {
+        width: 200px;
+        height: 43px;
+        padding: 1em;
+        margin-bottom: 15px;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+        -webkit-transition: 0.35s ease-in-out;
+        -moz-transition: 0.35s ease-in-out;
+        -o-transition: 0.35s ease-in-out;
+        transition: 0.35s ease-in-out;
+        transition: all 0.35s ease-in-out;
+    }
+
     .register-input-postcode-area {
+        width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
 
-    .register-input::placeholder {
+    .register-input::placeholder,
+    .register-postcode-input::placeholder {
         color: #000;
     }
 
@@ -571,8 +616,26 @@
         margin-bottom: 30px;
     }
 
-    .register-input {
+    .register-input,
+    .register-input:focus {
         width: 100%;
+        height: 43px;
+        padding: 1em;
+        margin-bottom: 15px;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+        -webkit-transition: 0.35s ease-in-out;
+        -moz-transition: 0.35s ease-in-out;
+        -o-transition: 0.35s ease-in-out;
+        transition: 0.35s ease-in-out;
+        transition: all 0.35s ease-in-out;
+    }
+
+    .register-postcode-input {
+        width: 200px;
         height: 43px;
         padding: 1em;
         margin-bottom: 15px;
@@ -595,7 +658,8 @@
         justify-content: space-between;
     }
 
-    .register-input::placeholder {
+    .register-input::placeholder,
+    .register-postcode-input::placeholder {
         color: #000;
     }
 

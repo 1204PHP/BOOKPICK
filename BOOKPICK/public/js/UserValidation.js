@@ -107,20 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return emailValid;
     }
 
-    // ### 이메일 중복 체크 처리 ###
-    // else {
-    //     // 서버에 중복 여부 확인 (unique)
-    //     // 예를 들어, 서버 측에 Ajax 요청을 보내서 중복 여부를 확인할 수 있음
-    //     emailUniqueCheck(emailInputField.value, function (isUnique) {
-    //         if (!isUnique) {
-    //             emailValid = false;
-    //             openErrorMsg(emailErrorSpan, "이메일: 이미 사용 중인 이메일입니다.");
-    //         } else {
-    //             clearErrorMsg(emailErrorSpan);
-    //         }
-    //     });
-    // }
-
     // password 유효성 검사
     function validatePassword(passwordInput) {        
         var passwordValid = true;
@@ -165,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function validateBirthdate(birthdateInput) {
         var birthdateValid = true;
         var birthdateErrorSpan = document.getElementsByClassName("u_birthdate_errormsg")[0];
-        var birthdateRegex = /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+        var birthdateRegex = /^(19|20)\d\d(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/;
         
         if(birthdateInput) {
             if (!birthdateInput.value) {
@@ -173,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 openErrorMsg(birthdateErrorSpan, "생년월일: 필수 정보입니다.");
             } else if (!birthdateRegex.test(birthdateInput.value || birthdateInput.value.length > 12)) {
                 birthdateValid = false;
-                openErrorMsg(birthdateErrorSpan, "생년월일: 8자리 숫자로만 입력가능 합니다.");
+                openErrorMsg(birthdateErrorSpan, "생년월일: 생년월일이 정확하지 않습니다.");
             } else {
                 clearErrorMsg(birthdateErrorSpan);
             }
@@ -185,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function validateTel(telInput) {
         var telValid = true;
         var telErrorSpan = document.getElementsByClassName("u_tel_errormsg")[0];
-        var telRegex = /^010[0-9]{3,4}[0-9]{4}$/;
+        var telRegex = /^010[0-9]{7,8}$/;
         
         if(telInput) {
             if (!telInput.value) {
@@ -213,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 openErrorMsg(postcodeErrorSpan, "우편번호: 필수 정보입니다.");
             } else if (!postcodeRegex.test(postcodeInput.value || birthdateInput.value.length > 7)) {
                 postcodeValid = false;
-                openErrorMsg(postcodeErrorSpan, "우편번호: 5~6자리 숫자로만 입력가능 합니다.");
+                openErrorMsg(postcodeErrorSpan, "우편번호: 5자리 숫자로만 입력가능 합니다.");
             } else {
                 clearErrorMsg(postcodeErrorSpan);
             }

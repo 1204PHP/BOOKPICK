@@ -37,9 +37,9 @@ class UserValidation
         // 회원가입 : user.js 처리
         // 로그인, 회원정보 수정 : UserValiation.php 처리
         $userBaseValidation = [
-            'u_email' => 'required|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/|max:50|unique:users,u_email',
+            // 'u_email' => 'required|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/|max:50|unique:users,u_email',
             // 필수입력, 한글이름만 허용, 특수문자&숫자&공백 불허, 최대 50자 허용
-            'u_password' => 'required|string|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/|max:20',
+            // 'u_password' => 'required|string|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/|max:20',
             // 필수입력, 최소 8자 이상, 최대 30자, 최소 하나의 문자&하나의 숫자&하나의 특수문자(!@#$%^&*) 포함된 비밀번호 정규 표현식
             'u_name' => 'required|regex:/^[가-힣]{1,50}$/|max:50',
             // 필수입력, 한글이름만 허용, 특수문자&숫자&공백 불허, 최대 50자 허용
@@ -58,9 +58,6 @@ class UserValidation
             'u_detail_address' => 'max:50',
             // 최대 50자 허용
         ];
-
-        // 아이디 중복 체크
-        $userBaseValidation['u_email'] .= ',' . $this->getUserIdRule();
 
         // User Request Parameter
         $userRequestParam = [];
@@ -83,31 +80,30 @@ class UserValidation
         if ($validator->fails()) {
             Log::debug("### User 유효성 검사 실패 ###");
 
-            $errorMsg = $validator->errors()->first();
-
             // 요청 경로에 따라 리다이렉트 경로 결정
             $redirectPath = '/';
 
             // switch 문을 사용하여 조건문을 더 간결하게 표현할 수 있습니다.
             switch (true) {
-                case $request->is('getLogin'):
+                case $request->is('login'):
                     $redirectPath = 'login'; // 로그인 페이지 경로
                     break;
-                case $request->is('getRegister'):
+                case $request->is('register'):
                     $redirectPath = 'register'; // 회원가입 페이지 경로
                     break;
-                case $request->is('getInfo'):
+                case $request->is('info'):
                     $redirectPath = 'info'; // 회원정보 수정 페이지 경로
                     break;
             }
+            Log::debug(" ### request Path : ". $redirectPath);
+            Log::debug(" ### redirectPath : ". $redirectPath);
 
-            return redirect($redirectPath)->withErrors($errorMsg);
+            return redirect($redirectPath)->withErrors($validator);
         }
 
         Log::debug( "### User 유효성 검사 성공 ###" );
         return $next($request);
     }
-
     // 아이디 중복 체크 규칙 설정
     private function getUserIdRule() {
         $userModel = app(User::class);
@@ -115,25 +111,25 @@ class UserValidation
     }
 
     // 에러메세지 설정
-    public function errormsg() {
-        return [
-            'u_email.required' => '이메일: 필수 정보입니다.',
-            'u_email.regex' => '이메일: 올바른 이메일 형식이 아닙니다.',
-            'u_email.unique' => '이메일: 이미 사용 중인 이메일입니다.',
-            'u_password.required' => '비밀번호: 필수 정보입니다.',
-            'u_password.regex' => '비밀번호: 보안강도 약함(8~20자 문자+숫자+특수문자 포함필요)',
-            'u_name.required' => '이름: 필수 정보입니다.',
-            'u_name.regex' => '이름: 한글로만 입력가능 합니다',
-            'u_birthdate.required' => '생년월일: 필수 정보입니다.',
-            'u_birthdate.regex' => '생년월일: 8자리 숫자로만 입력가능 합니다.',
-            'u_tel.required' => '휴대폰 번호: 필수 정보입니다.',
-            'u_tel.regex' => '휴대폰 번호: 휴대폰 번호가 정확하지 않습니다.',
-            'u_postcode.required' => '우편번호: 필수 정보입니다.',
-            'u_postcode.regex' => '우편번호: 5~6자리 숫자로만 입력가능 합니다.',
-            'u_basic_address.required' => '기본주소: 필수 정보입니다.',
-            'u_basic_address.required' => '기본주소: 한글, 숫자, 영어, - 만 입력가능 합니다.',
-            'u_detail_address.required' => '상세주소: 한글, 숫자, 영어, - 만 입력가능 합니다.',
-        ];
-    }
+    // public function errormsg() {
+    //     return [
+    //         'u_email.required' => '이메일: 필수 정보입니다.',
+    //         'u_email.regex' => '이메일: 올바른 이메일 형식이 아닙니다.',
+    //         'u_email.unique' => '이메일: 이미 사용 중인 이메일입니다.',
+    //         'u_password.required' => '비밀번호: 필수 정보입니다.',
+    //         'u_password.regex' => '비밀번호: 보안강도 약함(8~20자 문자+숫자+특수문자 포함필요)',
+    //         'u_name.required' => '이름: 필수 정보입니다.',
+    //         'u_name.regex' => '이름: 한글로만 입력가능 합니다',
+    //         'u_birthdate.required' => '생년월일: 필수 정보입니다.',
+    //         'u_birthdate.regex' => '생년월일: 8자리 숫자로만 입력가능 합니다.',
+    //         'u_tel.required' => '휴대폰 번호: 필수 정보입니다.',
+    //         'u_tel.regex' => '휴대폰 번호가 정확하지 않습니다.',
+    //         'u_postcode.required' => '우편번호: 필수 정보입니다.',
+    //         'u_postcode.regex' => '우편번호: 5자리 숫자로만 입력가능 합니다.',
+    //         'u_basic_address.required' => '기본주소: 필수 정보입니다.',
+    //         'u_basic_address.required' => '기본주소: 한글, 숫자, 영어, - 만 입력가능 합니다.',
+    //         'u_detail_address.required' => '상세주소: 한글, 숫자, 영어, - 만 입력가능 합니다.',
+    //     ];
+    // }
 }
 
