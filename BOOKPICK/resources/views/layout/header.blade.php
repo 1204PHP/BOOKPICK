@@ -3,7 +3,7 @@
 $currentRoute = Route::currentRouteName();
 @endphp
 
-@if(!in_array(Route::currentRouteName(), ['getLogin', 'getRegister']))
+@if(!in_array(Route::currentRouteName(), ['getLogin', 'getRegister', 'postLogin', 'postRegister']))
 <nav class="navbar">
 	<div class="navbar__logo">
 		<a href="{{ route('home') }}" class="logo_txt">BOOK PICK'</a>
@@ -22,11 +22,11 @@ $currentRoute = Route::currentRouteName();
 	<div class="header_signin">
 		@if(Auth::check())
 			{{-- 로그인 후 표시될 내용 --}}
-			<a href="{{ route('getLogin') }}" class="header_signin_area">
+			<a href="{{ route('getInfo') }}" class="header_signin_area">
 				<span class="signin_txt">id</span>
 			</a>
-			<a href="{{ route('getLogin') }}" class="header_signin_area">
-				회원가입
+			<a href="{{ route('getLogout') }}" class="header_signin_area">
+				로그아웃
 			</a>
 		@else
 			{{-- 로그인 전 표시될 내용 --}}

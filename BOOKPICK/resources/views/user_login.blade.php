@@ -19,11 +19,7 @@
 		<input class="login-input" type="password" id="u_password" name="u_password" 
 		autocomplete="off" placeholder="비밀번호">
 		</div>
-		@if ($errors->any())
-			@foreach ($errors->all() as $error)
-				<div class="error-text">{{ $error }}</div>
-			@endforeach
-		@endif
+		@include('layout.user_error_message')
 		<div class="login-button-area">
 			<button class="login-button" type="submit">로그인</button>
 			<button class="login-kakaologin-button" type="button">카카오계정으로 로그인</button>

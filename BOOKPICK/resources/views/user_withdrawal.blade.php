@@ -3,7 +3,7 @@
 @section('title', '회원탈퇴')
 {{-- title로 Main 표기 --}}
 @section('content')
-    <form class="withdrawal-form" action="{{route('postWithdrawal')}}" method="POST">
+    <form class="withdrawal-form" action="{{route('deleteWithdrawal')}}" method="POST">
         @csrf
         @method('DELETE')
         <div class="withdrawal-container">

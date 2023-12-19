@@ -1,18 +1,3 @@
-// user_register 우편번호 최대길이 10 설정 함수
-function limitPostalCodeLength(inputElement) {
-	const maxLength = 10;
-	// 우편번호 최대 길이 10설정
-	let inputValue = inputElement.value.replace(/\D/g, '');
-	// 현재 입력값을 가져와서 숫자만 남기기  
-	if (inputValue.length > maxLength) {
-		inputValue = inputValue.slice(0, maxLength);
-		// 최대 길이를 초과시 잘라내기
-	}
-	inputElement.value = inputValue;
-	// 값 설정
-};
-
-
 // ### 회원가입 실시간 유효성 검사 ###
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -41,12 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
             var userTelValid = validateInput(document.getElementById("u_tel"));
             var userPostCodeValid = validateInput(document.getElementById("u_postcode"));
             var userBasicAddressValid = validateInput(document.getElementById("u_basic_address"));
-            var userDetailAddressValid = validateInput(document.getElementById("u_detail_address"));
 
             // 유효성 검사를 통과하면 해당 폼을 제출
             if (userEmailValid && userPasswordValid && userNameValid
                 && userBirthdatedValid && userTelValid && userPostCodeValid
-                && userBasicAddressValid && userDetailAddressValid) {
+                && userBasicAddressValid) {
                 event.currentTarget.submit();
             }
         });
@@ -59,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!inputField.value) {
             isValid = false;
-            openErrorMsg(errorSpan, inputField.placeholder + ": 필수 정보입니다.");
+            openErrorMsg(errorSpan, "내용을 입력해주세요.");
         } else {
             // 각 필드에 따른 추가적인 유효성 검사 규칙을 적용하고 결과에 따라 isValid를 업데이트
             if (inputField.id === "u_email") {
@@ -76,8 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 isValid = validatePostcode(inputField);
             } else if (inputField.id === "u_basic_address") {
                 isValid = validateBasicAddress(inputField);
-            } else if (inputField.id === "u_detail_address") {
-                isValid = validateDetailAddress(inputField);
             }
 
             if (isValid) {
@@ -192,18 +174,18 @@ document.addEventListener("DOMContentLoaded", function () {
         var postcodeValid = true;
         var postcodeErrorSpan = document.getElementsByClassName("u_postcode_errormsg")[0];
         var postcodeRegex = /^\d{5}$/;
-        
-        if(postcodeInput) {
+    
+        if (postcodeInput) {
             if (!postcodeInput.value) {
                 postcodeValid = false;
                 openErrorMsg(postcodeErrorSpan, "우편번호: 필수 정보입니다.");
-            } else if (!postcodeRegex.test(postcodeInput.value || birthdateInput.value.length > 7)) {
+            } else if (!postcodeRegex.test(postcodeInput.value || postcodeInput.value.length > 6)) {
                 postcodeValid = false;
                 openErrorMsg(postcodeErrorSpan, "우편번호: 5자리 숫자로만 입력가능 합니다.");
             } else {
                 clearErrorMsg(postcodeErrorSpan);
             }
-        }  
+        }
         return postcodeValid;
     }
 
@@ -225,26 +207,10 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }  
         return basicAddressValid;
-    }
-
-    // 상세주소 유효성 검사
-    function validateDetailAddress(detailAddressInput) {
-        var detailAddressValid = true;
-        var detailAddressErrorSpan = document.getElementsByClassName("u_postcode_errormsg")[0];
-        var detailAddressRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z-]*$/;
-    
-        if (detailAddressInput.value && !detailAddressRegex.test(detailAddressInput.value) || detailAddressInput.value.length > 51) {
-            detailAddressValid = false;
-            openErrorMsg(detailAddressErrorSpan, "상세주소: 한글, 숫자, 영어, - 만 입력가능 합니다.");
-        } else {
-            clearErrorMsg(detailAddressErrorSpan);
-        }
-    
-        return detailAddressValid;
-    }
+    }    
 
     function openErrorMsg(element, message) {
-        if (element) {
+        if (element && message) {
             element.innerText = message;
         }
     }

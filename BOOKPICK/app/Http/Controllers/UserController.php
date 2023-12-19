@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
 
 class UserController extends Controller
 {
@@ -27,43 +26,36 @@ class UserController extends Controller
     // 로그인 처리    
     public function postLogin( Request $request ) {   
         
-        // ### 로그인 시도에 대한 유효성 검사 ###
-        Log::debug('##### 로그인 포스트 시작 #####');
-        // 로그인 시도 5번 제한
-        $maxLoginAttempts = 5;
-        // 계정 잠금 시간 5분
+        // // 로그인 시도 5번 제한
+        // $maxLoginAttempts = 5;
+        // // 계정 잠금 시간 5분
         // $decayMinutes = 5;
-        // $throttleKey = $this->throttleKey($request);
+        // $throttleKey = $this->limiter()->key($request);
         // if ($this->hasTooManyLoginAttempts($request)) {
         //     $seconds = $this->limiter()->availableIn($throttleKey) / 60;
         //     $minutes = ceil($seconds / 60);
         //     $errorMsg = '로그인 시도가 너무 많습니다. 잠시 후 다시 시도해주세요. ' . $minutes . ' 분 후에 다시 시도할 수 있습니다.';
-            
-        //     throw ValidationException::withMessages([$this->username() => $errorMsg]);
+        //     return view( 'user_login' )->withErrors( $errorMsg );
         // }
-        // Log::debug('계정잠금 처리');
 
         // 로그인 시도 처리
 
         $result = User::where( 'u_email', $request->u_email )->first();
-        Log::debug('셀렉트');
         // User모델 내 email에서 요청보낸 email로 검색된 결과 중 첫번째 레코드 반환
 
         if( !$result || !( Hash::check( $request->u_password, $result->u_password ) ) ) {
             $errorMsg = '이메일 주소 또는 비밀번호를 다시 확인해주세요.';
             return view( 'user_login' )->withErrors( $errorMsg );
         }
-        Log::debug('정상');
         // $result 내 결과 값이 아니거나 Hash처리 유저 입력 비밀번호와 
         // DB저장 비밀번호가 일치하지 않는 경우 에러메세지 생성
         // 리턴 : user_login 페이지 이동 + 에러메세지
 
         // User 인증
         Auth::login( $result );
-        Log::debug('로그인 세션');
 
         if(Auth::check()) {
-            $this->clearLoginAttempts($request);
+            // $this->clearLoginAttempts($request);
             // 정상 로그인 시 로그인 시도 제한 횟수 초기화
             session( $result->only( 'u_id' ) );
             // 세션 내 u_id 데이터 저장
@@ -122,12 +114,8 @@ class UserController extends Controller
 
     // 로그아웃 처리
     public function getLogout() {
-        Auth::logout(); 
-        // 로그아웃
-        $request->session()->invalidate();
-        // 현재 세션 무효화 : 현재 user 세션 파기, 새로운 세션 생성
-        $request->session()->regenerateToken();
-        // CSFR토큰 재생성 : 로그아웃 후 새로운 토큰 생성하여 이전 토큰 또는 요청 사용불가 하도록 처리
+        Session::flush(); // 세션파기
+        Auth::logout(); // 로그아웃
         return redirect()->route( 'index' );
         // 리턴 : 로그아웃 시 / 리다이렉트
     }
@@ -135,7 +123,9 @@ class UserController extends Controller
     // 회원정보 수정 화면 이동
     public function getInfo() {
         if(Auth::check()) {
-            return redirect()->route( 'getInfo' );
+            // 현재 로그인한 유저 정보 획득
+            $user = Auth::user();
+            return view('user_info')->with('userdata',$user);
         }
         // 리턴 : 유저 인증 체크하여 유저일 시, user_info 리다이렉트
         return redirect()->route( 'index' );
@@ -143,11 +133,11 @@ class UserController extends Controller
     }
 
     // 회원정보 수정 처리
-    public function putInfo(Request $request, $id)
+    public function putInfo(Request $request)
     {
         // 로그인User 수정User 일치여부 확인
         $loginUser = Auth::user();
-        if ( $loginUser->id != $id ) {
+        if ( !$loginUser ) {
             return redirect()->route( 'getLogin' );
         }
         // 리턴 : 유저 체크하여 일치하지 않을 시, user_login 리다이렉트
@@ -158,22 +148,18 @@ class UserController extends Controller
         // 요청한 데이터 중 변경된 데이터 추출
         $requestData = $request->only('u_password', 'u_postcode', 'u_basic_address', 'u_detail_address');
 
-        // 변경된 데이터가 없는 경우
-        if (empty(array_filter($requestData))) {
-            return redirect()->route('getInfo', ['user' => $id]);
-        }
+        // // 변경된 데이터가 없는 경우
+        // if (empty(array_filter($requestData))) {
+        //     return redirect()->route('getInfo');
+        // }
         
         // 변경된 데이터가 있는 경우
         $newRequestData = [];
 
-        // 비밀번호 변경 - 현재 비밀번호 확인 후 암호화처리
+        // 비밀번호 변경 - 새 비밀번호 암호화처리
         if (!empty($requestData['u_password'])) {
-            if (Hash::check($requestData['u_password'], $currentPassword)) {
-                $newRequestData['u_password'] = Hash::make($requestData['u_password']);
-            } else {
-                // 현재 비밀번호가 일치하지 않으면 리다이렉트
-                return redirect()->route('getInfo', ['user' => $id]);
-            }
+            // 사용자가 입력한 새로운 비밀번호를 암호화하여 저장
+            $newRequestData['u_password'] = Hash::make($requestData['u_password']);
         }
 
         // 비밀번호 제외 다른 데이터 변경 처리
@@ -191,12 +177,12 @@ class UserController extends Controller
             $loginUser->update($newRequestData);
             DB::commit();
             Log::debug( "### 커밋 완료 ###" );
-            return redirect()->route('getInfo', ['user' => $id]);
+            return redirect()->route('index');
         } catch (Exception $e) {
             DB::rollback();
             Log::debug( "# 예외발생 : 롤백완료 #" );
             $errormsg = '회원 정보 수정에 실패했습니다. 새로고침 후 다시 수정 해주세요.';
-            return redirect()->route('getInfo', ['user' => $id])->withErrors($errormsg);
+            return redirect()->route('getInfo')->withErrors($errorMsg);
         } finally {
             Log::debug( "# 회원정보 수정 종료 #" );
         }
@@ -205,7 +191,7 @@ class UserController extends Controller
     // 회원탈퇴 화면 이동
     public function getWithdrawal() {
         if(Auth::check()) {
-            return redirect()->route( 'getWithdrawal' );
+            return view( 'user_withdrawal' );
         }
         // 리턴 : 유저 인증 체크하여 유저일 시, user_withdrawal 리다이렉트
         return redirect()->route( 'index' );
@@ -213,7 +199,7 @@ class UserController extends Controller
     }
 
     // 회원탈퇴 처리
-    public function postWithdrawal(Request $request)
+    public function deleteWithdrawal(Request $request)
     {
         // 로그인한 User 확인
         $loginUser = Auth::user();
@@ -231,13 +217,6 @@ class UserController extends Controller
 
             // 로그아웃
             Auth::logout();
-
-            // 세션 파기
-            $request->session()->invalidate();
-            // 현재 세션 무효화 : 현재 user 세션 파기, 새로운 세션 생성
-            $request->session()->regenerateToken();
-            // CSFR토큰 재생성 : 로그아웃 후 새로운 토큰 생성하여 이전 토큰 또는 요청 사용불가 하도록 처리
-            
             return redirect()->route( 'index' );
             // 회원탈퇴 성공 시 메인 페이지로 리다이렉트
         } catch (Exception $e) {

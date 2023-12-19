@@ -315,9 +315,6 @@
     }
 }
 
-
-
-
 /* 회원가입 페이지 */
 /* 휴대폰 */
 @media only screen and (max-width: 767px) {
@@ -352,7 +349,7 @@
         height: 43px;
         padding: 1em;
         font-size: 0.7rem;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         background-color: #F9FAFA;
         border: 1px solid #ccc;
         border-radius: 7px;
@@ -419,7 +416,7 @@
     .register-button {
         width: 100%;
         height: 43px;
-        margin-bottom: 20px;
+        margin: 20px auto;
         font-size: 1rem;
         display: flex;
         align-items: center;
@@ -431,6 +428,16 @@
         font-size: 1rem;
         font-weight: bold;
         cursor: pointer;
+    }
+
+    .u_mail_errormsg {
+        font-size: 0.8rem;
+        color: red;
+        visibility: hidden;
+    }
+
+    .u_mail_errormsg.on {
+        visibility: visible;
     }
 
     .register-input-area .register-errormsg {
@@ -492,7 +499,7 @@
         width: 100%;
         height: 43px;
         padding: 1em;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         background-color: #F9FAFA;
         border: 1px solid #ccc;
         border-radius: 7px;
@@ -561,7 +568,7 @@
     .register-button {
         width: 100%;
         height: 43px;
-        margin-bottom: 20px;
+        margin: 20px auto;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -621,7 +628,7 @@
         width: 100%;
         height: 43px;
         padding: 1em;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         background-color: #F9FAFA;
         border: 1px solid #ccc;
         border-radius: 7px;
@@ -638,7 +645,6 @@
         width: 200px;
         height: 43px;
         padding: 1em;
-        margin-bottom: 15px;
         background-color: #F9FAFA;
         border: 1px solid #ccc;
         border-radius: 7px;
@@ -690,7 +696,7 @@
     .register-button {
     width: 100%;
     height: 43px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -715,21 +721,6 @@
         color: #53A73C;
     }
 }
-
-
-
-/* 우편번호 스피너, 화살표 제거 */
-#u_postcode::-webkit-inner-spin-button,
-#u_postcode::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-#u_postcode {
-    -moz-appearance: textfield;
-}
-/* 우편번호 스피너, 화살표 제거 */
-
 
 /* 회원정보 수정 페이지 */
 /* 휴대폰 */
@@ -766,7 +757,7 @@
         height: 43px;
         padding: 1em;
         font-size: 0.7rem;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         background-color: #F9FAFA;
         border: 1px solid #ccc;
         border-radius: 7px;
@@ -883,7 +874,7 @@
         width: 100%;
         height: 43px;
         padding: 1em;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         background-color: #F9FAFA;
         border: 1px solid #ccc;
         border-radius: 7px;
@@ -994,7 +985,7 @@
         width: 100%;
         height: 43px;
         padding: 1em;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         background-color: #F9FAFA;
         border: 1px solid #ccc;
         border-radius: 7px;

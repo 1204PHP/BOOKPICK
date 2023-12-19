@@ -78,7 +78,7 @@ Route::get( '/info', [UserController::class, 'getInfo'])
 ->name( 'getInfo' );
 
 // 회원정보 수정 처리
-Route::put( '/info/{id}', [UserController::class, 'putInfo'])
+Route::put( '/info', [UserController::class, 'putInfo'])
 ->name( 'putInfo' );
 
 // 로그아웃 처리
@@ -90,8 +90,8 @@ Route::get( '/withdrawal', [UserController::class, 'getWithdrawal'])
 ->name( 'getWithdrawal' );
 
 // 회원탈퇴 처리
-Route::post( '/withdrawal', [UserController::class, 'postWithdrawal'])
-->name( 'postWithdrawal' );
+Route::delete( '/withdrawal', [UserController::class, 'deleteWithdrawal'])
+->name( 'deleteWithdrawal' );
 
 
 

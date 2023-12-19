@@ -164,7 +164,7 @@ return [
 
         'u_birthdate' => [
             'required' => ':attribute: 필수 정보입니다.',
-            'regex' => ':attribute: 8자리 숫자로만 입력가능 합니다.',
+            'regex' => ':attribute:생년월일이 정확하지 않습니다.',
         ],
 
         'u_tel' => [
