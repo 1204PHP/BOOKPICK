@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\UserValidation;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +46,7 @@ Route::get( '/library/detail/{id}', function ($id) {
 
 // 검색 결과 페이지
 Route::get('/search', [SearchController::class, 'index'])
-    ->name('search.index');
+    ->name('getsearch.index');
 
 // 도서 상세 페이지
 Route::get( '/book/detail/{id}', function ($id) {
@@ -93,3 +94,9 @@ Route::post( '/withdrawal', [UserController::class, 'postWithdrawal'])
 ->name( 'postWithdrawal' );
 
 
+
+// ### 책넣기위해 관리자 페이지 생성 ###
+Route::get( '/admin', [AdminController::class, 'index']
+)->name( 'getadmin' );
+Route::post( '/admin', [AdminController::class, 'postAdminBook'])
+->name( 'postAdmin.index' );

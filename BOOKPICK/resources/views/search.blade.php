@@ -3,11 +3,13 @@
 @section('title', 'search')
 {{-- title로 Main 표기 --}}
 @section('content')
-	@forelse($result as $key => $val)
+	{{-- <span>{{$searchTerm}}</span>에 대한 검색결과입니다. --}}
+	{{-- @forelse($result as $key => $val)
 	<span>{{$val}}</span>
 	<br>
 	@empty
-	<span>빈배열입니다.</span>
+	<span>정보가 없습니다.</span>
 	@endforelse
-	</div>
+	</div> --}}
+	
 @endsection

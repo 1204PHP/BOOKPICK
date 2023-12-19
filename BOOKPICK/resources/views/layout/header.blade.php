@@ -14,7 +14,7 @@ $currentRoute = Route::currentRouteName();
 		<li><a href="{{ route('bookTour') }}" class="header-link {{ $currentRoute == 'bookTour' ? 'active' : '' }}">둘러보기</a></li>
 	</ul>
 	<div class="header_search">
-		<form action="{{ route('search.index') }}" method="get">
+		<form action="{{ route('getsearch.index') }}" method="get">
 			<input type="search" name="result" value="" class="header_input" placeholder="검색어를 입력해 주세요"/>
 			<button type="submit">Search</button>
 		</form>
