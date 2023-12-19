@@ -52,7 +52,11 @@
                 placeholder="상세주소" autocomplete="off">
                 {{-- <span class="u_detail_address_errormsg"></span> --}}
             </div>
-            <br>
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="error-text">{{ $error }}</div>
+                @endforeach
+		    @endif
             <div class="register-button-area">
                 <button class="register-button" type="submit">회원가입</button>
             </div>

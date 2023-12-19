@@ -23,7 +23,7 @@ return new class extends Migration
             // 유저 이메일
             // varchar 생성(50) / default : unique, not null
             
-            $table->string('u_password', 20);
+            $table->string('u_password', 255);
             // 비밀번호
             // varchar 생성(30) / default : not null            
             

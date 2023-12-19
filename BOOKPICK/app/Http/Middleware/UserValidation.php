@@ -37,22 +37,26 @@ class UserValidation
         // 회원가입 : user.js 처리
         // 로그인, 회원정보 수정 : UserValiation.php 처리
         $userBaseValidation = [
-            'u_email' => 'required|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/|unique:user,u_email|max:50',
-            // 필수입력, RFC5322 표준 정규 표현식, 최대 50자 허용
+            'u_email' => 'required|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/|max:50|unique:users,u_email',
+            // 필수입력, 한글이름만 허용, 특수문자&숫자&공백 불허, 최대 50자 허용
             'u_password' => 'required|string|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/|max:20',
             // 필수입력, 최소 8자 이상, 최대 30자, 최소 하나의 문자&하나의 숫자&하나의 특수문자(!@#$%^&*) 포함된 비밀번호 정규 표현식
             'u_name' => 'required|regex:/^[가-힣]{1,50}$/|max:50',
             // 필수입력, 한글이름만 허용, 특수문자&숫자&공백 불허, 최대 50자 허용
-            'u_birthdate' => 'required|regex:/^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/|max:11',
+            'u_birthdate' => [
+                'required',
+                'regex:/^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/',
+                'max:11',
+            ],
             // 필수입력, YYYY-MM-DD 허용
             'u_tel' => 'required|regex:/^010[0-9]{3,4}[0-9]{4}$/|max:11',
             // 필수입력, 대한민국 기준 휴대폰 번호 형식만 허용, 최대 11자 허용
-            'u_postcode' => 'required|regex:/^\d{5}$/|max:6',
+            'u_postcode' => 'required|regex:/^\d{1,6}$/|max:6',
             // 필수입력, 대한민국 기준 우편번호 5~6자리, 최대 6자 허용
-            'u_basic_address' => 'required|max:200',
+            'u_basic_address' => 'required|max:200|regex:/^[가-힣\dA-Za-z-]+$/',
             // 필수입력, 최대 200자 허용
             'u_detail_address' => 'max:50',
-            // 필수입력, 최대 50자 허용
+            // 최대 50자 허용
         ];
 
         // 아이디 중복 체크
@@ -76,21 +80,27 @@ class UserValidation
         $validator = Validator::make($userRequestParam, $userBaseValidation);
 
         // 유효성 검사 실패시 처리
-        if($validator->fails()){
-            Log::debug( "### User 유효성 검사 실패 ###" );
-            $errorMsg = $this->errormsg();
+        if ($validator->fails()) {
+            Log::debug("### User 유효성 검사 실패 ###");
+
+            $errorMsg = $validator->errors()->first();
 
             // 요청 경로에 따라 리다이렉트 경로 결정
-            $redirectPath = '/'; 
-            // 기본값 : 홈페이지로 리다이렉트
+            $redirectPath = '/';
 
-            if ($request->path() == 'getLogin') {
-                $redirectPath = '/login'; // 로그인 페이지 경로
-            } elseif ($request->path() == 'getRegister') {
-                $redirectPath = '/register'; // 회원가입 페이지 경로
-            } elseif ($request->path() == 'getInfo') {
-                $redirectPath = '/info'; // 회원정보 수정 페이지 경로
+            // switch 문을 사용하여 조건문을 더 간결하게 표현할 수 있습니다.
+            switch (true) {
+                case $request->is('getLogin'):
+                    $redirectPath = 'login'; // 로그인 페이지 경로
+                    break;
+                case $request->is('getRegister'):
+                    $redirectPath = 'register'; // 회원가입 페이지 경로
+                    break;
+                case $request->is('getInfo'):
+                    $redirectPath = 'info'; // 회원정보 수정 페이지 경로
+                    break;
             }
+
             return redirect($redirectPath)->withErrors($errorMsg);
         }
 
