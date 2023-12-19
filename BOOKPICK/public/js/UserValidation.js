@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // 각 입력 필드에 대한 유효성 검사
             var userEmailValid = validateInput(document.getElementById("u_email"));
             var userPasswordValid = validateInput(document.getElementById("u_password"));
+            var userPasswordConfirmValid = validateInput(document.getElementById("u_password_confirm"));
             var userNameValid = validateInput(document.getElementById("u_name"));
             var userBirthdatedValid = validateInput(document.getElementById("u_birthdate"));
             var userTelValid = validateInput(document.getElementById("u_tel"));
@@ -28,9 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
             var userBasicAddressValid = validateInput(document.getElementById("u_basic_address"));
 
             // 유효성 검사를 통과하면 해당 폼을 제출
-            if (userEmailValid && userPasswordValid && userNameValid
-                && userBirthdatedValid && userTelValid && userPostCodeValid
-                && userBasicAddressValid) {
+            if (userEmailValid && userPasswordValid && userPasswordConfirmValid 
+                && userNameValid && userBirthdatedValid && userTelValid 
+                && userPostCodeValid && userBasicAddressValid) {
                 event.currentTarget.submit();
             }
         });
@@ -43,13 +44,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!inputField.value) {
             isValid = false;
-            openErrorMsg(errorSpan, "내용을 입력해주세요.");
+            openErrorMsg(errorSpan);
         } else {
             // 각 필드에 따른 추가적인 유효성 검사 규칙을 적용하고 결과에 따라 isValid를 업데이트
             if (inputField.id === "u_email") {
                 isValid = validateEmail(inputField);
             } else if (inputField.id === "u_password") {
                 isValid = validatePassword(inputField);
+            } else if (inputField.id === "u_password_confirm") {
+                isValid = validatePasswordConfirm(document.getElementById("u_password"), inputField);
             } else if (inputField.id === "u_name") {
                 isValid = validateName(inputField);
             } else if (inputField.id === "u_birthdate") {
@@ -60,6 +63,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 isValid = validatePostcode(inputField);
             } else if (inputField.id === "u_basic_address") {
                 isValid = validateBasicAddress(inputField);
+            }
+
+            // 유효성 검사 통과 시 input 테두리 초록색
+            // 유효성 검사 실패 시 input 테두리 빨간색
+            if (isValid) {
+                inputField.style.border = "3px solid #53A73C";
+            } else {
+                inputField.style.border = "3px solid red";
             }
 
             if (isValid) {
@@ -99,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!passwordInput.value) {
                 passwordValid = false;
                 openErrorMsg(passwordErrorSpan, "비밀번호: 필수 정보입니다.");
-            } else if (!passwordRegex.test(passwordInput.value || nameInput.value.length > 21)) {
+            } else if (!passwordRegex.test(passwordInput.value) || passwordInput.value.length > 21) {
                 passwordValid = false;
                 openErrorMsg(passwordErrorSpan, "비밀번호: 보안강도 약함(8~20자 문자+숫자+특수문자 포함필요)");
             } else {
@@ -107,6 +118,25 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }  
         return passwordValid;
+    }
+
+    // password 재확인 유효성 검사
+    function validatePasswordConfirm(passwordInput, confirmPasswordInput) {
+        var passwordConfirmValid = true;
+        var passwordConfirmErrorSpan = document.getElementsByClassName("u_password_confirm_errormsg")[0];
+
+        if (confirmPasswordInput) {
+            if (!confirmPasswordInput.value) {
+                passwordConfirmValid = false;
+                openErrorMsg(passwordConfirmErrorSpan, "비밀번호를 한번 더 입력해주세요.");
+            } else if (passwordInput.value !== confirmPasswordInput.value) {
+                passwordConfirmValid = false;
+                openErrorMsg(passwordConfirmErrorSpan, "비밀번호와 일치하지 않습니다.");
+            } else {
+                clearErrorMsg(passwordConfirmErrorSpan);
+            }
+        }
+        return passwordConfirmValid;
     }
     
     // name 유효성 검사
@@ -211,7 +241,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function openErrorMsg(element, message) {
         if (element && message) {
-            element.innerText = message;
+            // 내용이 비어있지 않으면 오류 메시지 표시
+            if (message.trim() !== "") {
+                element.innerText = message;
+            } else {
+                // 내용이 비어있으면 오류 메시지 감춤
+                clearErrorMsg(element);
+            }
         }
     }
 
@@ -219,5 +255,53 @@ document.addEventListener("DOMContentLoaded", function () {
         if (element) {
             element.innerText = "";
         }
+    }
+});
+
+// 이메일 중복 체크 버튼 관련 함수
+
+document.addEventListener("DOMContentLoaded", function () {
+    var emailConfirmButton = document.getElementById("emailConfirmButton");
+    var csrfToken = document.querySelector('meta[name="csrf-token"]');
+    var csrfTokenValue = csrfToken ? csrfToken.getAttribute('content') : null;
+
+    if (emailConfirmButton) {
+        emailConfirmButton.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            // 사용자가 입력한 이메일
+            var userEmail = document.getElementById("u_email").value;
+
+            // 중복 이메일 체크를 위한 API 엔드포인트
+            var apiUrl = "/api/confirm-email";
+
+            // fetch를 사용하여 서버에 요청
+            fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": csrfTokenValue
+                },
+                body: JSON.stringify({
+                    u_email: userEmail
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.confirmEmail) {
+                    alert("이미 사용 중인 이메일입니다.");
+                } else {
+                    alert("사용 가능한 이메일입니다.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        });
     }
 });

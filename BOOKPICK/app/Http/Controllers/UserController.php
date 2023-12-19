@@ -44,7 +44,7 @@ class UserController extends Controller
         // User모델 내 email에서 요청보낸 email로 검색된 결과 중 첫번째 레코드 반환
 
         if( !$result || !( Hash::check( $request->u_password, $result->u_password ) ) ) {
-            $errorMsg = '이메일 주소 또는 비밀번호를 다시 확인해주세요.';
+            $errorMsg = '이메일 주소와 비밀번호를 다시 확인해주세요.';
             return view( 'user_login' )->withErrors( $errorMsg );
         }
         // $result 내 결과 값이 아니거나 Hash처리 유저 입력 비밀번호와 
@@ -92,10 +92,12 @@ class UserController extends Controller
                 // 중복된 이메일이 존재하지 않는 경우
                 $user->fill($data);
                 $user->save();
+                Log::debug( "# 회원가입(회원정보 저장) #" );
             } else {
                 // 중복된 이메일이 존재하는 경우
                 $errorMsg = '이미 존재하는 이메일 주소입니다.';
-                return redirect()->route('getRegister')->withErrors($errorMsg);
+                return view('user_register')->withErrors($errorMsg)
+                ->withInput($request->except('u_password', 'u_password_confirm'));
             }
             Log::debug( "### 회원가입(회원정보 저장) 완료 ###" );
             DB::commit();
@@ -110,6 +112,14 @@ class UserController extends Controller
         } finally {
         Log::debug( "# 회원가입(회원정보 저장) 종료 #" );
         }
+    }
+
+    // 회원가입 시 이메일 중복체크(api)
+    public function confirmEmail(Request $request) {
+        $userEmail = $request->input('u_email');
+        // DB 중복 이메일 체크
+        $confirmEmail = User::where('u_email', $userEmail)->exists();
+        return response()->json(['confirmEmail' => $confirmEmail]);
     }
 
     // 로그아웃 처리
@@ -228,6 +238,18 @@ class UserController extends Controller
         } finally {
             Log::debug("# 회원탈퇴 종료 #");
         }
+    }
+
+    public function getLibrary() {
+    // 로그인 상태 확인
+    if (auth::check()) {
+        // 로그인 시 나의 서재 페이지로 이동
+        return view('user_library');
+    }
+
+    // 비로그인 시 로그인 페이지로 이동
+    return redirect()->route('getLogin');
+
     }
 }
 

@@ -10,7 +10,7 @@ $currentRoute = Route::currentRouteName();
 	</div>
 
 	<ul class="navbar__menu">
-		<li><a href="{{ route('library') }}" class="header-link {{ $currentRoute == 'library' ? 'active' : '' }}">나의 서재</a></li>
+		<li><a href="{{ route('getLibrary') }}" class="header-link {{ $currentRoute == 'library' ? 'active' : '' }}">나의 서재</a></li>
 		<li><a href="{{ route('bookTour') }}" class="header-link {{ $currentRoute == 'bookTour' ? 'active' : '' }}">둘러보기</a></li>
 	</ul>
 	<div class="header_search">

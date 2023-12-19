@@ -27,10 +27,11 @@ Route::get( '/home', function () {
     return view( 'home' );
 })->name( 'home' );
 
-// 나의 서재 페이지
-Route::get( '/library', function () {
-    return view( 'user_library' );
-})->name( 'library' );
+// 나의 서재 페이지(유저컨트롤러 정의)
+// 로그인 시 나의 서재 페이지로 이동
+// 비로그인 시 로그인 페이지로 이동 
+Route::get( '/library', [UserController::class, 'getLibrary'])
+->name( 'getLibrary' );
 
 // 둘러보기 페이지
 Route::get( '/book/tour', function () {
