@@ -182,7 +182,7 @@ table {
 }
 
 th, td {
-	border: 1px solid #ddd;
+	border: 1px solid #ccc;
 	padding: 8px;
 	text-align: left;
 	white-space: nowrap;
@@ -195,8 +195,13 @@ th {
 	background-color: #f2f2f2;
 }
 
-/* 테이블을 감싸는 div의 스타일을 정의합니다. */
 .table-container {
-	max-height: 300px; /* 원하는 높이로 설정합니다. */
+	max-height: 300px;
 	overflow-y: auto;
+}
+.admin_pagination {
+	text-align: center;
+}
+.admin_pagination li{
+	display: inline-block;
 }

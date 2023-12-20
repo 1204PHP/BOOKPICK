@@ -22,7 +22,7 @@ return new class extends Migration
             // api 번호
             // integer 생성(10) / default : nullable
 
-            $table->dateTime('ba_at')->default(NOW());
+            $table->timestamp('created_at')->useCurrent();
             // api 호출일자
             // datetime 생성 / default : now
             

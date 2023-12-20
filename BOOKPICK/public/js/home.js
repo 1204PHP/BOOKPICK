@@ -4,7 +4,11 @@ let currentSlideIndex = 1;
 function showSlide(index) {
 	const slides = document.querySelector('.home-baaner');
 	const indicators = document.querySelectorAll('.indicator');
-	// const textBoxes = document.querySelectorAll('.home-box');
+
+	// 해당 요소가 존재하는지 확인
+    if (!slides) {
+        return;
+    }
 
 	if (index > slides.childElementCount) {
 		currentSlideIndex = 1;
@@ -32,12 +36,26 @@ setInterval(nextSlide, 3000); // 슬라이드 자동 전환
 
 // 베스트셀러 슬라이드
 function next() {
+	const slideContainer = document.querySelector('.slide-container');
+
+    // 해당 요소가 존재하는지 확인
+    if (!slideContainer) {
+        return;
+    }
+
 	let baseWidth = document.querySelector('.slide-container').offsetWidth;
 	let nowLeft = document.querySelector('.slide-container').scrollLeft;
-	document.querySelector('.slide-container').scrollTo({left: nowLeft + baseWidth, behavior: 'smooth'});
+	slideContainer.scrollTo({left: nowLeft + baseWidth, behavior: 'smooth'});
 }
 function prev() {
+	const slideContainer = document.querySelector('.slide-container');
+
+    // 해당 요소가 존재하는지 확인
+    if (!slideContainer) {
+        return;
+    }
+
     let baseWidth = document.querySelector('.slide-container').offsetWidth;
     let nowLeft = document.querySelector('.slide-container').scrollLeft;
-    document.querySelector('.slide-container').scrollTo({ left: nowLeft - baseWidth, behavior: 'smooth' });
+    slideContainer.scrollTo({ left: nowLeft - baseWidth, behavior: 'smooth' });
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LibraryCommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +25,9 @@ use App\Http\Controllers\HomeController;
 // 메인 페이지
 Route::get( '/', [HomeController::class, 'index'])
 ->name( 'index' );
-Route::get( '/home', function () {
-    return view( 'home' );
-})->name( 'home' );
+
+Route::get( '/home', [HomeController::class, 'index'])
+->name( 'home' );
 
 // 나의 서재 페이지(유저컨트롤러 정의)
 // 로그인 시 나의 서재 페이지로 이동
@@ -100,10 +101,11 @@ Route::delete( '/withdrawal', [UserController::class, 'deleteWithdrawal'])
 
 // ### 책넣기위해 관리자 페이지 생성 ###
 Route::get( '/admin', [AdminController::class, 'index']
-)->name( 'getadmin' );
-Route::post( '/admin', [AdminController::class, 'postAdminBook'])
-->name( 'postAdmin.index' );
-
+)->name( 'getAdmin' );
+Route::post( '/admin/bookInfo', [AdminController::class, 'adminBookInfo'])
+->name( 'postAdminBookInfo' );
+Route::post( '/admin/apiCate', [AdminController::class, 'adminApiCate'])
+->name( 'postAdminApiCate' );
 
 // ### 나의 서재 도서 상세 > 독서기록
 Route::middleware('auth')->prefix('library')->group(function () {

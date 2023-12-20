@@ -3,11 +3,10 @@
 @section('title', 'admin')
 {{-- title로 Main 표기 --}}
 @section('content')
-	<form action="{{route('postAdmin.index')}}" method="POST">
-		@csrf
-		<button type="submit">책정보추가</button>
-	</form>
+
+{{-- BookInfo --}}
 	<div class="table-container">
+		<h1>BookInfo Table</h1>
         <table>
             <thead>
                 <tr>
@@ -27,36 +26,70 @@
             </tbody>
         </table>
     </div>
-	<div style="text-align: center;">
-		@php
-			$currentPage = $bookTableData->currentPage();
-			$lastPage = $bookTableData->lastPage();
-			$numToShow = 5; // 한 번에 표시할 페이지 번호의 개수
-			$start = max(1, $currentPage - 2);
-			$end = min($start + 4, $lastPage);
-			$start = max(1, $end - 4);
-		@endphp
-
-		<a href="{{ $bookTableData->url(1)}}">처음</a>
-		@if ($currentPage > 1)
-			<a href="{{ $bookTableData->previousPageUrl() }}">이전</a>
-		@endif
-		@for($i = $start; $i <= $end; $i++)
-			<a href="{{$bookTableData->url($i)}}" @if($i == $currentPage)@endif>{{$i}}</a>
-		@endfor
-		@if ($currentPage < $lastPage )
-			<a href="{{$bookTableData->nextPageUrl()}}">다음</a>
-		@endif
-		<a href="{{$bookTableData->url($lastPage)}}">맨끝</a>
+	<div class="admin_pagination">{{ $bookTableData->links('pagination::default') }} </div>
+	<form action="{{route('postAdminBookInfo')}}" method="POST">
+		@csrf
+		<input type="text" placeholder="ac_id" name="ApiCateInput" value="">
+		<button type="submit">책정보추가</button>
+	</form>
+	<br><br>
+	
+{{-- bookApi --}}
+	<div class="table-container">
+		<table>
+			<h1>BookApi Table</h1>
+			<thead>
+				<tr>
+					@foreach($bookApiTableColumn as $column)
+					<th>{{$column}}</th>
+					@endforeach
+				</tr>
+			</thead>
+			<tbody>
+				@foreach($bookApiTableData as $data)
+					<tr>
+						@foreach($bookApiTableColumn as $column)
+						<td>{{$data->$column}}</td>
+						@endforeach
+					</tr>
+				@endforeach
+			</tbody>
+		</table>
 	</div>
-	{{-- <form action="/home" method="POST">
+	<div class="admin_pagination">{{ $bookApiTableData->links('pagination::default') }} </div>
+
+{{-- ApiCate --}}
+	<div class="table-container">
+		<h1>ApiCate Table</h1>
+        <table>
+            <thead>
+                <tr>
+					@foreach($apiCateTableColumn as $column)
+                    <th>{{$column}}</th>
+					@endforeach
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($apiCateTableData as $data)
+					<tr>
+						@foreach($apiCateTableColumn as $column)
+						<td>{{$data->$column}}</td>
+						@endforeach
+					</tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+	<div class="admin_pagination">{{ $apiCateTableData->links('pagination::default') }} </div>
+	<form action="{{route('postAdminApiCate')}}" method="POST">
 		@csrf
-		<button type="submit">POST버튼</button>
+		<input type="text" placeholder="ac_name" name="ApiCateInput" value="">
+		<button type="submit">추가</button>
 	</form>
-	<form action="/home" method="POST">
-		@csrf
-		<button type="submit">POST버튼</button>
-	</form>
+	<br><br>
+	
+	
+	{{--
 	<form action="/home" method="POST">
 		@csrf
 		<button type="submit">POST버튼</button>
