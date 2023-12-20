@@ -25,9 +25,9 @@ use App\Http\Controllers\LibraryCommentController;
 // 메인 페이지
 Route::get( '/', [HomeController::class, 'index'])
 ->name( 'index' );
-Route::get( '/home', function () {
-    return view( 'home' );
-})->name( 'home' );
+
+Route::get( '/home', [HomeController::class, 'index'])
+->name( 'home' );
 
 // 나의 서재 페이지(유저컨트롤러 정의)
 // 로그인 시 나의 서재 페이지로 이동
