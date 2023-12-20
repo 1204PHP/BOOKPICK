@@ -4,7 +4,7 @@ let currentSlideIndex = 1;
 function showSlide(index) {
 	const slides = document.querySelector('.home-baaner');
 	const indicators = document.querySelectorAll('.indicator');
-	const textBoxes = document.querySelectorAll('.home-box');
+	// const textBoxes = document.querySelectorAll('.home-box');
 
 	if (index > slides.childElementCount) {
 		currentSlideIndex = 1;
