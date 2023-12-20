@@ -12,11 +12,11 @@
 	<div class="search_layout_container">
 		@forelse($result as $val)
 		<div class="search_layout_container_div">
-			<a class="search_layout_container_a" href="{{route('home')}}">
+			<a class="search_layout_container_a" href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
 				<img class="search_layout_container_img" src="{{$val->b_img_url}}">
 			</a>
 			<p class="search_book_title_txt">
-				<a href="{{route('home')}}">{{$val->b_title}}</a>
+				<a href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">{{$val->b_title}}</a>
 			</p>
 			<p class="search_book_author_txt">{{$val->b_author}}</p>
 		</div>
