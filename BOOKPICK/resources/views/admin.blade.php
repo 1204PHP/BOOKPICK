@@ -80,7 +80,7 @@
             </tbody>
         </table>
     </div>
-	<div class="admin_pagination">{{ $bookApiTableData->links('pagination::default') }} </div>
+	<div class="admin_pagination">{{ $apiCateTableData->links('pagination::default') }} </div>
 	<form action="{{route('postAdminApiCate')}}" method="POST">
 		@csrf
 		<input type="text" placeholder="ac_name" name="ApiCateInput" value="">

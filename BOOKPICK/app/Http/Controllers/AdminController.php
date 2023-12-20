@@ -19,7 +19,7 @@ class AdminController extends Controller
         $apiCateTableColumn = DB::getSchemaBuilder()->getColumnListing("api_cates");
         $apiCateTableData = DB::table('api_cates')->orderBy('ac_id')->paginate(10, ['*'], 'api_cate_page');
         $bookApiTableColumn = DB::getSchemaBuilder()->getColumnListing("book_apis");
-        $bookApiTableData = DB::table('book_apis')->orderBy('ba_id')->paginate(10, ['*'], 'book_api_page');
+        $bookApiTableData = DB::table('book_apis')->orderBy('ba_id', 'desc')->paginate(10, ['*'], 'book_api_page');
         
         return view( 'admin' )
             ->with('bookTableColumn', $bookTableColumn)
