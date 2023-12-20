@@ -51,9 +51,9 @@ Route::get('/search', [SearchController::class, 'index'])
     ->name('getsearch.index');
 
 // 도서 상세 페이지
-Route::get( '/book/detail/{id}', function ($id) {
-    return view( 'book_detail', ['id' => $id] );
-})->name( 'bookDetail' );
+// Route::get( '/book/detail/{id}', function ($id) {
+//     return view( 'book_detail', ['id' => $id] );
+// })->name( 'bookDetail' );
 Route::get( '/book/detail/{id}', [BookController::class, 'index'])
     ->name( 'getBookDetail' );
 // ### 유저관련(유효성 검사 포함) ###
