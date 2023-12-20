@@ -3,7 +3,6 @@
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	position: relative;
 }
 /* 홈 광고 배너 부분 */
 .home-baaner {
@@ -45,10 +44,12 @@
 	border: 1px solid #ccc;
 	border-radius: 10px;
 }
-
+.home-main {
+	position: relative;
+}
 .home-box {
 	position: absolute;
-	top: 27%;
+	top: 93%;
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -69,32 +70,6 @@
 }
 
 /* 반응형 */
-@media screen and (max-width: 1299.99px) {
-    .home-box {
-        top: 12%;
-    }
-
-    .home-box div {
-        width: 8px;
-        height: 8px;
-        margin: 0 2px;
-    }
-}
-
-@media screen and (min-width: 1300px) {
-    .home-box {
-        top: 27%;
-    }
-
-    .home-box div {
-        width: 12px;
-        height: 12px;
-        margin: 0 2px;
-    }
-}
-
-
-
 
 /*  메인 베스트 셀러영역 */
 
@@ -104,7 +79,7 @@
 	overflow: scroll;
 	width: 100%;
     height: 100%;
-	line-height: 55vh;
+	margin-top: 14px;
 }
 .slide-container::-webkit-scrollbar {
 	display: none;
@@ -123,9 +98,18 @@
 	bottom: 60%;
 	left: 40%;
 }
+.prev {
+	cursor: pointer;
+	position: relative;
+	bottom: 60%;
+	right: 40%;
+}
 
-@media screen and (min-width: 1299.99px) {
+@media screen and (min-width: 960px) {
     .next {
+        display: none;
+    }
+	.prev {
         display: none;
     }
 }

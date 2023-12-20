@@ -36,3 +36,8 @@ function next() {
 	let nowLeft = document.querySelector('.slide-container').scrollLeft;
 	document.querySelector('.slide-container').scrollTo({left: nowLeft + baseWidth, behavior: 'smooth'});
 }
+function prev() {
+    let baseWidth = document.querySelector('.slide-container').offsetWidth;
+    let nowLeft = document.querySelector('.slide-container').scrollLeft;
+    document.querySelector('.slide-container').scrollTo({ left: nowLeft - baseWidth, behavior: 'smooth' });
+}

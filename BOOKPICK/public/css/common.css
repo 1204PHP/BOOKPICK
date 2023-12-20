@@ -104,7 +104,7 @@ a {
 /* 미디어쿼리 */
 @media screen and (max-width: 1299.99px) {
 	.layout_body {
-		width: 100vw;
+		width: 100%;
 	}
 	.navbar {
 		flex-direction: column;
