@@ -9,4 +9,5 @@ class Book_api extends Model
 {
     use HasFactory;
     protected $primaryKey = 'ba_id';
+
 }
