@@ -12,7 +12,7 @@
 	</div> --}}
 	<div class="search_layout_div">
 		<div class="search_layout_div_div">
-			'<span class="search_div_div_span_txt">{{$searchResult}}</span>'
+			<span>'</span><p class="search_div_div_span_txt">{{$searchResult}}</p><span>'</span>
 		</div>
 		<p class="search_div_div_p">에 대한 {{$searchCnt}}개의 검색 결과</p>
 	</div>

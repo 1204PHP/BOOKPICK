@@ -1,37 +1,30 @@
 .search_layout_div {
 	width: 100%;
 	height: 60px;
-	font-size: 20px;
 	font-weight: bold;
-	display: flex;
-	align-items:end;
-	margin-bottom: 10px;
+	margin: 10px 0;
+	font-size: 20px;
+	line-height: 20px;
 }
-@media screen and (max-width: 500px) {
-	.search_layout_div_div {
-		width: 100%;
-	}
-	.search_div_div_p {
-		width: 100%;
-	}
+
+.search_layout_div_div {
+	display: inline-block;
+	color: #4dac27;
+	max-width: 300px;
 }
-@media only screen and (min-width: 1300px) {}
 
 .search_div_div_span_txt {
+	display: inline-block;
 	overflow: hidden;
 	text-wrap: nowrap;
 	text-overflow: ellipsis;
 	max-width: 250px;
 }
 
-.search_layout_div_div {
-	height: 100%;
-	color: #4dac27;
+.search_div_div_p {
+	display: inline-block;
 }
 
-.search_div_div_p {
-	height: 100%;
-}
 .search_layout_container {
 	display:grid;
 	grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
@@ -79,3 +72,6 @@
 	width: 100%;
 	height: 50px;
 }
+
+
+/* 책 상세 페이지 */
