@@ -23,7 +23,7 @@
         @include('layout.header')
     </div>
     <div class="layout_body">
-    @yield('content')
+        @yield('content')
     </div>
 </body>
 </html>
