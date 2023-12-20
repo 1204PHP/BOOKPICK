@@ -1,0 +1,177 @@
+/* common */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body { 
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	background-color: rgba(249, 250, 250, 1);
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+	color:black;
+}
+
+/* 레이아웃 영역 */
+.layout_header {
+	border-bottom: 1px solid #ccc;
+}
+.layout_body {
+	margin: 0 auto;
+}
+
+/* header */
+.navbar {
+	display: flex;
+	align-items: center;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	justify-content: space-between;
+	margin: 0 auto;
+}
+
+/* 로고영역 */
+.navbar__logo {
+	height: 38px;
+	display: flex;
+	align-items: center;
+}
+.logo_txt {
+	font-size: 1.8rem;
+	color: #4dac27;
+	font-weight: bold;
+}
+
+/* 리스트영역 */
+.navbar__menu {
+	display: flex;
+	margin: 0;
+}
+.header-link {
+	padding: 0.5rem 0.7rem;
+}
+.header-link.active {
+	color: #4dac27;
+	font-weight: bold;
+}
+
+/* 검색영역 */
+.header_input{
+	width: 100%;
+	height: 100%;
+	border: 1px solid #4dac27;
+	border-radius: 20px;
+	padding: 0 40px;
+}
+
+/* 로그인 영역 */
+.header_signin {
+	width: 300px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: right;
+}
+.header_signin_area {
+	border: 1px solid #4dac27;
+	height: 100%;
+	border-radius: 20px;
+	margin: 0 0.5rem;
+	font-size: 14px;
+	padding: 0.3rem;
+}
+
+/* 햄버거버튼 */
+.navbar__toggleBtn {
+	position: absolute;
+	right: 15px;
+	font-size: 20px;
+	display: none;
+}
+.navbar__toggleBtn1 {
+	position: absolute;
+	right: 60px;
+	font-size: 20px;
+	display: none;
+}
+
+/* 미디어쿼리 */
+@media screen and (max-width: 1299.99px) {
+	.layout_body {
+		width: 100%;
+	}
+	.navbar {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.navbar__logo {
+		margin-left: 0rem;
+	}
+	.navbar__menu {
+		display: none;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+	}
+	.header-link {
+		width: 100%;
+		text-align: center;
+	}
+	.navbar__toggleBtn, .navbar__toggleBtn1 {
+		display: block;
+	}
+	.header_signin, .header_search {
+		display: none;
+	}
+	.header_search.active {
+		display: block;
+		position: absolute;
+		top:10px;
+		left: 10px;
+		width: 70%;
+		height: 35px;
+	}
+	.header_signin.active {
+		display: block;
+	}
+	.navbar__menu.active {
+		display: flex;
+	}
+	.logo_txt.active {
+		display: none;
+	}
+	
+
+}
+
+@media only screen and (min-width: 1300px) {
+	.layout_body, .navbar {
+		width: 1300px;
+	}
+	/* .navbar {
+		padding: 0.5rem 18rem;
+	} */
+	.navbar__logo {
+		width: 230px;
+	}
+	.navbar__menu{
+		width: 200px;
+	}
+	.header-link{
+		width: 100px;
+	}
+	.header_search{
+		width: 450px;
+		height: 35px;
+		margin: 0 3rem;
+	}
+}
