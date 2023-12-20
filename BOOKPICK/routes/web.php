@@ -5,7 +5,8 @@ use App\Http\Middleware\UserValidation;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\LibraryCommentControlle;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,8 @@ use App\Http\Controllers\LibraryCommentControlle;
 // ### 헤더 ###
 
 // 메인 페이지
-Route::get( '/', function () {
-    return view( 'home' );
-})->name( 'index' );
+Route::get( '/', [HomeController::class, 'index'])
+->name( 'index' );
 Route::get( '/home', function () {
     return view( 'home' );
 })->name( 'home' );
@@ -54,7 +54,8 @@ Route::get('/search', [SearchController::class, 'index'])
 Route::get( '/book/detail/{id}', function ($id) {
     return view( 'book_detail', ['id' => $id] );
 })->name( 'bookDetail' );
-
+Route::get( '/book/detail/{id}', [BookController::class, 'index'])
+    ->name( 'getBookDetail' );
 // ### 유저관련(유효성 검사 포함) ###
 
 // 로그인 화면 이동

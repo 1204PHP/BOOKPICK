@@ -3,50 +3,54 @@
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	position: relative;
 }
 /* 홈 광고 배너 부분 */
+.home-main {
+	width: 100%;
+	height: 100%;
+}
 .home-baaner {
 	/* background-color: white; */
 	width: 100%;
 	height: 100%;
-	border-radius: 10px;
 	display: flex;
-	transition: transform 0.5s ease-in-out;
+	transition: transform 0.5s;
 }
 .Hbaaner {
 	width: 100%;
 	height: 100%;
+	padding: 0px 20px;
 }
 
+/* .Hbaaner1 {
+	width: 1260px;
+	height: 100%;
+	border: 1px solid #000;
+	border-radius: 30px;
+} */
 .home-box1 {
-	background-color: white;
 	width: 100%;
-	height: 250px;
-	margin-top: 50px;
-	border: 1px solid #ccc;
-	border-radius: 10px;
+	height: 30vh;
+	text-align: center;
+	position: relative;
+	padding: 20px 20px;
 }
 .home-box2 {
-	background-color: white;
 	width: 100%;
-	height: 250px;
-	margin-top: 50px;
-	border: 1px solid #ccc;
-	border-radius: 10px;
+	height: 30vh;
+	padding: 20px 20px;
 }
 .home-box3 {
-	background-color: white;
 	width: 100%;
-	height: 250px;
-	margin-top: 50px;
-	border: 1px solid #ccc;
-	border-radius: 10px;
+	height: 30vh;
+	padding: 20px 20px;
 }
-
+.home-main {
+	position: relative;
+}
 .home-box {
 	position: absolute;
-	top: 27%;
+	top: 93%;
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -64,4 +68,53 @@
 
 .home-box div.active {
 	background-color: #555;
+}
+
+/* 반응형 */
+
+/*  메인 베스트 셀러영역 */
+
+.slide-container {
+	background-color: white;
+	transition: all 1s;
+	white-space:nowrap;
+	overflow: scroll;
+	width: 100%;
+    height: 100%;
+	margin-top: 20px;
+	border: 1px solid #ccc;
+    border-radius: 20px;
+}
+.slide-container::-webkit-scrollbar {
+	display: none;
+} 
+.slide-box {
+	display: inline-block;
+	height: 100%;
+	margin: 0px 10px;
+}
+.slide-box img {
+	height: 100%;
+    padding: 20px 0px;
+}
+.next {
+	cursor: pointer;
+	position: relative;
+	bottom: 60%;
+	left: 40%;
+}
+.prev {
+	cursor: pointer;
+	position: relative;
+	bottom: 60%;
+	right: 40%;
+}
+
+@media screen and (min-width: 960px) {
+    .next {
+        display: none;
+    }
+	.prev {
+        display: none;
+    }
 }

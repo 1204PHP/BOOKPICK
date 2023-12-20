@@ -50,6 +50,11 @@ class AdminController extends Controller
             } else {
                 Log::debug('해당 ISBN이 존재 ISBN:' . $resultdata['b_ISBN']);
             }
+
+            /**
+             * book_apis 데이터 삽입처리 작성
+             */
+            
         }
         Log::debug("----------DB 책 정보 INSERT 끝-----------");
         return redirect()->route('getadmin');

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Book_info;
+use App\Models\Api_cate;
 
 class DatabaseSeeder extends Seeder
 {
