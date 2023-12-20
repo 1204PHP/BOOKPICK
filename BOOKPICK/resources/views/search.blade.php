@@ -11,22 +11,28 @@
 	@endforelse
 	</div> --}}
 	<div class="search_layout_div">
-		<span class="search_div_span_txt">'{{$searchResult}}'</span>에 대한 {{$searchCnt}}개의 검색 결과
+		<div class="search_layout_div_div">
+			'<span class="search_div_div_span_txt">{{$searchResult}}</span>'
+		</div>
+		<p class="search_div_div_p">에 대한 {{$searchCnt}}개의 검색 결과</p>
 	</div>
 	<div class="search_layout_container">
 		@forelse($result as $val)
 		<div class="search_layout_container_div">
-			<img class="search_layout_container_img" src="{{$val->b_img_url}}">
-			<p class="txt_p">{{$val->b_title}}</p>
-			<p class="txt_p">{{$val->b_author}}</p>
-			<p class="txt_p">{{$val->b_price}}</p>
+			<a class="search_layout_container_a" href="{{route('home')}}">
+				<img class="search_layout_container_img" src="{{$val->b_img_url}}">
+			</a>
+			<p class="search_book_title_txt">
+				<a href="{{route('home')}}">{{$val->b_title}}</a>
+			</p>
+			<p class="search_book_author_txt">{{$val->b_author}}</p>
 		</div>
 		@empty
 			<p>검색어 결과가 없습니다.</p>
 		@endforelse
 	</div>
 	@if(count($result) > 0)
-	<div style="text-align: center;">
+	<div class="search_paginate_div">
 		@php
 			// $currentUrl = url()->full();
 			// $currentUrl = request()->getQueryString();

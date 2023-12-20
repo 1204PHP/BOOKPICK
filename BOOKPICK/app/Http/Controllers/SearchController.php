@@ -26,10 +26,10 @@ class SearchController extends Controller
             $result = BOOK_info::WhereRaw("REPLACE(b_title,' ', '') LIKE ?", ['%' . $searchStrNoSpacing . '%'])
             ->orwhereRaw("REPLACE(b_author,' ', '') LIKE ?", ['%'. $searchStrNoSpacing. '%'])
             ->orwhereRaw("MATCH(b_title, b_author) AGAINST (? IN BOOLEAN MODE)", [$searchFullTxt])
-            ->Paginate(6);
+            ->Paginate(12);
         } else {
             // 검색어가 없는 경우 모든 데이터 
-            $result = Book_info::Paginate(6);
+            $result = Book_info::Paginate(12);
             $searchCnt = Book_info::all()->count();
         }
 
