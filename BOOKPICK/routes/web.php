@@ -5,6 +5,7 @@ use App\Http\Middleware\UserValidation;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LibraryCommentControlle;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,3 +102,20 @@ Route::get( '/admin', [AdminController::class, 'index']
 )->name( 'getadmin' );
 Route::post( '/admin', [AdminController::class, 'postAdminBook'])
 ->name( 'postAdmin.index' );
+
+
+// ### 나의 서재 도서 상세 > 독서기록
+Route::middleware('auth')->prefix('library')->group(function () {
+    Route::resource('detail', LibraryCommentController::class, [
+        'names' => [
+            'index' => 'lcDetailIndex', // (GET)나의 서재 도서 상세 화면 이동
+            'create' => 'lcDetailCreate', // (GET)나의 서재 도서 상세 화면 이동(게시판 작성 화면 이동)
+            'store' => 'lcDetailStore', // (POST)나의 서재 도서 상세 화면 게시글 insert 처리
+            'show' => 'lcDetailShow', // (GET)나의 서재 도서 상세 화면 이동(게시판 디테일 화면 이동)
+            'edit' => 'lcDetailEdit', // (GET)나의 서재 도서 상세 화면 이동(게시판 수정 화면 이동)
+            'update' => 'lcDetailUpdate', // (PUT)나의 서재 도서 상세 화면 게시글 update 처리
+            'destory' => 'lcDetailDestory', // (DELETE)나의 서재 도서 상세 화면 게시글 delete 처리
+        ]
+    ]);
+});
+

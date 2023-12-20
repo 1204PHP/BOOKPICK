@@ -83,7 +83,7 @@ class UserController extends Controller
         Log::debug( "### 회원가입(회원정보 저장) 시작 ###" );
         try {
             DB::beginTransaction();
-            Log::debug( "# 트랜잭션 시작 #" );
+            Log::debug( "### 트랜잭션 시작 ###" );
             // 이메일, 암호화 된 비밀번호, 이름, 생년월일, 
             // 휴대폰 번호, 우편번호, 기본주소, 상세주소
             // DB저장
@@ -92,7 +92,7 @@ class UserController extends Controller
                 // 중복된 이메일이 존재하지 않는 경우
                 $user->fill($data);
                 $user->save();
-                Log::debug( "# 회원가입(회원정보 저장) #" );
+                Log::debug( "### 회원가입(회원정보 저장) ###" );
             } else {
                 // 중복된 이메일이 존재하는 경우
                 $errorMsg = '이미 존재하는 이메일 주소입니다.';
@@ -106,11 +106,11 @@ class UserController extends Controller
             return redirect()->route( 'getLogin' );    
         } catch(Exception $e) {
             DB::rollback();
-            Log::debug( "# 예외발생 : 롤백완료 #" );
+            Log::debug( "### 예외발생 : 롤백완료 ###" );
             $errorMsg = '회원가입에 실패했습니다. 새로고침 후 재가입 해주세요.';
             return redirect()->route( 'getRegister' )->withErrors( $errorMsg );
         } finally {
-        Log::debug( "# 회원가입(회원정보 저장) 종료 #" );
+            Log::debug( "### 회원가입(회원정보 저장) 종료 ###" );
         }
     }
 
@@ -190,11 +190,11 @@ class UserController extends Controller
             return redirect()->route('index');
         } catch (Exception $e) {
             DB::rollback();
-            Log::debug( "# 예외발생 : 롤백완료 #" );
+            Log::debug( "### 예외발생 : 롤백완료 ###" );
             $errormsg = '회원 정보 수정에 실패했습니다. 새로고침 후 다시 수정 해주세요.';
             return redirect()->route('getInfo')->withErrors($errorMsg);
         } finally {
-            Log::debug( "# 회원정보 수정 종료 #" );
+            Log::debug( "### 회원정보 수정 종료 ###" );
         }
     }
 
@@ -231,12 +231,12 @@ class UserController extends Controller
             // 회원탈퇴 성공 시 메인 페이지로 리다이렉트
         } catch (Exception $e) {
             DB::rollback();
-            Log::debug("# 예외발생 : 롤백완료 #");
+            Log::debug("### 예외발생 : 롤백완료 ###");
             $errorMsg = '회원 탈퇴에 실패했습니다. 새로고침 후 다시 시도해주세요.';
             return redirect()->back()->withErrors([$errorMsg]);
             // 회원탈퇴 실패 시 회원탈퇴 페이지에 그대로 남아있음
         } finally {
-            Log::debug("# 회원탈퇴 종료 #");
+            Log::debug("### 회원탈퇴 종료 ###");
         }
     }
 
