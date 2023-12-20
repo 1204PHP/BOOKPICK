@@ -12,7 +12,7 @@
 	height: 100%;
 	border-radius: 10px;
 	display: flex;
-	transition: transform 0.5s ease-in-out;
+	transition: transform 0.5s
 }
 .Hbaaner {
 	width: 100%;
@@ -22,10 +22,12 @@
 .home-box1 {
 	background-color: white;
 	width: 100%;
-	height: 250px;
+	height: 30vh;
 	margin-top: 50px;
 	border: 1px solid #ccc;
 	border-radius: 10px;
+	text-align: center;
+	position: relative;
 }
 .home-box2 {
 	background-color: white;
@@ -64,4 +66,66 @@
 
 .home-box div.active {
 	background-color: #555;
+}
+
+/* 반응형 */
+@media screen and (max-width: 1299.99px) {
+    .home-box {
+        top: 12%;
+    }
+
+    .home-box div {
+        width: 8px;
+        height: 8px;
+        margin: 0 2px;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .home-box {
+        top: 27%;
+    }
+
+    .home-box div {
+        width: 12px;
+        height: 12px;
+        margin: 0 2px;
+    }
+}
+
+
+
+
+/*  메인 베스트 셀러영역 */
+
+.slide-container {
+	transition: all 1s;
+	white-space:nowrap;
+	overflow: scroll;
+	width: 100%;
+    height: 100%;
+	line-height: 55vh;
+}
+.slide-container::-webkit-scrollbar {
+	display: none;
+} 
+.slide-box {
+	display: inline-block;
+	height: 100%;
+	margin: 0px 10px;
+}
+.slide-box img {
+	height: 90%;
+}
+.next {
+	cursor: pointer;
+	position: relative;
+	bottom: 60%;
+	left: 40%;
+}
+
+@media screen and (min-width: 1299.99px) {
+    .next {
+        display: none;
+    }
 }
