@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,8 @@ use App\Http\Controllers\BookController;
 // ### 헤더 ###
 
 // 메인 페이지
-Route::get( '/', function () {
-    return view( 'home' );
-})->name( 'index' );
+Route::get( '/', [HomeController::class, 'index'])
+->name( 'index' );
 Route::get( '/home', function () {
     return view( 'home' );
 })->name( 'home' );
