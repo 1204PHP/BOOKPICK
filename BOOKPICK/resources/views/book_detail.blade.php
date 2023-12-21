@@ -36,6 +36,26 @@
 				<p>
 					{!!$result->b_summary!!}
 				</p>
+
+				{{-- @if(isset($Message))
+				<input type="hidden" id="Message" name="Message" value="{{$Message}}">
+				@endif --}}
+				@if(Auth::check())
+					<!-- 로그인한 경우 -->
+					<form action="{{ route('postBookDetailWishList') }}" method="POST">
+						@csrf
+						<button type="submit">찜하기</button>
+						@if ($wishFlg === 1)
+							찜안된상태
+						@endif
+						@if ($wishFlg === 0)
+							찜한상태
+						@endif
+						<input type="hidden" id="b_id" name="b_id" value="{{$result->b_id}}">
+					</form>
+				@else
+				<button type="button" onclick="BookDetailshowAlert()">찜하기1</button>
+				@endif
 			</div>
 		</div>
 	</div>
