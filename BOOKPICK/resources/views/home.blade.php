@@ -35,7 +35,9 @@
             <ul class="slide-container" id="slide">
                 @forelse($data as $val)
                 <li class="slide-box">
+                    <a href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
                         <img src="{{$val->b_img_url}}" alt="...">
+                    </a>
                         <p>{{$val->b_title}}</p>
                         <p>{{$val->b_author}}</p>
                 </li>
@@ -60,7 +62,9 @@
         <ul class="slide-container2" id="slide3">
             @forelse($rand as $val2)
             <li class="slide-box">
+                <a href="{{ route('getBookDetail', ['id' => $val2->b_id]) }}">
                     <img src="{{$val2->b_img_url}}" alt="...">
+                </a>    
                     <p>{{$val2->b_title}}</p>
                     <p>{{$val2->b_author}}</p>
             </li>
@@ -89,7 +93,9 @@
         <ul class="slide-container" id="slide2">
             @forelse($result as $val)
             <li class="slide-box">
+                <a href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
                     <img src="{{$val->b_img_url}}" alt="...">
+                </a>
                     <p>{{$val->b_title}}</p>
                     <p>{{$val->b_author}}</p>
             </li>
