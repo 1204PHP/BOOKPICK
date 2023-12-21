@@ -163,3 +163,37 @@
 	width: 25%;
 	height: 100%;
 } */
+
+.modal {
+    display: none;
+}
+.modal-content {
+	border: 1px solid #ccc;
+	height: 80px;
+}
+
+.book_datail_form1, .book_datail_form2 {
+	display: inline;
+}
+.book_datail_form1 {
+	margin-right: 10px;
+}
+@media screen and (max-width: 549.99px) {
+	.modal-content {
+		width: 100%;
+	}
+	.modal-content-submit {
+		float: none;
+	}
+}
+@media screen and (min-width: 550px) {
+	.modal-content {
+		width: 330px;
+	}
+	.modal-content-br {
+		display: none;
+	}
+	.modal-content-submit {
+		float: right;
+	}
+}
