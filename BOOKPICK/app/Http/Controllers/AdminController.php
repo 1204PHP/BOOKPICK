@@ -13,7 +13,7 @@ use Faker\Factory as Faker;
 class AdminController extends Controller
 {
     public function index()
-    {
+    { 
         $bookTableColumn = DB::getSchemaBuilder()->getColumnListing("book_infos");
         $bookTableData = DB::table('book_infos')->orderBy('b_id')->paginate(10, ['*'], 'book_info_page');
         $apiCateTableColumn = DB::getSchemaBuilder()->getColumnListing("api_cates");

@@ -89,9 +89,7 @@
 }
 .home-box2 {
 	width: 100%;
-	height: 100%;
     padding: 20px 20px;
-    text-align: center;
     margin-top: 50px;
     display: flex;
     justify-content: space-between;
@@ -141,19 +139,20 @@
 /*  메인 베스트 셀러영역 */
 .slide-container2 {
 	background-color: white;
-    width: 75%;
+    width: 67%;
     margin-top: 20px;
+	white-space:nowrap;
+	overflow: scroll;
     border: 1px solid #ccc;
     border-radius: 20px;
-    display: flex;
+	padding-left: 10px;
 }
 .slide-container2-2 {
 	background-color: white;
-	width: 20%;
-	margin-top: 20px;
-	border: 1px solid #ccc;
+    width: 20%;
+    margin-top: 20px;
+    border: 1px solid #ccc;
     border-radius: 20px;
-	display: flex;
 }
 .slide-container {
 	background-color: white;
@@ -167,6 +166,9 @@
 	padding-left: 10px;
 }
 .slide-container::-webkit-scrollbar {
+	display: none;
+} 
+.slide-container2::-webkit-scrollbar {
 	display: none;
 } 
 .slide-box {
