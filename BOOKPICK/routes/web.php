@@ -29,6 +29,11 @@ Route::get( '/', [HomeController::class, 'index'])
 Route::get( '/home', [HomeController::class, 'index'])
 ->name( 'home' );
 
+// Route::get( '/home', [HomeController::class, 'bestsellerGet'])
+// ->name( 'bestsellerGet' );
+// Route::get( '/home', [HomeController::class, 'newbookGet'])
+// ->name( 'newbookGet' );
+
 // 나의 서재 페이지(유저컨트롤러 정의)
 // 로그인 시 나의 서재 페이지로 이동
 // 비로그인 시 로그인 페이지로 이동 
