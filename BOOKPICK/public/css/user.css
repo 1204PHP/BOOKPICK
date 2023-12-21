@@ -1,6 +1,8 @@
 
 
-input {
+.login-input,
+.register-input,
+.info-input {
     outline: none;
     -webkit-transition: 0.35s ease-in-out;
     -moz-transition: 0.35s ease-in-out;
@@ -63,7 +65,7 @@ input {
     }
 
     .login-input {
-        width: 100%;
+        width: 70%;
         height: 43px;
         margin: 0 auto;
         padding: 1em;

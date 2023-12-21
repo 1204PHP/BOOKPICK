@@ -11,7 +11,7 @@ $currentRoute = Route::currentRouteName();
 		<div class="bar"></div>
 		</div>
 		<div class="navbar-logo">
-			<a href="{{ route('main') }}">BOOK PICK'</a>
+			<a href="{{ route('index') }}">BOOK PICK'</a>
 		</div>
 		<nav class="desktop-nav">
 			<a href="{{ route('getLibrary') }}" class="header-link {{ $currentRoute == 'library' ? 'active' : '' }}">나의 서재</a>
