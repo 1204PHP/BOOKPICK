@@ -57,6 +57,8 @@ Route::get('/search', [SearchController::class, 'index'])
 // })->name( 'bookDetail' );
 Route::get( '/book/detail/{id}', [BookController::class, 'index'])
     ->name( 'getBookDetail' );
+    Route::post( '/book/detail', [BookController::class, 'bookDetailWishList'])
+    ->name( 'postBookDetailWishList' );
 // ### 유저관련(유효성 검사 포함) ###
 
 // 로그인 화면 이동
