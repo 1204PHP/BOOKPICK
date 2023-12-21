@@ -1,13 +1,13 @@
 function BookDetailWishFlgshowAlert() {
-	var wishList = document.getElementById('wishFlg').value;
+	var wishFlg = document.getElementById('wishFlg').value;
 	
-	console.log(wishList);
-	if (wishList === '2') {
+	console.log(wishFlg);
+	if (wishFlg === '2') {
 		alert("로그인이 필요합니다.");
-	} else if (wishList === '0') {
+	} else if (wishFlg === '0') {
 		// 0(찜된상태)일경우 alert띄우고 wishlist가 1(찜안된상태)로 변경
 		alert("찜 삭제가 되었습니다.");
-	} else if (wishList === '1') {
+	} else if (wishFlg === '1') {
 		alert("찜 등록이 되었습니다.");
 	}
 }
@@ -19,7 +19,7 @@ function BookDetailLibraryFlgshowAlert() {
 	if (libraryFlg === '2') {
 		alert("로그인이 필요합니다.");
 	} else if (libraryFlg === '0') {
-		alert("나의 서재에서 삭제되었습니다.");
+		alert("나의서재에서 삭제 되었습니다.");
 	} else if (libraryFlg === '1') {
 		alert("나의서재에 등록이 되었습니다.");
 	}
