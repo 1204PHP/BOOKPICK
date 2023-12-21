@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $result = Book_info::take(5)->get();
+        $result = Book_info::take(6)->get();
         return view('home' ,['result' => $result]);
     }
 }
