@@ -126,7 +126,7 @@ class UserController extends Controller
     public function getLogout() {
         Session::flush(); // 세션파기
         Auth::logout(); // 로그아웃
-        return redirect()->route( 'main' );
+        return redirect()->route( 'index' );
         // 리턴 : 로그아웃 시 / 리다이렉트
     }
 

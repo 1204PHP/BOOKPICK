@@ -1,6 +1,8 @@
 
 
-input {
+.login-input,
+.register-input,
+.info-input {
     outline: none;
     -webkit-transition: 0.35s ease-in-out;
     -moz-transition: 0.35s ease-in-out;
@@ -150,7 +152,7 @@ input {
     }
 
     .login-container {
-        max-width: 60%;
+        max-width: 50%;
         margin: 0 auto;
         padding: 1em 3em 2em 3em;
         border: 1px solid #ccc;
@@ -253,7 +255,7 @@ input {
     }
 
     .login-container {
-        max-width: 60%;
+        max-width: 50%;
         margin: 0 auto;
         padding: 1em 3em 2em 3em;
         border: 1px solid #ccc;
@@ -343,7 +345,7 @@ input {
     }
 
     .login-span {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         margin: 15px auto;
     }
 }

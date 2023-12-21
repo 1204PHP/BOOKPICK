@@ -88,12 +88,53 @@ header {
 .desktop-search-bar {
     display: flex;
     flex-direction: row;
-    margin-left: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-search-btn {
+	width: 50px;
+	height: 30px;
+	margin: 0 20px;
+    font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #4dac27;
+	border-radius: 30px;
+    background-color: transparent;
+	cursor: pointer;
+}
+
+.header-logout-btn,
+.header-login-btn {
+	width: 70px;
+	height: 30px;
+	margin: 0 20px;
+    font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #4dac27;
+	border-radius: 30px;
+    background-color: transparent;
+	cursor: pointer;
 }
 
 .search-bar input {
     width: 450px;
     height: 40px;
+    background-color: transparent;
+    border: 1px solid #4dac27;
+    border-radius: 30px;
+    padding: 1rem 2rem;
+    transition: 0.3s ease;
+}
+
+.desktop-search-bar input {
+    width: 270px;
+    height: 40px;
+    justify-content: center;
     background-color: transparent;
     border: 1px solid #4dac27;
     border-radius: 30px;
@@ -113,15 +154,6 @@ header {
     outline: none;
     border-color: #4dac27;
     box-shadow: 0 0 5px rgba(77, 172, 39, 0.5); /* 선택된 상태를 강조하기 위한 그림자 효과 */
-}
-
-.search-bar button {
-    width: 60px;
-    margin-left: 10px;
-    background-color: transparent;
-    border: 1px solid #4dac27;
-    border-radius: 30px;
-    cursor: pointer;
 }
 
 .header-login-button {
@@ -185,10 +217,18 @@ header {
         display: flex;
     }
 
+    .desktop-search-bar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
     .phone-search-bar input {
         width: 250px;
         height: 30px;
-        margin-top: 10px;
+        margin-top: 20px;
         margin-bottom: 10px;
         background-color: transparent;
         border: 1px solid #4dac27;
@@ -211,6 +251,7 @@ header {
         flex-direction: column;
         align-items: center;
         width: 100%;
+        height: 25%;
         box-sizing: border-box;
         position: absolute;
         top: 60px;
@@ -222,6 +263,12 @@ header {
 		transform: translateY(-20px);
 		animation: fadeInDown 0.5s ease both;
 	}
+
+    .mobile-nav a {
+        margin-bottom: 30px;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
 	
 	@keyframes fadeInDown {
 		from {
@@ -274,22 +321,37 @@ header {
         border-radius: 30px;
     }
 
+    .desktop-search-bar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
     .mobile-nav {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
+        height: 25%;
         box-sizing: border-box;
         position: absolute;
         top: 60px;
         left: 0;
+        font-size: 1rem;
+        font-weight: bold;
         background-color: rgba(249, 250, 250, 0.9);
-        padding: 10px;
+        padding: 2rem;
 		z-index: 10;
 		opacity: 0;
 		transform: translateY(-20px);
 		animation: fadeInDown 0.5s ease both;
 	}
+
+    .mobile-nav a {
+        margin-bottom: 30px;
+    }
 	
 	@keyframes fadeInDown {
 		from {

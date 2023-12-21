@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\Book_info;
 use App\Models\User_wishlist;
+use App\Models\User_library;
 use Illuminate\Support\Facades\Session;
 
 class BookController extends Controller
@@ -35,9 +36,29 @@ class BookController extends Controller
             // 로그인 안된상테
             $wishFlg = 2;
         }
+
+        if ($userId) {
+            $library = User_library::where('u_id', $userId)
+            ->where('b_id', $id)->first();
+            if($library) {
+                if($library->ul_flg === 1) {
+                    // 로그인 된상태-> 나의서재에 삭제되어있는 상태
+                    $libraryFlg = 1;
+                } else if ($library->ul_flg === 0)
+                // 로그인 된상태-> 나의서재에 등록되어있는 상태
+                    $libraryFlg = 0;
+            } else {
+                // 로그인 된상태-> 나의서재에 한번도 등록한적이없는상태
+                $libraryFlg = 1;
+            }
+        } else {
+            // 로그인 안된상테
+            $libraryFlg = 2;
+        }
         return view('book_detail',
                     ['result' => $result,
-                    'wishFlg' => $wishFlg]);
+                    'wishFlg' => $wishFlg,
+                    'libraryFlg' => $libraryFlg]);
     }
 
     public function bookDetailWishList( Request $request )
@@ -70,6 +91,51 @@ class BookController extends Controller
             }
 
             return redirect()->route('getBookDetail',['id' => $bookId]);
+        } else { // 세션에 사용자 ID가 없는 경우
+            Log::debug("세션에 사용자 ID가 없음");
+            return redirect()->route('getLogin');
+        }
+    }
+
+    public function bookDetailUserLibrary( Request $request )
+    {
+        $userId = Session::get('u_id');
+        $bookId = $request->input('library_b_id');
+        $startDate = $request->input('detailStartDate');
+        $endDate = $request->input('detailEndDate');
+        // TODO: 시작일, 끝나는일 유효성검사
+        Log::debug("bookDetailUserLibrary 데이터삽입 시작");
+        if ($userId) { // 세션에 사용자 ID가 존재하는 경우
+            $record = User_library::where('u_id', $userId)
+                        ->where('b_id', $bookId)
+                        ->first();
+            if($record) { // 해당 책 정보가 있을경우
+                if($record->ul_flg===0) { // 데이터가 이미 있는 경우(플래그로 삭제처리)
+                    User_library::where('u_id', $userId)
+                        ->where('b_id', $bookId)
+                        ->update([
+                            'ul_start_at' => $startDate,
+                            'ul_end_at' => $endDate,
+                            'ul_flg'=> 1,
+                    ]);
+                } else if( $record->uw_flg===1 ) { // 데이터가 삭제 되어 있는 경우(다시 추가 처리)
+                    User_library::where('u_id', $userId)
+                        ->where('b_id', $bookId)
+                        ->update([
+                            'ul_start_at' => $startDate,
+                            'ul_end_at' => $endDate,
+                            'ul_flg'=> 0,
+                    ]);
+                }
+            } else { //해당 책 정보가 없을경우
+                User_library::create([
+                    'u_id' => $userId,
+                    'b_id' => $bookId,
+                    'ul_start_at' => $startDate,
+                    'ul_end_at' => $endDate,
+                ]);
+            }
+        Log::debug("bookDetailUserLibrary 데이터삽입 끝");
         } else { // 세션에 사용자 ID가 없는 경우
             Log::debug("세션에 사용자 ID가 없음");
             return redirect()->route('getLogin');

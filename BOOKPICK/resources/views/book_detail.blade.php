@@ -37,25 +37,39 @@
 					{!!$result->b_summary!!}
 				</p>
 
-				{{-- @if(isset($Message))
-				<input type="hidden" id="Message" name="Message" value="{{$Message}}">
-				@endif --}}
+				<input type="hidden" id="wishFlg" name="wishFlg" value="{{$wishFlg}}">
+				<input type="hidden" id="libraryFlg" name="libraryFlg" value="{{$libraryFlg}}">
 				@if(Auth::check())
 					<!-- 로그인한 경우 -->
 					<form action="{{ route('postBookDetailWishList') }}" method="POST">
 						@csrf
-						<button type="submit">찜하기</button>
-						@if ($wishFlg === 1)
-							찜안된상태
-						@endif
-						@if ($wishFlg === 0)
-							찜한상태
-						@endif
+						<button type="submit" onclick="BookDetailshowAlert()">찜하기</button>
 						<input type="hidden" id="b_id" name="b_id" value="{{$result->b_id}}">
 					</form>
+					<form action="{{ route('postBookDetailUserLibrary') }}" method="POST">
+						@csrf
+						<button type="submit" onclick="()">나의서재등록</button>
+						<label for="datepicker">날짜 선택:</label>
+						<!-- Datepicker를 적용할 input 요소 -->
+						<input type="text" id="detailStartDate" name="detailStartDate" readonly>
+						<input type="text" id="detailEndDate" name="detailEndDate" readonly>
+						<input type="hidden" id="library_b_id" name="library_b_id" value="{{$result->b_id}}">
+					</form>
 				@else
-				<button type="button" onclick="BookDetailshowAlert()">찜하기1</button>
+				<button type="button" onclick="BookDetailWishFlgshowAlert()">찜하기</button>
+				<button type="submit" onclick="BookDetailLibraryFlgshowAlert()">나의서재등록</button>
 				@endif
+
+				{{-- @if(Auth::check())
+				<!-- 로그인한 경우 -->
+				<form action="{{ route('postBookDetailWishList') }}" method="POST">
+					@csrf
+					<button type="submit" onclick="BookDetailshowAlert()">찜하기</button>
+					<input type="hidden" id="b_id" name="b_id" value="{{$result->b_id}}">
+				</form>
+				@else
+					<button type="button" onclick="BookDetailshowAlert()">찜하기</button>
+				@endif --}}
 			</div>
 		</div>
 	</div>
