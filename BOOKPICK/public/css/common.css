@@ -22,6 +22,7 @@ a {
 
 header {
     width: 1300px;
+    height: 70px;
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -38,7 +39,7 @@ header {
     font-size: 1.8em;
     font-weight: bold;
     color: #4dac27;
-	margin: 0 60px;
+	/* margin: 0 60px; */
 }
 
 .navbar-logo a {
@@ -64,12 +65,13 @@ header {
     display: flex;
     align-items: center;
     margin-right: auto;
+    padding-left: 40px;
 }
 
 .desktop-nav a {
-    color:#4dac27;
+    color:#000;
 	font-weight: bold;
-    margin: 0 30px;
+    margin: 0 10px;
     text-decoration: none;
 }
 
@@ -86,21 +88,50 @@ header {
 .desktop-search-bar {
     display: flex;
     flex-direction: row;
+    margin-left: 40px;
 }
 
 .search-bar input {
-    width: 100%;
+    width: 450px;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid #4dac27;
+    border-radius: 30px;
+    padding: 1rem 2rem;
+    transition: 0.3s ease;
+}
+
+.search-bar input::placeholder {
+    font-weight: bold;
+}
+
+.search-bar input:hover {
+    border-color: #4dac27;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #4dac27;
+    box-shadow: 0 0 5px rgba(77, 172, 39, 0.5); /* 선택된 상태를 강조하기 위한 그림자 효과 */
 }
 
 .search-bar button {
+    width: 60px;
     margin-left: 10px;
+    background-color: transparent;
+    border: 1px solid #4dac27;
+    border-radius: 30px;
 }
 
 .header-login-button {
+    width: 80px;
+    height: 30px;
     display: flex;
-    justify-content: flex-end;
     align-items: center;
+    justify-content: center;
+    margin-right: auto;
     border: 1px solid #4dac27;
+    border-radius: 30px;
 }
 
 .mobile-nav {
@@ -131,7 +162,7 @@ header {
 	}
 
     .navbar-logo {
-		margin: 0 auto;
+        font-size: 1.2rem;
     }
 
     .desktop-nav {
@@ -139,14 +170,39 @@ header {
     }
 
 	.header-login-button {
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-		border: 1px solid #4dac27;
+		width: 80px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: auto;
+        border: 1px solid #4dac27;
+        border-radius: 30px;
 	}
 
     .hamburger-menu {
         display: flex;
+    }
+
+    .phone-search-bar input {
+        width: 250px;
+        height: 30px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: transparent;
+        border: 1px solid #4dac27;
+        border-radius: 30px;
+        padding: 1rem 2rem;
+    }
+
+    .phone-search-bar button {
+        width: 50px;
+        height: 30px;
+        margin-top: 10px;
+        margin-left: 10px;
+        background-color: transparent;
+        border: 1px solid #4dac27;
+        border-radius: 30px;
     }
 
     .mobile-nav {
@@ -183,12 +239,13 @@ header {
     header {
         width: 100%;
     }
-    
+
 	.layout_body {
 		width: 100%;
 	}
 
     .navbar-logo {
+        font-size: 1.4rem;
 		text-align: center;
     }
 
@@ -203,6 +260,17 @@ header {
 
     .hamburger-menu {
         display: flex;
+    }
+
+    .header-login-button {
+        width: 80px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: auto;
+        border: 1px solid #4dac27;
+        border-radius: 30px;
     }
 
     .mobile-nav {

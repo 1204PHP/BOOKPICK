@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="home-box1">
-            <ul class="slide-container">
+            <ul class="slide-container" id="slide">
                 @forelse($result as $val)
                 <li class="slide-box">
                         <img src="{{$val->b_img_url}}" alt="...">
@@ -45,11 +45,12 @@
                 <li class="slide-box"><img src="{{ asset('img/best1.jpg') }}" alt="..."></li>
                 <li class="slide-box"><img src="{{ asset('img/best1.jpg') }}" alt="..."></li> --}}
             </ul>
-            <img src="{{ asset('img/home-prev-btn.png') }}" class="prev" onclick="prev();" alt="...">
-            <img src="{{ asset('img/home-next-btn.png') }}" class="next" onclick="next();" alt="...">
+            {{-- 버튼 없이 하기로 했음 --}}
+            {{-- <img src="{{ asset('img/home-prev-btn.png') }}" class="prev" onclick="prev();" alt="...">
+            <img src="{{ asset('img/home-next-btn.png') }}" class="next" onclick="next();" alt="..."> --}}
     </div>
     <div class="home-box2">
-        <ul class="slide-container1">
+        <ul class="slide-container2" id="slide">
             @forelse($result as $val)
             <li class="slide-box">
                     <img src="{{$val->b_img_url}}" alt="...">
@@ -60,12 +61,12 @@
                 비어있음
             @endforelse
         </ul>
-        <ul class="slide-container1-2">
+        <ul class="slide-container2-2">
             <li class="slide-box">독서왕</li>
         </ul>
     </div>
     <div class="home-box3">
-        <ul class="slide-container">
+        <ul class="slide-container" id="slide2">
             @forelse($result as $val)
             <li class="slide-box">
                     <img src="{{$val->b_img_url}}" alt="...">
