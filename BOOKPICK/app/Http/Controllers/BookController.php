@@ -14,9 +14,7 @@ class BookController extends Controller
 {
     public function index($id)
     {
-        
         $userId = Session::get('u_id');
-
         $result = Book_info::find($id);
         if ($userId) {
             $wishList = User_wishlist::where('u_id', $userId)
@@ -63,6 +61,8 @@ class BookController extends Controller
 
     public function bookDetailWishList( Request $request )
     {
+        
+        Log::debug("찜 등록 시작");
         $userId = Session::get('u_id');
         $bookId = $request->input('b_id');
         if ($userId) { // 세션에 사용자 ID가 존재하는 경우
@@ -90,6 +90,7 @@ class BookController extends Controller
                 ]);
             }
 
+            Log::debug("찜 등록 끝");
             return redirect()->route('getBookDetail',['id' => $bookId]);
         } else { // 세션에 사용자 ID가 없는 경우
             Log::debug("세션에 사용자 ID가 없음");
@@ -105,6 +106,7 @@ class BookController extends Controller
         $endDate = $request->input('detailEndDate');
         // TODO: 시작일, 끝나는일 유효성검사
         Log::debug("bookDetailUserLibrary 데이터삽입 시작");
+
         if ($userId) { // 세션에 사용자 ID가 존재하는 경우
             $record = User_library::where('u_id', $userId)
                         ->where('b_id', $bookId)
@@ -114,11 +116,11 @@ class BookController extends Controller
                     User_library::where('u_id', $userId)
                         ->where('b_id', $bookId)
                         ->update([
-                            'ul_start_at' => $startDate,
-                            'ul_end_at' => $endDate,
+                            // 'ul_start_at' => now()->format('Y-m-d'),
+                            // 'ul_end_at' => now()->format('Y-m-d'),
                             'ul_flg'=> 1,
                     ]);
-                } else if( $record->uw_flg===1 ) { // 데이터가 삭제 되어 있는 경우(다시 추가 처리)
+                } else if( $record->ul_flg===1 ) { // 데이터가 삭제 되어 있는 경우(다시 추가 처리)
                     User_library::where('u_id', $userId)
                         ->where('b_id', $bookId)
                         ->update([
@@ -135,7 +137,8 @@ class BookController extends Controller
                     'ul_end_at' => $endDate,
                 ]);
             }
-        Log::debug("bookDetailUserLibrary 데이터삽입 끝");
+            Log::debug("bookDetailUserLibrary 데이터삽입 끝");
+            return redirect()->route('getBookDetail',['id' => $bookId]);
         } else { // 세션에 사용자 ID가 없는 경우
             Log::debug("세션에 사용자 ID가 없음");
             return redirect()->route('getLogin');
