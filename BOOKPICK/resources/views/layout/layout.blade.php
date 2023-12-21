@@ -7,13 +7,13 @@
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
     <link href="{{ asset('css/user.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/search.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/search_bookdetail.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sub.css') }}" rel="stylesheet"> --}}
     <script src="{{ asset('/js/common.js') }}" defer></script>
     <script src="{{ asset('/js/home.js') }}" defer></script>
     <script src="{{ asset('/js/UserValidation.js') }}" defer></script>
-    <script src="{{ asset('/js/search.js') }}" defer></script>
+    <script src="{{ asset('/js/Bookdetail.js') }}" defer></script>
     {{-- <script src="{{ asset('/js/home.js') }}" defer></script>
     <script src="{{ asset('/js/sub.js') }}" defer></script> --}}
     <title>@yield('title', 'bookpick')</title>
