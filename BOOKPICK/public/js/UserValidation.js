@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 validateInput(event.target);
             });
         }
-        
+
         // 이메일 중복 체크 버튼 관련 함수
         var emailConfirmButton = form.querySelector("#emailConfirmButton");
         if (emailConfirmButton) {
@@ -27,97 +27,68 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // 유효성 검사를 통과하면 중복 이메일 확인
                 if (userEmailValid) {
-                    checkDuplicateEmail("/api/confirm-email", document.getElementById("u_email").value);
+                    checkDuplicateEmail("/api/confirm-email", document.getElementById("u_email").value, function (isAvailable) {
+                        if (isAvailable) {
+                            alert("이미 사용 중인 이메일입니다.");
+                        } else {
+                            // 사용가능한 이메일인 경우
+                            alert("사용 가능한 이메일입니다.");
+                            // 사용 가능한 이메일일 때, 폼 전체가 유효한지 검사
+                            if (isFormValid()) {
+                                // 폼 전체가 유효한 경우에만 중복 확인 버튼 비활성화
+                                emailConfirmButton.disabled = true;
+
+                                // 폼 전체가 유효한 경우에만 제출
+                                form.submit();
+                            }
+                        }
+                    });
                 }
             });
-        }        
-
-            // 각 입력 필드에 대한 유효성 검사
-            var userEmailValid = validateInput(document.getElementById("u_email"));
-            var userPasswordValid = validateInput(document.getElementById("u_password"));
-            var userPasswordConfirmValid = validateInput(document.getElementById("u_password_confirm"));
-            var userNameValid = validateInput(document.getElementById("u_name"));
-            var userBirthdatedValid = validateInput(document.getElementById("u_birthdate"));
-            var userTelValid = validateInput(document.getElementById("u_tel"));
-            var userPostCodeValid = validateInput(document.getElementById("u_postcode"));
-            var userBasicAddressValid = validateInput(document.getElementById("u_basic_address"));
-
-    // 각 입력 필드에 대한 유효성 검사를 수행하는 함수
-    function validateInput(inputField) {
-        var isValid = true;
-        var errorSpan = inputField.nextElementSibling; // 다음 형제 요소에 오류 메시지가 있다고 가정
-
-        if (!inputField.value) {
-            isValid = false;
-            openErrorMsg(errorSpan);
-        } else {
-            // 각 필드에 따른 추가적인 유효성 검사 규칙을 적용하고 결과에 따라 isValid를 업데이트
-            if (inputField.id === "u_email") {
-                isValid = validateEmail(inputField);
-            } else if (inputField.id === "u_password") {
-                isValid = validatePassword(inputField);
-            } else if (inputField.id === "u_password_confirm") {
-                isValid = validatePasswordConfirm(document.getElementById("u_password"), inputField);
-            } else if (inputField.id === "u_name") {
-                isValid = validateName(inputField);
-            } else if (inputField.id === "u_birthdate") {
-                isValid = validateBirthdate(inputField);
-            } else if (inputField.id === "u_tel") {
-                isValid = validateTel(inputField);
-            } else if (inputField.id === "u_postcode") {
-                isValid = validatePostcode(inputField);
-            } else if (inputField.id === "u_basic_address") {
-                isValid = validateBasicAddress(inputField);
-            }
-
-            // 유효성 검사 통과 시 input 테두리 초록색
-            // 유효성 검사 실패 시 input 테두리 빨간색
-            if (isValid) {
-                inputField.style.border = "3px solid #53A73C";
-            } else {
-                inputField.style.border = "3px solid red";
-            }
-
-            if (isValid) {
-                clearErrorMsg(errorSpan);
-            }
         }
-        return isValid;
-    }
 
-    // form 제출 동작 막음
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
+        // 중복 이메일 체크 여부 변수
+        var emailCheckPerformed = false;
 
-    // 유효성 검사를 통과하면 중복 이메일 확인 수행
-    if (userEmailValid) {
-        checkDuplicateEmail("/api/confirm-email", document.getElementById("u_email").value, function (isAvailable) {
-            if (isAvailable) {
-                // 중복 이메일 확인이 완료되면 해당 폼을 제출
-                if (userPasswordValid && userPasswordConfirmValid 
-                    && userNameValid && userBirthdatedValid && userTelValid 
-                    && userPostCodeValid && userBasicAddressValid) {
-                    form.submit();
-                }
+        // form 제출 동작 막음
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // 이메일 중복 체크가 이미 수행되었으면 다시 수행하지 않음
+            if (!emailCheckPerformed) {
+                // 중복 이메일 확인 및 폼 전체 유효성 검사
+                checkDuplicateEmail("/api/confirm-email", document.getElementById("u_email").value, function (isAvailable) {
+                    emailCheckPerformed = true; // 중복 체크가 수행되었음을 표시
+
+                    if (isAvailable) {
+                        // 이미 사용 중인 이메일이면 폼 제출 막음
+                        alert("이미 사용 중인 이메일입니다.");
+                    } else {
+                        // 사용 가능한 이메일인 경우
+                        // 폼 전체가 유효한지 검사
+                        if (isFormValid()) {
+                            // 폼 전체가 유효한 경우에만 중복 확인 버튼 비활성화
+                            emailConfirmButton.disabled = true;
+
+                            // 폼 전체가 유효한 경우에만 제출
+                            form.submit();
+                        }
+                    }
+                });
             } else {
-                alert("이미 사용 중인 이메일입니다.");
+                // 중복 이메일 체크가 이미 수행되었으면 폼 전체 유효성 검사만 수행하여 제출
+                if (isFormValid()) {
+                    form.submit();
+                } else {
+                    // 폼의 필수 정보를 올바르게 입력하지 않은 경우
+                    alert("입력하신 정보를 다시 확인해주세요");
+                }
             }
         });
-    } else {
-        // 중복 이메일 확인이 필요하지 않은 경우에도 유효성 검사를 통과하면 해당 폼을 제출
-        if (userPasswordValid && userPasswordConfirmValid 
-            && userNameValid && userBirthdatedValid && userTelValid 
-            && userPostCodeValid && userBasicAddressValid) {
-            form.submit();
-        }
     }
-});
-
 
     // 중복 이메일 확인 수행 함수
     function checkDuplicateEmail(apiUrl, userEmail, callback) {
-        var inputEmiailConfirm = false;
-
         // fetch를 사용하여 서버에 요청
         fetch(apiUrl, {
             method: "POST",
@@ -136,22 +107,103 @@ document.addEventListener("DOMContentLoaded", function () {
             return response.json();
         })
         .then(data => {
-            if (data.confirmEmail) {
-                alert("이미 사용 중인 이메일입니다.");
-            } else {
-                alert("사용 가능한 이메일입니다.");
-            }
-        })
-        .then(data => {
+            console.log(data); // 콘솔에 서버 응답 출력
+
             callback(data.confirmEmail);
         })
         .catch(error => {
             console.error("Error:", error);
             callback(false);
         });
-        return inputEmiailConfirm;
+    }
+
+    // 각 입력 필드에 대한 유효성 검사를 수행하는 함수
+    function validateInput(inputField) {
+        var isValid = true;
+        var errorSpan = inputField.nextElementSibling;
+
+        if (!inputField.value) {
+            isValid = false;
+            if (inputField.id !== "u_email" || !emailCheckPerformed) {
+                openErrorMsg(errorSpan, "");
+            }
+        } else {
+            // 각 필드에 따른 추가적인 유효성 검사 규칙을 적용하고 결과에 따라 isValid를 업데이트
+            if (inputField.id === "u_email") {
+                // 중복 이메일 체크가 수행되지 않은 경우에만 중복 이메일 확인
+                if (!emailCheckPerformed) {
+                    isValid = validateEmail(inputField);
+                } else {
+                    // 중복 이메일 체크가 수행된 경우, 사용 가능한 이메일로 처리
+                    // 이 부분에 추가적으로 처리할 내용을 작성
+                    // 예: 사용 가능한 이메일 안내 메시지를 표시하지 않거나 특정 동작을 수행
+                }
+            } else if (inputField.id === "u_password") {
+                isValid = validatePassword(inputField);
+            } else if (inputField.id === "u_password_confirm") {
+                isValid = validatePasswordConfirm(document.getElementById("u_password"), inputField);
+            } else if (inputField.id === "u_name") {
+                isValid = validateName(inputField);
+            } else if (inputField.id === "u_birthdate") {
+                isValid = validateBirthdate(inputField);
+            } else if (inputField.id === "u_tel") {
+                isValid = validateTel(inputField);
+            } else if (inputField.id === "u_postcode") {
+                isValid = validatePostcode(inputField);
+            } else if (inputField.id === "u_basic_address") {
+                isValid = validateBasicAddress(inputField);
+            } else if (inputField.id === "u_detail_address") {
+                // 상세주소 필드는 필수가 아니므로 유효성 검사를 무시
+                isValid = true;
+            }
+
+            // 유효성 검사 통과 시 input 테두리 초록색
+            // 유효성 검사 실패 시 input 테두리 빨간색
+            if (isValid) {
+                inputField.style.border = "3px solid #53A73C";
+            } else {
+                inputField.style.border = "3px solid red";
+            }
+
+            if (isValid) {
+                clearErrorMsg(errorSpan);
+            }
         }
-}
+        return isValid;
+    }
+
+    // 폼 전체 유효성 검사
+    function isFormValid() {
+        var userEmailValid = validateInput(document.getElementById("u_email"));
+        var userPasswordValid = validateInput(document.getElementById("u_password"));
+        var userPasswordConfirmValid = validateInput(document.getElementById("u_password_confirm"));
+        var userNameValid = validateInput(document.getElementById("u_name"));
+        var userBirthdatedValid = validateInput(document.getElementById("u_birthdate"));
+        var userTelValid = validateInput(document.getElementById("u_tel"));
+        var userPostCodeValid = validateInput(document.getElementById("u_postcode"));
+        var userBasicAddressValid = validateInput(document.getElementById("u_basic_address"));
+
+        console.log("userEmailValid:", userEmailValid);
+        console.log("userPasswordValid:", userPasswordValid);
+        console.log("userPasswordConfirmValid:", userPasswordConfirmValid);
+        console.log("userNameValid:", userNameValid);
+        console.log("userBirthdatedValid:", userBirthdatedValid);
+        console.log("userTelValid:", userTelValid);
+        console.log("userPostCodeValid:", userPostCodeValid);
+        console.log("userBasicAddressValid:", userBasicAddressValid);
+
+        return (
+            userEmailValid &&
+            userPasswordValid &&
+            userPasswordConfirmValid &&
+            userNameValid &&
+            userBirthdatedValid &&
+            userTelValid &&
+            userPostCodeValid &&
+            userBasicAddressValid
+        );
+    }
+});
 
     // email 유효성 검사
     function validateEmail(emailInput) {
@@ -329,5 +381,3 @@ document.addEventListener("DOMContentLoaded", function () {
             element.innerText = "";
         }
     }
-
-});
