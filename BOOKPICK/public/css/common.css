@@ -9,6 +9,7 @@ body {
 	height: 100%;
 	margin: 0;
 	background-color: rgba(249, 250, 250, 1);
+    overflow-x: hidden;
 }
 
 ul, ol {
@@ -301,6 +302,33 @@ header {
 		}
 	}
 }
+
+/* 성찬 */
+/* @media only screen and (min-width: 1024px) and (max-width: 1299.99px){
+    .layout_header {
+		width: 100%
+    }
+    .layout_body {
+		width: 100%
+    }
+    header {
+        width: 100%;
+    }
+}
+@media only screen and (min-width: 1300px) {
+    .layout_header {
+		width: 1290px;
+        margin: 0 auto;
+    }
+    .layout_body {
+		width: 1290px;
+        margin: 0 auto;
+    }
+    header {
+        width: 100%;
+    }
+} */
+
 
 /* admin table */
 table {
