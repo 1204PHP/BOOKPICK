@@ -9,6 +9,26 @@
 	width: 100%;
 	height: 100%;
 }
+
+@media screen and (max-width: 1920px) {
+	.home-container {
+		width: 1300px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.home-container {
+		width: 100%;
+	}
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+	.home-container {
+		width: 100%;
+	}
+}
+
+
 .home-baaner {
 	/* background-color: white; */
 	width: 100%;
@@ -19,7 +39,7 @@
 .Hbaaner {
 	width: 100%;
 	height: 100%;
-	padding: 0px 20px;
+	border-radius: 5px;
 }
 
 /* .Hbaaner1 {
@@ -78,6 +98,11 @@
 
 /* 반응형 */
 @media screen and (max-width: 540px) {
+
+	.home-baaner {
+		width: 100%;
+	}
+
     .home-box {
         top: 85%;
     }

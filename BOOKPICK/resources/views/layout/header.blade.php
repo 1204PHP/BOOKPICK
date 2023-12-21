@@ -17,7 +17,7 @@ $currentRoute = Route::currentRouteName();
 			<a href="{{ route('getLibrary') }}" class="header-link {{ $currentRoute == 'library' ? 'active' : '' }}">나의 서재</a>
 			<a href="{{ route('bookTour') }}" class="header-link {{ $currentRoute == 'bookTour' ? 'active' : '' }}">둘러보기</a>
 			<div class="search-bar">
-				<form action="{{ route('getsearch.index') }}" method="GET">
+				<form class="desktop-search-bar" action="{{ route('getsearch.index') }}" method="GET">
 					<input type="search" name="result" value="" placeholder="검색어를 입력해 주세요">
 					<button type="submit">Search</button>
 				</form>
@@ -36,8 +36,10 @@ $currentRoute = Route::currentRouteName();
 		@endif
 		<nav class="mobile-nav">			
 			<div class="search-bar">
-				<input type="text" placeholder="검색어를 입력해 주세요">
-				<button>Search</button>
+				<form class="desktop-search-bar" action="{{ route('getsearch.index') }}" method="GET">
+					<input type="search" name="result" value="" placeholder="검색어를 입력해 주세요">
+					<button type="submit">Search</button>
+				</form>
 			</div>				
 			<a href="#">나의 서재</a></li>
 			<a href="#">둘러보기</a></li>			
