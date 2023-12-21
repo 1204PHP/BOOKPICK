@@ -21,6 +21,14 @@ use App\Http\Controllers\LibraryCommentController;
 */
 
 // ### 헤더 ###
+Route::get( '/', function () {
+    return view( 'home' );
+});
+
+Route::get(' /home ', function () {
+    return view( 'home' );
+})->name('index');
+
 
 // 메인 페이지
 Route::get( '/', [HomeController::class, 'index'])
