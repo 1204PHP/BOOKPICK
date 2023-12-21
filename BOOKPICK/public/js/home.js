@@ -92,7 +92,11 @@ slider.addEventListener('mousemove', (e) => {
 		requestAnimationFrame(() => {
 			slider.scrollLeft = scrollLeft - walk;
 		});
+		
 });
+
+
+
 //  카드 슬라이더
 // const slider2 = document.getElementById('slider2');
 // const cards = document.getElementById('card');
@@ -183,3 +187,6 @@ slider3.addEventListener('mousemove', (e) => {
 			slider3.scrollLeft = scrollLeft3 - walk3;
 	});
 });
+
+
+// ***************둘러보기 페이지 자바스크립트 *********************

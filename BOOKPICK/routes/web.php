@@ -7,6 +7,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TourController;
 use App\Http\Controllers\LibraryCommentController;
 
 /*
@@ -44,6 +45,10 @@ Route::get( '/library', [UserController::class, 'getLibrary'])
 Route::get( '/book/tour', function () {
     return view( 'book_tour' );
 })->name( 'bookTour' );
+
+Route::get( '/book/tour', [TourController::class, 'index'])
+->name( 'bookTour' );
+
 
 // ### 세부 페이지 ###
 

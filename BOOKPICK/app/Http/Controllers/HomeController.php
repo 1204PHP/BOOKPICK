@@ -23,7 +23,7 @@ class HomeController extends Controller
         
         // 베스트셀러 도서
         $data =book_api::where('book_apis.ac_id', 4)
-        ->whereBetween('book_apis.ba_rank', [1, 6])
+        ->whereBetween('book_apis.ba_rank', [1, 10])
         ->latest('book_apis.created_at')
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
         ->select('book_infos.*')
@@ -34,7 +34,7 @@ class HomeController extends Controller
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
         ->select('book_infos.*')
         ->inRandomOrder() // 랜덤 함수
-        ->limit(6) // 최대 6개의 결과만 가져옴
+        ->limit(10) // 최대 6개의 결과만 가져옴
         ->get();
 
         // 신간도서 6개만 가져오기
@@ -42,7 +42,8 @@ class HomeController extends Controller
         ->latest('book_apis.created_at')
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
         ->select('book_infos.*')
-        ->limit(6) // 최대 6개의 결과만 가져옴
+        ->inRandomOrder()
+        ->limit(15) // 최대 6개의 결과만 가져옴
         ->get();
 
         // 추천 도서
