@@ -19,7 +19,7 @@ $currentRoute = Route::currentRouteName();
 			<div class="search-bar">
 				<form class="desktop-search-bar" action="{{ route('getsearch.index') }}" method="GET">
 					<input type="search" name="result" value="" placeholder="검색어를 입력해 주세요">
-					<button type="submit">Search</button>
+					<button type="submit">검색</button>
 				</form>
 			</div>
 		</nav>
@@ -30,15 +30,17 @@ $currentRoute = Route::currentRouteName();
 				<a href="{{ route('getLogout') }}">로그아웃</a>
 			</nav>
 		@else
-			<nav class="header-login-button">
-				<a href="{{ route('getLogin') }}">로그인</a>
-			</nav>
+			<div class="header-login-button-area">
+				<nav class="header-login-button">
+					<a href="{{ route('getLogin') }}">로그인</a>
+				</nav>
+			</div>
 		@endif
 		<nav class="mobile-nav">			
-			<div class="search-bar">
+			<div class="phone-search-bar">
 				<form class="desktop-search-bar" action="{{ route('getsearch.index') }}" method="GET">
 					<input type="search" name="result" value="" placeholder="검색어를 입력해 주세요">
-					<button type="submit">Search</button>
+					<button type="submit">검색</button>
 				</form>
 			</div>				
 			<a href="#">나의 서재</a></li>
