@@ -63,37 +63,36 @@ function prev() {
 
 // 슬라이더 마우스로 드래드 하기
 const slider = document.getElementById('slide');
-  let isMouseDown = false;
-  let startX, scrollLeft;
+let isMouseDown = false;
+let startX, scrollLeft;
 
-  slider.addEventListener('mousedown', (e) => {
-    isMouseDown = true;
-    slider.classList.add('active');
+slider.addEventListener('mousedown', (e) => {
+	isMouseDown = true;
+	slider.classList.add('active');
 
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-  });
-  
-  slider.addEventListener('mouseleave', () => {
-    isMouseDown = false;
-    slider.classList.remove('active');
-  });
-  
-  slider.addEventListener('mouseup', () => {
-    isMouseDown = false;
-    slider.classList.remove('active');
-  });
+	startX = e.pageX - slider.offsetLeft;
+	scrollLeft = slider.scrollLeft;
+});
 
-  slider.addEventListener('mousemove', (e) => {
-    if (!isMouseDown) return;
+slider.addEventListener('mouseleave', () => {
+	isMouseDown = false;
+	slider.classList.remove('active');
+});
 
-    e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    requestAnimationFrame(() => {
-		slider.scrollLeft = scrollLeft - walk;
-	});
-  });
+slider.addEventListener('mouseup', () => {
+	isMouseDown = false;
+	slider.classList.remove('active');
+});
+
+slider.addEventListener('mousemove', (e) => {
+	if (!isMouseDown) return;
+		e.preventDefault();
+		const x = e.pageX - slider.offsetLeft;
+		const walk = (x - startX) * 1.5;
+		requestAnimationFrame(() => {
+			slider.scrollLeft = scrollLeft - walk;
+		});
+});
 //  카드 슬라이더
 // const slider2 = document.getElementById('slider2');
 // const cards = document.getElementById('card');
