@@ -124,11 +124,35 @@ class UserController extends Controller
 
     // 로그아웃 처리
     public function getLogout() {
-        Session::flush(); // 세션파기
-        Auth::logout(); // 로그아웃
+        Auth::logout(); 
+        // 로그아웃
+        Session::flush(); 
+        // 세션파기
         return redirect()->route( 'index' );
         // 리턴 : 로그아웃 시 / 리다이렉트
     }
+
+    public function getPasswordReconfirm() {
+        if(!Auth::check()) {
+            return redirect()->route('index');
+        }        
+        return view('user_password_reconfirm');
+        // 리턴 : 유저 인증 체크하여 유저일 시, user_password_reconfirm 페이지 이동
+    }
+
+    // 회원정보 수정 전 유저 비밀번호 확인 화면 이동
+    public function postPasswordReconfirm (Request $request) {    
+        $user = Auth::user();
+        // 현재 로그인 상태의 user 정보 획득
+
+        if (!Hash::check($request->u_password, $user->u_password)) {
+            $errorMsg = '비밀번호를 다시 확인해주세요';
+            return redirect()->route( 'getPasswordReconfirm' )->withErrors($errorMsg);
+        }
+        
+        return redirect()->route( 'getInfo' );
+    }
+
 
     // 회원정보 수정 화면 이동
     public function getInfo() {

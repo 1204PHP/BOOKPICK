@@ -19,7 +19,7 @@
                 </div>
                 <div class="withdrawal-button-area">
                     <button class="withdrawal-button" type="submit">북픽 탈퇴</button>
-                    <a class="withdrawal-index-button" href="{{ route('main') }}">취소</a>
+                    <a class="withdrawal-index-button" href="{{ route('index') }}">취소</a>
                 </div>   
             </div>             
         </div>

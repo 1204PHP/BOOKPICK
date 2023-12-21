@@ -108,7 +108,7 @@ header {
 
 .header-logout-btn,
 .header-login-btn {
-	width: 70px;
+	width: 80px;
 	height: 30px;
 	margin: 0 20px;
     font-weight: bold;
@@ -153,18 +153,7 @@ header {
 .search-bar input:focus {
     outline: none;
     border-color: #4dac27;
-    box-shadow: 0 0 5px rgba(77, 172, 39, 0.5); /* 선택된 상태를 강조하기 위한 그림자 효과 */
-}
-
-.header-login-button {
-    width: 80px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: auto;
-    border: 1px solid #4dac27;
-    border-radius: 30px;
+    box-shadow: 0 0 5px rgba(77, 172, 39, 0.5); 
 }
 
 .mobile-nav {
@@ -202,19 +191,43 @@ header {
         display: none;
     }
 
-	.header-login-button {
-		width: 80px;
+	.header-logout-btn,
+    .header-login-btn {
+        width: 80px;
         height: 30px;
+        margin: 0 20px;
+        margin-right: auto;
+        font-weight: bold;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: auto;
+        font-size: 0.7rem;
         border: 1px solid #4dac27;
         border-radius: 30px;
-	}
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    .header-info-btn {
+        width: 80px;
+        height: 30px;
+        margin: 0 20px;
+        margin-right: auto;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.6rem;
+    }
 
     .hamburger-menu {
         display: flex;
+    }
+
+    .header-info-button {
+        display: flex;
+        justify-content: end;
+        font-size: 0.7rem;
     }
 
     .desktop-search-bar {
@@ -310,15 +323,43 @@ header {
         display: flex;
     }
 
-    .header-login-button {
+    .header-logout-btn,
+    .header-login-btn {
         width: 80px;
         height: 30px;
+        margin: 0 20px;
+        margin-right: auto;
+        font-weight: bold;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: auto;
+        font-size: 0.7rem;
         border: 1px solid #4dac27;
         border-radius: 30px;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    .header-info-btn {
+        width: 80px;
+        height: 30px;
+        margin: 0 20px;
+        margin-right: auto;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.6rem;
+    }
+
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .header-info-button {
+        display: flex;
+        justify-content: end;
+        font-size: 0.8rem;
     }
 
     .desktop-search-bar {
@@ -374,6 +415,45 @@ header {
     .layout_body {
         width: 1300px;
         margin: 0 auto;
+    }
+
+    .header-logout-btn,
+    .header-login-btn {
+        width: 80px;
+        height: 30px;
+        margin: 0 20px;
+        margin-right: auto;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        border: 1px solid #4dac27;
+        border-radius: 30px;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    .header-info-btn {
+        width: 80px;
+        height: 30px;
+        margin: 0 20px;
+        margin-right: auto;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+    }
+
+    .header-info-button {
+        display: flex;
+        justify-content: end;
+        font-size: 0.8rem;
+    }
+
+    .desktop-search-bar {
+        margin-left: 50px;
     }
 }
 

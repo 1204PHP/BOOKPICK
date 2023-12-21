@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// 회원가입 처리 시 이메일 중복 체크
+// 회원가입 처리 > 이메일 중복 체크
 Route::post('/confirm-email', [UserController::class, 'confirmEmail']);

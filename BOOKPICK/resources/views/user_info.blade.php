@@ -16,10 +16,15 @@
             <div class="info-input-area">
                 <input class="info-input-readonly" type="email" readonly 
                 id="u_email" name="u_email" value={{$userdata->u_email}}>
+            </div>            
+            <div class="info-input-area">
+                <input class="info-input" type="password" 
+                id="u_password" name="u_password" placeholder="변경 비밀변호/수정필요">
+                <span class="u_password_errormsg"></span>
             </div>
             <div class="info-input-area">
                 <input class="info-input" type="password" 
-                id="u_password" name="u_password">
+                id="" name="" placeholder="변경 비밀변호 확인/수정필요">
                 <span class="u_password_errormsg"></span>
             </div>
             <div class="info-input-area">

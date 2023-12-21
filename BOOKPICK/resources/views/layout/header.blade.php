@@ -3,7 +3,7 @@
 $currentRoute = Route::currentRouteName();
 @endphp
 
-@if(!in_array(Route::currentRouteName(), ['getLogin', 'getRegister', 'postLogin', 'postRegister']))
+@if(!in_array(Route::currentRouteName(), ['getLogin', 'getRegister', 'postLogin', 'postRegister', 'getPasswordReconfirm']))
 	<header>
 		<div class="hamburger-menu">
 		<div class="bar"></div>
@@ -25,21 +25,17 @@ $currentRoute = Route::currentRouteName();
 		</nav>
 		@if(Auth::check())
 				{{-- 로그인 후 표시될 내용 --}}
-			<div class="header-login-button-area">
-				<nav class="header-login-button">
-					<a href="{{ route('getInfo') }}">회원정보 수정</a>
-				</nav>
-			</div>
-			<div class="header-login-button-area">
-				<nav class="header-login-button">
-					<button class="header-logout-btn" onclick="location.href='{{ route('getLogout') }}'">로그아웃</button>
-				</nav>
+			<div class="header-user-area">
+				<div class="header-login-button-area">
+					<nav class="header-info-button">
+						<a class="header-info-btn" href="{{ route('getPasswordReconfirm') }}">000 님</a>
+						<button class="header-logout-btn" onclick="location.href='{{ route('getLogout') }}'">로그아웃</button>
+					</nav>
+				</div>
 			</div>
 		@else
 			<div class="header-login-button-area">
-				{{-- <nav class="header-login-button"> --}}
 					<button class="header-login-btn" onclick="location.href='{{ route('getLogin') }}'">로그인</button>
-				{{-- </nav> --}}
 			</div>
 		@endif
 		<nav class="mobile-nav">			

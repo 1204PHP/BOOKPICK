@@ -119,25 +119,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 각 입력 필드에 대한 유효성 검사를 수행하는 함수
     function validateInput(inputField) {
-        var isValid = true;
         var errorSpan = inputField.nextElementSibling;
 
         if (!inputField.value) {
-            isValid = false;
-            if (inputField.id !== "u_email" || !emailCheckPerformed) {
-                openErrorMsg(errorSpan, "");
-            }
+            // 값이 없는 경우, input 테두리 초기화
+            inputField.style.border = "1px solid #ccc";
+            clearErrorMsg(errorSpan);
         } else {
-            // 각 필드에 따른 추가적인 유효성 검사 규칙을 적용하고 결과에 따라 isValid를 업데이트
-            if (inputField.id === "u_email") {
-                // 중복 이메일 체크가 수행되지 않은 경우에만 중복 이메일 확인
-                if (!emailCheckPerformed) {
-                    isValid = validateEmail(inputField);
-                } else {
-                    // 중복 이메일 체크가 수행된 경우, 사용 가능한 이메일로 처리
-                    // 이 부분에 추가적으로 처리할 내용을 작성
-                    // 예: 사용 가능한 이메일 안내 메시지를 표시하지 않거나 특정 동작을 수행
-                }
+            // 값이 있는 경우, 유효성 검사 수행
+            var isValid = true;
+
+        // 각 필드에 따른 추가적인 유효성 검사 규칙을 적용하고 결과에 따라 isValid를 업데이트
+        if (inputField.id === "u_email") {
+            // 중복 이메일 체크가 수행되지 않은 경우에만 중복 이메일 확인
+            if (!emailCheckPerformed) {
+                isValid = validateEmail(inputField);
+            }
             } else if (inputField.id === "u_password") {
                 isValid = validatePassword(inputField);
             } else if (inputField.id === "u_password_confirm") {
@@ -170,6 +167,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
         return isValid;
+    }
+
+    // 각 입력 필드에 대한 input 이벤트 리스너 등록
+    for (let i = 0; i < inputFields.length; i++) {
+        inputFields[i].addEventListener("input", function (event) {
+            validateInput(event.target);
+        });
     }
 
     // 폼 전체 유효성 검사
