@@ -11,7 +11,7 @@ $currentRoute = Route::currentRouteName();
 		<div class="bar"></div>
 		</div>
 		<div class="navbar-logo">
-			<a href="{{ route('home') }}">BOOK PICK'</a>
+			<a href="{{ route('main') }}">BOOK PICK'</a>
 		</div>
 		<nav class="desktop-nav">
 			<a href="{{ route('getLibrary') }}" class="header-link {{ $currentRoute == 'library' ? 'active' : '' }}">나의 서재</a>
@@ -25,10 +25,16 @@ $currentRoute = Route::currentRouteName();
 		</nav>
 		@if(Auth::check())
 				{{-- 로그인 후 표시될 내용 --}}
-			<nav class="header-login-button">
-				<a href="{{ route('getInfo') }}">회원정보 수정</a>
-				<a href="{{ route('getLogout') }}">로그아웃</a>
-			</nav>
+			<div class="header-login-button-area">
+				<nav class="header-login-button">
+					<a href="{{ route('getInfo') }}">회원정보 수정</a>
+				</nav>
+			</div>
+			<div class="header-login-button-area">
+				<nav class="header-login-button">
+					<a href="{{ route('getLogout') }}">로그아웃</a>
+				</nav>
+			</div>
 		@else
 			<div class="header-login-button-area">
 				<nav class="header-login-button">

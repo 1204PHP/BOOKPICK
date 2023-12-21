@@ -27,7 +27,7 @@ Route::get( '/', function () {
 
 Route::get(' /home ', function () {
     return view( 'home' );
-})->name('index');
+})->name( 'main' );
 
 
 // 메인 페이지

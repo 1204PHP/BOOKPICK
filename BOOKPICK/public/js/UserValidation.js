@@ -2,6 +2,9 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     var forms = document.getElementsByClassName("register-form");
+    var csrfToken = document.querySelector('meta[name="csrf-token"]');
+    var csrfTokenValue = csrfToken ? csrfToken.getAttribute('content') : null;
+
 
     for (let i = 0; i < forms.length; i++) {
         var form = forms[i];
@@ -11,6 +14,22 @@ document.addEventListener("DOMContentLoaded", function () {
         for (var j = 0; j < inputFields.length; j++) {
             inputFields[j].addEventListener("input", function (event) {
                 validateInput(event.target);
+            });
+        }
+        
+        // 이메일 중복 체크 버튼 관련 함수
+        var emailConfirmButton = form.querySelector("#emailConfirmButton");
+        if (emailConfirmButton) {
+            emailConfirmButton.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                // 각 입력 필드에 대한 유효성 검사
+                var userEmailValid = validateInput(document.getElementById("u_email"));
+
+                // 유효성 검사를 통과하면 중복 이메일 확인
+                if (userEmailValid) {
+                    checkDuplicateEmail("/api/confirm-email", document.getElementById("u_email").value);
+                }
             });
         }
 
@@ -27,6 +46,12 @@ document.addEventListener("DOMContentLoaded", function () {
             var userTelValid = validateInput(document.getElementById("u_tel"));
             var userPostCodeValid = validateInput(document.getElementById("u_postcode"));
             var userBasicAddressValid = validateInput(document.getElementById("u_basic_address"));
+
+            // 중복 이메일 확인이 필요한 경우에만 요청 보냄
+            if (userEmailValid && !checkDuplicateEmail("/api/confirm-email", document.getElementById("u_email").value)) {
+                alert("이미 사용 중인 이메일입니다.");
+                return;
+            }
 
             // 유효성 검사를 통과하면 해당 폼을 제출
             if (userEmailValid && userPasswordValid && userPasswordConfirmValid 
@@ -79,6 +104,41 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return isValid;
     }
+
+    // 중복 이메일 확인 수행 함수
+    function checkDuplicateEmail(apiUrl, userEmail) {
+        var inputEmiailConfirm = false;
+
+        // fetch를 사용하여 서버에 요청
+        fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": csrfTokenValue
+            },
+            body: JSON.stringify({
+                u_email: userEmail
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.confirmEmail) {
+                alert("이미 사용 중인 이메일입니다.");
+            } else {
+                alert("사용 가능한 이메일입니다.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+        return inputEmiailConfirm;
+        }
+    });
 
     // email 유효성 검사
     function validateEmail(emailInput) {
@@ -256,52 +316,4 @@ document.addEventListener("DOMContentLoaded", function () {
             element.innerText = "";
         }
     }
-});
 
-// 이메일 중복 체크 버튼 관련 함수
-
-document.addEventListener("DOMContentLoaded", function () {
-    var emailConfirmButton = document.getElementById("emailConfirmButton");
-    var csrfToken = document.querySelector('meta[name="csrf-token"]');
-    var csrfTokenValue = csrfToken ? csrfToken.getAttribute('content') : null;
-
-    if (emailConfirmButton) {
-        emailConfirmButton.addEventListener("click", function (event) {
-            event.preventDefault();
-
-            // 사용자가 입력한 이메일
-            var userEmail = document.getElementById("u_email").value;
-
-            // 중복 이메일 체크를 위한 API 엔드포인트
-            var apiUrl = "/api/confirm-email";
-
-            // fetch를 사용하여 서버에 요청
-            fetch(apiUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": csrfTokenValue
-                },
-                body: JSON.stringify({
-                    u_email: userEmail
-                })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.confirmEmail) {
-                    alert("이미 사용 중인 이메일입니다.");
-                } else {
-                    alert("사용 가능한 이메일입니다.");
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
-        });
-    }
-});

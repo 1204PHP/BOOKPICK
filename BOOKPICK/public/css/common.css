@@ -121,6 +121,7 @@ header {
     background-color: transparent;
     border: 1px solid #4dac27;
     border-radius: 30px;
+    cursor: pointer;
 }
 
 .header-login-button {

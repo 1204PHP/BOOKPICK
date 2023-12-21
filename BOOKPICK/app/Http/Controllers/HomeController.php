@@ -27,11 +27,3 @@ class HomeController extends Controller
         ->get();
     }
 };
-
-SELECT api.ac_id
-		,api.ba_rank
-FROM book_infos AS info
-	JOIN book_apis AS api
-	ON info.b_id = api.b_id
-order by api.created_at DESC
-LIMIT 5;
