@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var csrfToken = document.querySelector('meta[name="csrf-token"]');
     var csrfTokenValue = csrfToken ? csrfToken.getAttribute('content') : null;
 
-
     for (let i = 0; i < forms.length; i++) {
         var form = forms[i];
 
@@ -31,11 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     checkDuplicateEmail("/api/confirm-email", document.getElementById("u_email").value);
                 }
             });
-        }
-
-        // form 제출 동작 막음
-        form.addEventListener("submit", function (event) {
-            event.preventDefault();
+        }        
 
             // 각 입력 필드에 대한 유효성 검사
             var userEmailValid = validateInput(document.getElementById("u_email"));
@@ -46,21 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
             var userTelValid = validateInput(document.getElementById("u_tel"));
             var userPostCodeValid = validateInput(document.getElementById("u_postcode"));
             var userBasicAddressValid = validateInput(document.getElementById("u_basic_address"));
-
-            // 중복 이메일 확인이 필요한 경우에만 요청 보냄
-            if (userEmailValid && !checkDuplicateEmail("/api/confirm-email", document.getElementById("u_email").value)) {
-                alert("이미 사용 중인 이메일입니다.");
-                return;
-            }
-
-            // 유효성 검사를 통과하면 해당 폼을 제출
-            if (userEmailValid && userPasswordValid && userPasswordConfirmValid 
-                && userNameValid && userBirthdatedValid && userTelValid 
-                && userPostCodeValid && userBasicAddressValid) {
-                event.currentTarget.submit();
-            }
-        });
-    }
 
     // 각 입력 필드에 대한 유효성 검사를 수행하는 함수
     function validateInput(inputField) {
@@ -105,8 +85,37 @@ document.addEventListener("DOMContentLoaded", function () {
         return isValid;
     }
 
+    // form 제출 동작 막음
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+    // 유효성 검사를 통과하면 중복 이메일 확인 수행
+    if (userEmailValid) {
+        checkDuplicateEmail("/api/confirm-email", document.getElementById("u_email").value, function (isAvailable) {
+            if (isAvailable) {
+                // 중복 이메일 확인이 완료되면 해당 폼을 제출
+                if (userPasswordValid && userPasswordConfirmValid 
+                    && userNameValid && userBirthdatedValid && userTelValid 
+                    && userPostCodeValid && userBasicAddressValid) {
+                    form.submit();
+                }
+            } else {
+                alert("이미 사용 중인 이메일입니다.");
+            }
+        });
+    } else {
+        // 중복 이메일 확인이 필요하지 않은 경우에도 유효성 검사를 통과하면 해당 폼을 제출
+        if (userPasswordValid && userPasswordConfirmValid 
+            && userNameValid && userBirthdatedValid && userTelValid 
+            && userPostCodeValid && userBasicAddressValid) {
+            form.submit();
+        }
+    }
+});
+
+
     // 중복 이메일 확인 수행 함수
-    function checkDuplicateEmail(apiUrl, userEmail) {
+    function checkDuplicateEmail(apiUrl, userEmail, callback) {
         var inputEmiailConfirm = false;
 
         // fetch를 사용하여 서버에 요청
@@ -133,12 +142,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("사용 가능한 이메일입니다.");
             }
         })
+        .then(data => {
+            callback(data.confirmEmail);
+        })
         .catch(error => {
             console.error("Error:", error);
+            callback(false);
         });
         return inputEmiailConfirm;
         }
-    });
+}
 
     // email 유효성 검사
     function validateEmail(emailInput) {
@@ -317,3 +330,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+});

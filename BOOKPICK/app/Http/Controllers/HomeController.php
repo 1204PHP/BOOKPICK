@@ -20,28 +20,41 @@ class HomeController extends Controller
         // ->orderBy('api.created_at', 'desc')
         // ->limit(5)
         // ->get();
-
-        $result =book_api::where('book_apis.ac_id', 1)
-        ->whereBetween('book_apis.ba_rank', [7, 12])
+        
+        // 베스트셀러 도서
+        $data =book_api::where('book_apis.ac_id', 4)
+        ->whereBetween('book_apis.ba_rank', [1, 6])
         ->latest('book_apis.created_at')
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
         ->select('book_infos.*')
         ->get();
 
-        // $result = Book_info::limit(6)->get();
-        $data = Book_info::take(6)->get();
-        // return view('home', with('result', 'data'));
+        // 랜덤 도서 추천 픽
+        $rand = book_api::where('book_apis.ac_id', 1)
+        ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
+        ->select('book_infos.*')
+        ->inRandomOrder() // 랜덤 함수
+        ->limit(6) // 최대 6개의 결과만 가져옴
+        ->get();
 
-        // $data =book_api::where('book_apis.ac_id', 4)
-        // ->whereBetween('book_apis.ba_rank', [6])
-        // ->latest('book_apis.created_at')
-        // ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
-        // ->select('book_infos.*')
-        // ->get();
+        // 신간도서 6개만 가져오기
+        $result = book_api::where('book_apis.ac_id', 1)
+        ->latest('book_apis.created_at')
+        ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
+        ->select('book_infos.*')
+        ->limit(6) // 최대 6개의 결과만 가져옴
+        ->get();
+
+        // 추천 도서
 
         return view( 'home' )
-            ->with('result', $result)
-            ->with('data', $data);
+            ->with('data', $data)
+            ->with('rand', $rand)
+            ->with('result', $result);
+        // $result = Book_info::limit(6)->get();
+        // $data = Book_info::take(6)->get();
+        // return view('home', with('result', 'data'));
+        
     }
 
 };
