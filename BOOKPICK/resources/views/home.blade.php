@@ -61,7 +61,7 @@
                 비어있음
             @endforelse
         </ul>
-        <ul class="slide-container2-2">
+        <ul class="slide-container2-2" id="slide1">
             <li class="slide-box">독서왕</li>
         </ul>
     </div>
