@@ -14,17 +14,26 @@
 	.home-container {
 		width: 1300px;
 	}
+	#slide {
+		transition: scroll 40s ease-in-out;
+	}
 }
 
 @media only screen and (max-width: 768px) {
 	.home-container {
 		width: 100%;
 	}
+	#slide {
+		transition: scroll 40s ease-in-out;
+	}
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
 	.home-container {
 		width: 100%;
+	}
+	#slide {
+		transition: scroll 40s ease-in-out;
 	}
 }
 
@@ -177,3 +186,6 @@
         display: none;
     }
 } */
+
+
+
