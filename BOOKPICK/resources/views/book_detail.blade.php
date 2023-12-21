@@ -25,7 +25,7 @@
 			</div>
 			<div class="book_detail_div2">
 				<br>
-				<p class="book_datail_title_txt">{{$result->b_title}}</p>
+				<p class="book_datail_title_txt">{!!$result->b_title!!}</p>
 				<br>
 				<p class="book_datail_cate_txt">{{$result->b_main_cate}}</p>
 				<br><br>
@@ -34,7 +34,7 @@
 				<p class="book_datail_author_txt">{{$result->b_price}}</p>
 				<br><br>
 				<p>
-					{{$result->b_summary}}
+					{!!$result->b_summary!!}
 				</p>
 			</div>
 		</div>

@@ -106,6 +106,8 @@ Route::post( '/admin/bookInfo', [AdminController::class, 'adminBookInfo'])
 ->name( 'postAdminBookInfo' );
 Route::post( '/admin/apiCate', [AdminController::class, 'adminApiCate'])
 ->name( 'postAdminApiCate' );
+Route::post( '/admin/apiCateAuto', [AdminController::class, 'adminApiCateAuto'])
+->name( 'postAdminApiCateAuto' );
 
 // ### 나의 서재 도서 상세 > 독서기록
 Route::middleware('auth')->prefix('library')->group(function () {
