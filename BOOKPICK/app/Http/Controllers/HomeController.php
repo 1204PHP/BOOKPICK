@@ -11,7 +11,13 @@ class HomeController extends Controller
 {
     public function index()
     {
+        // $result = Book_info::take(6)->get();
+        // return view('home' ,['result' => $result]);
+        
         $result = Book_info::take(6)->get();
-        return view('home' ,['result' => $result]);
+        $data = Book_info::take(4)->get();
+
+        return view('home', compact('result', 'data'));
     }
+    
 }

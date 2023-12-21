@@ -146,3 +146,40 @@ slider2.addEventListener('mousemove', (e) => {
 			slider2.scrollLeft = scrollLeft2 - walk2;
 	});
 });
+
+const slider3 = document.getElementById('slide3');
+let isMouseDown3 = false;
+let startX3, scrollLeft3;
+
+slider3.addEventListener('mousedown', (e) => {
+	isMouseDown3 = true;
+	slider3.classList.add('active');
+
+	startX3 = e.pageX - slider3.offsetLeft;
+	scrollLeft3 = slider3.scrollLeft;
+	// console.log('mousedown', startX2, scrollLeft2, slider2.offsetLeft);
+});
+
+slider3.addEventListener('mouseleave', () => {
+	isMouseDown3 = false;
+	slider3.classList.remove('active');
+	// console.log('mouseleave');
+});
+
+slider3.addEventListener('mouseup', () => {
+	isMouseDown3 = false;
+	slider3.classList.remove('active');
+	// console.log('mouseup');
+});
+
+slider3.addEventListener('mousemove', (e) => {
+	if (!isMouseDown3) return;
+
+	e.preventDefault();
+	const x3 = e.pageX - slider3.offsetLeft;
+	const walk3 = (x3 - startX3) * 1.5;
+	// console.log('mousemove', x2, walk2, slider2.offsetLeft);
+	requestAnimationFrame(() => {
+			slider3.scrollLeft = scrollLeft3 - walk3;
+	});
+});
