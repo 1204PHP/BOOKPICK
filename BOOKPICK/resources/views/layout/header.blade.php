@@ -5,7 +5,7 @@ $currentRoute = Route::currentRouteName();
 
 @if(!in_array(Route::currentRouteName(), ['getLogin', 'getRegister', 'postLogin', 'postRegister', 'getPasswordReconfirm']))
 	<header>
-		<div class="hamburger-menu">
+		<div class="hamburger-menu" onclick="addEventListener()">
 		<div class="bar"></div>
 		<div class="bar"></div>
 		<div class="bar"></div>
