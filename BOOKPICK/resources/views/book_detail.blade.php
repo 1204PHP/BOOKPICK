@@ -97,14 +97,20 @@
 				<div class="book_detail_comment_modal">
 					<div class="book_detail_comment_modal_body">
 					<form class="book_detail_comment_modal_form">
-						<label for="title">제목:</label>
-						<textarea id="title" name="title" rows="1" cols="30" maxlength=50 placeholder="제목을 입력해 주세요"></textarea>
+						<div class="book_detail_comment_modal_header">
+							<label for="title"></label>
+							<textarea id="title" name="title" rows="1" cols="30" maxlength=50 placeholder="제목을 입력해 주세요"></textarea>
+						</div>
 						<br>
-						<label for="content">내용:</label>
-						<textarea id="content" name="content" rows="4" cols="30" maxlength=300 placeholder="댓글을 남겨주세요"></textarea>
+						<div class="book_detail_comment_modal_content">
+							<label for="content"></label>
+							<textarea id="content" name="content" rows="4" cols="30" maxlength=300 placeholder="댓글을 남겨주세요"></textarea>
 						<br>
-						<button class="book_detail_comment_close_modal_btn" type="button">취소</button>
-						<button type="submit">댓글 등록</button>
+						</div>
+						<div class="book_detail_comment_modal_footer">
+							<button class="book_detail_comment_close_modal_btn" type="button">취소</button>
+							<button class="book_detail_comment_complete_modal_btn" type="submit">댓글 등록</button>
+						</div>
 					</form>
 					</div>
 				</div>
