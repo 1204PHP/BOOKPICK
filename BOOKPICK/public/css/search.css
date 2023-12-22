@@ -1,0 +1,80 @@
+.search_layout_div {
+	width: 100%;
+	height: 60px;
+	font-weight: bold;
+	margin: 10px 0;
+	font-size: 20px;
+	line-height: 20px;
+}
+
+.search_layout_div_div {
+	display: inline-block;
+	color: #4dac27;
+	max-width: 300px;
+}
+
+.search_div_div_span_txt {
+	display: inline-block;
+	overflow: hidden;
+	text-wrap: nowrap;
+	text-overflow: ellipsis;
+	max-width: 250px;
+}
+
+.search_div_div_p {
+	display: inline-block;
+}
+
+.search_layout_container {
+	/* display:grid;
+	grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); */
+	padding: 0 20px;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    grid-template-rows: auto;
+}
+.search_layout_container_div {
+	width: 100%;
+	height:310px;
+	margin: 0 auto;
+}
+.search_layout_container_a {
+	display: block;
+	width: 100%;
+	height: 200px;
+}
+.search_layout_container_img {
+	width: 100%;
+	height: 100%;
+	border: 1px solid #ccc;
+}
+
+
+.search_book_title_txt {
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	padding-top: 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4;
+}
+
+.search_book_author_txt {
+	font-size: 11px;
+	padding: 3px 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+.search_paginate_div {
+	margin: 0 auto;
+	width: 100%;
+	height: 50px;
+}
