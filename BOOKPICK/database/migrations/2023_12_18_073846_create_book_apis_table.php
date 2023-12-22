@@ -27,9 +27,18 @@ return new class extends Migration
             // datetime 생성 / default : now
             
             $table->unsignedBigInteger('b_id');
-            $table->foreign('b_id')->references('b_id')->on('book_infos');
+            $table->foreign('b_id')
+                ->references('b_id')
+                ->on('book_infos')
+                ->onUpdate('cascade')  // onUpdate cascade 설정
+                ->onDelete('cascade'); // onDelete cascade 설정
+
             $table->unsignedBigInteger('ac_id');
-            $table->foreign('ac_id')->references('ac_id')->on('api_cates');
+            $table->foreign('ac_id')
+                ->references('ac_id')
+                ->on('api_cates')
+                ->onUpdate('cascade')  // onUpdate cascade 설정
+                ->onDelete('cascade'); // onDelete cascade 설정
         });
     }
 
