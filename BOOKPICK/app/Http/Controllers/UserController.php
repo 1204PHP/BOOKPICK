@@ -251,11 +251,13 @@ class UserController extends Controller
 
             // 로그아웃
             Auth::logout();
+            Log::debug("### 로그아웃 처리완료 ###");
             return redirect()->route( 'index' );
             // 회원탈퇴 성공 시 메인 페이지로 리다이렉트
         } catch (Exception $e) {
             DB::rollback();
             Log::debug("### 예외발생 : 롤백완료 ###");
+            Log::error(' 회원탈퇴 Error message: ' . $e->getMessage());
             $errorMsg = '회원 탈퇴에 실패했습니다. 새로고침 후 다시 시도해주세요.';
             return redirect()->back()->withErrors([$errorMsg]);
             // 회원탈퇴 실패 시 회원탈퇴 페이지에 그대로 남아있음
