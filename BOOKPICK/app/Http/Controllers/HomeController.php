@@ -29,7 +29,7 @@ class HomeController extends Controller
         ->select('book_infos.*')
         ->get();
 
-        // 랜덤 도서 추천 픽
+        // 랜덤 도서 추천 픽 (미완성)
         $rand = book_api::where('book_apis.ac_id', 1)
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
         ->select('book_infos.*')

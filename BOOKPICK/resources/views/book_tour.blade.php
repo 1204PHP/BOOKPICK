@@ -11,19 +11,17 @@
 	</div>
 	<div class="tour-main">
 		<div class="tour-baaner">
-            <img src="{{ asset('img/tour10.png') }}" class="Tbaaner" alt="...">
-            {{-- <img src="{{ asset('img/tour-c1.png') }}" class="c-baaner" alt="...">
-            <img src="{{ asset('img/tour-c2.png') }}" class="c-baaner" alt="...">
-            <img src="{{ asset('img/tour-c3.png') }}" class="c-baaner" alt="..."> --}}
+            {{-- 2번 광고배너 --}}
+            {{-- <img src="{{ asset('img/tour10.png') }}" class="Tbaaner" alt="..."> --}}
         </div>
 	</div>
 	<div class="tour-box1">
         <div class="tour-title">
-            <strong>인기있는 장르</strong>
+            <strong>주목할 만한 신간</strong>
             <p>원하는 도서의 책을 골라보세요</p>
         </div>
         <ul class="tour-slide-container" id="slide">
-            @forelse($data as $val)
+            @forelse($result as $val)
             <li class="slide-box">
                 <a href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
                     <img src="{{$val->b_img_url}}" alt="...">
@@ -38,7 +36,7 @@
     </div>
 	<div class="tour-box1">
         <div class="tour-title">
-            <strong>주목할 만한 신간 리스트</strong>
+            <strong>국내 도서 베스트셀러</strong>
         </div>
         <ul class="tour-slide-container" id="slide">
             @forelse($data as $val)
