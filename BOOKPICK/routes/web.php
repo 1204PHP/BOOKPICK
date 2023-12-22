@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\LibraryCommentController;
@@ -35,12 +36,6 @@ Route::get( '/home', [HomeController::class, 'index'])
 // Route::get( '/home', [HomeController::class, 'newbookGet'])
 // ->name( 'newbookGet' );
 
-// 나의 서재 페이지(유저컨트롤러 정의)
-// 로그인 시 나의 서재 페이지로 이동
-// 비로그인 시 로그인 페이지로 이동 
-Route::get( '/library', [UserController::class, 'getLibrary'])
-->name( 'getLibrary' );
-
 // 둘러보기 페이지
 Route::get( '/book/tour', function () {
     return view( 'book_tour' );
@@ -50,7 +45,13 @@ Route::get( '/book/tour', [TourController::class, 'index'])
 ->name( 'bookTour' );
 
 
-// ### 세부 페이지 ###
+// 나의 서재 페이지(유저컨트롤러 정의)
+
+// 로그인 시 나의 서재 페이지로 이동
+// 비로그인 시 로그인 페이지로 이동 
+// 서재 도서 페이지
+Route::get( '/library/{id}', [libraryController::class, 'index'])
+->name( 'getLibrary' );
 
 // 서재 도서 상세 페이지
 Route::get( '/library/detail/{id}', function ($id) {
@@ -71,6 +72,17 @@ Route::post( '/book/detail/wish', [BookController::class, 'bookDetailWishList'])
     ->name( 'postBookDetailWishList' );
 Route::post( '/book/detail/library', [BookController::class, 'bookDetailUserLibrary'])
     ->name( 'postBookDetailUserLibrary' );
+
+// 관리자 페이지
+Route::get( '/admin', [AdminController::class, 'index']
+)->name( 'getAdmin' );
+Route::post( '/admin/bookInfo', [AdminController::class, 'adminBookInfo'])
+->name( 'postAdminBookInfo' );
+Route::post( '/admin/apiCate', [AdminController::class, 'adminApiCate'])
+->name( 'postAdminApiCate' );
+Route::post( '/admin/apiCateAuto', [AdminController::class, 'adminApiCateAuto'])
+->name( 'postAdminApiCateAuto' );
+
 // ### 유저관련(유효성 검사 포함) ###
 
 // 로그인 화면 이동
@@ -119,17 +131,6 @@ Route::get( '/withdrawal', [UserController::class, 'getWithdrawal'])
 Route::delete( '/withdrawal', [UserController::class, 'deleteWithdrawal'])
 ->name( 'deleteWithdrawal' );
 
-
-
-// ### 책넣기위해 관리자 페이지 생성 ###
-Route::get( '/admin', [AdminController::class, 'index']
-)->name( 'getAdmin' );
-Route::post( '/admin/bookInfo', [AdminController::class, 'adminBookInfo'])
-->name( 'postAdminBookInfo' );
-Route::post( '/admin/apiCate', [AdminController::class, 'adminApiCate'])
-->name( 'postAdminApiCate' );
-Route::post( '/admin/apiCateAuto', [AdminController::class, 'adminApiCateAuto'])
-->name( 'postAdminApiCateAuto' );
 
 // ### 나의 서재 도서 상세 > 독서기록
 Route::middleware('auth')->prefix('library')->group(function () {
