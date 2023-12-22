@@ -122,3 +122,8 @@
 		</div>
 	</div>
 @endsection
+
+@section('defer-js')
+<script src="{{ asset('/js/common.js') }}" defer></script>
+<script src="{{ asset('/js/bookDetail.js') }}" defer></script>
+@endsection
