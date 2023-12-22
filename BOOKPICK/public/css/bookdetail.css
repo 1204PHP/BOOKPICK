@@ -60,28 +60,6 @@
 		height: 340px;
 	}
 }
-/* .book_detail_container {
-    padding: 0 20px;
-    display: grid;
-    gap: 15px;
-    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
-	grid-template-rows: auto;
-}
-
-.book_detail_item {
-	width: 100%;
-	height: 100%;
-	border:1px solid #ccc;
-	border-radius: 5px;
-	background-color: #fff;
-}
-
-.book_detail_img {
-	padding: 1%;
-	width: 25%;
-	height: 100%;
-} */
-
 .modal {
     display: none;
 }

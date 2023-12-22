@@ -27,6 +27,7 @@
         @include('layout.header')
     </div>
     <div class="layout_body">
+        <br>
         @yield('content')
     </div>
 

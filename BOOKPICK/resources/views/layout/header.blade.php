@@ -14,7 +14,7 @@ $currentRoute = Route::currentRouteName();
 			<a href="{{ route('index') }}">BOOK PICK'</a>
 		</div>
 		<nav class="desktop-nav">
-			<a href="{{ route('getLibrary') }}" class="header-link {{ $currentRoute == 'getLibrary' ? 'active' : '' }}">나의 서재</a>
+			<a href="{{ route('getLibraryFinished') }}" class="header-link {{ $currentRoute == 'getLibraryFinished' ? 'active' : '' }}">나의 서재</a>
 			<a href="{{ route('bookTour') }}" class="header-link {{ $currentRoute == 'bookTour' ? 'active' : '' }}">둘러보기</a>
 			<div class="search-bar">
 				<form class="desktop-search-bar" action="{{ route('getsearch.index') }}" method="GET">
