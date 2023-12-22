@@ -51,10 +51,10 @@
 								<br>
 								<div id="myModal" class="modal">
 									<div class="modal-content">
-										<input type="date" id="detailStartDate" name="detailStartDate">
+										<input type="date" id="detailStartDate" name="detailStartDate" value="{{ now()->format('Y-m-d') }}">
 										<span >에서</span>
 										<span class="modal-content-br"><br></span>
-										<input type="date" id="detailEndDate" name="detailEndDate">
+										<input type="date" id="detailEndDate" name="detailEndDate" value="{{ now()->format('Y-m-d') }}">
 										<span >까지</span>
 										<br>
 										<button class="modal-content-submit"type="submit">등록</button>
