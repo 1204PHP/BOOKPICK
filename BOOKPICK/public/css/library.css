@@ -5,17 +5,16 @@
 
 .library-grid-left-box {
 	grid-column: span 2;
-	border-radius: 5px;
 	padding: 20px;
 }
 
 .library-grid-right-box {
-	border-radius: 5px;
 	padding: 20px;
 }
 
 .library-content {
 	border: 1px solid #ccc;
+	border-radius: 10px;
 }
 .library-title-strong {
 	font-weight: bold;
