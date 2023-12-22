@@ -142,17 +142,40 @@ class UserController extends Controller
     }
 
     // 회원정보 수정 전 유저 비밀번호 확인 화면 이동
-    public function postPasswordReconfirm (Request $request) {    
-
-        $result = User::where( 'u_password', $request->u_password )->first();
-
-        if (!Hash::check($request->u_password, $result->u_password)) {
-            $errorMsg = '비밀번호를 다시 확인해주세요';
-            return redirect()->route( 'getPasswordReconfirm' )->withErrors($errorMsg);
-        }
+    public function postPasswordReconfirm(Request $request) {
         
-        return redirect()->route( 'getInfo' );
+        // 빈 값 체크
+        if (empty($request->u_password)) {
+            $errorMsg = '비밀번호를 입력해주세요';
+            Log::debug("### 비밀번호 빈값입력으로 비밀번호입력 메세지 출력");
+            return view('user_password_reconfirm')->withErrors($errorMsg);
+        }
+
+        Log::debug("### 유저의 비밀번호 입력 값 : ". $request->u_password);
+        $loginUser = User::where('u_email', Auth::user()->u_email)->first();
+    
+        if ($loginUser === null) {
+            $errorMsg = '비밀번호를 다시 확인해주세요';
+            Log::debug("### 비밀번호 null : 비밀번호재확인 메세지 출력");
+            return view('user_password_reconfirm')->withErrors($errorMsg);
+        } else if (!Hash::check($request->u_password, $loginUser->u_password)) {
+            $errorMsg = '비밀번호를 다시 확인해주세요';
+            Log::debug("### 비밀번호 불일치 : 비밀번호재확인 메세지 출력");
+            return view('user_password_reconfirm')->withErrors($errorMsg);
+        } else {
+            Log::debug("### 비밀번호 일치 회원정보 수정 페이지로 이동");
+            return redirect()->route('getInfo');
+        }
     }
+
+
+
+
+
+
+
+
+
 
 
     // 회원정보 수정 화면 이동
@@ -265,6 +288,7 @@ class UserController extends Controller
         }
     }
 
+    // 나의 서재 페이지 이동 처리
     public function getLibrary() {
     // 로그인 상태 확인
     if (auth::check()) {

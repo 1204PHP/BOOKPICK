@@ -112,7 +112,7 @@ Route::get( '/info/confirm', [UserController::class, 'getPasswordReconfirm'])
 ->name( 'getPasswordReconfirm' );
 
 // 회원정보 수정 전 비밀번호 확인 처리
-Route::post( '/info/confirm', [UserController::class, 'postPasswordReconfirm'])
+Route::post( '/info/confirm/process', [UserController::class, 'postPasswordReconfirm'])
 ->name( 'postPasswordReconfirm' );
 
 // 회원정보 수정 화면 이동

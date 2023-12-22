@@ -44,12 +44,13 @@
 /* 휴대폰 */
 @media only screen and (max-width: 767px) {
 
-    .login-form {
-        margin-top: 20px;
+    .layout_body {
+        width: 100%;
+        margin: 0 auto;
     }
 
     .login-container {
-        max-width: 60%;
+        width: 80%;
         margin: 0 auto;
         padding: 1em 3em 2em 3em;
         border: 1px solid #ccc;
@@ -148,12 +149,13 @@
 /* 태블릿 */
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
 
-    .login-form {
-        margin-top: 30px;
+    .layout_body {
+        width: 100%;
+        margin: 0 auto;
     }
 
     .login-container {
-        max-width: 50%;
+        width: 70%;
         margin: 0 auto;
         padding: 1em 3em 2em 3em;
         border: 1px solid #ccc;
@@ -251,12 +253,13 @@
 /* 데스크탑 */
 @media only screen and (min-width: 1024px) {
 
-    .login-form {
-        margin-top: 30px;
+    .layout_body {
+        width: 100%;
+        margin: 0 auto;
     }
 
     .login-container {
-        max-width: 50%;
+        width: 70%;
         margin: 0 auto;
         padding: 1em 3em 2em 3em;
         border: 1px solid #ccc;
@@ -348,6 +351,19 @@
     .login-span {
         font-size: 0.8rem;
         margin: 15px auto;
+    }
+}
+
+@media only screen and (min-width: 1320px) {
+    .layout_body {
+        width: 1300px;
+        margin: 0 auto;
+    }
+
+    .login-container {
+        width: 700px;
+        margin-top: 30px;
+        margin: 0 auto;
     }
 }
 
