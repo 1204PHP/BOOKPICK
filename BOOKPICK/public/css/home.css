@@ -351,6 +351,7 @@
 	border: 1px solid #ccc;
     border-radius: 20px;
 	padding-left: 10px;
+	/* cursor: url('../img/move.png'); */
 }
 .tour-slide-container::-webkit-scrollbar {
 	display: none;
