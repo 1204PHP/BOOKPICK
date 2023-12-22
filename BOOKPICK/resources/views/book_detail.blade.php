@@ -69,4 +69,47 @@
 			</div>
 		</div>
 	</div>
+		{{--연관 책 추천 여역  --}}
+	<div class="book_detail_box1">
+        <div class="book_detail_title">
+            <strong>검색 연관 도서</strong>
+            <p>이런 도서는 어떠세요?</p>
+        </div>
+        <ul class="book_detail_slide_container" id="slide">
+            @forelse($result as $val)
+            <li class="book_detail_slide-box">
+				<img src="..." alt="...">
+				{{-- <img src="{{ asset('img/best1.jpg') }}" alt="..."> --}}
+                <p></p>
+                <p></p>
+            </li>
+            @empty
+                비어있음
+            @endforelse
+        </ul>
+    </div>
+		{{--댓글 작성 영역  --}}
+	<div class="book_detail_comment_layout">
+		<div class="book_detail_comment_section-box">
+			<div class="book_detail_comment_section-1">
+				<strong>독자들의 코멘트</strong>
+				<button>코멘트 작성</button>
+			</div>
+			<div class="book_detail_comment_grid">
+				<div class="book_detail_comment_grid-item">호철</div>
+				<div class="book_detail_comment_grid-item">중기</div>
+				<div class="book_detail_comment_grid-item">중중기</div>
+				<div class="book_detail_comment_grid-item">중중중기</div>
+				<div class="book_detail_comment_grid-item">중중중중기</div>
+				<div class="book_detail_comment_grid-item">중중중중기</div>
+				<div class="book_detail_comment_grid-item">중중중중기</div>
+				<div class="book_detail_comment_grid-item">중중중기중</div>
+			</div>
+		</div>
+	</div>
+@endsection
+
+@section('defer-js')
+<script src="{{ asset('/js/common.js') }}" defer></script>
+<script src="{{ asset('/js/bookDetail.js') }}" defer></script>
 @endsection

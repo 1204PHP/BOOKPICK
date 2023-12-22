@@ -50,3 +50,4 @@ $currentRoute = Route::currentRouteName();
 		</nav>
 	</header>
 @endif
+
