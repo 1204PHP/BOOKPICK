@@ -203,7 +203,7 @@
 	white-space:nowrap;
 	overflow: scroll;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 10px;
 	padding-left: 10px;
 }
 .slide-container2-2 {
@@ -211,7 +211,7 @@
     width: 30%;
     margin-top: 20px;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 .slide-container {
 	background-color: white;
@@ -221,7 +221,7 @@
 	width: 100%;
 	margin-top: 20px;
 	border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 10px;
 	padding-left: 10px;
 }
 .slide-container::-webkit-scrollbar {
@@ -349,9 +349,8 @@
 	width: 100%;
 	margin-top: 20px;
 	border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 10px;
 	padding-left: 10px;
-	/* cursor: url('../img/move.png'); */
 }
 .tour-slide-container::-webkit-scrollbar {
 	display: none;
