@@ -18,7 +18,7 @@
 		@include('layout.user_error_message')
 		<div class="password-reconfirm-button-area">
             <span class="password-reconfirm-span">회원정보를 안전하게 보호하기 위해 비밀번호를 한번 더 확인해주세요</span>
-			<a class="password-reconfirm-info-button" href="{{ route('getInfo') }}">회원정보 수정페이지로</a>
+			<button type="submit"><a class="password-reconfirm-info-button" href="{{ route('getInfo') }}">회원정보 수정페이지로</a></button>
 		</div>
 	</div>
 </form>

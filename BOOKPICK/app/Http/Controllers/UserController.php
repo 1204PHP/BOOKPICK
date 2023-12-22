@@ -132,6 +132,7 @@ class UserController extends Controller
         // 리턴 : 로그아웃 시 / 리다이렉트
     }
 
+    // 회원정보 수정 전 유저 비밀번호 확인 화면 이동
     public function getPasswordReconfirm() {
         if(!Auth::check()) {
             return redirect()->route('index');
@@ -142,10 +143,10 @@ class UserController extends Controller
 
     // 회원정보 수정 전 유저 비밀번호 확인 화면 이동
     public function postPasswordReconfirm (Request $request) {    
-        $user = Auth::user();
-        // 현재 로그인 상태의 user 정보 획득
 
-        if (!Hash::check($request->u_password, $user->u_password)) {
+        $result = User::where( 'u_password', $request->u_password )->first();
+
+        if (!Hash::check($request->u_password, $result->u_password)) {
             $errorMsg = '비밀번호를 다시 확인해주세요';
             return redirect()->route( 'getPasswordReconfirm' )->withErrors($errorMsg);
         }
@@ -251,13 +252,11 @@ class UserController extends Controller
 
             // 로그아웃
             Auth::logout();
-            Log::debug("### 로그아웃 처리완료 ###");
             return redirect()->route( 'index' );
             // 회원탈퇴 성공 시 메인 페이지로 리다이렉트
         } catch (Exception $e) {
             DB::rollback();
             Log::debug("### 예외발생 : 롤백완료 ###");
-            Log::error(' 회원탈퇴 Error message: ' . $e->getMessage());
             $errorMsg = '회원 탈퇴에 실패했습니다. 새로고침 후 다시 시도해주세요.';
             return redirect()->back()->withErrors([$errorMsg]);
             // 회원탈퇴 실패 시 회원탈퇴 페이지에 그대로 남아있음

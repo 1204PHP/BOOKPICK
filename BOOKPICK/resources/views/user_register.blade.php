@@ -68,3 +68,7 @@
         </div>
     </form>
 @endsection
+
+@section('personalJs')
+    <script src="{{ asset('/js/home.js') }}" defer></script>
+@endsection
