@@ -28,11 +28,11 @@ class SearchController extends Controller
             ->orderByRaw("CASE WHEN REPLACE(b_title,' ', '') LIKE ? THEN 1
                         WHEN REPLACE(b_author,' ', '') LIKE ? THEN 2 ELSE 3 END",
                         ['%' . $searchStrNoSpacing . '%', '%' . $searchStrNoSpacing . '%'])
-            ->Paginate(12);
+            ->Paginate(18);
             $searchCnt = $result->total();
         } else {
             // 검색어가 없는 경우 모든 데이터 
-            $result = Book_info::Paginate(12);
+            $result = Book_info::Paginate(18);
             $searchCnt = Book_info::all()->count();
         }
 
