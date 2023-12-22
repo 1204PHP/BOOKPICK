@@ -34,9 +34,17 @@ return new class extends Migration
             // deleted_at 라라벨 내부 설정 값으로 자동 생성 / default : nullable
             
             $table->unsignedBigInteger('b_id');
-            $table->foreign('b_id')->references('b_id')->on('book_infos');
+            $table->foreign('b_id')
+                ->references('b_id')
+                ->on('book_infos')
+                ->onUpdate('cascade')  // onUpdate cascade 설정
+                ->onDelete('cascade'); // onDelete cascade 설정
             $table->unsignedBigInteger('u_id');
-            $table->foreign('u_id')->references('u_id')->on('users');
+            $table->foreign('u_id')
+                ->references('u_id')
+                ->on('users')
+                ->onUpdate('cascade')  // onUpdate cascade 설정
+                ->onDelete('cascade'); // onDelete cascade 
         });
     }
 

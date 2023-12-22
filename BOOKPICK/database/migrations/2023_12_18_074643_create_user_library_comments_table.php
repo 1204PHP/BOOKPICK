@@ -29,7 +29,11 @@ return new class extends Migration
             // deleted_at 라라벨 내부 설정 값으로 자동 생성 / default : nullable
 
             $table->unsignedBigInteger('ul_id');
-            $table->foreign('ul_id')->references('ul_id')->on('user_libraries');
+            $table->foreign('ul_id')
+                ->references('ul_id')
+                ->on('user_libraries')
+                ->onUpdate('cascade')  // onUpdate cascade 설정
+                ->onDelete('cascade'); // onDelete cascade 설정
         });
     }
 

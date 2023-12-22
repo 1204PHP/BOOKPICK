@@ -53,9 +53,12 @@
 	</div>
 	<div class="admin_pagination">{{ $bookApiTableData->links('pagination::default') }} </div>
 
-	<p>//ac_id번호 입력 후 책정보와 Api정보 둘다 자동등록</p>
+	<p>//url, ac_id번호 입력 후 책정보와 Api정보 둘다 자동등록</p>
+	<p>http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbckstjddh11142001&QueryType=ItemNewAll&MaxResults=50&start=1&SearchTarget=Book&output=JS&Version=20131101&cover=big</p>
 	<form action="{{route('postAdminBookInfo')}}" method="POST">
 		@csrf
+		<input type="text" placeholder="url"  size="200" name="url" value="">
+		<br>
 		<input type="text" placeholder="ac_id" name="ApiCateInput" value="">
 		<button type="submit">정보추가</button>
 	</form>
