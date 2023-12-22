@@ -376,7 +376,7 @@
     }
 
     .register-container {
-        max-width: 60%;
+        max-width: 70%;
         margin: 0 auto;
         padding: 1em;
         border: 1px solid #ccc;
@@ -544,9 +544,10 @@
 
     .register-text {
         font-size: 0.8rem;
+        font-weight: bold;
         text-align: center;
-        margin-bottom: 20px;
     }
+    
 
     .register-login-link {
         font-size: 0.8rem;
@@ -563,7 +564,7 @@
     }
 
     .register-container {
-        max-width: 60%;
+        max-width: 70%;
         margin: 0 auto;
         padding: 1em 2em;
         border: 1px solid #ccc;
@@ -726,10 +727,11 @@
     }
 
     .register-text {
-        font-size: 1rem;
+        font-size: 0.9rem;
+        font-weight: bold;
         text-align: center;
-        margin-bottom: 30px;
     }
+    
 
     .register-login-link {
         font-size: 1rem;
@@ -747,7 +749,7 @@
     }
 
     .register-container {
-        max-width: 60%;
+        max-width: 70%;
         margin: 0 auto;
         padding: 1em 3em 2em 3em;
         border: 1px solid #ccc;
@@ -769,7 +771,7 @@
 
     .register-input,
     .register-input:focus {
-        width: 100%;
+        width: 80%;
         height: 43px;
         padding: 1em;
         margin-bottom: 5px;
@@ -796,16 +798,16 @@
         justify-content: space-between;
     }
 
-    .register-email-button {
+    #emailConfirmButton {
+        width: 100px;
         height: 43px;
-        padding: 1em;
+        /* padding: 1em; */
         margin-bottom: 5px;
         font-size: 1.0rem;
         font-weight: bold;
         border: 1px solid #53A73C;
         background-color: transparent;
         border-radius: 7px;
-        margin: 0px 0 10px 0;
     }
 
     .register-postcode-input {
@@ -926,7 +928,8 @@
 }
 
     .register-text {
-        font-size: 1.2rem;
+        font-size: 1.0rem;
+        font-weight: bold;
         text-align: center;
     }
 

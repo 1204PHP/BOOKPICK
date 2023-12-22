@@ -117,8 +117,15 @@ class UserController extends Controller
     // 회원가입 시 이메일 중복체크(api)
     public function confirmEmail(Request $request) {
         $userEmail = $request->input('u_email');
+        Log::debug("message:".$userEmail);
         // DB 중복 이메일 체크
-        $confirmEmail = User::where('u_email', $userEmail)->exists();
+        $confirmEmail = User::withTrashed()->where('u_email', $userEmail)->count();
+        if(($confirmEmail=== 1)) {
+            $confirmEmail = 1;
+        } else {
+            $confirmEmail = 0;
+        }
+        Log::debug($confirmEmail);
         return response()->json(['confirmEmail' => $confirmEmail]);
     }
 
