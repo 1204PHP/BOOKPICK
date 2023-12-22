@@ -117,15 +117,17 @@ class UserController extends Controller
     // 회원가입 시 이메일 중복체크(api)
     public function confirmEmail(Request $request) {
         $userEmail = $request->input('u_email');
-        Log::debug("message:".$userEmail);
+        Log::debug("유저입력 회원가입요청 이메일 : ". $userEmail);
         // DB 중복 이메일 체크
         $confirmEmail = User::withTrashed()->where('u_email', $userEmail)->count();
         if(($confirmEmail=== 1)) {
             $confirmEmail = 1;
+            // DB 저장 이메일 존재 시 1 리턴
         } else {
             $confirmEmail = 0;
+            // DB 저장 이메일 미존재 시 0 리턴
         }
-        Log::debug($confirmEmail);
+        Log::debug("DB저장 이메일 확인(존재 1, 미존재 0) : " . $confirmEmail);
         return response()->json(['confirmEmail' => $confirmEmail]);
     }
 
@@ -175,16 +177,6 @@ class UserController extends Controller
         }
     }
 
-
-
-
-
-
-
-
-
-
-
     // 회원정보 수정 화면 이동
     public function getInfo() {
         if(Auth::check()) {
@@ -198,8 +190,7 @@ class UserController extends Controller
     }
 
     // 회원정보 수정 처리
-    public function putInfo(Request $request)
-    {
+    public function putInfo(Request $request) {
         // 로그인User 수정User 일치여부 확인
         $loginUser = Auth::user();
         if ( !$loginUser ) {
@@ -264,9 +255,8 @@ class UserController extends Controller
     }
 
     // 회원탈퇴 처리
-    public function deleteWithdrawal(Request $request)
-    {
-        // 로그인한 User 확인
+    public function deleteWithdrawal(Request $request) {
+        // 로그인 User 정보 확인
         $loginUser = Auth::user();
         
         Log::debug("### 회원탈퇴 시작 ###");
@@ -274,19 +264,20 @@ class UserController extends Controller
             DB::beginTransaction();
             Log::debug("### 트랜잭션 시작 ###");
 
-            // 유저 계정 삭제
             $loginUser->delete();
+            // 사용자 계정 소프트 삭제
 
             DB::commit();
             Log::debug("### 커밋 완료 ###");
 
             // 로그아웃
             Auth::logout();
-            return redirect()->route( 'index' );
-            // 회원탈퇴 성공 시 메인 페이지로 리다이렉트
+            Log::debug("### 로그아웃 ###");
+
+            return redirect()->route('index');
         } catch (Exception $e) {
             DB::rollback();
-            Log::debug("### 예외발생 : 롤백완료 ###");
+            Log::debug("### 예외발생 : 롤백완료 ###" . $e->getMessage());
             $errorMsg = '회원 탈퇴에 실패했습니다. 새로고침 후 다시 시도해주세요.';
             return redirect()->back()->withErrors([$errorMsg]);
             // 회원탈퇴 실패 시 회원탈퇴 페이지에 그대로 남아있음

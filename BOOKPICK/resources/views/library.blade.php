@@ -54,3 +54,7 @@
 		</div>
 	</div>
 @endsection
+
+@section('defer-js')
+    <script src="{{ asset('/js/common.js') }}" defer></script>
+@endsection

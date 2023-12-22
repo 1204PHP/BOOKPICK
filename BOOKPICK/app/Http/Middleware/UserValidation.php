@@ -69,9 +69,9 @@ class UserValidation
             }
         }
 
-        Log::debug(" ### User Request Parameter 획득 ### ", $userRequestParam);
+        Log::debug("### User Request Parameter 획득 ###", $userRequestParam);
 
-        Log::debug(" ### 유효성 검사 목록 획득 ", $userBaseValidation);
+        Log::debug("### 유효성 검사 목록 획득 ###", $userBaseValidation);
 
         // 유효성 검사 진행
         $validator = Validator::make($userRequestParam, $userBaseValidation);

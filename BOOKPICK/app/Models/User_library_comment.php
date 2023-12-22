@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\softDeletes;
 
 class User_library_comment extends Model
 {
-    use HasFactory;
+    use HasFactory, softDeletes;
     
     protected $primaryKey = 'ulc_id';
 

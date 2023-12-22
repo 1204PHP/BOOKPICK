@@ -12,14 +12,11 @@ use Illuminate\Database\Eloquent\softDeletes;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, softDeletes;
-    protected $primaryKey = 'u_id';
-    public $timestamps = true;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
 
+    protected $primaryKey = 'u_id';
+
+    public $timestamps = true;
+    
     protected $fillable = [
         'u_email',
         'u_password',
@@ -32,22 +29,34 @@ class User extends Authenticatable
         
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // User 모델 외래키 softdelete 처리 목적 모델 정의
+    // 유저 찜 목록 테이블
+    public function user_wishlist() {
+        return $this->hasMany(User_wishlist::class, 'uw_id');
+    }
+
+    // 유저 서재 테이블
+    public function user_library() {
+        return $this->hasMany(User_library::class, 'ul_id');
+    }
+
+    // 유저 서재 메모 테이블
+    public function user_library_comments() {
+        return $this->hasMany(User_library_comments::class, 'ulc_id');
+    }
+
+    // 책 상세 댓글 테이블
+    public function book_detail_comments() {
+        return $this->hasMany(Book_detail_comments::class, 'bdc_id');
+    }
 }

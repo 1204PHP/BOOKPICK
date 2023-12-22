@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\softDeletes;
 
 class Book_detail_comment extends Model
 {
-    use HasFactory;
+    use HasFactory, softDeletes;
     
     protected $primaryKey = 'bdc_id';
     public $timestamps = true;
