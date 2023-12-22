@@ -42,8 +42,7 @@ class AdminController extends Controller
             // BlogBest : 블로거 베스트셀러 (국내도서만 조회 가능)
 
             $faker = Faker::create('ko_KR');
-            $apiUrl = 'http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbckstjddh11142001&QueryType=Bestseller&MaxResults=50&start=1&SearchTarget=Book&output=JS&Version=20131101&cover=big';
-            // $apiUrl = 'http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbckstjddh11142001&QueryType=ItemNewAll&MaxResults=50&start=1&SearchTarget=Book&output=JS&Version=20131101&cover=big';
+            $apiUrl = $request->input('url');
             $response = Http::get($apiUrl);
             $responseData = $response->json();
             $apiCateInput = $request->input('ApiCateInput');
