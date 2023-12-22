@@ -45,8 +45,8 @@ $currentRoute = Route::currentRouteName();
 					<button class="header-search-btn" type="submit">검색</button>
 				</form>
 			</div>				
-			<a href="#">나의 서재</a></li>
-			<a href="#">둘러보기</a></li>			
+			<a href="{{ route('getLibraryFinished') }}">나의 서재</a></li>
+			<a href="{{ route('bookTour') }}">둘러보기</a></li>				
 		</nav>
 	</header>
 @endif

@@ -30,7 +30,13 @@
 					<!-- 로그인한 경우 -->
 					<form class="book_datail_form1" action="{{ route('postBookDetailWishList') }}" method="POST">
 						@csrf
-						<button type="submit" onclick="BookDetailWishFlgshowAlert()">찜하기</button>
+						<button type="submit" onclick="BookDetailWishFlgshowAlert()">
+							@if($wishFlg === 0)
+							찜 삭제
+						@elseif($wishFlg === 1)
+							찜 등록
+						@endif
+						</button>
 						<input type="hidden" id="b_id" name="b_id" value="{{$result->b_id}}">
 					</form>
 

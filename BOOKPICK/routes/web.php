@@ -50,12 +50,12 @@ Route::get( '/book/tour', [TourController::class, 'index'])
 // 로그인 시 나의 서재 페이지로 이동
 // 비로그인 시 로그인 페이지로 이동 
 // 서재 도서 페이지
-Route::get( '/library/finished', [libraryController::class, 'index'])
+Route::get( '/library/finished', [libraryController::class, 'libraryFinished'])
 ->name( 'getLibraryFinished' );
 Route::get( '/library/reading', [libraryController::class, 'libraryReading'])
 ->name( 'getLibraryReading' );
-Route::get( '/library/wishlist', [libraryController::class, 'libraryWishlist'])
-->name( 'getLibraryWishlist' );
+Route::get( '/library/wishlist', [libraryController::class, 'librarywishlist'])
+->name( 'getLibrarywishlist' );
 
 // 서재 도서 상세 페이지
 Route::get( '/library/detail/{id}', function ($id) {
@@ -112,7 +112,7 @@ Route::get( '/info/confirm', [UserController::class, 'getPasswordReconfirm'])
 ->name( 'getPasswordReconfirm' );
 
 // 회원정보 수정 전 비밀번호 확인 처리
-Route::post( '/info/confirm', [UserController::class, 'postPasswordReconfirm'])
+Route::post( '/info/confirm/process', [UserController::class, 'postPasswordReconfirm'])
 ->name( 'postPasswordReconfirm' );
 
 // 회원정보 수정 화면 이동
