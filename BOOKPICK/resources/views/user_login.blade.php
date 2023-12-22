@@ -29,3 +29,7 @@
 	</div>
 </form>
 @endsection
+
+@section('defer-js')
+    <script src="{{ asset('/js/UserValidation.js') }}" defer></script>
+@endsection

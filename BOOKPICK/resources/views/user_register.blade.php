@@ -69,6 +69,6 @@
     </form>
 @endsection
 
-@section('personalJs')
-    <script src="{{ asset('/js/home.js') }}" defer></script>
+@section('defer-js')
+    <script src="{{ asset('/js/UserValidation.js') }}" defer></script>
 @endsection
