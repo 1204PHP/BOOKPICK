@@ -5,7 +5,7 @@
 .book_detail_layout1 {
 	width: 100%;
 	border: 1px solid #ccc;
-	border-radius: 5px;
+	border-radius: 20px;
     padding: 0 20px;
 }
 .book_detail_div1{
@@ -134,7 +134,7 @@
 	width: 100%;
 	margin-top: 20px;
 	border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 20px;
 	padding-left: 10px;
 }
 .book_detail_slide_container::-webkit-scrollbar {
@@ -172,7 +172,7 @@
 .book_detail_comment_section-box {
 	width: 100%;
 	border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 20px;
     background-color: white;
 }
 .book_detail_comment_section-1 {

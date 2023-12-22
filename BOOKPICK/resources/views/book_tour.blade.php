@@ -38,7 +38,7 @@
         <div class="tour-title">
             <strong>국내 도서 베스트셀러</strong>
         </div>
-        <ul class="tour-slide-container" id="slide">
+        <ul class="tour-slide-container" id="slide2">
             @forelse($data as $val)
             <li class="slide-box">
                 <a href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
@@ -53,4 +53,9 @@
         </ul>
     </div>
 </div>
+@endsection
+
+@section('defer-js')
+    <script src="{{ asset('/js/common.js') }}" defer></script>
+    <script src="{{ asset('/js/tour.js') }}" defer></script>
 @endsection
