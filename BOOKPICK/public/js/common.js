@@ -15,6 +15,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// // 호철 수정중
+//     const hamburgerMenu = document.querySelector(".hamburger-menu");
+//     const mobileNav = document.querySelector(".mobile-nav");
+
+//     hamburgerMenu.addEventListener("click", function () {
+//         mobileNav.style.display = (mobileNav.style.display === "flex") ? "none" : "flex";
+//         hamburgerMenu.classList.toggle("open");
+//     });
+
+//     window.addEventListener("resize", function () {
+//         if (window.innerWidth > 768) {
+//             mobileNav.style.display = "none";
+//             hamburgerMenu.classList.remove("open");
+//         }
+//     });
+
 // document.querySelector('.hamburger-menu').addEventListener('click', function() {
 //     document.querySelector('.mobile-nav').classList.toggle('open');
 // });

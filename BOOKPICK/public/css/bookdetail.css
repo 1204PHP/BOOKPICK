@@ -115,3 +115,107 @@
 		float: right;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+/* 호철 연관 도서 추천 영역 */
+.book_detail_box1 {
+	width: 100%;
+	/* height: 30vh; */
+	position: relative;
+	padding: 20px 20px;
+}
+.book_detail_title {
+	height: 10px;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+.book_detail_title strong {
+	font-size: 20px;
+	font-weight: 700;
+	margin: 0px 0px 0px 10px;
+}
+.book_detail_title p {
+	display: inline-block;
+	font-size: 0.7rem;
+	color: #9d9d9d;
+	margin-left: 10px;
+}
+.book_detail_slide_container {
+	background-color: white;
+	transition: all 1s;
+	white-space:nowrap;
+	overflow: scroll;
+	width: 100%;
+	margin-top: 20px;
+	border: 1px solid #ccc;
+    border-radius: 5px;
+	padding-left: 10px;
+}
+.book_detail_slide_container::-webkit-scrollbar {
+	display: none;
+} 
+
+.book_detail_slide-box {
+	display: inline-block;
+	width: 170px;
+	margin-left: 30px;
+	margin-bottom: 20px;
+}
+.book_detail_slide-box img {
+	width: 150px;
+    height: 200px;
+    padding: 20px 0px;
+}
+.book_detail_slide-box p {
+	width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 auto;
+}
+
+
+
+
+
+/* 호철 댓글부분 css 만듬 */
+.book_detail_comment_layout {
+	padding: 20px 20px;
+    margin-bottom: 30px;
+}
+.book_detail_comment_section-box {
+	width: 100%;
+	border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+}
+.book_detail_comment_section-1 {
+	display: flex;
+    justify-content: space-between;
+    width: 100%;
+	padding: 20px 20px 0px;
+}
+.book_detail_comment_section-1 strong {
+	font-size: 20px;
+}
+.book_detail_comment_grid {
+	width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	grid-auto-rows: minmax(200px, auto);
+    padding: 20px 20px;
+	gap: 10px;
+}
+.book_detail_comment_grid-item {
+	width: 100%;
+    background-color: #ccc;
+	color: white;
+}
