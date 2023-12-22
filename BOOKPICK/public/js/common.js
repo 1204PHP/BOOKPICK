@@ -1,21 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const hamburgerMenu = document.querySelector(".hamburger-menu");
-    const mobileNav = document.querySelector(".mobile-nav");
-
-    hamburgerMenu.addEventListener("click", function () {
-        mobileNav.style.display = (mobileNav.style.display === "flex") ? "none" : "flex";
-        hamburgerMenu.classList.toggle("open");
-    });
-
-    window.addEventListener("resize", function () {
-        if (window.innerWidth > 768) {
-            mobileNav.style.display = "none";
-            hamburgerMenu.classList.remove("open");
-        }
-    });
-});
-
-// // 호철 수정중
+// document.addEventListener("DOMContentLoaded", function () {
 //     const hamburgerMenu = document.querySelector(".hamburger-menu");
 //     const mobileNav = document.querySelector(".mobile-nav");
 
@@ -30,6 +13,23 @@ document.addEventListener("DOMContentLoaded", function () {
 //             hamburgerMenu.classList.remove("open");
 //         }
 //     });
+// });
+
+// 호철 수정중
+    const hamburgerMenu = document.querySelector(".hamburger-menu");
+    const mobileNav = document.querySelector(".mobile-nav");
+
+    hamburgerMenu.addEventListener("click", function () {
+        mobileNav.style.display = (mobileNav.style.display === "flex") ? "none" : "flex";
+        hamburgerMenu.classList.toggle("open");
+    });
+
+    window.addEventListener("resize", function () {
+        if (window.innerWidth > 768) {
+            mobileNav.style.display = "none";
+            hamburgerMenu.classList.remove("open");
+        }
+    });
 
 // document.querySelector('.hamburger-menu').addEventListener('click', function() {
 //     document.querySelector('.mobile-nav').classList.toggle('open');
