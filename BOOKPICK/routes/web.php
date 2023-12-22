@@ -50,7 +50,7 @@ Route::get( '/book/tour', [TourController::class, 'index'])
 // 로그인 시 나의 서재 페이지로 이동
 // 비로그인 시 로그인 페이지로 이동 
 // 서재 도서 페이지
-Route::get( '/library/{id}', [libraryController::class, 'index'])
+Route::get( '/library', [libraryController::class, 'index'])
 ->name( 'getLibrary' );
 
 // 서재 도서 상세 페이지
