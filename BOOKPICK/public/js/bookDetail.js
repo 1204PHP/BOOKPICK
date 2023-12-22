@@ -45,7 +45,7 @@ function BookDetailopenModal() {
 
 
 
-//  호철
+//  호철 // 댓글 추가 모달 열기 닫기
 const modalOpenBtn = document.querySelector("#book_detail_comment_modal_btn").addEventListener("click", (e) => {
 	const modal = document.querySelector('.book_detail_comment_modal');
 		modal.classList.toggle('show');
