@@ -17,9 +17,11 @@ class UserController extends Controller
     public function getLogin() {
         if(Auth::check()) {
             return redirect()->route( 'index' );
+            Log::debug("### 유저인증 성공 : 메인페이지 이동 ###");
         }
         // 리턴 : 유저 인증 체크하여 유저일 시, index 리다이렉트
         return view( 'user_login' );
+        Log::debug("### 유저인증 실패 : 로그인페이지 이동  ###");
         // 리턴 : 유저 인증 체크하여 유저가 아닐 시, user_login 페이지 이동
     }
 
@@ -57,13 +59,17 @@ class UserController extends Controller
         if(Auth::check()) {
             // $this->clearLoginAttempts($request);
             // 정상 로그인 시 로그인 시도 제한 횟수 초기화
-            session( $result->only( 'u_id' ) );
+            // session( $result->only( 'u_id' ) );
+            session(['u_id' => $result->u_id, 'u_name' => $result->u_name]);
             // 세션 내 u_id 데이터 저장
+            $user = Auth::user();
+            // 현재 로그인한 유저 정보 획득
         } else {
             $errorMsg = '로그인에 실패했습니다. 새로고침 후 재로그인 해주세요.';
             return view( 'user_login' )->withErrors( $errorMsg );
         }
-        return redirect()->route( 'index' );
+        Log::debug("로그인한 유저정보 :" . $user);
+        return redirect()->route( 'index' )->with('userdata', $user);
     }
 
     // 회원가입 화면 이동
@@ -266,10 +272,22 @@ class UserController extends Controller
 
             $loginUser->delete();
             // 사용자 계정 소프트 삭제(users 테이블)
+
             $loginUser->user_library()->delete();
+            // u_id 연결된 외래키 사용하는 user_library 테이블 softdelete처리
+            Log::debug("### user_library 데이터 softdelete 처리성공 ###");
+            
             // $loginUser->user_library_comment()->delete();
+            // u_id 연결된 외래키 사용하는  user_library_comment 테이블 softdelete처리
+            // Log::debug("### user_library_comment 데이터 softdelete 처리성공 ###");
+
             $loginUser->user_wishlist()->delete();
+            // u_id 연결된 외래키 사용하는  user_wishlist 테이블 softdelete처리
+            Log::debug("### user_wishlist 데이터 softdelete 처리성공 ###");
+
             $loginUser->book_detail_comment()->delete();
+            // u_id 연결된 외래키 사용하는  book_detail_comment 테이블 softdelete처리
+            Log::debug("### book_detail_comment 데이터 softdelete 처리성공 ###");
 
             DB::commit();
             Log::debug("### 커밋 완료 ###");
