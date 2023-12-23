@@ -10,45 +10,53 @@
     @csrf        
         <p class="register-h1">북픽 가입</p>
         <p class="register-h2">이메일은 아이디로 사용됩니다</p>
+        <span>*필수입력</span>
         <div class="register-input-email-area">
             <input class="register-input" type="email" id="u_email" name="u_email" 
             placeholder="이메일 주소" autocomplete="off">
             <button id="emailConfirmButton" class="register-email-button" type="button">중복 확인</button>
         </div>
-        <p class="u_mail_errormsg"></p>                
+        <p class="u_mail_errormsg"></p>
+        <span>*필수입력</span>                
         <div class="register-input-area">
             <input class="register-input" type="password" id="u_password" name="u_password" 
             placeholder="비밀번호" autocomplete="off">
             <p class="u_password_errormsg"></p>
         </div>
+        <span>*필수입력</span>
         <div class="register-input-area">
             <input class="register-input" type="password" id="u_password_confirm" name="u_password_confirm" 
             placeholder="비밀번호 확인" autocomplete="off">
             <p class="u_password_confirm_errormsg"></p>
         </div>
+        <span>*필수입력</span>
         <div class="register-input-area">
             <input class="register-input" type="text" id="u_name" name="u_name" 
             maxlength="50" placeholder="이름" autocomplete="off">
             <p class="u_name_errormsg"></p>
         </div>
+        <span>*필수입력</span>
         <div class="register-input-area">
             <input class="register-input" type="text" id="u_birthdate" name="u_birthdate" 
             maxlength="8" placeholder="생년월일 ex)20231219" autocomplete="off">
             <p class="u_birthdate_errormsg"></p>
         </div>
+        <span>*필수입력</span>
         <div class="register-input-area">
             <input class="register-input" type="tel" id="u_tel" name="u_tel" 
             maxlength="11" placeholder="휴대폰 번호 ex)01012345678" autocomplete="off">
             <p class="u_tel_errormsg"></p>
         </div>
-        {{-- <div class="register-input-postcode-area"> --}}
+        <span>*필수입력</span>
+        <div class="register-input-postcode-area">
             <div class="register-input-area">
                 <input class="register-input" type="text" id="u_postcode" name="u_postcode"
                 maxlength="5" placeholder="우편번호" autocomplete="off">
                 <p class="u_postcode_errormsg"></p>
             </div>
-            {{-- <button class="register-postcode-button" type="button">주소검색</button> --}}
-        {{-- </div> --}}
+            <button class="register-postcode-button" type="button">주소검색</button>
+        </div>
+        <span>*필수입력</span>
         <div class="register-input-area">
             <input class="register-input" type="text" id="u_basic_address" name="u_basic_address"
             placeholder="기본주소" autocomplete="off">
