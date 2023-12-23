@@ -38,25 +38,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-    // User 모델 외래키 softdelete 처리 목적 모델 정의
-    // 유저 찜 목록 테이블
-    public function user_wishlist() {
-        return $this->hasMany(User_wishlist::class, 'uw_id');
-    }
-
+    // 외래키 연결목적 설정
+    
     // 유저 서재 테이블
     public function user_library() {
-        return $this->hasMany(User_library::class, 'ul_id');
+        return $this->hasMany(User_library::class, 'u_id');
     }
 
     // 유저 서재 메모 테이블
-    public function user_library_comments() {
-        return $this->hasMany(User_library_comments::class, 'ulc_id');
+    public function user_library_comment() {
+        return $this->hasMany(User_library_comment::class, 'u_id');
+    }
+
+    // 유저 찜 목록 테이블
+    public function user_wishlist() {
+        return $this->hasMany(User_wishlist::class, 'u_id');
     }
 
     // 책 상세 댓글 테이블
-    public function book_detail_comments() {
-        return $this->hasMany(Book_detail_comments::class, 'bdc_id');
+    public function book_detail_comment() {
+        return $this->hasMany(Book_detail_comment::class, 'u_id');
     }
 }

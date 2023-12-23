@@ -12,4 +12,8 @@ class Book_detail_comment extends Model
     
     protected $primaryKey = 'bdc_id';
     public $timestamps = true;
+
+    public function user() {
+        return $this->belongsTo(User::class, 'u_id')->withTrashed();
+    }
 }

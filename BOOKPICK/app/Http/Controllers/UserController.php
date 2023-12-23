@@ -265,7 +265,11 @@ class UserController extends Controller
             Log::debug("### 트랜잭션 시작 ###");
 
             $loginUser->delete();
-            // 사용자 계정 소프트 삭제
+            // 사용자 계정 소프트 삭제(users 테이블)
+            $loginUser->user_library()->delete();
+            // $loginUser->user_library_comment()->delete();
+            $loginUser->user_wishlist()->delete();
+            $loginUser->book_detail_comment()->delete();
 
             DB::commit();
             Log::debug("### 커밋 완료 ###");
