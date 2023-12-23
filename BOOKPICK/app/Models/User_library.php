@@ -13,4 +13,8 @@ class User_library extends Model
     protected $primaryKey = 'ul_id';
     protected $fillable = ['u_id', 'b_id','ul_start_at','ul_end_at'];
     public $timestamps = true;
+
+    public function user() {
+        return $this->belongsTo(User::class, 'u_id')->withTrashed();
+    }
 }

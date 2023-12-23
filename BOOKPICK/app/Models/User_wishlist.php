@@ -13,4 +13,8 @@ class User_wishlist extends Model
     protected $primaryKey = 'uw_id';
     protected $fillable = ['u_id', 'b_id','uw_flg'];
     public $timestamps = true;
+
+    public function user() {
+        return $this->belongsTo(User::class, 'u_id')->withTrashed();
+    }
 }
