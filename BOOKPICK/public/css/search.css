@@ -1,3 +1,4 @@
+/* 제목 부분 */
 .search_layout_div {
 	width: 100%;
 	height: 60px;
@@ -6,28 +7,21 @@
 	font-size: 20px;
 	line-height: 20px;
 }
-
-.search_layout_div_div {
+.search_layout_div_div, .search_div_div_txt, .search_div_div_p {
 	display: inline-block;
-	color: #4dac27;
-	max-width: 300px;
 }
-
-.search_div_div_span_txt {
-	display: inline-block;
+.search_layout_div_div {
+	color: #4dac27;
+}
+.search_div_div_txt {
 	overflow: hidden;
 	text-wrap: nowrap;
 	text-overflow: ellipsis;
 	max-width: 250px;
 }
 
-.search_div_div_p {
-	display: inline-block;
-}
-
+/* 컨텐츠 나열부분 */
 .search_layout_container {
-	/* display:grid;
-	grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); */
 	padding: 0 20px;
     display: grid;
     gap: 15px;
@@ -49,8 +43,6 @@
 	height: 100%;
 	border: 1px solid #ccc;
 }
-
-
 .search_book_title_txt {
 	display: block;
 	font-size: 14px;
@@ -62,7 +54,6 @@
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 4;
 }
-
 .search_book_author_txt {
 	font-size: 11px;
 	padding: 3px 0;
@@ -73,8 +64,38 @@
 	-webkit-line-clamp: 2;
 }
 
-.search_paginate_div {
-	margin: 0 auto;
-	width: 100%;
+/* 페이지네이션 */
+.paginate_div {
+	justify-content: center;
+    display: flex;
+    list-style: none;
+    padding: 0;
 	height: 50px;
+}
+.paginate_disable {
+	pointer-events: none;
+    cursor: default;
+}
+
+.paginate_a, .paginate_current, .paginate_prenext {
+	height: 25px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	font-size: 14px;
+	margin: 0px 3px;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.paginate_a, .paginate_current {
+	width: 25px;
+}
+.paginate_prenext {
+	width: 50px;
+}
+
+.paginate_current {
+	color:#fff;
+	background-color: #767676;
 }
