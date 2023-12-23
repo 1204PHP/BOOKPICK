@@ -18,9 +18,7 @@
 				<br>
 				<p class="book_datail_author_txt">{{$result->b_price}}</p>
 				<br><br>
-				<p>
-					{!!$result->b_summary!!}
-				</p>
+				<p>{!!$result->b_summary!!}</p>
 				<input type="hidden" id="wishFlg" name="wishFlg" value="{{$wishFlg}}">
 				<input type="hidden" id="libraryFlg" name="libraryFlg" value="{{$libraryFlg}}">
 				
@@ -31,7 +29,7 @@
 					<form class="book_datail_form1" action="{{ route('postBookDetailWishList') }}" method="POST">
 						@csrf
 						<button type="submit" onclick="BookDetailWishFlgshowAlert()">
-							@if($wishFlg === 0)
+						@if($wishFlg === 0)
 							찜 삭제
 						@elseif($wishFlg === 1)
 							찜 등록
@@ -76,7 +74,7 @@
 		</div>
 	</div>
 		{{--연관 책 추천 여역  --}}
-	<div class="book_detail_box1">
+	{{-- <div class="book_detail_box1">
         <div class="book_detail_title">
             <strong>검색 연관 도서</strong>
             <p>이런 도서는 어떠세요?</p>
@@ -85,7 +83,6 @@
             @forelse($result as $val)
             <li class="book_detail_slide-box">
 				<img src="..." alt="...">
-				{{-- <img src="{{ asset('img/best1.jpg') }}" alt="..."> --}}
                 <p></p>
                 <p></p>
             </li>
@@ -93,9 +90,9 @@
                 비어있음
             @endforelse
         </ul>
-    </div>
+    </div> --}}
 		{{--댓글 작성 영역  --}}
-	<div class="book_detail_comment_layout">
+	{{-- <div class="book_detail_comment_layout">
 		<div class="book_detail_comment_section-box">
 			<div class="book_detail_comment_section-1">
 				<strong>독자들의 코멘트</strong>
@@ -132,7 +129,7 @@
 				<div class="book_detail_comment_grid-item">중중중기중</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 @endsection
 
 @section('defer-js')

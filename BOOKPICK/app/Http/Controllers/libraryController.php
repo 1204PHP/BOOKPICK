@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 
-class libraryController extends Controller
+class LibraryController extends Controller
 {
     public function libraryFinished()
     {

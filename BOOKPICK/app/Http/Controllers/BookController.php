@@ -14,49 +14,65 @@ class BookController extends Controller
 {
     public function index($id)
     {
-        $userId = Session::get('u_id');
-        $result = Book_info::find($id);
-        if ($userId) {
-            $wishList = User_wishlist::where('u_id', $userId)
-            ->where('b_id', $id)->first();
-            if($wishList) {
-                if($wishList->uw_flg === 1) {
-                    // 로그인 된상태-> 찜안한상태
-                    $wishFlg = 1;
-                } else if ($wishList->uw_flg === 0)
-                    // 로그인 된상태-> 찜한상태
-                    $wishFlg = 0;
-            } else {
-                // 로그인 된 상태-> 찜을 한번도 누르지 않은 상태
-                $wishFlg = 1;
-            }
-        } else {
-            // 로그인 안된상테
-            $wishFlg = 2;
-        }
+        try {
+            Log::debug( "--------도서상세출력 시작---------" );
+            $userId = Session::get('u_id');
+            $result = Book_info::find($id);
 
-        if ($userId) {
-            $library = User_library::where('u_id', $userId)
-            ->where('b_id', $id)->first();
-            if($library) {
-                if($library->ul_flg === 1) {
-                    // 로그인 된상태-> 나의서재에 삭제되어있는 상태
-                    $libraryFlg = 1;
-                } else if ($library->ul_flg === 0)
-                // 로그인 된상태-> 나의서재에 등록되어있는 상태
-                    $libraryFlg = 0;
+            // wishFlg 설정
+            if ($userId) {
+                $wishList = User_wishlist::where('u_id', $userId)
+                ->where('b_id', $id)->first();
+                if($wishList) {
+                    if($wishList->uw_flg === 1) {
+                        // 로그인 된상태-> 찜안한상태
+                        $wishFlg = 1;
+                    } else if ($wishList->uw_flg === 0)
+                        // 로그인 된상태-> 찜한상태
+                        $wishFlg = 0;
+                } else {
+                    // 로그인 된 상태-> 찜을 한번도 누르지 않은 상태
+                    $wishFlg = 1;
+                }
             } else {
-                // 로그인 된상태-> 나의서재에 한번도 등록한적이없는상태
-                $libraryFlg = 1;
+                // 로그인 안된상테
+                $wishFlg = 2;
             }
-        } else {
-            // 로그인 안된상테
-            $libraryFlg = 2;
+
+            // 서재Flg 설정
+            if ($userId) {
+                $library = User_library::where('u_id', $userId)
+                ->where('b_id', $id)->first();
+                if($library) {
+                    if($library->ul_flg === 1) {
+                        // 로그인 된상태-> 나의서재에 삭제되어있는 상태
+                        $libraryFlg = 1;
+                    } else if ($library->ul_flg === 0)
+                    // 로그인 된상태-> 나의서재에 등록되어있는 상태
+                        $libraryFlg = 0;
+                } else {
+                    // 로그인 된상태-> 나의서재에 한번도 등록한적이없는상태
+                    $libraryFlg = 1;
+                }
+            } else {
+                // 로그인 안된상테
+                $libraryFlg = 2;
+            }
+
+            Log::debug( "result : ".$result );
+            Log::debug( "wishFlg : ".$wishFlg );
+            Log::debug( "libraryFlg : ".$libraryFlg );
+            Log::debug( "--------도서상세출력 끝---------" );
+            return view('book_detail',
+                        ['result' => $result,
+                        'wishFlg' => $wishFlg,
+                        'libraryFlg' => $libraryFlg]);
+        } catch(Exception $e) {
+            Log::error( "--------도서상세출력 에러발생---------" );
+            Log::error( "에러내용:".$e->getMessage());
+            Log::error( "------------------------------------" );
+            return redirect()->route( 'index' );
         }
-        return view('book_detail',
-                    ['result' => $result,
-                    'wishFlg' => $wishFlg,
-                    'libraryFlg' => $libraryFlg]);
     }
 
     public function bookDetailWishList( Request $request )

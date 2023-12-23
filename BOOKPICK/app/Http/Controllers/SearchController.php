@@ -17,6 +17,7 @@ class SearchController extends Controller
             $searchResult = trim($request->input('result'));
             $searchStrNoSpacing = str_replace(" ","", trim($request->input('result')));
             $searchFullTxt = str_replace(" ","* ", trim($request->input('result')))."*";
+
             if ($searchResult) {
                 // 검색어가 있는 경우
                 $result = BOOK_info::WhereRaw("REPLACE(b_title,' ', '') LIKE ?", ['%' . $searchStrNoSpacing . '%'])
@@ -32,12 +33,13 @@ class SearchController extends Controller
                 $result = Book_info::Paginate(18);
                 $searchCnt = $result->total();
             }
+            
             Log::debug( 'ip:'.$ip.' | 검색 내용:'.$searchResult);
             Log::debug( "--------검색 종료---------" );
             return view('search',
-            ['result' => $result,
-            'searchResult' => $searchResult,
-            'searchCnt' => $searchCnt]);
+                ['result' => $result,
+                'searchResult' => $searchResult,
+                'searchCnt' => $searchCnt]);
         } catch(Exception $e) {
             Log::error( "--------검색 에러발생---------" );
             Log::error( "ip:".$ip." | 검색 내용:".$searchResult);

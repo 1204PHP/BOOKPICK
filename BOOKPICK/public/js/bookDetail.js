@@ -1,7 +1,6 @@
 function BookDetailWishFlgshowAlert() {
 	var wishFlg = document.getElementById('wishFlg').value;
 	
-	console.log(wishFlg);
 	if (wishFlg === '2') {
 		alert("로그인이 필요합니다.");
 	} else if (wishFlg === '0') {

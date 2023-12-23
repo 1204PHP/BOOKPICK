@@ -50,11 +50,11 @@ Route::get( '/book/tour', [TourController::class, 'index'])
 // 로그인 시 나의 서재 페이지로 이동
 // 비로그인 시 로그인 페이지로 이동 
 // 서재 도서 페이지
-Route::get( '/library/finished', [libraryController::class, 'libraryFinished'])
+Route::get( '/library/finished', [LibraryController::class, 'libraryFinished'])
 ->name( 'getLibraryFinished' );
-Route::get( '/library/reading', [libraryController::class, 'libraryReading'])
+Route::get( '/library/reading', [LibraryController::class, 'libraryReading'])
 ->name( 'getLibraryReading' );
-Route::get( '/library/wishlist', [libraryController::class, 'librarywishlist'])
+Route::get( '/library/wishlist', [LibraryController::class, 'librarywishlist'])
 ->name( 'getLibrarywishlist' );
 
 // 서재 도서 상세 페이지
