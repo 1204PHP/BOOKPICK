@@ -192,9 +192,9 @@ return [
             'max' => ':attribute은 최대 200자까지만 입력해주세요'
         ],
 
-        // 'u_detail_address' => [
-        //     'regex' => ':attribute: 한글, 숫자, 영어, - 만 입력가능 합니다.',
-        // ],
+        'u_detail_address' => [
+            'max' => ':attribute은 최대 50자까지만 입력해주세요',
+        ],
     ],
 
     /*

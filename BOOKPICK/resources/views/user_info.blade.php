@@ -19,13 +19,13 @@
             </div>            
             <div class="info-input-area">
                 <input class="info-input" type="password" 
-                id="new_password" name="new_password" maxlength="20" placeholder="변경하실 비밀번호를 입력해주세요">
-                <span class="u_password_errormsg"></span>
+                id="new_password" name="new_password" maxlength="20" placeholder="변경 비밀번호">
+                <span class="new_password_errormsg"></span>
             </div>
             <div class="info-input-area">
                 <input class="info-input" type="password" 
-                id="password_confirm" name="password_confirm" maxlength="20" placeholder="비밀번호를 한번 더 입력해주세요">
-                <span class="u_password_errormsg"></span>
+                id="password_confirm" name="password_confirm" maxlength="20" placeholder="비밀번호 확인">
+                <span class="password_confirm_errormsg"></span>
             </div>
             <div class="info-input-area">
                 <input class="info-input-readonly" type="text" readonly 
@@ -45,7 +45,7 @@
                     value={{$userdata->u_postcode}} maxlength="5">
                     <span class="u_postcode_errormsg"></span>
                 </div>
-                {{-- <button class="info-postcode-button" type="button">주소검색</button> --}}
+                <button class="info-postcode-button" type="button">주소검색</button>
             </div>
             <div class="info-input-area">
                 <input class="info-input" type="text" 
@@ -67,5 +67,5 @@
 @endsection
 
 @section('defer-js')
-    <script src="{{ asset('/js/UserValidation.js') }}" defer></script>
+    <script src="{{ asset('/js/UserInfoValidation.js') }}" defer></script>
 @endsection

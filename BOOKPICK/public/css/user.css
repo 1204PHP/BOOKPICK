@@ -1,273 +1,41 @@
-
-
-.login-input,
-.register-input,
-.info-input,
-.password-reconfirm-input {
-    outline: none;
-    -webkit-transition: 0.35s ease-in-out;
-    -moz-transition: 0.35s ease-in-out;
-    -o-transition: 0.35s ease-in-out;
-    transition: 0.35s ease-in-out;
-    transition: all 0.35s ease-in-out;
-}
-
-/* 에러메세지 */
-@media only screen and (max-width: 767px) {
-    .error-text {
-        font-size: 0.6rem;
-        color: red;
-        text-align: center;
-        margin: 15px 0;
-    }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-    .error-text {
-        font-size: 0.7rem;
-        color: red;
-        text-align: center;
-        margin: 15px;
-    }
-}
-
-@media only screen and (min-width: 1024px) {
-    .error-text {
-        font-size: 0.8rem;
-        color: red;
-        text-align: center;
-        margin: 15px;
-    }
-}
-
-/* 로그인 페이지 */
 /* 휴대폰 */
 @media only screen and (max-width: 767px) {
 
-    .layout_body {
+    .register-container,
+    .info-container,
+    .login-container,
+    .password-reconfirm-container {
         width: 100%;
-        margin: 0 auto;
-    }
-
-    .login-container {
-        width: 80%;
-        margin: 0 auto;
-        padding: 1em 3em 2em 3em;
+        margin: 40px auto 20px auto;
+        padding: 2em 3em 2em 3em;
         border: 1px solid #ccc;
         border-radius: 7px;
         background-color: #FCFDFD;
     }
 
-    .login-h1 {
-        margin: 40px auto;
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: #53A73C;
-        text-align: center;
-    }
-
-    .login-input {
+    .withdrawal-container {
         width: 100%;
-        height: 43px;
-        margin: 0 auto;
-        padding: 1em;
-        font-size: 0.7rem;
-        margin-bottom: 15px;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        -webkit-transition: 0.35s ease-in-out;
-        -moz-transition: 0.35s ease-in-out;
-        -o-transition: 0.35s ease-in-out;
-        transition: 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
-    }
-
-    .login-input:focus {
-        color: #A6A6A6;
-        outline: 0;
-        border-color: #ccc;
-    }
-
-    .login-input::placeholder {
-        font-size: 0.7rem;
-        color: #A6A6A6;
-    }
-
-    .login-button-area {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .login-button,
-    .login-kakaologin-button {
-        width: 100%;
-        height: 43px;        
-        font-size: 0.7rem;
-        font-weight: bold;
-        border: 1px solid transparent;
-        border-radius: 7px;
-        margin-bottom: 15px;
-        
-        cursor: pointer;
-    }
-
-    .login-button {
-        color: #fff;
-        background-color: #868688;
-    }
-
-    .login-kakaologin-button {
-        color: #000;
-        background-color: #FEE500;
-    }
-
-    .login-register-button {
-        width: 100%;
-        height: 43px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        font-size: 0.7rem;
-        font-weight: bold;
-        border: 1px solid #53A73C;
-        border-radius: 7px;
-        margin-bottom: 40px;
-        color: #53A73C;
-    }
-
-    .login-span {
-        margin: 15px auto;
-        font-size: 0.6rem;
-    }
-}
-
-
-/* 태블릿 */
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-
-    .layout_body {
-        width: 100%;
-        margin: 0 auto;
-    }
-
-    .login-container {
-        width: 70%;
-        margin: 0 auto;
-        padding: 1em 3em 2em 3em;
+        margin: 40px auto 20px auto;
+        padding: 2em 1.2em 2em 1.2em;
         border: 1px solid #ccc;
         border-radius: 7px;
         background-color: #FCFDFD;
     }
 
-    .login-h1 {
-        margin: 60px auto;
+    .register-h1 {
         font-size: 1.5rem;
         font-weight: bold;
-        color: #53A73C;
-        text-align: center;
+        margin-bottom: 10px;
     }
 
-    .login-input {
-        width: 100%;
-        height: 43px;
-        margin: 0 auto;
-        padding: 1em;
-        font-size: 0.8rem;
-        margin-bottom: 15px;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        -webkit-transition: 0.35s ease-in-out;
-        -moz-transition: 0.35s ease-in-out;
-        -o-transition: 0.35s ease-in-out;
-        transition: 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
-    }
-
-    .login-input:focus {
-        color: #A6A6A6;
-        outline: 0;
-        border-color: #ccc;
-    }
-
-    .login-input::placeholder {
-        font-size: 0.8rem;
-        color: #A6A6A6;
-    }
-
-    .login-button-area {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .login-button,
-    .login-kakaologin-button {
-        width: 100%;
-        height: 43px;        
-        font-size: 0.8rem;
+    .info-h1 {
+        font-size: 1.5rem;
         font-weight: bold;
-        border: 1px solid transparent;
-        border-radius: 7px;
-        margin-bottom: 15px;
-        
-        cursor: pointer;
+        margin-bottom: 40px;
     }
 
-    .login-button {
-        color: #fff;
-        background-color: #868688;
-    }
-
-    .login-kakaologin-button {
-        color: #000;
-        background-color: #FEE500;
-    }
-
-    .login-register-button {
-        width: 100%;
-        height: 43px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        font-size: 0.8rem;
-        font-weight: bold;
-        border: 1px solid #53A73C;
-        border-radius: 7px;
-        margin-bottom: 80px;
-        color: #53A73C;
-    }
-
-    .login-span {
-        font-size: 0.7rem;
-        margin: 15px auto;
-    }
-}
-
-/* 데스크탑 */
-@media only screen and (min-width: 1024px) {
-
-    .layout_body {
-        width: 100%;
-        margin: 0 auto;
-    }
-
-    .login-container {
-        width: 70%;
-        margin: 0 auto;
-        padding: 1em 3em 2em 3em;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        background-color: #FCFDFD;
-    }
-
-    .login-h1 {
+    .login-h1,
+    .password-reconfirm-h1 {
         margin: 60px auto;
         font-size: 1.7rem;
         font-weight: bold;
@@ -275,657 +43,777 @@
         text-align: center;
     }
 
-    .login-input {
-        width: 100%;
-        height: 43px;
-        margin: 0 auto;
-        padding: 1em;
-        font-size: 0.9rem;
-        margin-bottom: 15px;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        -webkit-transition: 0.35s ease-in-out;
-        -moz-transition: 0.35s ease-in-out;
-        -o-transition: 0.35s ease-in-out;
-        transition: 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
+    .withdrawal-h1 {
+        font-size: 1.5rem;
+        margin: 60px auto;
+        font-weight: bold;
+        color: #53A73C;
+        text-align: center;
     }
 
-    .login-input:focus {
-        color: #A6A6A6;
-        outline: 0;
-        border-color: #ccc;
+    .register-h2 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .withdrawal-h2 {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .withdrawal-li {
+        font-size: 0.7rem;
+        font-weight: bold;
+    }   
+
+    .register-required-span {
+        font-size: 1rem;
+        color: red;
+    }
+
+    .register-input::placeholder,
+    .info-input::placeholder {
+        color: #000;
     }
 
     .login-input::placeholder {
         color: #A6A6A6;
-        font-size: 0.9rem;
-    }
-
-    .login-button-area {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .login-button,
-    .login-kakaologin-button {
-        width: 100%;
-        height: 43px;        
-        font-size: 0.9rem;
-        font-weight: bold;
-        border: 1px solid transparent;
-        border-radius: 7px;
-        margin-bottom: 15px;
-        
-        cursor: pointer;
-    }
-
-    .login-button {
-        color: #fff;
-        background-color: #868688;
-    }
-
-    .login-kakaologin-button {
-        color: #000;
-        background-color: #FEE500;
-    }
-
-    .login-register-button {
-        width: 100%;
-        height: 43px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        font-size: 0.9rem;
-        font-weight: bold;
-        border: 1px solid #53A73C;
-        border-radius: 7px;
-        margin-bottom: 80px;
-        color: #53A73C;
-    }
-
-    .login-span {
-        font-size: 0.8rem;
-        margin: 15px auto;
-    }
-}
-
-@media only screen and (min-width: 1320px) {
-    .layout_body {
-        width: 1300px;
-        margin: 0 auto;
-    }
-
-    .login-container {
-        width: 700px;
-        margin-top: 30px;
-        margin: 0 auto;
-    }
-}
-
-/* 회원가입 페이지 */
-/* 휴대폰 */
-@media only screen and (max-width: 767px) {
-
-    .register-form {
-        margin-top: 30px;
-    }
-
-    .register-container {
-        max-width: 70%;
-        margin: 0 auto;
-        padding: 1em;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        background-color: #FCFDFD;
-    }
-
-    .register-h1 {
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-top: 10px;
-        margin-bottom: 15px;
-    }
-
-    .register-h2 {
-        font-size: 0.8rem;
-        margin-bottom: 25px;
-    }
-
-    .register-input {
-        width: 100%;
-        height: 43px;
-        padding: 1em;
-        font-size: 0.7rem;
-        margin-bottom: 5px;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        font-weight: bold;
-        -webkit-transition: 0.35s ease-in-out;
-        -moz-transition: 0.35s ease-in-out;
-        -o-transition: 0.35s ease-in-out;
-        transition: 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
-    }
-    
-    .u_mail_errormsg {
-        color: red;
-        font-size: 0.6rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-
-    .u_password_errormsg {
-        color: red;
-        font-size: 0.6rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-
-    .u_password_confirm_errormsg {
-        color: red;
-        font-size: 0.6rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-    
-    .u_name_errormsg {
-        color: red;
-        font-size: 0.6rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-
-    .u_birthdate_errormsg {
-        color: red;
-        font-size: 0.6rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-
-    .u_tel_errormsg {
-        color: red;
-        font-size: 0.6rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-
-    .u_postcode_errormsg {
-        color: red;
-        font-size: 0.6rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-
-    .u_basic_address_errormsg {
-        color: red;
-        font-size: 0.6rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-
-    .register-postcode-input {
-        width: 200px;
-        height: 43px;
-        padding: 1em;
-        font-size: 0.7rem;
-        margin-bottom: 15px;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        font-weight: bold;
-        -webkit-transition: 0.35s ease-in-out;
-        -moz-transition: 0.35s ease-in-out;
-        -o-transition: 0.35s ease-in-out;
-        transition: 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
-    }
-
-    .register-input-postcode-area {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .register-input::placeholder,
-    .register-postcode-input::placeholder {
-        color: #000;
-    }
-
-    .register-input-postcode-area {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }   
-
-    .register-postcode-button {
-        width: 20%;
-        height: 43px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        font-weight: bold;
-        font-size: 0.7rem;
-        cursor: pointer;
-    }
-
-    .register-button {
-        width: 100%;
-        height: 43px;
-        margin: 20px auto;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        border: 1px solid #53A73C;
-        border-radius: 7px;
-        color: #53A73C;
-        font-size: 1rem;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .register-button-area {
-        align-items: center;
-    }
-
-    .register-text {
-        font-size: 0.8rem;
-        font-weight: bold;
-        text-align: center;
-    }
-    
-
-    .register-login-link {
-        font-size: 0.8rem;
-        font-weight: bold;
-        text-decoration: none;
-        color: #53A73C;
-    }
-}
-
-/* 태블릿 */
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-    .register-form {
-        margin-top: 30px;
-    }
-
-    .register-container {
-        max-width: 70%;
-        margin: 0 auto;
-        padding: 1em 2em;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        background-color: #FCFDFD;
-    }
-
-    .register-h1 {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-
-    .register-h2 {
-        font-size: 1rem;
-        margin-bottom: 30px;
-    }
-
-    .register-input {
-        width: 100%;
-        height: 43px;
-        padding: 1em;
-        margin-bottom: 5px;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        font-weight: bold;
-        -webkit-transition: 0.35s ease-in-out;
-        -moz-transition: 0.35s ease-in-out;
-        -o-transition: 0.35s ease-in-out;
-        transition: 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
-    }
-
-    .u_mail_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-
-    .u_password_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-
-    .u_password_confirm_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-    
-    .u_name_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-
-    .u_birthdate_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-
-    .u_tel_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-
-    .u_postcode_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-
-    .u_basic_address_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 10px;
-        margin-bottom: 5px
-    }
-
-    .register-postcode-input {
-        width: 200px;
-        height: 43px;
-        padding: 1em;
-        margin-bottom: 15px;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        font-weight: bold;
-        -webkit-transition: 0.35s ease-in-out;
-        -moz-transition: 0.35s ease-in-out;
-        -o-transition: 0.35s ease-in-out;
-        transition: 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
-    }
-
-    .register-input-postcode-area {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .register-input::placeholder,
-    .register-postcode-input::placeholder {
-        color: #000;
-    }
-
-    .register-postcode-button {
-        width: 20%;
-        height: 43px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    
-    .register-input-area .register-errormsg {
-        font-size: 1rem;
-        color: red;
-        visibility: hidden;
-    }
-
-    .register-input-area .register-errormsg.on {
-        visibility: visible;
-    }
-
-    .register-button {
-        width: 100%;
-        height: 43px;
-        margin: 20px auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        font-size: 1rem;
-        font-weight: bold;
-        border: 1px solid #53A73C;
-        border-radius: 7px;
-        color: #53A73C;
-        cursor: pointer;
-    }
-
-    .register-text {
-        font-size: 0.9rem;
-        font-weight: bold;
-        text-align: center;
-    }
-    
-
-    .register-login-link {
-        font-size: 1rem;
-        font-weight: bold;
-        text-decoration: none;
-        color: #53A73C;
-    }
-}
-
-/* 데스크탑 */
-@media only screen and (min-width: 1024px) {
-
-    .register-form {
-        margin-top: 30px;
-    }
-
-    .register-container {
-        max-width: 70%;
-        margin: 0 auto;
-        padding: 1em 3em 2em 3em;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        background-color: #FCFDFD;
-    }
-
-    .register-h1 {
-        font-size: 2rem;
-        font-weight: bold;
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-
-    .register-h2 {
-        font-size: 1rem;
-        margin-bottom: 30px;
     }
 
     .register-input,
-    .register-input:focus {
-        width: 80%;
-        height: 43px;
+    .info-input,
+    .login-input,
+    .password-reconfirm-input {
+        width: 100%;
+        height: 35px;
         padding: 1em;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
         background-color: #F9FAFA;
         border: 1px solid #ccc;
         border-radius: 7px;
         color: #000;
         font-weight: bold;
-        -webkit-transition: 0.35s ease-in-out;
-        -moz-transition: 0.35s ease-in-out;
-        -o-transition: 0.35s ease-in-out;
-        transition: 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
-        flex: 1;
-        box-sizing: border-box;
     }
 
-    /* 수정 필요 */
-
-    .register-input-email-area {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
+    input:focus {
+        outline:none;
     }
 
-    #emailConfirmButton {
+    .info-input-readonly {
+        width: 100%;
+        height: 35px;
+        padding: 1em;
+        margin-bottom: 10px;
+        background-color: #E1E1E1;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+    }
+
+    #emailConfirmButton,
+    .register-postcode-button,
+    .info-postcode-button {
         width: 100px;
-        height: 43px;
-        /* padding: 1em; */
-        margin-bottom: 5px;
-        font-size: 1.0rem;
+        height: 35px;
+        margin-bottom: 10px;
         font-weight: bold;
         border: 1px solid #53A73C;
         background-color: transparent;
         border-radius: 7px;
     }
 
-    .register-postcode-input {
-        width: 200px;
-        height: 43px;
-        padding: 1em;
+    .register-input-area-1 {
+        margin-top: 20px;
+    }
+
+    .register-button,
+    .info-button,
+    .login-register-button,
+    .password-reconfirm-info-button {
+        width: 100%;
+        height: 40px;
+        margin: 20px auto;
         background-color: #F9FAFA;
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid #53A73C;
+        border-radius: 7px;
+        color: #53A73C;
+        cursor: pointer;
+    }
+
+    .login-button,
+    .login-kakaologin-button {
+        width: 100%;
+        height: 40px;   
+        margin-top: 10px;     
+        margin-bottom: 10px;
+        background-color: #F9FAFA;
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        color: #53A73C;
+        cursor: pointer;
+    }
+
+    .login-button {
+        color: #000;
+        background-color: #D9D9D9;
+    }
+    
+    .login-kakaologin-button {
+        color: #000;
+        background-color: #FEE500;
+        margin-bottom: 30px;
+    }
+
+    .withdrawal-button,
+    .withdrawal-main-button {
+        width: 30%;
+        height: 40px;   
+        margin-top: 10px;     
+        margin-bottom: 10px;
+        background-color: #F9FAFA;
+        font-size: 0.8rem;
+        font-weight: bold;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        color: #53A73C;
+        cursor: pointer;
+    }
+
+    .withdrawal-button {
+        color: #fff;
+        background-color: #53A73C;
+        margin: 0 20px;
+    }
+
+    .withdrawal-main-button {
+        color: #000;
+        background-color: #D9D9D9;
+        margin: 0 20px;
+    }
+
+    .register-text {
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .register-login-link {
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #53A73C;
+    }
+
+    .info-withdrawal-link {
+        text-decoration: none;
+        font-weight: bold;
+        color: #4c9adc;
+        margin-top: 20px;
+        font-size: 0.8rem;
+    }
+
+    .login-button-area-1 {
+        margin: 0 35px;
+        text-align: center;
+    }
+
+    .password-reconfirm-button-area {
+        margin: 50px 20px;
+        text-align: center;
+    }
+
+    .withdrawal-text-area {
+        width: 90%;
+        padding: 20px;
+        font-weight: bold;
+        margin: 0 auto;
+        margin-bottom: 30px;
         border: 1px solid #ccc;
         border-radius: 7px;
-        color: #000;
-        font-weight: bold;
-        -webkit-transition: 0.35s ease-in-out;
-        -moz-transition: 0.35s ease-in-out;
-        -o-transition: 0.35s ease-in-out;
-        transition: 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
+        background-color: #F1F1F1;
+        overflow: hidden;
     }
 
-    .register-input-postcode-area {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+    .withdrawal-button-area {
+        text-align: center;
+        margin-bottom: 50px;
     }
 
-    /* 수정 필요 */
+    .withdrawal-li-area {
+        margin: 30px auto;
+    }    
 
+    .login-span,
+    .password-reconfirm-span {
+        font-size: 0.7rem;
+        margin: 15px auto;
+    }
+
+/* 유저컨트롤러 에러메세지 */
+    .error-text {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
+    }
+
+
+/* 실시간 유효성 검사 에러메세지 */
     .u_mail_errormsg {
         color: red;
-        font-size: 0.8rem;
-        margin-left: 10px;
-        margin-bottom: 5px
+        font-size: 0.7rem;
+        margin-left: 20px;
     }
 
     .u_password_errormsg {
         color: red;
-        font-size: 0.8rem;
-        margin-left: 10px;
-        margin-bottom: 5px
+        font-size: 0.7rem;
+        margin-left: 20px;
     }
 
     .u_password_confirm_errormsg {
         color: red;
-        font-size: 0.8rem;
-        margin-left: 10px;
-        margin-bottom: 5px
+        font-size: 0.7rem;
+        margin-left: 20px;
     }
 
     .u_name_errormsg {
         color: red;
-        font-size: 0.8rem;
-        margin-left: 10px;
-        margin-bottom: 5px
+        font-size: 0.7rem;
+        margin-left: 20px;
     }
 
     .u_birthdate_errormsg {
         color: red;
-        font-size: 0.8rem;
-        margin-left: 10px;
-        margin-bottom: 5px
+        font-size: 0.7rem;
+        margin-left: 20px;
     }
 
     .u_tel_errormsg {
         color: red;
-        font-size: 0.8rem;
-        margin-left: 10px;
-        margin-bottom: 5px
+        font-size: 0.7rem;
+        margin-left: 20px;
     }
 
     .u_postcode_errormsg {
         color: red;
-        font-size: 0.8rem;
-        margin-left: 10px;
-        margin-bottom: 5px
+        font-size: 0.7rem;
+        margin-left: 20px;
     }
 
     .u_basic_address_errormsg {
         color: red;
-        font-size: 0.8rem;
-        margin-left: 10px;
-        margin-bottom: 5px
+        font-size: 0.7rem;
+        margin-left: 20px;
+    }     
+}
+
+/* 태블릿 */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .register-container,
+    .info-container,
+    .login-container,
+    .password-reconfirm-container {
+        width: 600px;
+        margin: 40px auto 20px auto;
+        padding: 2em 3em 2em 3em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
     }
 
-    
+    .withdrawal-container {
+        width: 750px;
+        margin: 40px auto 20px auto;
+        padding: 2em 1.2em 2em 1.2em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .register-h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .info-h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
+
+    .login-h1,
+    .password-reconfirm-h1 {
+        margin: 60px auto;
+        font-size: 1.7rem;
+        font-weight: bold;
+        color: #53A73C;
+        text-align: center;
+    }
+
+    .withdrawal-h1 {
+        font-size: 1.7rem;
+        margin: 60px auto;
+        font-weight: bold;
+        color: #53A73C;
+        text-align: center;
+    }
+
+    .register-h2 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .withdrawal-h2 {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }    
+
+    .register-required-span {
+        font-size: 1rem;
+        color: red;
+    }
+
     .register-input::placeholder,
-    .register-postcode-input::placeholder {
+    .info-input::placeholder {
         color: #000;
     }
 
-    .register-postcode-button {
-        width: 100px;
-        height: 43px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .login-input::placeholder {
+        color: #A6A6A6;
+    }
+
+    .register-input,
+    .info-input,
+    .login-input,
+    .password-reconfirm-input {
+        width: 100%;
+        height: 35px;
+        padding: 1em;
+        margin-bottom: 10px;
         background-color: #F9FAFA;
         border: 1px solid #ccc;
         border-radius: 7px;
         color: #000;
         font-weight: bold;
+    }
+
+    input:focus {
+        outline:none;
+    }
+
+    .info-input-readonly {
+        width: 100%;
+        height: 35px;
+        padding: 1em;
+        margin-bottom: 10px;
+        background-color: #E1E1E1;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+    }
+
+    #emailConfirmButton,
+    .register-postcode-button,
+    .info-postcode-button {
+        width: 100px;
+        height: 35px;
+        margin-bottom: 10px;
+        font-weight: bold;
+        border: 1px solid #53A73C;
+        background-color: transparent;
+        border-radius: 7px;
+    }
+
+    .register-input-area-1 {
+        margin-top: 20px;
+    }
+
+    .register-button,
+    .info-button,
+    .login-register-button,
+    .password-reconfirm-info-button {
+        width: 100%;
+        height: 40px;
+        margin: 20px auto;
+        background-color: #F9FAFA;
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid #53A73C;
+        border-radius: 7px;
+        color: #53A73C;
         cursor: pointer;
     }
 
-    .register-button {
-    width: 100%;
-    height: 43px;
-    margin: 20px auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #F9FAFA;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border: 1px solid #53A73C;
-    border-radius: 7px;
-    color: #53A73C;
-    cursor: pointer;
+    .login-button,
+    .login-kakaologin-button {
+        width: 100%;
+        height: 40px;   
+        margin-top: 10px;     
+        margin-bottom: 10px;
+        background-color: #F9FAFA;
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        color: #53A73C;
+        cursor: pointer;
+    }
+
+    .login-button {
+        color: #000;
+        background-color: #D9D9D9;
+    }
+    
+    .login-kakaologin-button {
+        color: #000;
+        background-color: #FEE500;
+        margin-bottom: 30px;
+    }
+
+    .withdrawal-button,
+    .withdrawal-main-button {
+        width: 30%;
+        height: 40px;   
+        margin-top: 10px;     
+        margin-bottom: 10px;
+        background-color: #F9FAFA;
+        font-size: 0.8rem;
+        font-weight: bold;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        color: #53A73C;
+        cursor: pointer;
+    }
+
+    .withdrawal-button {
+        color: #fff;
+        background-color: #53A73C;
+        margin: 0 20px;
+    }
+
+    .withdrawal-main-button {
+        color: #000;
+        background-color: #D9D9D9;
+        margin: 0 20px;
+    }
+
+    .register-text {
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .register-login-link {
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #53A73C;
+    }
+
+    .info-withdrawal-link {
+        text-decoration: none;
+        font-weight: bold;
+        color: #4c9adc;
+        margin-top: 20px;
+        font-size: 0.8rem;
+    }
+
+    .login-button-area-1 {
+        margin: 0 35px;
+        text-align: center;
+    }
+
+    .password-reconfirm-button-area {
+        margin: 50px 20px;
+        text-align: center;
+    }
+
+    .withdrawal-text-area {
+        width: 90%;
+        padding: 20px;
+        font-weight: bold;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #F1F1F1;
+        overflow: hidden;
+    }
+
+    .withdrawal-button-area {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .withdrawal-li-area {
+        margin: 30px auto;
+    }    
+
+    .login-span,
+    .password-reconfirm-span {
+        font-size: 0.9rem;
+        margin: 15px auto;
+    }
+
+/* 유저컨트롤러 에러메세지 */
+    .error-text {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
+    }
+
+
+/* 실시간 유효성 검사 에러메세지 */
+    .u_mail_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
+    }
+
+    .u_password_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
+    }
+
+    .u_password_confirm_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
+    }
+
+    .u_name_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
+    }
+
+    .u_birthdate_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
+    }
+
+    .u_tel_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
+    }
+
+    .u_postcode_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
+    }
+
+    .u_basic_address_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
+    }     
 }
+
+/* 데스크탑 */
+@media only screen and (min-width: 1024px) {
+
+    .register-container,
+    .info-container,
+    .login-container,
+    .password-reconfirm-container {
+        width: 600px;
+        margin: 40px auto 20px auto;
+        padding: 2em 3em 2em 3em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .withdrawal-container {
+        width: 750px;
+        margin: 40px auto 20px auto;
+        padding: 2em 1.2em 2em 1.2em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .register-h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .info-h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
+
+    .login-h1,
+    .password-reconfirm-h1 {
+        margin: 60px auto;
+        font-size: 1.7rem;
+        font-weight: bold;
+        color: #53A73C;
+        text-align: center;
+    }
+
+    .withdrawal-h1 {
+        font-size: 1.7rem;
+        margin: 60px auto;
+        font-weight: bold;
+        color: #53A73C;
+        text-align: center;
+    }
+
+    .register-h2 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .withdrawal-h2 {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }    
+
+    .register-required-span {
+        font-size: 1rem;
+        color: red;
+    }
+
+    .register-input::placeholder,
+    .info-input::placeholder {
+        color: #000;
+    }
+
+    .login-input::placeholder {
+        color: #A6A6A6;
+    }
+
+    .register-input,
+    .info-input,
+    .login-input,
+    .password-reconfirm-input {
+        width: 100%;
+        height: 35px;
+        padding: 1em;
+        margin-bottom: 10px;
+        background-color: #F9FAFA;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+    }
+
+    input:focus {
+        outline:none;
+    }
+
+    .info-input-readonly {
+        width: 100%;
+        height: 35px;
+        padding: 1em;
+        margin-bottom: 10px;
+        background-color: #E1E1E1;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        color: #000;
+        font-weight: bold;
+    }
+
+    #emailConfirmButton,
+    .register-postcode-button,
+    .info-postcode-button {
+        width: 100px;
+        height: 35px;
+        margin-bottom: 10px;
+        font-weight: bold;
+        border: 1px solid #53A73C;
+        background-color: transparent;
+        border-radius: 7px;
+    }
+
+    .register-input-area-1 {
+        margin-top: 20px;
+    }
+
+    .register-button,
+    .info-button,
+    .login-register-button,
+    .password-reconfirm-info-button {
+        width: 100%;
+        height: 40px;
+        margin: 20px auto;
+        background-color: #F9FAFA;
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid #53A73C;
+        border-radius: 7px;
+        color: #53A73C;
+        cursor: pointer;
+    }
+
+    .login-button,
+    .login-kakaologin-button {
+        width: 100%;
+        height: 40px;   
+        margin-top: 10px;     
+        margin-bottom: 10px;
+        background-color: #F9FAFA;
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        color: #53A73C;
+        cursor: pointer;
+    }
+
+    .login-button {
+        color: #000;
+        background-color: #D9D9D9;
+    }
+    
+    .login-kakaologin-button {
+        color: #000;
+        background-color: #FEE500;
+        margin-bottom: 30px;
+    }
+
+    .withdrawal-button,
+    .withdrawal-main-button {
+        width: 30%;
+        height: 40px;   
+        margin-top: 10px;     
+        margin-bottom: 10px;
+        background-color: #F9FAFA;
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        color: #53A73C;
+        cursor: pointer;
+    }
+
+    .withdrawal-button {
+        color: #fff;
+        background-color: #53A73C;
+        margin: 0 20px;
+    }
+
+    .withdrawal-main-button {
+        color: #000;
+        background-color: #D9D9D9;
+        margin: 0 20px;
+    }
+
 
     .register-text {
         font-size: 1.0rem;
@@ -939,228 +827,6 @@
         text-decoration: none;
         color: #53A73C;
     }
-}
-
-/* 회원정보 수정 페이지 */
-/* 휴대폰 */
-@media only screen and (max-width: 767px) {
-
-    .info-form {
-        margin-top: 30px;
-    }
-
-    .info-container {
-        max-width: 60%;
-        margin: 0 auto;
-        padding: 1em 3em 2em 3em;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        background-color: #FCFDFD;
-    }
-
-    .info-h1 {
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-top: 10px;
-        margin-bottom: 15px;
-    }
-
-    .info-h2 {
-        font-size: 0.8rem;
-        margin-bottom: 25px;
-    }
-
-    .info-input,
-    .info-input-readonly {
-        width: 100%;
-        height: 43px;
-        padding: 1em;
-        font-size: 0.7rem;
-        margin-bottom: 5px;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        font-weight: bold;
-        -webkit-transition: 0.35s ease-in-out;
-        -moz-transition: 0.35s ease-in-out;
-        -o-transition: 0.35s ease-in-out;
-        transition: 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
-    }
-
-    .info-input::placeholder {
-        color: #000;
-    }
-
-    .info-input-postcode-area {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }   
-
-    .info-postcode-button {
-        width: 20%;
-        height: 43px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        font-weight: bold;
-        font-size: 0.7rem;
-        cursor: pointer;
-    }
-
-    .info-button {
-        width: 100%;
-        height: 43px;
-        margin-bottom: 20px;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        border: 1px solid #53A73C;
-        border-radius: 7px;
-        color: #53A73C;
-        font-size: 1rem;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .info-input-area .register-errormsg {
-        font-size: 0.8rem;
-        color: red;
-        visibility: hidden;
-    }
-
-    .info-input-area .register-errormsg.on {
-        visibility: visible;
-    }
-
-    .info-button-area {
-        align-items: center;
-    }
-
-    .info-text {
-        font-size: 0.8rem;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .info-withdrawal-link {
-        text-decoration: none;
-        font-weight: bold;
-        color: #4c9adc;
-        margin-top: 20px;
-        font-size: 0.6rem;
-    }
-}
-
-/* 태블릿 */
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-
-    .info-form {
-        margin-top: 30px;
-    }
-
-    .info-container {
-        max-width: 60%;
-        margin: 0 auto;
-        padding: 1em 3em 2em 3em;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        background-color: #FCFDFD;
-    }
-
-    .info-h1 {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-
-    .info-h2 {
-        font-size: 1rem;
-        margin-bottom: 30px;
-    }
-
-    .info-input,
-    .info-input-readonly {
-        width: 100%;
-        height: 43px;
-        padding: 1em;
-        margin-bottom: 5px;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        font-weight: bold;
-        -webkit-transition: 0.35s ease-in-out;
-        -moz-transition: 0.35s ease-in-out;
-        -o-transition: 0.35s ease-in-out;
-        transition: 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
-    }
-
-    .info-input-postcode-area {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .info-input::placeholder {
-        color: #000;
-    }
-
-    .info-postcode-button {
-        width: 20%;
-        height: 43px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    
-    .info-input-area .register-errormsg {
-        font-size: 1rem;
-        color: red;
-        visibility: hidden;
-    }
-
-    .info-input-area .register-errormsg.on {
-        visibility: visible;
-    }
-
-    .info-button {
-        width: 100%;
-        height: 43px;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        font-size: 1rem;
-        font-weight: bold;
-        border: 1px solid #53A73C;
-        border-radius: 7px;
-        color: #53A73C;
-        cursor: pointer;
-    }
-
-    .info-text {
-        font-size: 1rem;
-        text-align: center;
-        margin-bottom: 30px;
-    }
 
     .info-withdrawal-link {
         text-decoration: none;
@@ -1169,327 +835,21 @@
         margin-top: 20px;
         font-size: 0.8rem;
     }
-}
 
-/* 데스크탑 */
-@media only screen and (min-width: 1024px) {
-
-    .info-form {
-        margin-top: 30px;
-    }
-
-    .info-container {
-        max-width: 60%;
-        margin: 0 auto;
-        padding: 1em 3em 2em 3em;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        background-color: #FCFDFD;
-    }
-
-    .info-h1 {
-        font-size: 2rem;
-        font-weight: bold;
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-
-    .info-h2 {
-        font-size: 1rem;
-        margin-bottom: 30px;
-    }
-
-    .info-input,
-    .info-input-readonly {
-        width: 100%;
-        height: 43px;
-        padding: 1em;
-        margin-bottom: 5px;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        font-weight: bold;
-        -webkit-transition: 0.35s ease-in-out;
-        -moz-transition: 0.35s ease-in-out;
-        -o-transition: 0.35s ease-in-out;
-        transition: 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
-    }
-
-    .info-input-postcode-area {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .info-input::placeholder {
-        color: #000;
-    }
-
-    .info-postcode-button{
-        width: 100px;
-        height: 43px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .info-input-area .register-errormsg {
-        font-size: 1.2rem;
-        color: red;
-        visibility: hidden;
-    }
-
-    .info-input-area .register-errormsg.on {
-        visibility: visible;
-    }
-
-    .info-button {
-    width: 100%;
-    height: 43px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #F9FAFA;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border: 1px solid #53A73C;
-    border-radius: 7px;
-    color: #53A73C;
-    cursor: pointer;
-}
-
-    .info-text {
-        font-size: 1.2rem;
+    .login-button-area-1 {
+        margin: 0 35px;
         text-align: center;
     }
 
-    .info-withdrawal-link {
-        text-decoration: none;
-        font-weight: bold;
-        color: #4c9adc;
-        margin-top: 20px;
-        font-size: 1rem;
-    }
-}
-
-/* ### 회원탈퇴 페이지 ### */
-/* 휴대폰 */
-@media only screen and (max-width: 767px) {
-
-    .withdrawal-form {
-        margin-top: 20px;
-    }
-
-    .withdrawal-container {
-        max-width: 60%;
-        margin: 0 auto;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        background-color: #FCFDFD;
-    }
-
-    .withdrawal-h1 {
-        font-size: 0.9rem;
-        margin: 30px auto;
-        font-weight: bold;
-        color: #53A73C;
+    .password-reconfirm-button-area {
+        margin: 50px 20px;
         text-align: center;
-    }
-
-    .withdrawal-area {
-        width: 100%;
-        margin: 0 auto;
     }
 
     .withdrawal-text-area {
-        width: 80%;
-        padding: 15px;
-        margin: 0 auto;
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        background-color: #F1F1F1;
-        overflow: hidden;
-    }
-
-    .withdrawal-h2 {
-        font-size: 0.9rem;
-        font-weight: bold;
-        color: #000;
-    }
-
-    .withdrawal-li-area {
-        margin: 20px auto;
-    }
-
-    .withdrawal-li {
-        font-size: 0.7rem;
-        font-weight: bold;
-        color: #000;
-    }
-
-    .withdrawal-button-area {
-        width: 100%;
-        margin-bottom: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .withdrawal-button,
-    .withdrawal-index-button {
-        width: 100px;
-        height: 43px;
-        margin: 0 20px;
-        font-size: 0.7rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid transparent;
-        border-radius: 7px;
-        cursor: pointer;
-    }
-
-    .withdrawal-button {
-        background-color: #53A73C;
-        color: #fff;
-    }
-
-    .withdrawal-index-button {
-        background-color: #D9D9D9;
-        color: #000;
-    }
-}
-
-/* 태블릿 */
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-
-    .withdrawal-form {
-        margin-top: 20px;
-    }
-
-    .withdrawal-container {
-        max-width: 60%;
-        margin: 0 auto;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        background-color: #FCFDFD;
-    }
-
-    .withdrawal-h1 {
-        font-size: 1.1rem;
-        margin: 40px auto;
-        font-weight: bold;
-        color: #53A73C;
-        text-align: center;
-    }
-
-    .withdrawal-area {
-        width: 100%;
-        margin: 0 auto;
-    }
-
-    .withdrawal-text-area {
-        width: 70%;
-        padding: 15px;
-        margin: 0 auto;
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        background-color: #F1F1F1;
-        overflow: hidden;
-    }
-
-    .withdrawal-h2 {
-        font-size: 1.1rem;
-        font-weight: bold;
-        color: #000;
-    }
-
-    .withdrawal-li-area {
-        margin: 20px auto;
-    }
-
-    .withdrawal-li {
-        font-size: 0.9rem;
-        font-weight: bold;
-        color: #000;
-    }
-
-    .withdrawal-button-area {
-        width: 100%;
-        margin-bottom: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .withdrawal-button,
-    .withdrawal-index-button {
-        width: 120px;
-        height: 43px;
-        margin: 0 20px;
-        font-size: 0.9rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid transparent;
-        border-radius: 7px;
-        cursor: pointer;
-    }
-
-    .withdrawal-button {
-        background-color: #53A73C;
-        color: #fff;
-    }
-
-    .withdrawal-index-button {
-        background-color: #D9D9D9;
-        color: #000;
-    }
-}
-
-/* 데스크탑 */
-@media only screen and (min-width: 1024px) {
-    .withdrawal-form {
-        margin-top: 20px;
-    }
-
-    .withdrawal-container {
-        max-width: 60%;
-        margin: 0 auto;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        background-color: #FCFDFD;
-    }
-
-    .withdrawal-h1 {
-        font-size: 1.5rem;
-        margin: 50px auto;
-        font-size: 1.8rem;
-        font-weight: bold;
-        color: #53A73C;
-        text-align: center;
-    }
-
-    .withdrawal-area {
-        width: 100%;
-        margin: 0 auto;
-    }
-
-    .withdrawal-text-area {
-        width: 80%;
+        width: 90%;
         padding: 20px;
+        font-weight: bold;
         margin: 0 auto;
         margin-bottom: 30px;
         border: 1px solid #ccc;
@@ -1498,301 +858,75 @@
         overflow: hidden;
     }
 
-    .withdrawal-h2 {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #000;
+    .withdrawal-button-area {
+        text-align: center;
+        margin-bottom: 50px;
     }
 
     .withdrawal-li-area {
         margin: 30px auto;
-    }
+    }    
 
-    .withdrawal-li {
-        font-size: 1rem;
-        font-weight: bold;
-        color: #000;
-    }
-
-    .withdrawal-button-area {
-        width: 100%;
-        margin-bottom: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .withdrawal-button,
-    .withdrawal-index-button {
-        width: 170px;
-        height: 43px;
-        margin: 0 20px;
-        font-size: 0.9rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid transparent;
-        border-radius: 7px;
-        cursor: pointer;
-    }
-
-    .withdrawal-button {
-        background-color: #53A73C;
-        color: #fff;
-    }
-
-    .withdrawal-index-button {
-        background-color: #D9D9D9;
-        color: #000;
-    }
-}
-
-
-/* 회원정보 수정 전 비밀번호 확인 페이지 */
-/* 휴대폰 */
-@media only screen and (max-width: 767px) {
-
-    .password-reconfirm-form {
-        margin-top: 20px;
-    }
-
-    .password-reconfirm-container {
-        max-width: 60%;
-        margin: 0 auto;
-        padding: 1em 3em 2em 3em;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        background-color: #FCFDFD;
-    }
-
-    .password-reconfirm-h1 {
-        margin: 40px auto;
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: #53A73C;
-        text-align: center;
-    }
-
-    .password-reconfirm-input {
-        width: 100%;
-        height: 43px;
-        margin: 0 auto;
-        padding: 1em;
-        font-size: 0.7rem;
-        margin-bottom: 30px;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        -webkit-transition: 0.35s ease-in-out;
-        -moz-transition: 0.35s ease-in-out;
-        -o-transition: 0.35s ease-in-out;
-        transition: 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
-    }
-
-    .password-reconfirm-input:focus {
-        color: #A6A6A6;
-        outline: 0;
-        border-color: #ccc;
-    }
-
-    .password-reconfirm-input::placeholder {
-        font-size: 0.7rem;
-        color: #A6A6A6;
-    }
-
-    .password-reconfirm-button-area {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .password-reconfirm-info-button {
-        width: 100%;
-        height: 43px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        font-size: 0.7rem;
-        font-weight: bold;
-        border: 1px solid #53A73C;
-        border-radius: 7px;
-        margin-bottom: 40px;
-        color: #53A73C;
-    }
-
+    .login-span,
     .password-reconfirm-span {
+        font-size: 0.9rem;
         margin: 15px auto;
-        font-size: 0.6rem;
-        margin-bottom: 40px;
-    }
-}
-
-
-/* 태블릿 */
-@media only screen and (min-width: 768px) and (max-width: 1023.99px) {
-
-    .password-reconfirm-form {
-        margin-top: 30px;
     }
 
-    .password-reconfirm-container {
-        max-width: 50%;
-        margin: 0 auto;
-        padding: 1em 3em 2em 3em;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        background-color: #FCFDFD;
-    }
-
-    .password-reconfirm-h1 {
-        margin: 60px auto;
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #53A73C;
-        text-align: center;
-    }
-
-    .password-reconfirm-input {
-        width: 100%;
-        height: 43px;
-        margin: 0 auto;
-        padding: 1em;
-        font-size: 0.8rem;
-        margin-bottom: 30px;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        -webkit-transition: 0.35s ease-in-out;
-        -moz-transition: 0.35s ease-in-out;
-        -o-transition: 0.35s ease-in-out;
-        transition: 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
-    }
-
-    .password-reconfirm-input:focus {
-        color: #A6A6A6;
-        outline: 0;
-        border-color: #ccc;
-    }
-
-    .password-reconfirm-input::placeholder {
-        font-size: 0.8rem;
-        color: #A6A6A6;
-    }
-
-    .password-reconfirm-button-area {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .password-reconfirm-info-button {
-        width: 100%;
-        height: 43px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        font-size: 0.8rem;
-        font-weight: bold;
-        border: 1px solid #53A73C;
-        border-radius: 7px;
-        margin-bottom: 80px;
-        color: #53A73C;
-    }
-
-    .password-reconfirm-span {
+/* 유저컨트롤러 에러메세지 */
+    .error-text {
+        color: red;
         font-size: 0.7rem;
-        margin: 15px auto;
-        margin-bottom: 40px;
-    }
-}
-
-/* 데스크탑 */
-@media only screen and (min-width: 1024px) {
-
-    .password-reconfirm-form {
-        margin-top: 30px;
+        margin-left: 20px;
     }
 
-    .password-reconfirm-container {
-        max-width: 50%;
-        margin: 0 auto;
-        padding: 1em 3em 2em 3em;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        background-color: #FCFDFD;
+
+/* 실시간 유효성 검사 에러메세지 */
+    .u_mail_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
     }
 
-    .password-reconfirm-h1 {
-        margin: 60px auto;
-        font-size: 1.7rem;
-        font-weight: bold;
-        color: #53A73C;
-        text-align: center;
+    .u_password_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
     }
 
-    .password-reconfirm-input {
-        width: 100%;
-        height: 43px;
-        margin: 0 auto;
-        padding: 1em;
-        font-size: 0.9rem;
-        margin-bottom: 30px;
-        background-color: #F9FAFA;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        color: #000;
-        -webkit-transition: 0.35s ease-in-out;
-        -moz-transition: 0.35s ease-in-out;
-        -o-transition: 0.35s ease-in-out;
-        transition: 0.35s ease-in-out;
-        transition: all 0.35s ease-in-out;
+    .u_password_confirm_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
     }
 
-    .password-reconfirm-input:focus {
-        color: #A6A6A6;
-        outline: 0;
-        border-color: #ccc;
+    .u_name_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
     }
 
-    .password-reconfirm-input::placeholder {
-        color: #A6A6A6;
-        font-size: 0.9rem;
+    .u_birthdate_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
     }
 
-    .password-reconfirm-button-area {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
+    .u_tel_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
     }
 
-    .password-reconfirm-info-button {
-        color: #000;
-        background-color: #FEE500;
+    .u_postcode_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
     }
 
-    .password-reconfirm-info-button {
-        width: 100%;
-        height: 43px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #F9FAFA;
-        font-size: 0.9rem;
-        font-weight: bold;
-        border: 1px solid #53A73C;
-        border-radius: 7px;
-        margin-bottom: 80px;
-        color: #53A73C;
-    }
-
-    .password-reconfirm-span {
-        font-size: 0.8rem;
-        margin: 15px auto;
-        margin-bottom: 40px;
-    }
+    .u_basic_address_errormsg {
+        color: red;
+        font-size: 0.7rem;
+        margin-left: 20px;
+    }     
 }

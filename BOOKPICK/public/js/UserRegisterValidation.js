@@ -1,5 +1,4 @@
 // ### 회원가입 실시간 유효성 검사 ###
-
 document.addEventListener("DOMContentLoaded", function () {
     var forms = document.getElementsByClassName("register-form");
     var csrfToken = document.querySelector('meta[name="csrf-token"]');
@@ -7,17 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     for (let i = 0; i < forms.length; i++) {
         var form = forms[i];
-
-        // 각 입력 필드에 대한 유효성 검사를 수행 함수 등록
-        var inputFields = form.getElementsByClassName("register-input");
-        for (var j = 0; j < inputFields.length; j++) {
-            inputFields[j].addEventListener("input", function (event) {
-                validateInput(event.target);
-            });
-        }
-
-        // 이메일 중복 체크 버튼 관련 함수
         var emailConfirmButton = form.querySelector("#emailConfirmButton");
+        var emailCheckPerformed = false;
+
         if (emailConfirmButton) {
             emailConfirmButton.addEventListener("click", function (event) {
                 event.preventDefault();
@@ -25,64 +16,51 @@ document.addEventListener("DOMContentLoaded", function () {
                 // 각 입력 필드에 대한 유효성 검사
                 var userEmailValid = validateInput(document.getElementById("u_email"));
 
-                // 유효성 검사를 통과하면 중복 이메일 확인
                 if (userEmailValid) {
                     checkDuplicateEmail("/api/confirm-email", document.getElementById("u_email").value, function (isAvailable) {
                         if (isAvailable) {
-                            alert("이미 사용 중인 이메일입니다.");
-                        } else {
-                            // 사용가능한 이메일인 경우
+                            // 사용 가능한 이메일인 경우
                             alert("사용 가능한 이메일입니다.");
-                            // 사용 가능한 이메일일 때, 폼 전체가 유효한지 검사
-                            if (isFormValid()) {
-                                // 폼 전체가 유효한 경우에만 중복 확인 버튼 비활성화
-                                emailConfirmButton.disabled = true;
-
-                                // 폼 전체가 유효한 경우에만 제출
-                                form.submit();
-                            }
+                            emailCheckPerformed = true; // 중복 이메일 확인 수행
+                        } else {
+                            // 중복된 이메일인 경우
+                            alert("이미 사용 중인 이메일입니다.");
                         }
                     });
+                } else {
+                    // 이메일 필드가 비어있는 경우
+                    alert("이메일을 입력해주세요.");
                 }
             });
         }
 
-        // 중복 이메일 체크 여부 변수
-        var emailCheckPerformed = false;
+        // 각 입력 필드에 대한 실시간 유효성 검사 등록
+        var inputFields = form.getElementsByClassName("register-input");
+        for (var j = 0; j < inputFields.length; j++) {
+            inputFields[j].addEventListener("input", function (event) {
+                // 중복 이메일 확인 상태 초기화
+                emailCheckPerformed = false;
+                validateInput(event.target);
+            });
+        }
 
         // form 제출 동작 막음
         form.addEventListener("submit", function (event) {
             event.preventDefault();
 
-            // 이메일 중복 체크가 이미 수행되었으면 다시 수행하지 않음
-            if (!emailCheckPerformed) {
-                // 중복 이메일 확인 및 폼 전체 유효성 검사
-                checkDuplicateEmail("/api/confirm-email", document.getElementById("u_email").value, function (isAvailable) {
-                    emailCheckPerformed = true; // 중복 체크가 수행되었음을 표시
-
-                    if (isAvailable) {
-                        // 이미 사용 중인 이메일이면 폼 제출 막음
-                        alert("이미 사용 중인 이메일입니다.");
-                    } else {
-                        // 사용 가능한 이메일인 경우
-                        // 폼 전체가 유효한지 검사
-                        if (isFormValid()) {
-                            // 폼 전체가 유효한 경우에만 중복 확인 버튼 비활성화
-                            emailConfirmButton.disabled = true;
-
-                            // 폼 전체가 유효한 경우에만 제출
-                            form.submit();
-                        }
-                    }
-                });
-            } else {
-                // 중복 이메일 체크가 이미 수행되었으면 폼 전체 유효성 검사만 수행하여 제출
+            // 중복 이메일 확인이 이루어진 경우
+            if (emailCheckPerformed) {
                 if (isFormValid()) {
-                    form.submit();
+                    // 폼 제출 후 환영 메시지 표시
+                    alert("환영합니다. 로그인을 해주세요.");
+                    form.submit(); // 폼 제출 허용
                 } else {
-                    // 폼의 필수 정보를 올바르게 입력하지 않은 경우
-                    alert("입력하신 정보를 다시 확인해주세요");
+                    // 필수 항목을 입력하지 않았을 경우
+                    alert("필수 항목을 입력해주세요");
                 }
+            } else {
+                // 중복 이메일 확인이 이루어지지 않은 경우
+                alert("이메일 중복 확인 또는 필수 항목을 입력해주세요.");
             }
         });
     }
@@ -109,7 +87,17 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             console.log(data); // 콘솔에 서버 응답 출력
 
-            callback(data.confirmEmail);
+            if (data && data.confirmEmail !== undefined) {
+                if (data.confirmEmail === 0) {
+                    // 0인 경우 사용 가능한 이메일로 처리
+                    callback(true);
+                } else {
+                    // 0이 아닌 경우 중복된 이메일로 처리
+                    callback(false);
+                }
+            } else {
+                callback(false);
+            }
         })
         .catch(error => {
             console.error("Error:", error);
@@ -129,12 +117,12 @@ document.addEventListener("DOMContentLoaded", function () {
             // 값이 있는 경우, 유효성 검사 수행
             var isValid = true;
 
-        // 각 필드에 따른 추가적인 유효성 검사 규칙을 적용하고 결과에 따라 isValid를 업데이트
-        if (inputField.id === "u_email") {
+            // 각 필드에 따른 추가적인 유효성 검사 규칙을 적용하고 결과에 따라 isValid를 업데이트
+            if (inputField.id === "u_email") {
             // 중복 이메일 체크가 수행되지 않은 경우에만 중복 이메일 확인
-            if (!emailCheckPerformed) {
+                if (!emailCheckPerformed) {
                 isValid = validateEmail(inputField);
-            }
+                }
             } else if (inputField.id === "u_password") {
                 isValid = validatePassword(inputField);
             } else if (inputField.id === "u_password_confirm") {
@@ -207,6 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
             userBasicAddressValid
         );
     }
+
 });
 
     // email 유효성 검사

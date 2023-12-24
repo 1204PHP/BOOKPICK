@@ -21,14 +21,15 @@
 		@include('layout.user_error_message')
 		<div class="login-button-area">
 			<button class="login-button" type="submit">로그인</button>
-			{{-- <button class="login-kakaologin-button" type="button">카카오계정으로 로그인</button> --}}
-			<span class="login-span">개인정보 보호를 위해 공용 PC에서 사용 시 SNS계정의 로그아웃 상태를 꼭 확인해 주세요.</span> 
-			<a class="login-register-button" href="{{ route('getRegister') }}">회원가입</a>
+			<button class="login-kakaologin-button" type="button">카카오계정으로 로그인</button>			
+		</div>
+		<div class="login-button-area-1">
+			<span class="login-span">개인정보 보호를 위해 공용 PC에서 사용 시 SNS계정의 로그아웃 상태를 꼭 확인해 주세요.</span> 			
+		</div>	
+		<div class="login-button-area">
+			<button type="button" class="login-register-button" onclick="location.href='{{ route('getRegister') }}'">회원가입</button>
 		</div>	
 	</form>
 </div>
 @endsection
 
-@section('defer-js')
-    <script src="{{ asset('/js/UserValidation.js') }}" defer></script>
-@endsection

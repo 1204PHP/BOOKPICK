@@ -59,8 +59,7 @@ class UserController extends Controller
         if(Auth::check()) {
             // $this->clearLoginAttempts($request);
             // 정상 로그인 시 로그인 시도 제한 횟수 초기화
-            // session( $result->only( 'u_id' ) );
-            session(['u_id' => $result->u_id, 'u_name' => $result->u_name]);
+            session( $result->only( 'u_id' ) );
             // 세션 내 u_id 데이터 저장
         } else {
             $errorMsg = '로그인에 실패했습니다. 새로고침 후 재로그인 해주세요.';
