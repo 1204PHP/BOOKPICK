@@ -20,6 +20,7 @@
 						권의 책이 있어요. 책을 눌러 감상을 기록해 보세요!
 					</p>
 				</div>
+				<br>
 				{{-- 책출력부분 --}}
 				<div class="search_layout_container">
 					@forelse($result as $val)
@@ -33,7 +34,7 @@
 						<p class="search_book_author_txt">{{$val->b_author}}</p>
 					</div>
 					@empty
-						<p>저장된 책이 없습니다.</p>
+						<p class="library-content-nop"></p>
 					@endforelse
 				</div>
 				@if($resultCnt > 0)

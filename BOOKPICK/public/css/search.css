@@ -64,6 +64,11 @@
 	-webkit-line-clamp: 2;
 }
 
+.search_book_nosearch_txt {
+	width: 100%;
+	height: 300px;
+	color: #767676;
+}
 /* 페이지네이션 */
 .paginate_div {
 	justify-content: center;

@@ -13,10 +13,10 @@
 				<p class="book_datail_title_txt">{!!$result->b_title!!}</p>
 				<br>
 				<p class="book_datail_cate_txt">{{$result->b_main_cate}}</p>
-				<br><br>
-				<p class="book_datail_author_txt">{{$result->b_author}}</p>
 				<br>
-				<p class="book_datail_author_txt">{{$result->b_price}}</p>
+				<p class="book_datail_author_txt">저자: {{$result->b_author}}</p>
+				<br>
+				<p class="book_datail_author_txt">가격: {{$result->b_price}}원</p>
 				<br><br>
 				<p>{!!$result->b_summary!!}</p>
 				<input type="hidden" id="wishFlg" name="wishFlg" value="{{$wishFlg}}">
@@ -28,14 +28,14 @@
 					<!-- 로그인한 경우 -->
 					<form class="book_datail_form1" action="{{ route('postBookDetailWishList') }}" method="POST">
 						@csrf
-						<button type="submit" onclick="BookDetailWishFlgshowAlert()">
+						<input type="hidden" id="b_id" name="b_id" value="{{$result->b_id}}">
+						<button type="submit" class="book_detail_zzim" onclick="BookDetailWishFlgshowAlert()">
 						@if($wishFlg === 0)
-							찜 삭제
+							찜 삭제	
 						@elseif($wishFlg === 1)
-							찜 등록
+							찜 하기
 						@endif
 						</button>
-						<input type="hidden" id="b_id" name="b_id" value="{{$result->b_id}}">
 					</form>
 
 					<form class="book_datail_form2" action="{{ route('postBookDetailUserLibrary') }}" onsubmit="BookDetailLibraryFlgshowAlert(event)" name="validateForm" method="POST">
@@ -43,32 +43,33 @@
 						<input type="hidden" id="library_b_id" name="library_b_id" value="{{$result->b_id}}">
 						
 						@if($libraryFlg ===1)
-								<button type="button" onclick="BookDetailopenModal()">
-									내 서재에 추가
+								<button type="button" class="book_detail_zzim1" onclick="BookDetailopenModal()">
+									서재에 추가
 								</button>
 								<br>
 								<div id="myModal" class="modal">
 									<div class="modal-content">
 										<input type="date" id="detailStartDate" name="detailStartDate" value="{{ now()->format('Y-m-d') }}">
-										<span >에서</span>
+										<span class="modal-content_txt" >에서</span>
 										<span class="modal-content-br"><br></span>
 										<input type="date" id="detailEndDate" name="detailEndDate" value="{{ now()->format('Y-m-d') }}">
-										<span >까지</span>
+										<span class="modal-content_txt">까지</span>
 										<br>
-										<button class="modal-content-submit"type="submit">등록</button>
+										<button class="modal-content-submit" type="submit">등록</button>
 									</div>
 								</div>
 						@endif
 
 						@if($libraryFlg ===0)
-							<button type="submit">
+							<button type="submit" class="book_detail_zzim1">
 							서재에서 삭제
 							</button>
 						@endif
 					</form>
 				@else
-					<button type="button" onclick="BookDetailWishFlgshowAlert()">찜하기1</button>
-					<button type="submit" onclick="BookDetailLibraryFlgshowAlert()">나의서재등록1</button>
+				{{-- 로그인 안한 경우 --}}
+					<button type="button" class="book_detail_zzim" onclick="BookDetailWishFlgshowAlert()">찜 하기</button>
+					<button type="submit" class="book_detail_zzim1" onclick="BookDetailLibraryFlgshowAlert()">서재에 추가</button>
 				@endif
 			</div>
 		</div>
