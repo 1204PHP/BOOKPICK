@@ -15,6 +15,7 @@
 .library-content {
 	border: 1px solid #ccc;
 	border-radius: 10px;
+	padding: 5px;
 }
 .library-title-strong {
 	font-weight: bold;
@@ -35,13 +36,8 @@
 	font-size: 16px;
 	color: rgba(0, 0, 0, 0.5);
 }
-
-.title_txt {
-	color: #FEDA25;
-}
-
-.library-content-box {
-	width: 200px;
+.library-content-nop {
+	height: 300px;
 }
 @media screen and (min-width: 800px) {
 	.library-media {
