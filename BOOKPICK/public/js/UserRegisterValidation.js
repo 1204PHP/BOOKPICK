@@ -46,21 +46,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // form 제출 동작 막음
         form.addEventListener("submit", function (event) {
-            event.preventDefault();
-
             // 중복 이메일 확인이 이루어진 경우
             if (emailCheckPerformed) {
                 if (isFormValid()) {
                     // 폼 제출 후 환영 메시지 표시
-                    alert("환영합니다. 로그인을 해주세요.");
-                    form.submit(); // 폼 제출 허용
+                    alert("환영합니다. 로그인을 해주세요");
                 } else {
-                    // 필수 항목을 입력하지 않았을 경우
-                    alert("필수 항목을 입력해주세요");
+                    // 필수 정보를 입력하지 않았을 경우
+                    alert("필수 정보를 입력해주세요");
+                    event.preventDefault(); // 폼 제출을 막음
                 }
             } else {
                 // 중복 이메일 확인이 이루어지지 않은 경우
-                alert("이메일 중복 확인 또는 필수 항목을 입력해주세요.");
+                if (!validateInput(document.getElementById("u_email"))) {
+                    // 이메일 필드가 유효하지 않은 경우
+                    alert("이메일 중복 확인 또는 필수 항목을 입력해주세요");
+                    event.preventDefault(); // 폼 제출을 막음
+                }
             }
         });
     }
@@ -107,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 각 입력 필드에 대한 유효성 검사를 수행하는 함수
     function validateInput(inputField) {
-        var errorSpan = inputField.nextElementSibling;
+        var errorSpan = inputField.parentElement.querySelector('.register-required-span span');
 
         if (!inputField.value) {
             // 값이 없는 경우, input 테두리 초기화
@@ -146,11 +148,12 @@ document.addEventListener("DOMContentLoaded", function () {
             // 유효성 검사 실패 시 input 테두리 빨간색
             if (isValid) {
                 inputField.style.border = "3px solid #53A73C";
+                clearErrorMsg(errorSpan);
             } else {
                 inputField.style.border = "3px solid red";
             }
 
-            if (isValid) {
+            if (!isValid) {
                 clearErrorMsg(errorSpan);
             }
         }
@@ -371,6 +374,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function clearErrorMsg(element) {
         if (element) {
-            element.innerText = "";
+            // 수정된 부분: <p> 태그 내부의 <span> 태그를 찾아 텍스트 내용을 비움
+            var spanElement = element.querySelector('span');
+            if (spanElement) {
+                spanElement.innerText = "";
+            }
         }
     }

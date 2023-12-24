@@ -110,7 +110,7 @@ class UserController extends Controller
         } catch(Exception $e) {
             DB::rollback();
             Log::debug( "### 예외발생 : 롤백완료 ###" );
-            $errorMsg = '회원가입에 실패했습니다. 새로고침 후 재가입 해주세요.';
+            $errorMsg = '회원가입에 실패했습니다. 새로고침 후 재가입 해주세요';
             return redirect()->route( 'getRegister' )->withErrors( $errorMsg );
         } finally {
             Log::debug( "### 회원가입(회원정보 저장) 종료 ###" );
@@ -159,7 +159,7 @@ class UserController extends Controller
         // 빈 값 체크
         if (empty($request->u_password)) {
             $errorMsg = '비밀번호를 입력해주세요';
-            Log::debug("### 비밀번호 빈값입력으로 비밀번호입력 메세지 출력");
+            Log::debug("### 비밀번호 빈 값입력으로 비밀번호 입력 메세지 출력");
             return view('user_password_reconfirm')->withErrors($errorMsg);
         }
 
@@ -216,14 +216,24 @@ class UserController extends Controller
         // 비밀번호 변경 - 새 비밀번호 암호화처리
         if (!empty($requestData['new_password']) && !empty($requestData['password_confirm'])) {
             // 새 비밀번호와 재확인 비밀번호 일치 확인
-
             if ($requestData['new_password'] !== $requestData['password_confirm']) {
                 $errorMsg = '비밀번호를 다시 확인해주세요';
                 Log::debug( "### 변경할 비밀번호 불일치 : 비밀번호 재확인 메세지 출력 ###" );
                 return redirect()->route('getInfo')->withErrors($errorMsg);
             }
+
+            // 유저가 입력한 새로운 비밀번호를 암호화하여 저장
+            $NewPassword = Hash::make($requestData['new_password']);
+
+            // 새 비밀번호와 현재 비밀번호가 동일한지 확인
+            if (Hash::check($requestData['new_password'], $loginUser->u_password)) {
+                $errorMsg = '현재 사용 중인 비밀번호와 동일한 비밀번호로 변경할 수 없어요';
+                Log::debug("### DB저장 비밀번호와 동일 : 동일한 비밀번호 변경 메시지 출력 ###");
+                return redirect()->route('getInfo')->withErrors($errorMsg);
+            }
+
             // 사용자가 입력한 새로운 비밀번호를 암호화하여 저장
-            $newRequestData['u_password'] = Hash::make($requestData['new_password']);
+            $newRequestData['u_password'] = $NewPassword;
             Log::debug( "### 변경할 비밀번호 암호화 처리 완료 ###" );
         }
 
@@ -246,7 +256,7 @@ class UserController extends Controller
         } catch (Exception $e) {
             DB::rollback();
             Log::debug( "### 예외발생 : 롤백완료 ###" );
-            $errormsg = '회원 정보 수정에 실패했습니다. 새로고침 후 다시 수정 해주세요.';
+            $errormsg = '회원 정보 수정에 실패했습니다. 새로고침 후 다시 수정 해주세요';
             return redirect()->route('getInfo')->withErrors($errorMsg);
         } finally {
             Log::debug( "### 회원정보 수정 종료 ###" );

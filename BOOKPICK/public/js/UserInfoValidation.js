@@ -1,116 +1,141 @@
 document.addEventListener("DOMContentLoaded", function () {
     var form = document.querySelector(".info-form");
-    var csrfToken = document.querySelector('meta[name="csrf-token"]');
-    var csrfTokenValue = csrfToken ? csrfToken.getAttribute('content') : null;
-
     var new_password = document.getElementById("new_password");
     var password_confirm = document.getElementById("password_confirm");
     var u_postcode = document.getElementById("u_postcode");
     var u_basic_address = document.getElementById("u_basic_address");
     var u_detail_address = document.getElementById("u_detail_address");
 
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
+    // 각 입력 필드에 대한 유효성 검사를 수행하는 함수
+    function validateInput(inputField) {
+        var errorSpan = inputField.nextElementSibling;
 
-        // 필요한 데이터에 대한 유효성 검사 수행
-        var newPasswordValid = validatePassword(new_password);
-        var passwordConfirmValid = validatePasswordConfirm(new_password, password_confirm);
-        var postcodeValid = validatePostcode(u_postcode);
-        var basicAddressValid = validateBasicAddress(u_basic_address);
-        var detailAddressValid = validateBasicAddress(u_detail_address);
-
-        if (newPasswordValid && passwordConfirmValid && postcodeValid && basicAddressValid && detailAddressValid) {
-            // 유효성 검사 통과 시 폼 제출
-            form.submit();
+        if (!inputField.value) {
+            // 값이 없는 경우, input 테두리 초기화
+            inputField.style.border = "1px solid #ccc";
+            clearErrorMsg(errorSpan);
+            inputField.style.marginBottom = "10px";
         } else {
-            // 필수 항목을 입력하지 않았을 경우
-            alert("필수 항목을 입력해주세요");
-        }
-    });
+            // 값이 있는 경우, 유효성 검사 수행
+            var isValid = true;
 
+            // 각 필드에 따른 추가적인 유효성 검사 규칙을 적용하고 결과에 따라 isValid를 업데이트
+            if (inputField.id === "new_password") {
+                isValid = validatePassword(inputField);
+            } else if (inputField.id === "password_confirm") {
+                isValid = validatePasswordConfirm(document.getElementById("new_password"), inputField);
+            } else if (inputField.id === "u_postcode") {
+                isValid = validatePostcode(inputField);
+            } else if (inputField.id === "u_basic_address") {
+                isValid = validateBasicAddress(inputField);
+            } else if (inputField.id === "u_detail_address") {
+                // 상세주소 필드는 필수가 아니므로 유효성 검사를 무시
+                isValid = true;
+            }
+
+            // 유효성 검사 통과 시 input 테두리 초록색
+            // 유효성 검사 실패 시 input 테두리 빨간색
+            if (isValid) {
+                inputField.style.border = "3px solid #53A73C";
+                inputField.style.marginBottom = "10px";
+            } else {
+                inputField.style.border = "3px solid red";
+                inputField.style.marginBottom = "0px";
+            }
+
+            if (isValid) {
+                clearErrorMsg(errorSpan);
+            }
+        }
+        return isValid;
+    }
+
+    // 각 입력 필드에 대한 input 이벤트 리스너 등록
+    var inputFields = [new_password, password_confirm, u_postcode, u_basic_address, u_detail_address];
+
+    for (let i = 0; i < inputFields.length; i++) {
+        inputFields[i].addEventListener("input", function (event) {
+            validateInput(event.target);
+        });
+    }
+
+    // new password 유효성 검사
     function validatePassword(passwordInput) {
         var passwordValid = true;
-        var passwordErrorSpan = document.getElementsByClassName("u_password_errormsg")[0];
+        var passwordErrorSpan = document.querySelector(".new_password_errormsg");
         var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-        
-        if(passwordInput) {
+
+        if (passwordInput) {
             if (!passwordInput.value) {
                 passwordValid = false;
-                setInvalidInput(passwordInput, passwordErrorSpan, "비밀번호를 입력해주세요");
-            } else if (!passwordRegex.test(passwordInput.value) || passwordInput.value.length > 21) {
+                openErrorMsg(passwordErrorSpan, "비밀번호를 입력해주세요");
+            } else if (!passwordRegex.test(passwordInput.value) || passwordInput.value.length > 20) {
                 passwordValid = false;
-                setInvalidInput(passwordInput, passwordErrorSpan, "보안강도 약함(8~20자 문자+숫자+특수문자 포함필요)");
+                openErrorMsg(passwordErrorSpan, "보안강도 약함(8~20자 문자+숫자+특수문자 포함필요)");
             } else {
-                setValidInput(passwordInput, passwordErrorSpan);
+                clearErrorMsg(passwordErrorSpan);
             }
-        }  
+        }
         return passwordValid;
     }
 
+    // password 재확인 유효성 검사
     function validatePasswordConfirm(passwordInput, confirmPasswordInput) {
         var passwordConfirmValid = true;
-        var passwordConfirmErrorSpan = document.getElementsByClassName("u_password_confirm_errormsg")[0];
+        var confirmPasswordInputErrorSpan = document.querySelector(".password_confirm_errormsg");
 
         if (confirmPasswordInput) {
             if (!confirmPasswordInput.value) {
                 passwordConfirmValid = false;
-                setInvalidInput(confirmPasswordInput, passwordConfirmErrorSpan, "비밀번호를 한번 더 입력해주세요");
+                openErrorMsg(confirmPasswordInputErrorSpan, "비밀번호를 한번 더 입력해주세요");
             } else if (passwordInput.value !== confirmPasswordInput.value) {
                 passwordConfirmValid = false;
-                setInvalidInput(confirmPasswordInput, passwordConfirmErrorSpan, "비밀번호와 일치하지 않습니다");
+                openErrorMsg(confirmPasswordInputErrorSpan, "비밀번호와 일치하지 않습니다");
             } else {
-                setValidInput(confirmPasswordInput, passwordConfirmErrorSpan);
+                clearErrorMsg(confirmPasswordInputErrorSpan);
             }
         }
         return passwordConfirmValid;
     }
 
+    // 우편번호 유효성 검사
     function validatePostcode(postcodeInput) {
         var postcodeValid = true;
-        var postcodeErrorSpan = document.getElementsByClassName("u_postcode_errormsg")[0];
+        var postcodeErrorSpan = document.querySelector(".u_postcode_errormsg");
         var postcodeRegex = /^\d{5}$/;
-    
+
         if (postcodeInput) {
             if (!postcodeInput.value) {
                 postcodeValid = false;
-                setInvalidInput(postcodeInput, postcodeErrorSpan, "우편번호: 필수 정보입니다.");
+                openErrorMsg(postcodeErrorSpan, "우편번호: 필수 정보입니다.");
             } else if (!postcodeRegex.test(postcodeInput.value || postcodeInput.value.length > 6)) {
                 postcodeValid = false;
-                setInvalidInput(postcodeInput, postcodeErrorSpan, "우편번호는 5자리 숫자로만 입력해주세요");
+                openErrorMsg(postcodeErrorSpan, "우편번호는 5자리 숫자로만 입력해주세요");
             } else {
-                setValidInput(postcodeInput, postcodeErrorSpan);
+                clearErrorMsg(postcodeErrorSpan);
             }
         }
         return postcodeValid;
     }
 
+    // 기본주소 유효성 검사
     function validateBasicAddress(basicAddressInput) {
         var basicAddressValid = true;
-        var basicAddressErrorSpan = document.getElementsByClassName("u_postcode_errormsg")[0];
+        var basicAddressErrorSpan = document.querySelector(".u_basic_address_errormsg");
         var basicAddressValidRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z-]*$/;
-        
-        if(basicAddressInput) {
+
+        if (basicAddressInput) {
             if (!basicAddressInput.value) {
                 basicAddressValid = false;
-                setInvalidInput(basicAddressInput, basicAddressErrorSpan, "기본주소를 입력해주세요");
+                openErrorMsg(basicAddressErrorSpan, "기본주소를 입력해주세요");
             } else if (!basicAddressValidRegex.test(basicAddressInput.value || basicAddressInput.value.length > 201)) {
                 basicAddressValid = false;
-                setInvalidInput(basicAddressInput, basicAddressErrorSpan, "기본주소는 한글, 숫자, 영어, -를 포함하여 입력해주세요");
+                openErrorMsg(basicAddressErrorSpan, "기본주소는 한글, 숫자, 영어, -를 포함하여 입력해주세요");
             } else {
-                setValidInput(basicAddressInput, basicAddressErrorSpan);
+                clearErrorMsg(basicAddressErrorSpan);
             }
-        }  
+        }
         return basicAddressValid;
-    }
-
-    function setInvalidInput(inputField, errorSpan, errorMessage) {
-        inputField.style.border = "3px solid red";
-        openErrorMsg(errorSpan, errorMessage);
-    }
-
-    function setValidInput(inputField, errorSpan) {
-        inputField.style.border = "3px solid #53A73C";
-        clearErrorMsg(errorSpan);
     }
 
     function openErrorMsg(element, message) {

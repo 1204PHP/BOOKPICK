@@ -18,11 +18,15 @@
                 </div>
             </div>
             <div class="withdrawal-button-area">
-                <button class="withdrawal-button" type="submit">북픽 탈퇴</button>
+                <button class="withdrawal-button" type="submit"  onclick="return confirmWithdrawal()">북픽 탈퇴</button>
                 <button type="button" class="withdrawal-main-button" onclick="location.href='{{ route('index') }}'">취소</button>
             </div>   
         </div>             
     </form>
 </div>
+@endsection
+
+@section('defer-js')
+    <script src="{{ asset('/js/User.js') }}" defer></script>
 @endsection
 

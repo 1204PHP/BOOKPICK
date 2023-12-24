@@ -15,12 +15,12 @@
             <p class="info-h1">회원정보 수정</p>
             <div class="info-input-area">
                 <input class="info-input-readonly" type="email" readonly 
-                id="u_email" name="u_email" value={{$userdata->u_email}}>
+                id="u_email" name="u_email" value={{ $userdata->u_email }}>
             </div>            
             <div class="info-input-area">
                 <input class="info-input" type="password" 
                 id="new_password" name="new_password" maxlength="20" placeholder="변경 비밀번호">
-                <span class="new_password_errormsg"></span>
+                <span class="new_password_errormsg"></span> 
             </div>
             <div class="info-input-area">
                 <input class="info-input" type="password" 
@@ -29,35 +29,35 @@
             </div>
             <div class="info-input-area">
                 <input class="info-input-readonly" type="text" readonly 
-                id="u_name" name="u_name" value={{$userdata->u_name}}>
+                id="u_name" name="u_name" value={{ $userdata->u_name }}>
             </div>
             <div class="info-input-area">
                 <input class="info-input-readonly" type="text" readonly 
-                id="u_birthdate" name="u_birthdate" value={{$userdata->u_birthdate}}>
+                id="u_birthdate" name="u_birthdate" value={{ $userdata->u_birthdate }}>
             </div>
             <div class="info-input-area">
                 <input class="info-input-readonly" type="tel" readonly 
-                id="u_tel" name="u_tel" value={{$userdata->u_tel}}>
+                id="u_tel" name="u_tel" value={{ $userdata->u_tel }}>
             </div>
             <div class="info-input-postcode-area">
                 <div class="info-input-area">
                     <input class="info-input" type="text" id="u_postcode" name="u_postcode"
-                    value={{$userdata->u_postcode}} maxlength="5">
+                    value={{ $userdata->u_postcode }} maxlength="5">
                     <span class="u_postcode_errormsg"></span>
                 </div>
                 <button class="info-postcode-button" type="button">주소검색</button>
             </div>
             <div class="info-input-area">
                 <input class="info-input" type="text" 
-                id="u_basic_address" name="u_basic_address" value={{$userdata->u_basic_address}}>
+                id="u_basic_address" name="u_basic_address" value={{ $userdata->u_basic_address }}>
                 <span class="u_basic_address_errormsg"></span>
             </div>
             <div class="info-input-area">
                 <input class="info-input" type="text" 
-                id="u_detail_address" name="u_detail_address" value={{$userdata->u_detail_address}}>
+                id="u_detail_address" name="u_detail_address" value={{ $userdata->u_detail_address }}>
                 <span class="u_detail_address_errormsg"></span>
             </div>
-            @include('layout.user_error_message')      
+            <span>@include('layout.user_error_message')</span>           
             <div class="info-button-area">
                 <button class="info-button" type="submit">수정하기</button>
             </div>

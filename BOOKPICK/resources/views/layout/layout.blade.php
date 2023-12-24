@@ -14,6 +14,7 @@
     @yield ('head-scripts')
     {{-- <script src="{{ asset('/js/common.js') }}" defer></script> --}}
     {{-- <script src="{{ asset('/js/home.js') }}" defer></script> --}}
+    {{-- <script src="{{ asset('/js/User.js') }}" defer></script> --}}
     {{-- <script src="{{ asset('/js/UserInfoValidation.js') }}" defer></script> --}}
     {{-- <script src="{{ asset('/js/UserRegisterValidation.js') }}" defer></script> --}}
     {{-- <script src="{{ asset('/js/bookDetail.js') }}" defer></script> --}}
