@@ -31,7 +31,7 @@
 						<input type="hidden" id="b_id" name="b_id" value="{{$result->b_id}}">
 						<button type="submit" class="book_detail_zzim" onclick="BookDetailWishFlgshowAlert()">
 						@if($wishFlg === 0)
-							찜 삭제
+							찜 삭제	
 						@elseif($wishFlg === 1)
 							찜 하기
 						@endif
