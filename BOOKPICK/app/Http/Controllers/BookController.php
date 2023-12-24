@@ -77,87 +77,110 @@ class BookController extends Controller
 
     public function bookDetailWishList( Request $request )
     {
-        
-        Log::debug("찜 등록 시작");
-        $userId = Session::get('u_id');
-        $bookId = $request->input('b_id');
-        if ($userId) { // 세션에 사용자 ID가 존재하는 경우
-            $record = User_wishlist::where('u_id', $userId)
-                        ->where('b_id', $bookId)
-                        ->first();
-            if($record) {
-                if($record->uw_flg===0) {
-                    User_wishlist::where('u_id', $userId)
-                        ->where('b_id', $bookId)
-                        ->update([
-                            'uw_flg'=> 1,
+        try {
+            Log::debug( "--------찜등록관리 시작---------" );
+            
+            $userId = Session::get('u_id');
+            $bookId = $request->input('b_id');
+            Log::debug( "userId : ".$userId );
+            Log::debug( "bookId : ".$bookId );
+            if ($userId) { // 세션에 사용자 ID가 존재하는 경우
+                $record = User_wishlist::where('u_id', $userId)
+                            ->where('b_id', $bookId)
+                            ->first();
+                if($record) {
+                    if($record->uw_flg===0) {
+                        User_wishlist::where('u_id', $userId)
+                            ->where('b_id', $bookId)
+                            ->update([
+                                'uw_flg'=> 1,
+                        ]);
+                        Log::debug( "user_wishlist uw_flg=1로 수정(찜 삭제)" );
+                    } else if( $record->uw_flg===1 ) {
+                        User_wishlist::where('u_id', $userId)
+                            ->where('b_id', $bookId)
+                            ->update([
+                                'uw_flg'=> 0,
+                        ]);
+                        Log::debug( "user_wishlist uw_flg=1로 수정(찜 다시 등록)" );
+                    }
+                } else {
+                    User_wishlist::create([
+                        'u_id' => $userId,
+                        'b_id' => $bookId,
                     ]);
-                } else if( $record->uw_flg===1 ) {
-                    User_wishlist::where('u_id', $userId)
-                        ->where('b_id', $bookId)
-                        ->update([
-                            'uw_flg'=> 0,
-                    ]);
+                    Log::debug( "user_wishlist uw_flg=0로 생성(찜 등록)" );
                 }
-            } else {
-                User_wishlist::create([
-                    'u_id' => $userId,
-                    'b_id' => $bookId,
-                ]);
+            } else { // 세션에 사용자 ID가 없는 경우
+                Log::debug("세션에 사용자 ID가 없음");
+                return redirect()->route('getLogin');
             }
-
-            Log::debug("찜 등록 끝");
+            Log::debug( "--------찜관리 끝---------" );
             return redirect()->route('getBookDetail',['id' => $bookId]);
-        } else { // 세션에 사용자 ID가 없는 경우
-            Log::debug("세션에 사용자 ID가 없음");
-            return redirect()->route('getLogin');
+        } catch(Exception $e) {
+            Log::error( "--------찜등록관리 에러발생---------" );
+            Log::error( "에러내용:".$e->getMessage());
+            Log::error( "------------------------------------" );
+            return redirect()->route( 'index' );
         }
     }
 
     public function bookDetailUserLibrary( Request $request )
     {
-        $userId = Session::get('u_id');
-        $bookId = $request->input('library_b_id');
-        $startDate = $request->input('detailStartDate');
-        $endDate = $request->input('detailEndDate');
-        // TODO: 시작일, 끝나는일 유효성검사
-        Log::debug("bookDetailUserLibrary 데이터삽입 시작");
-
-        if ($userId) { // 세션에 사용자 ID가 존재하는 경우
-            $record = User_library::where('u_id', $userId)
-                        ->where('b_id', $bookId)
-                        ->first();
-            if($record) { // 해당 책 정보가 있을경우
-                if($record->ul_flg===0) { // 데이터가 이미 있는 경우(플래그로 삭제처리)
-                    User_library::where('u_id', $userId)
-                        ->where('b_id', $bookId)
-                        ->update([
-                            // 'ul_start_at' => now()->format('Y-m-d'),
-                            // 'ul_end_at' => now()->format('Y-m-d'),
-                            'ul_flg'=> 1,
+        try {
+            Log::debug( "--------서재등록관리 시작---------" );
+            $userId = Session::get('u_id');
+            $bookId = $request->input('library_b_id');
+            $startDate = ($request->input('detailStartDate') === NULL ? now()->format('Y-m-d') : $request->input('detailStartDate'));
+            $endDate = ($request->input('detailEndDate') === NULL ? now()->format('Y-m-d') : $request->input('detailEndDate'));
+            Log::debug( "userId : ".$userId );
+            Log::debug( "bookId : ".$bookId );
+            Log::debug( "startDate : ".$startDate );
+            Log::debug( "endDate : ".$endDate );
+            if ($userId) { // 세션에 사용자 ID가 존재하는 경우
+                $record = User_library::where('u_id', $userId)
+                            ->where('b_id', $bookId)
+                            ->first();
+                if($record) { // 해당 책 정보가 있을경우
+                    if($record->ul_flg===0) { // 데이터가 이미 있는 경우(플래그로 삭제처리)
+                        User_library::where('u_id', $userId)
+                            ->where('b_id', $bookId)
+                            ->update([
+                                // 'ul_start_at' => now()->format('Y-m-d'),
+                                // 'ul_end_at' => now()->format('Y-m-d'),
+                                'ul_flg'=> 1,
+                        ]);
+                        Log::debug( "User_library uw_flg=1로 수정(서재 삭제)" );
+                    } else if( $record->ul_flg===1 ) { // 데이터가 삭제 되어 있는 경우(다시 추가 처리)
+                        User_library::where('u_id', $userId)
+                            ->where('b_id', $bookId)
+                            ->update([
+                                'ul_start_at' => $startDate,
+                                'ul_end_at' => $endDate,
+                                'ul_flg'=> 0,
+                        ]);
+                        Log::debug( "User_library uw_flg=0로 수정(서재 다시 등록)" );
+                    }
+                } else { //해당 책 정보가 없을경우
+                    User_library::create([
+                        'u_id' => $userId,
+                        'b_id' => $bookId,
+                        'ul_start_at' => $startDate,
+                        'ul_end_at' => $endDate,
                     ]);
-                } else if( $record->ul_flg===1 ) { // 데이터가 삭제 되어 있는 경우(다시 추가 처리)
-                    User_library::where('u_id', $userId)
-                        ->where('b_id', $bookId)
-                        ->update([
-                            'ul_start_at' => $startDate,
-                            'ul_end_at' => $endDate,
-                            'ul_flg'=> 0,
-                    ]);
+                    Log::debug( "User_library uw_flg=0로 생성(서재 등록)" );
                 }
-            } else { //해당 책 정보가 없을경우
-                User_library::create([
-                    'u_id' => $userId,
-                    'b_id' => $bookId,
-                    'ul_start_at' => $startDate,
-                    'ul_end_at' => $endDate,
-                ]);
+                Log::debug( "--------서재등록관리 끝---------" );
+                return redirect()->route('getBookDetail',['id' => $bookId]);
+            } else { // 세션에 사용자 ID가 없는 경우
+                Log::debug("세션에 사용자 ID가 없음");
+                return redirect()->route('getLogin');
             }
-            Log::debug("bookDetailUserLibrary 데이터삽입 끝");
-            return redirect()->route('getBookDetail',['id' => $bookId]);
-        } else { // 세션에 사용자 ID가 없는 경우
-            Log::debug("세션에 사용자 ID가 없음");
-            return redirect()->route('getLogin');
+        } catch(Exception $e) {
+            Log::error( "---------서재등록관리 에러발생---------" );
+            Log::error( "에러내용:".$e->getMessage());
+            Log::error( "------------------------------------" );
+            return redirect()->route( 'index' );
         }
     }
 }

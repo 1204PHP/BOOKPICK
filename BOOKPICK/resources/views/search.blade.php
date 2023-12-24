@@ -26,7 +26,7 @@
 			<p class="search_book_author_txt">{{$val->b_author}}</p>
 		</div>
 		@empty
-			<p>검색어 결과가 없습니다.</p>
+			<p class="search_book_nosearch_txt">검색어 결과가 없습니다.</p>
 		@endforelse
 	</div>
 

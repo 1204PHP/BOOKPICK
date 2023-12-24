@@ -9,10 +9,8 @@
     padding: 0 20px;
 }
 .book_detail_div1{
-	height: 300px;
-}
-.book_detail_div1{
 	width: 200px;
+	height: 300px;
 }
 .book_detail_div2 p {
 	display: inline-block;
@@ -26,15 +24,38 @@
 	font-weight: bold;
 }
 .book_datail_cate_txt{
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: bold;
 	color: rgba(0, 0, 0, 0.5);
 }
-.book_datail_author_txt{
+.book_datail_author_txt {
 	font-size: 13px;
 	font-weight: bold;
 	color: #000;
 }
+
+/* 버튼부분 */
+.book_detail_zzim, .book_detail_zzim1 {
+	width: 120px;
+	height: 30px;
+	text-align: center;
+	text-decoration: none;
+	color:#fff;
+	border-radius: 5px;
+	cursor:pointer;
+	font-size: 14px;
+	font-weight: bold;
+}
+.book_detail_zzim {
+	border:2px solid #a5a2a2;
+	background-color: #ccc;
+}
+.book_detail_zzim1 {
+	border:2px solid #408e21;
+	background-color: #4dac27;
+
+}
+
 /* 미디어쿼리 */
 @media screen and (max-width: 749.99px) {
 	.book_detail_div1, .book_detail_div2 {
@@ -60,27 +81,55 @@
 		height: 340px;
 	}
 }
+
+/* 모달부분 */
 .modal {
     display: none;
 }
 .modal-content {
+	margin: 5px;
+	padding: 5px;
 	border: 1px solid #ccc;
     border-radius: 5px;
 	height: 80px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
-
+#detailStartDate, #detailEndDate{
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	text-align: center;
+}
+#detailStartDate:focus, #detailEndDate:focus {
+	outline: none;
+}
+.modal-content_txt {
+	font-size: 13px;
+}
+.modal-content-submit {
+	width: 45px;
+	height: 25px;
+	text-align: center;
+	text-decoration: none;
+	color:#fff;
+	border-radius: 5px;
+	cursor:pointer;
+	font-size: 13px;
+	font-weight: bold;
+	border:2px solid #408e21;
+	background-color: #4dac27;
+}
 .book_datail_form1, .book_datail_form2 {
 	display: inline;
 }
 .book_datail_form1 {
 	margin-right: 10px;
 }
+.modal-content-submit {
+	float: right;
+}
 @media screen and (max-width: 549.99px) {
 	.modal-content {
 		width: 100%;
-	}
-	.modal-content-submit {
-		float: none;
 	}
 }
 @media screen and (min-width: 550px) {
@@ -91,7 +140,7 @@
 		display: none;
 	}
 	.modal-content-submit {
-		float: right;
+		margin-top:20px;
 	}
 }
 
