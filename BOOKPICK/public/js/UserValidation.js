@@ -218,10 +218,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (emailInput) {
             if (!emailInput.value) {
                 emailValid = false;
-                openErrorMsg(emailErrorSpan, "이메일: 필수 정보입니다.");
+                openErrorMsg(emailErrorSpan, "이메일을 입력해주세요");
             } else if (!emailRegex.test(emailInput.value)) {
                 emailValid = false;
-                openErrorMsg(emailErrorSpan, "이메일: 올바른 이메일 형식이 아닙니다.");
+                openErrorMsg(emailErrorSpan, "이메일을 다시 확인해주세요");
             } else {
                 clearErrorMsg(emailErrorSpan);
             }
@@ -238,10 +238,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if(passwordInput) {
             if (!passwordInput.value) {
                 passwordValid = false;
-                openErrorMsg(passwordErrorSpan, "비밀번호: 필수 정보입니다.");
+                openErrorMsg(passwordErrorSpan, "비밀번호를 입력해주세요");
             } else if (!passwordRegex.test(passwordInput.value) || passwordInput.value.length > 21) {
                 passwordValid = false;
-                openErrorMsg(passwordErrorSpan, "비밀번호: 보안강도 약함(8~20자 문자+숫자+특수문자 포함필요)");
+                openErrorMsg(passwordErrorSpan, "보안강도 약함(8~20자 문자+숫자+특수문자 포함필요)");
             } else {
                 clearErrorMsg(passwordErrorSpan);
             }
@@ -257,10 +257,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (confirmPasswordInput) {
             if (!confirmPasswordInput.value) {
                 passwordConfirmValid = false;
-                openErrorMsg(passwordConfirmErrorSpan, "비밀번호를 한번 더 입력해주세요.");
+                openErrorMsg(passwordConfirmErrorSpan, "비밀번호를 한번 더 입력해주세요");
             } else if (passwordInput.value !== confirmPasswordInput.value) {
                 passwordConfirmValid = false;
-                openErrorMsg(passwordConfirmErrorSpan, "비밀번호와 일치하지 않습니다.");
+                openErrorMsg(passwordConfirmErrorSpan, "비밀번호와 일치하지 않습니다");
             } else {
                 clearErrorMsg(passwordConfirmErrorSpan);
             }
@@ -277,10 +277,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if(nameInput) {
             if (!nameInput.value) {
                 nameValid = false;
-                openErrorMsg(nameErrorSpan, "이름: 필수 정보입니다.");
+                openErrorMsg(nameErrorSpan, "이름을 입력해주세요");
             } else if (!nameRegex.test(nameInput.value || nameInput.value.length > 51)) {
                 nameValid = false;
-                openErrorMsg(nameErrorSpan, "이름: 한글로만 입력가능 합니다");
+                openErrorMsg(nameErrorSpan, "한글로만 입력해주세요");
             } else {
                 clearErrorMsg(nameErrorSpan);
             }
@@ -297,10 +297,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if(birthdateInput) {
             if (!birthdateInput.value) {
                 birthdateValid = false;
-                openErrorMsg(birthdateErrorSpan, "생년월일: 필수 정보입니다.");
+                openErrorMsg(birthdateErrorSpan, "생년월일을 입력해주세요 ex)YYYYMMDD");
             } else if (!birthdateRegex.test(birthdateInput.value || birthdateInput.value.length > 12)) {
                 birthdateValid = false;
-                openErrorMsg(birthdateErrorSpan, "생년월일: 생년월일이 정확하지 않습니다.");
+                openErrorMsg(birthdateErrorSpan, "생년월일을 다시 확인해주세요");
             } else {
                 clearErrorMsg(birthdateErrorSpan);
             }
@@ -317,10 +317,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if(telInput) {
             if (!telInput.value) {
                 telValid = false;
-                openErrorMsg(telErrorSpan, "휴대폰 번호: 필수 정보입니다.");
+                openErrorMsg(telErrorSpan, "휴대폰 번호를 입력해주세요");
             } else if (!telRegex.test(telInput.value || telInput.value.length > 12)) {
                 telValid = false;
-                openErrorMsg(telErrorSpan, "휴대폰 번호: 휴대폰 번호가 정확하지 않습니다.");
+                openErrorMsg(telErrorSpan, "휴대폰 번호를 다시 확인해주세요");
             } else {
                 clearErrorMsg(telErrorSpan);
             }
@@ -340,7 +340,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 openErrorMsg(postcodeErrorSpan, "우편번호: 필수 정보입니다.");
             } else if (!postcodeRegex.test(postcodeInput.value || postcodeInput.value.length > 6)) {
                 postcodeValid = false;
-                openErrorMsg(postcodeErrorSpan, "우편번호: 5자리 숫자로만 입력가능 합니다.");
+                openErrorMsg(postcodeErrorSpan, "우편번호는 5자리 숫자로만 입력해주세요");
             } else {
                 clearErrorMsg(postcodeErrorSpan);
             }
@@ -357,10 +357,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if(basicAddressInput) {
             if (!basicAddressInput.value) {
                 basicAddressValid = false;
-                openErrorMsg(basicAddressErrorSpan, "기본주소: 필수 정보입니다.");
+                openErrorMsg(basicAddressErrorSpan, "기본주소를 입력해주세요");
             } else if (!basicAddressValidRegex.test(basicAddressInput.value || basicAddressInput.value.length > 201)) {
                 basicAddressValid = false;
-                openErrorMsg(basicAddressErrorSpan, "기본주소: 한글, 숫자, 영어, - 만 입력가능 합니다.");
+                openErrorMsg(basicAddressErrorSpan, "기본주소는 한글, 숫자, 영어, -를 포함하여 입력해주세요");
             } else {
                 clearErrorMsg(basicAddressErrorSpan);
             }

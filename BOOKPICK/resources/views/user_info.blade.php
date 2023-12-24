@@ -19,12 +19,12 @@
             </div>            
             <div class="info-input-area">
                 <input class="info-input" type="password" 
-                id="u_password" name="u_password" placeholder="변경 비밀변호/수정필요">
+                id="new_password" name="new_password" maxlength="20" placeholder="변경하실 비밀번호를 입력해주세요">
                 <span class="u_password_errormsg"></span>
             </div>
             <div class="info-input-area">
                 <input class="info-input" type="password" 
-                id="" name="" placeholder="변경 비밀변호 확인/수정필요">
+                id="password_confirm" name="password_confirm" maxlength="20" placeholder="비밀번호를 한번 더 입력해주세요">
                 <span class="u_password_errormsg"></span>
             </div>
             <div class="info-input-area">

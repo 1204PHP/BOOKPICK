@@ -93,19 +93,9 @@ Route::post( '/admin/apiCateAuto', [AdminController::class, 'adminApiCateAuto'])
 Route::get( '/login', [UserController::class, 'getLogin'])
     ->name( 'getLogin' );
 
-// 로그인 처리
-Route::middleware( 'uservalidation' )
-    ->post('/login', [UserController::class, 'postLogin'])
-    ->name('postLogin'); 
-
 // 회원가입 화면 이동
 Route::get( '/register', [UserController::class, 'getRegister'])
 ->name( 'getRegister' );
-
-// 회원가입 처리
-Route::middleware( 'uservalidation' )
-    ->post('/register', [UserController::class, 'postRegister'])
-    ->name('postRegister');
 
 // 회원정보 수정 전 비밀번호 확인 화면 이동
 Route::get( '/info/confirm', [UserController::class, 'getPasswordReconfirm'])
@@ -119,9 +109,17 @@ Route::post( '/info/confirm/process', [UserController::class, 'postPasswordRecon
 Route::get( '/info', [UserController::class, 'getInfo'])
 ->name( 'getInfo' );
 
-// 회원정보 수정 처리
-Route::put( '/info', [UserController::class, 'putInfo'])
-->name( 'putInfo' );
+// 유효성 검사(미들웨어) 라우트 그룹 설정 : 로그인, 회원가입, 회원정보 수정
+Route::middleware(['uservalidation'])->group(function () {
+    // 로그인 처리
+    Route::post('/login', [UserController::class, 'postLogin'])->name('postLogin');
+
+    // 회원가입 처리
+    Route::post('/register', [UserController::class, 'postRegister'])->name('postRegister');
+
+    // 회원정보 수정 처리
+    Route::put('/info', [UserController::class, 'putInfo'])->name('putInfo');
+});
 
 // 로그아웃 처리
 Route::get('/logout', [UserController::class, 'getLogout'])

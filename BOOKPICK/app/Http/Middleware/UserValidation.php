@@ -37,27 +37,51 @@ class UserValidation
         // 회원가입 : user.js 처리
         // 로그인, 회원정보 수정 : UserValiation.php 처리
         $userBaseValidation = [
-            // 'u_email' => 'required|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/|max:50|unique:users,u_email',
+            // 로그인 시 유효성 검사 목록
+            'u_email' => 'required|regex:/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/|max:50|unique:users,u_email',
             // 필수입력, 한글이름만 허용, 특수문자&숫자&공백 불허, 최대 50자 허용
-            // 'u_password' => 'required|string|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/|max:20',
-            // 필수입력, 최소 8자 이상, 최대 30자, 최소 하나의 문자&하나의 숫자&하나의 특수문자(!@#$%^&*) 포함된 비밀번호 정규 표현식
+            'u_password' => 'required|string|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/|max:20',
+            // 필수입력, 최소 8자 이상, 최대 30자, 최소 하나의 문자&하나의 숫자&하나의 특수문자(!@#$%^&*) 포함된 비밀번호만 허용
             'u_name' => 'required|regex:/^[가-힣]{1,50}$/|max:50',
-            // 필수입력, 한글이름만 허용, 특수문자&숫자&공백 불허, 최대 50자 허용
+            // 필수입력, 한글이름만 허용, 최대 50자 허용
             'u_birthdate' => [
                 'required',
                 'regex:/^(19|20)\d\d(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/',
                 'max:11',
             ],
             // 필수입력, YYYY-MM-DD 허용
-            'u_tel' => 'required|regex:/^010[0-9]{3,4}[0-9]{4}$/|max:11',
+            'u_tel' => 'required|regex://^010[0-9]{7,8}$/|max:11',
             // 필수입력, 대한민국 기준 휴대폰 번호 형식만 허용, 최대 11자 허용
-            'u_postcode' => 'required|regex:/^\d{1,6}$/|max:6',
-            // 필수입력, 대한민국 기준 우편번호 5~6자리, 최대 6자 허용
-            'u_basic_address' => 'required|max:200|regex:/^[가-힣\dA-Za-z-]+$/',
-            // 필수입력, 최대 200자 허용
+            'u_postcode' => 'required|regex:/^\d{5}$/|max:5',
+            // 필수입력, 대한민국 기준 우편번호 숫자 5자리, 최대 5자 허용
+            'u_basic_address' => 'required|regex:/^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z-]*$/|max:200',
+            // 필수입력, 한글&숫자&영어&-만 허용, 최대 200자 허용
             'u_detail_address' => 'max:50',
             // 최대 50자 허용
+
+            // 회원정보 수정 시 유효성 검사 목록
+            'new_password' => 'string|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/|max:20',
+            'password_confirm' => 'string|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/|max:20',
         ];
+
+        // 회원가입 시 수정 비밀번호, 비밀번호 재확인 필드에 대한 
+        // 유효성 검사 제거
+        if ($request->is('info')) {
+            unset($userBaseValidation['new_password']);
+            unset($userBaseValidation['password_confirm']);
+        }
+
+        // 회원정보 수정 시 이메일, 가입 시 비밀번호, 생년월일, 휴대폰 번호, 우편번호, 기본주소, 상세주소에 대한 
+        // 유효성 검사 제거
+        if ($request->is('info')) {
+            unset($userBaseValidation['u_email']);
+            unset($userBaseValidation['u_name']);
+            unset($userBaseValidation['u_birthdate']);
+            unset($userBaseValidation['u_tel']);
+            unset($userBaseValidation['u_postcode']);
+            unset($userBaseValidation['u_basic_address']);
+            unset($userBaseValidation['u_detail_address']);
+        }
 
         // User Request Parameter
         $userRequestParam = [];

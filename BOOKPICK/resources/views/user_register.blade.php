@@ -20,13 +20,13 @@
         <span>*필수입력</span>                
         <div class="register-input-area">
             <input class="register-input" type="password" id="u_password" name="u_password" 
-            placeholder="비밀번호" autocomplete="off">
+            maxlength="20" placeholder="비밀번호" autocomplete="off">
             <p class="u_password_errormsg"></p>
         </div>
         <span>*필수입력</span>
         <div class="register-input-area">
             <input class="register-input" type="password" id="u_password_confirm" name="u_password_confirm" 
-            placeholder="비밀번호 확인" autocomplete="off">
+            maxlength="20" placeholder="비밀번호 확인" autocomplete="off">
             <p class="u_password_confirm_errormsg"></p>
         </div>
         <span>*필수입력</span>

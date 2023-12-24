@@ -146,45 +146,55 @@ return [
             'rule-name' => 'custom-message',
         ],
 
+        // 이메일
         'u_email' => [
-            'required' => ':attribute: 필수 정보입니다.',
-            'regex' => ':attribute: 올바른 이메일 형식이 아닙니다.',
-            'unique' => ':attribute: 이미 사용 중인 이메일입니다.',
+            'required' => ':attribute을 입력해주세요',
+            'regex' => ':attribute을 다시 확인해주세요',
+            'unique' => '이미 사용 중인 :attribute입니다',
+            'max' => ':attribute은 최대 50자까지만 입력해주세요'
         ],
 
+        // 비밀번호
         'u_password' => [
-            'required' => ':attribute: 필수 정보입니다.',
-            'regex' => ':attribute: 보안강도 약함(8~20자 문자+숫자+특수문자 포함필요)',
+            'required' => ':attribute를 입력해주세요',
+            'regex' => '보안강도 약함(8~20자 문자+숫자+특수문자 포함필요)',
+            'min' => ':attribute은 최소 8자 이상 입력해주세요',
+            'max' => ':attribute은 최대 255자까지만 입력해주세요'
         ],
 
+        // 이름
         'u_name' => [
-            'required' => ':attribute: 필수 정보입니다.',
-            'regex' => ':attribute: 한글로만 입력가능 합니다',
+            'required' => ':attribute을 입력해주세요',
+            'regex' => ':attribute은 한글로만 입력해주세요',
+            'max' => ':attribute은 최대 50자까지만 입력해주세요'
         ],
 
         'u_birthdate' => [
-            'required' => ':attribute: 필수 정보입니다.',
-            'regex' => ':attribute:생년월일이 정확하지 않습니다.',
+            'required' => ':attribute을 입력해주세요 ex)YYYYMMDD',
+            'regex' => ':attribute을 다시 확인해주세요',
         ],
 
         'u_tel' => [
-            'required' => ':attribute: 필수 정보입니다.',
-            'regex' => ':attribute:휴대폰 번호가 정확하지 않습니다.',
+            'required' => ':attribute를 입력해주세요',
+            'regex' => ':attribute를 다시 확인해주세요',
+            'max' => ':attribute은 최대 11자까지만 입력해주세요'
         ],
 
         'u_postcode' => [
-            'required' => ':attribute: 필수 정보입니다.',
-            'regex' => ':attribute: 5자리 숫자로만 입력가능 합니다.',
+            'required' => ':attribute를 입력해주세요.',
+            'regex' => ':attribute는 5자리 숫자로만 입력해주세요',
+            'max' => ':attribute은 최대 5자까지만 입력해주세요'
         ],
 
         'u_basic_address' => [
-            'required' => ':attribute: 필수 정보입니다.',
-            'regex' => ':attribute: 한글, 숫자, 영어, - 만 입력가능 합니다.',
+            'required' => ':attribute를 입력해주세요.',
+            'regex' => ':attribute는 한글, 숫자, 영어, -를 포함하여 입력해주세요',
+            'max' => ':attribute은 최대 200자까지만 입력해주세요'
         ],
 
-        'u_detail_address' => [
-            'regex' => ':attribute: 한글, 숫자, 영어, - 만 입력가능 합니다.',
-        ],
+        // 'u_detail_address' => [
+        //     'regex' => ':attribute: 한글, 숫자, 영어, - 만 입력가능 합니다.',
+        // ],
     ],
 
     /*
@@ -201,9 +211,9 @@ return [
     'attributes' => [
         'u_email' => '이메일',
         'u_password' => '비밀번호',
-        'u_name' => '비밀번호',
+        'u_name' => '이름',
         'u_birthdate' => '생년월일',
-        // 'u_tel' => '휴대폰 번호',
+        'u_tel' => '휴대폰 번호',
         'u_postcode' => '우편번호',
         'u_basic_address' => '기본주소',
         'u_detail_address' => '상세주소',

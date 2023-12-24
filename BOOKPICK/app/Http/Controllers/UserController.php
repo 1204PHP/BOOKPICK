@@ -62,14 +62,12 @@ class UserController extends Controller
             // session( $result->only( 'u_id' ) );
             session(['u_id' => $result->u_id, 'u_name' => $result->u_name]);
             // 세션 내 u_id 데이터 저장
-            $user = Auth::user();
-            // 현재 로그인한 유저 정보 획득
         } else {
             $errorMsg = '로그인에 실패했습니다. 새로고침 후 재로그인 해주세요.';
             return view( 'user_login' )->withErrors( $errorMsg );
         }
-        Log::debug("로그인한 유저정보 :" . $user);
-        return redirect()->route( 'index' )->with('userdata', $user);
+        Log::debug("로그인한 유저 이름: " . $result->u_name);
+        return redirect()->route( 'index' )->with('userdata', $result);
     }
 
     // 회원가입 화면 이동
@@ -200,15 +198,13 @@ class UserController extends Controller
         // 로그인User 수정User 일치여부 확인
         $loginUser = Auth::user();
         if ( !$loginUser ) {
+            Log::debug("### 로그인 유저X : 로그인 페이지로 이동 ###");
             return redirect()->route( 'getLogin' );
         }
         // 리턴 : 유저 체크하여 일치하지 않을 시, user_login 리다이렉트
 
-        // 현재 비밀번호 확인 및 새 비밀번호 암호화
-        $currentPassword = $loginUser->u_password;
-
         // 요청한 데이터 중 변경된 데이터 추출
-        $requestData = $request->only('u_password', 'u_postcode', 'u_basic_address', 'u_detail_address');
+        $requestData = $request->only('new_password', 'password_confirm' ,'u_postcode', 'u_basic_address', 'u_detail_address');
 
         // // 변경된 데이터가 없는 경우
         // if (empty(array_filter($requestData))) {
@@ -219,9 +215,17 @@ class UserController extends Controller
         $newRequestData = [];
 
         // 비밀번호 변경 - 새 비밀번호 암호화처리
-        if (!empty($requestData['u_password'])) {
+        if (!empty($requestData['new_password']) && !empty($requestData['password_confirm'])) {
+            // 새 비밀번호와 재확인 비밀번호 일치 확인
+
+            if ($requestData['new_password'] !== $requestData['password_confirm']) {
+                $errorMsg = '비밀번호를 다시 확인해주세요';
+                Log::debug( "### 변경할 비밀번호 불일치 : 비밀번호 재확인 메세지 출력 ###" );
+                return redirect()->route('getInfo')->withErrors($errorMsg);
+            }
             // 사용자가 입력한 새로운 비밀번호를 암호화하여 저장
-            $newRequestData['u_password'] = Hash::make($requestData['u_password']);
+            $newRequestData['u_password'] = Hash::make($requestData['new_password']);
+            Log::debug( "### 변경할 비밀번호 암호화 처리 완료 ###" );
         }
 
         // 비밀번호 제외 다른 데이터 변경 처리
@@ -239,7 +243,7 @@ class UserController extends Controller
             $loginUser->update($newRequestData);
             DB::commit();
             Log::debug( "### 커밋 완료 ###" );
-            return redirect()->route('index');
+            return redirect()->route('getInfo');
         } catch (Exception $e) {
             DB::rollback();
             Log::debug( "### 예외발생 : 롤백완료 ###" );
