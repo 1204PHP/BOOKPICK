@@ -54,7 +54,7 @@ class AdminController extends Controller
                 .$QueryType
                 ."&MaxResults=50&start="
                 .$start.
-                "&SearchTarget=Book&output=JS&Version=20131101";
+                "&SearchTarget=Book&output=JS&Version=20131101&cover=big";
                 $response = Http::get($apiUrl);
                 $responseData = $response->json();
                 Log::debug("----------DB BookInfo INSERT 시작-----------");
@@ -123,7 +123,7 @@ class AdminController extends Controller
 
             $apiUrl = "http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbckstjddh11142001&QueryType="
                     .$QueryType
-                    ."&MaxResults=50&start=1&SearchTarget=Book&output=JS&Version=20131101";
+                    ."&MaxResults=50&start=1&SearchTarget=Book&output=JS&Version=20131101&cover=big";
             $response = Http::get($apiUrl);
             $responseData = $response->json();
             $cnt=1;
