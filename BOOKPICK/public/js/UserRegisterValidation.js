@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (emailConfirmButton) {
             emailConfirmButton.addEventListener("click", function (event) {
-                event.preventDefault();
 
-                // 각 입력 필드에 대한 유효성 검사
-                var userEmailValid = validateInput(document.getElementById("u_email"));
+            // 각 입력 필드에 대한 유효성 검사
+            var userEmailField = document.getElementById("u_email");
+            var userEmailValid = validateInput(userEmailField);
 
                 if (userEmailValid) {
                     checkDuplicateEmail("/api/confirm-email", document.getElementById("u_email").value, function (isAvailable) {
@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             // 사용 가능한 이메일인 경우
                             alert("사용 가능한 이메일입니다.");
                             emailCheckPerformed = true; // 중복 이메일 확인 수행
+                            validateInput(userEmailField); // 유효성 검사 수행
                         } else {
                             // 중복된 이메일인 경우
                             alert("이미 사용 중인 이메일입니다.");
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else {
                     // 이메일 필드가 비어있는 경우
                     alert("이메일을 입력해주세요.");
+                    event.preventDefault(); // 폼 제출을 막음
                 }
             });
         }
@@ -48,20 +50,69 @@ document.addEventListener("DOMContentLoaded", function () {
         form.addEventListener("submit", function (event) {
             // 중복 이메일 확인이 이루어진 경우
             if (emailCheckPerformed) {
+                // 필수 정보를 입력하지 않았을 경우
                 if (!isFormValid()) {
-                    // 필수 정보를 입력하지 않았을 경우
                     alert("필수 정보를 입력해주세요");
-                    event.preventDefault(); // 폼 제출을 막음                    
+                    event.preventDefault(); // 폼 제출을 막음
+        
+                    // 입력값을 유지하려면 각 필드의 값을 다시 설정해줘야 합니다.
+                    var userEmailField = document.getElementById("u_email");
+                    var userPasswordField = document.getElementById("u_password");
+                    var userPasswordConfirmField = document.getElementById("u_password_confirm");
+                    var userNameField = document.getElementById("u_name");
+                    var userBirthdateField = document.getElementById("u_birthdate");
+                    var userTelField = document.getElementById("u_tel");
+                    var userPostcodeField = document.getElementById("u_postcode");
+                    var userBasicAddressField = document.getElementById("u_basic_address");
+                    var userDetailAddressField = document.getElementById("u_detail_address");
+        
+                    if (userEmailField) {
+                        userEmailField.value = userEmailField.value; // 현재 값으로 다시 설정
+                    } else if (userPasswordField) {
+                        userPasswordField.value = userPasswordField.value;
+                    } else if (userPasswordConfirmField) {
+                        userPasswordConfirmField.value = userPasswordConfirmField.value;
+                    } else if (userNameField) {
+                        userNameField.value = userNameField.value;
+                    } else if (userBirthdateField) {
+                        userBirthdateField.value = userBirthdateField.value;                    
+                    } else if (userTelField) {
+                        userTelField.value = userTelField.value;                    
+                    } else if (userPostcodeField) {
+                        userPostcodeField.value = userPostcodeField.value;
+                    } else if (userBasicAddressField) {
+                        userBasicAddressField.value = userBasicAddressField.value;
+                    } else if (userDetailAddressField) {
+                        userDetailAddressField.value = userDetailAddressField.value;
+                    }
                 } else {
                     // 폼 제출 후 환영 메시지 표시
                     alert("환영합니다. 로그인을 해주세요");
+                    console.log("폼 데이터를 서버로 전송:", form);
                 }
             } else {
                 // 중복 이메일 확인이 이루어지지 않은 경우
-                if (!validateInput(document.getElementById("u_email"))) {
-                    // 이메일 필드가 유효하지 않은 경우
-                    alert("이메일 중복 확인을 해주세요");
-                    event.preventDefault(); // 폼 제출을 막음
+                var userEmailField = document.getElementById("u_email");
+        
+                // 이메일 필드가 유효하고 중복 체크가 완료된 후에만 폼 제출
+                if (userEmailField) {
+                    checkDuplicateEmail("/api/confirm-email", userEmailField.value, function (isAvailable) {
+                        if (isAvailable) {
+                            // 사용 가능한 이메일인 경우
+                            alert("이메일 중복 체크를 해주세요");
+                            emailCheckPerformed = true; // 중복 이메일 확인 수행
+                            validateInput(userEmailField); // 유효성 검사 수행
+                            event.preventDefault();
+                        } else {
+                            // 중복된 이메일인 경우 폼 제출 막음
+                            alert("이미 사용 중인 이메일입니다.");
+                            event.preventDefault();
+                        }
+                    });
+                } else {
+                    // 이메일 필드가 유효하지 않은 경우 폼 제출 막음
+                    alert("이메일을 입력해주세요");
+                    event.preventDefault();
                 }
             }
         });
@@ -167,41 +218,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
-
-    // 폼 전체 유효성 검사
-    function isFormValid() {
-        var userEmailValid = validateInput(document.getElementById("u_email"));
-        var userPasswordValid = validateInput(document.getElementById("u_password"));
-        var userPasswordConfirmValid = validateInput(document.getElementById("u_password_confirm"));
-        var userNameValid = validateInput(document.getElementById("u_name"));
-        var userBirthdatedValid = validateInput(document.getElementById("u_birthdate"));
-        var userTelValid = validateInput(document.getElementById("u_tel"));
-        var userPostCodeValid = validateInput(document.getElementById("u_postcode"));
-        var userBasicAddressValid = validateInput(document.getElementById("u_basic_address"));
-
-        console.log("userEmailValid:", userEmailValid);
-        console.log("userPasswordValid:", userPasswordValid);
-        console.log("userPasswordConfirmValid:", userPasswordConfirmValid);
-        console.log("userNameValid:", userNameValid);
-        console.log("userBirthdatedValid:", userBirthdatedValid);
-        console.log("userTelValid:", userTelValid);
-        console.log("userPostCodeValid:", userPostCodeValid);
-        console.log("userBasicAddressValid:", userBasicAddressValid);
-
-        return (
-            userEmailValid &&
-            userPasswordValid &&
-            userPasswordConfirmValid &&
-            userNameValid &&
-            userBirthdatedValid &&
-            userTelValid &&
-            userPostCodeValid &&
-            userBasicAddressValid
-        );
-    }
-
-});
+    
 
     // email 유효성 검사
     function validateEmail(emailInput) {
@@ -379,3 +396,28 @@ document.addEventListener("DOMContentLoaded", function () {
             element.innerText = "";
         }
     }
+
+    // 폼 전체 유효성 검사
+    function isFormValid() {
+        var userEmailValid = validateInput(document.getElementById("u_email"));
+        var userPasswordValid = validateInput(document.getElementById("u_password"));
+        var userPasswordConfirmValid = validateInput(document.getElementById("u_password_confirm"));
+        var userNameValid = validateInput(document.getElementById("u_name"));
+        var userBirthdatedValid = validateInput(document.getElementById("u_birthdate"));
+        var userTelValid = validateInput(document.getElementById("u_tel"));
+        var userPostCodeValid = validateInput(document.getElementById("u_postcode"));
+        var userBasicAddressValid = validateInput(document.getElementById("u_basic_address"));
+
+        return (
+            userEmailValid &&
+            userPasswordValid &&
+            userPasswordConfirmValid &&
+            userNameValid &&
+            userBirthdatedValid &&
+            userTelValid &&
+            userPostCodeValid &&
+            userBasicAddressValid
+        );
+    }
+
+});
