@@ -29,6 +29,14 @@
     </div>
 	<div class="admin_pagination">{{ $bookTableData->links('pagination::default') }} </div>
 	<br>
+	<form action="{{route('postAdminbookInfo')}}" method="POST">
+		@csrf
+		<button type="submit" name="action" value="ItemNewAll">신간 전체 리스트 책정보500개추가</button><br>
+    	<button type="submit" name="action" value="ItemNewSpecial">주목할 만한 신간 리스트 책정보500개추가</button><br>
+    	<button type="submit" name="action" value="Bestseller">베스트셀러 책정보500개추가</button><br>
+    	<button type="submit" name="action" value="BlogBest">블로거 베스트셀러 책정보500개추가</button><br>
+
+	</form>
 {{-- bookApi --}}
 	<h1>BookApi Table</h1>
 	<div class="table-container">
@@ -52,15 +60,12 @@
 		</table>
 	</div>
 	<div class="admin_pagination">{{ $bookApiTableData->links('pagination::default') }} </div>
-
-	<p>//url, ac_id번호 입력 후 책정보와 Api정보 둘다 자동등록</p>
-	<p>http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbckstjddh11142001&QueryType=ItemNewAll&MaxResults=50&start=1&SearchTarget=Book&output=JS&Version=20131101&cover=big</p>
-	<form action="{{route('postAdminBookInfo')}}" method="POST">
+	<form action="{{route('postAdminbookApi')}}" method="POST">
 		@csrf
-		<input type="text" placeholder="url"  size="200" name="url" value="">
-		<br>
-		<input type="text" placeholder="ac_id" name="ApiCateInput" value="">
-		<button type="submit">정보추가</button>
+		<button type="submit" name="action" value="ItemNewAll">신간 전체 리스트 api추가</button><br>
+    	<button type="submit" name="action" value="ItemNewSpecial">주목할 만한 신간 리스트 api추가</button><br>
+    	<button type="submit" name="action" value="Bestseller">베스트셀러 api추가</button><br>
+    	<button type="submit" name="action" value="BlogBest">블로거 베스트셀러 api추가</button><br>
 	</form>
 	<br><br>
 
@@ -102,10 +107,6 @@
 	
 	
 	{{--
-	<form action="/home" method="POST">
-		@csrf
-		<button type="submit">POST버튼</button>
-	</form>
 	<form action="/home" method="POST">
 		@csrf
 		<button type="submit">POST버튼</button>
