@@ -48,19 +48,19 @@ document.addEventListener("DOMContentLoaded", function () {
         form.addEventListener("submit", function (event) {
             // 중복 이메일 확인이 이루어진 경우
             if (emailCheckPerformed) {
-                if (isFormValid()) {
-                    // 폼 제출 후 환영 메시지 표시
-                    alert("환영합니다. 로그인을 해주세요");
-                } else {
+                if (!isFormValid()) {
                     // 필수 정보를 입력하지 않았을 경우
                     alert("필수 정보를 입력해주세요");
-                    event.preventDefault(); // 폼 제출을 막음
+                    event.preventDefault(); // 폼 제출을 막음                    
+                } else {
+                    // 폼 제출 후 환영 메시지 표시
+                    alert("환영합니다. 로그인을 해주세요");
                 }
             } else {
                 // 중복 이메일 확인이 이루어지지 않은 경우
                 if (!validateInput(document.getElementById("u_email"))) {
                     // 이메일 필드가 유효하지 않은 경우
-                    alert("이메일 중복 확인 또는 필수 항목을 입력해주세요");
+                    alert("이메일 중복 확인을 해주세요");
                     event.preventDefault(); // 폼 제출을 막음
                 }
             }
@@ -115,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // 값이 없는 경우, input 테두리 초기화
             inputField.style.border = "1px solid #ccc";
             clearErrorMsg(errorSpan);
+            return false;
         } else {
             // 값이 있는 경우, 유효성 검사 수행
             var isValid = true;
@@ -151,14 +152,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 clearErrorMsg(errorSpan);
             } else {
                 inputField.style.border = "3px solid red";
+                openErrorMsg(errorSpan);
             }
 
-            if (!isValid) {
-                clearErrorMsg(errorSpan);
-            }
         }
         return isValid;
     }
+
 
     // 각 입력 필드에 대한 input 이벤트 리스너 등록
     for (let i = 0; i < inputFields.length; i++) {
@@ -166,6 +166,8 @@ document.addEventListener("DOMContentLoaded", function () {
             validateInput(event.target);
         });
     }
+
+
 
     // 폼 전체 유효성 검사
     function isFormValid() {
@@ -204,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // email 유효성 검사
     function validateEmail(emailInput) {
         var emailValid = true;
-        var emailErrorSpan = document.getElementsByClassName("u_mail_errormsg")[0];
+        var emailErrorSpan = document.querySelector('.u_mail_errormsg');
         var emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
 
         if (emailInput) {
@@ -224,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // password 유효성 검사
     function validatePassword(passwordInput) {        
         var passwordValid = true;
-        var passwordErrorSpan = document.getElementsByClassName("u_password_errormsg")[0];
+        var passwordErrorSpan = document.querySelector('.u_password_errormsg');
         var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
         
         if(passwordInput) {
@@ -244,7 +246,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // password 재확인 유효성 검사
     function validatePasswordConfirm(passwordInput, confirmPasswordInput) {
         var passwordConfirmValid = true;
-        var passwordConfirmErrorSpan = document.getElementsByClassName("u_password_confirm_errormsg")[0];
+        var passwordConfirmErrorSpan = document.querySelector('.u_password_confirm_errormsg');
 
         if (confirmPasswordInput) {
             if (!confirmPasswordInput.value) {
@@ -263,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // name 유효성 검사
     function validateName(nameInput) {
         var nameValid = true;
-        var nameErrorSpan = document.getElementsByClassName("u_name_errormsg")[0];
+        var nameErrorSpan = document.querySelector('.u_name_errormsg');
         var nameRegex = /^[가-힣]{1,50}$/;
         
         if(nameInput) {
@@ -283,7 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // birthdate 유효성 검사
     function validateBirthdate(birthdateInput) {
         var birthdateValid = true;
-        var birthdateErrorSpan = document.getElementsByClassName("u_birthdate_errormsg")[0];
+        var birthdateErrorSpan = document.querySelector('.u_birthdate_errormsg');
         var birthdateRegex = /^(19|20)\d\d(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/;
         
         if(birthdateInput) {
@@ -303,7 +305,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // tel 유효성 검사
     function validateTel(telInput) {
         var telValid = true;
-        var telErrorSpan = document.getElementsByClassName("u_tel_errormsg")[0];
+        var telErrorSpan = document.querySelector('.u_tel_errormsg');
         var telRegex = /^010[0-9]{7,8}$/;
         
         if(telInput) {
@@ -323,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 우편번호 유효성 검사
     function validatePostcode(postcodeInput) {
         var postcodeValid = true;
-        var postcodeErrorSpan = document.getElementsByClassName("u_postcode_errormsg")[0];
+        var postcodeErrorSpan = document.querySelector('.u_postcode_errormsg');
         var postcodeRegex = /^\d{5}$/;
     
         if (postcodeInput) {
@@ -343,7 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 기본주소 유효성 검사
     function validateBasicAddress(basicAddressInput) {
         var basicAddressValid = true;
-        var basicAddressErrorSpan = document.getElementsByClassName("u_postcode_errormsg")[0];
+        var basicAddressErrorSpan = document.querySelector('.u_basic_address_errormsg');
         var basicAddressValidRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z-]*$/;
         
         if(basicAddressInput) {
@@ -374,10 +376,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function clearErrorMsg(element) {
         if (element) {
-            // 수정된 부분: <p> 태그 내부의 <span> 태그를 찾아 텍스트 내용을 비움
-            var spanElement = element.querySelector('span');
-            if (spanElement) {
-                spanElement.innerText = "";
-            }
+            element.innerText = "";
         }
     }
