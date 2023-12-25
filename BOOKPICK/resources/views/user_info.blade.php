@@ -59,7 +59,7 @@
             </div>
             <span>@include('layout.user_error_message')</span>           
             <div class="info-button-area">
-                <button class="info-button" type="submit">수정하기</button>
+                <button class="info-button" type="submit" onclick="return confirmInfo()">수정하기</button>
             </div>
             <a class="info-withdrawal-link" href="{{ route('deleteWithdrawal') }}">회원탈퇴</a>
         </div>
@@ -68,4 +68,5 @@
 
 @section('defer-js')
     <script src="{{ asset('/js/UserInfoValidation.js') }}" defer></script>
+    <script src="{{ asset('/js/User.js') }}" defer></script>
 @endsection
