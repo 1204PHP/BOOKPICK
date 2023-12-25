@@ -21,6 +21,12 @@ return new class extends Migration
             $table->string('ac_name', 50);
             // api 종류
             // varchar 생성(50) / default : not null
+
+            $table->timestamps();
+            // created_at, updated_at 라라벨 내부 설정 값으로 자동 생성 / default : null
+            
+            $table->softDeletes();
+            // deleted_at 라라벨 내부 설정 값으로 자동 생성 / default : nullable
         });
     }
 

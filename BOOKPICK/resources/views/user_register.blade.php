@@ -67,7 +67,7 @@
             placeholder="상세주소 입력" autocomplete="off">
         </div>
         <div class="register-button-area">
-            <button class="register-button" type="submit">회원가입</button>
+            <button class="register-button" id="register-button" type="submit">회원가입</button>
         </div>
         <div class="register-text">
             <span>이미 회원이신가요?</span> <a class="register-login-link" href="{{ route('getLogin') }}">로그인하기</a>

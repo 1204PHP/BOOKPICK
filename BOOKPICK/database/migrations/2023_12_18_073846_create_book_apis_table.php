@@ -22,9 +22,11 @@ return new class extends Migration
             // api 번호
             // integer 생성(10) / default : nullable
 
-            $table->timestamp('created_at')->useCurrent();
-            // api 호출일자
-            // datetime 생성 / default : now
+            $table->timestamps();
+            // created_at, updated_at 라라벨 내부 설정 값으로 자동 생성 / default : null
+            
+            $table->softDeletes();
+            // deleted_at 라라벨 내부 설정 값으로 자동 생성 / default : nullable
             
             $table->unsignedBigInteger('b_id');
             $table->foreign('b_id')
