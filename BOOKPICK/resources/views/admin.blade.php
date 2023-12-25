@@ -31,10 +31,10 @@
 	<br>
 	<form action="{{route('postAdminbookInfo')}}" method="POST">
 		@csrf
-		<button type="submit" name="action" value="ItemNewAll">신간 전체 리스트 책정보500개추가</button><br>
-    	<button type="submit" name="action" value="ItemNewSpecial">주목할 만한 신간 리스트 책정보500개추가</button><br>
-    	<button type="submit" name="action" value="Bestseller">베스트셀러 책정보500개추가</button><br>
-    	<button type="submit" name="action" value="BlogBest">블로거 베스트셀러 책정보500개추가</button><br>
+		<button type="submit" name="action" value="ItemNewAll">신간 전체 리스트 초기 책정보500개 등록</button><br>
+    	<button type="submit" name="action" value="ItemNewSpecial">주목할 만한 신간 리스트 초기 책정보500개 등록</button><br>
+    	<button type="submit" name="action" value="Bestseller">베스트셀러 초기 책정보500개 등록</button><br>
+    	<button type="submit" name="action" value="BlogBest">블로거 베스트셀러 초기 책정보500개 등록</button><br>
 
 	</form>
 {{-- bookApi --}}

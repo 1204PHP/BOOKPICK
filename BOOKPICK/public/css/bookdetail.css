@@ -30,8 +30,18 @@
 }
 .book_datail_author_txt {
 	font-size: 13px;
-	font-weight: bold;
 	color: #000;
+}
+.book_datail_price_txt {
+	font-size: 16px;
+	color: #000;
+}
+.book_datail_product_link {
+	font-size: 13px;
+	color: #4dac27;
+}
+.book_datail_product_link:hover {
+	text-decoration: underline;
 }
 
 /* 버튼부분 */
