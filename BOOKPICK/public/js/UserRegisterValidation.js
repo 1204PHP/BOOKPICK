@@ -8,82 +8,125 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < forms.length; i++) {
         var form = forms[i];
         var emailConfirmButton = form.querySelector("#emailConfirmButton");
-        var emailCheckPerformed = false;
 
         if (emailConfirmButton) {
             emailConfirmButton.addEventListener("click", function (event) {
-                // 이메일 중복 체크가 이미 수행되었으면 다시 수행하지 않도록 설정
-                if (isEmailValid) {
-                    // 다음 필드에 대한 유효성 검사만 진행
-                    validateOtherFieldsExceptEmail(form);
-                    return;
-                }
-
-                // 각 입력 필드에 대한 유효성 검사
-                var userEmailField = document.getElementById("u_email");
+                // 이메일 유효성 검사
+                var userEmailField = form.querySelector("#u_email");
+                // 이메일 중복 확인
                 var userEmailValid = validateInput(userEmailField);
 
                 if (userEmailValid) {
-                    checkDuplicateEmail("/api/confirm-email", userEmailField.value, function (isAvailable) {
-                        if (isAvailable) {
-                            // 사용 가능한 이메일인 경우
+                    // 중복 확인 서버 요청
+                    checkDuplicateEmail("/api/confirm-email", userEmailField.value, function (isEmailAvailable) {
+                        if (isEmailAvailable) {
+                            // 0(true) 리턴 시 DB저장 데이터 : 사용가능 이메일(O)
                             alert("사용 가능한 이메일입니다.");
                             // 중복 이메일 확인 상태 업데이트
                             isEmailValid = true;
-                            // 다른 필드에 대한 유효성 검사만 진행
-                            console.log("중복체크 완료/사용가능 이메일"+emailCheckPerformed);
+                            // 타 필드에 대한 유효성 검사만 진행
                             validateOtherFieldsExceptEmail(form);
+                            // 이메일 중복 확인 완료 시 다음 단계로 이동
+                            proceedToNextStep(form);                            
                         } else {
-                            // 중복된 이메일인 경우
+                            // 1(false) 리턴 시 DB저장 데이터 : 사용가능 이메일(X)
                             alert("이미 사용 중인 이메일입니다.");
-                            // 중복된 이메일일 때는 이메일에 대한 유효성 검사도 다시 진행
-                            validateInput(userEmailField);
-                            // 나머지 필드에 대한 유효성 검사는 이미 수행된 것으로 처리
-                            // validateOtherFieldsExceptEmail(form);
+                            // 중복 이메일 확인 상태 업데이트
+                            isEmailValid = false;
                         }
                     });
                 } else {
                     // 이메일 필드가 비어있는 경우
                     alert("이메일을 입력해주세요.");
-                }
+                    // 중복 이메일 확인 상태 업데이트
+                    isEmailValid = false;
+                } 
                 event.preventDefault();
             });
         }
 
-        // 각 입력 필드에 대한 실시간 유효성 검사 등록
-        var inputFields = form.getElementsByClassName("register-input");
-        for (var j = 0; j < inputFields.length; j++) {
-            inputFields[j].addEventListener("input", function (event) {
-                // 중복 이메일 확인 상태 초기화
-                isEmailValid = false;
-                validateInput(event.target);
-            });
-        }
-
-         // 폼 전송 버튼 클릭 이벤트 핸들러
         var submitButton = form.querySelector("#register-button");
         if (submitButton) {
             submitButton.addEventListener("click", function (event) {
-                // 모든 필드에 대한 유효성 검사 수행
-                var isFormValid = validateForm(form);
-
-                if (!isEmailValid) {
-                    // 중복 이메일 확인이 수행되지 않았을 경우
+                // 빈 값이 있을 때 폼 제출을 막고 알림 표시
+                if (!isEmailValid && !form.querySelector("#u_email").value) {
                     alert("이메일 중복 확인을 먼저 해주세요");
-                    // 폼 제출을 막음
                     event.preventDefault();
-                    return;
+                    console.log("이메일 유효성 검사로 인해 폼 제출이 방지되었습니다.");
+                } else {
+                    // 나머지 필드에 대한 유효성 검사 수행
+                    var isOtherFieldsValid = validateOtherFieldsExceptEmail(form);
+                    if (!isOtherFieldsValid) {
+                        // 폼 제출을 막음
+                        event.preventDefault();
+                        console.log("다른 필드 유효성 검사로 인해 폼 제출이 방지되었습니다.");
+                    } else {
+                        console.log("폼이 성공적으로 제출되었습니다.");
+                        form.submit();
+                    }
                 }
+            });
+        }  
 
-                if (!isFormValid) {
-                    // 폼이 유효하지 않은 경우
-                    alert("회원정보 입력사항을 다시 확인해주세요");
-                    // 폼 제출을 막음
-                    event.preventDefault();
+        // 각 입력 필드에 대한 실시간 유효성 검사 등록 << 수정 >>
+        var inputFields = form.getElementsByClassName("register-input");
+        for (var j = 0; j < inputFields.length; j++) {
+            inputFields[j].addEventListener("input", function (event) {                
+                // 상세주소 필드인 경우 무시
+                if (event.target.id !== "u_detail_address") {
+                    // 중복 이메일 확인 상태 초기화
+                    isEmailValid = false;
+                    console.log("Validating input:", event.target.id);
+                    validateInput(event.target);
                 }
             });
         }
-    }
+    }    
+
+    // 유저가 입력한 input 값에 대한 유효성 검사
+    // function validateInputFields(form) {
+    //     var inputFields = form.getElementsByClassName("register-input");
+    //     var isValid = true;
+    
+    //     for (var i = 0; i < inputFields.length; i++) {
+    //         var inputField = inputFields[i];
+    
+    //         if (inputField.id === 'u_detail_address') {
+    //             continue;
+    //         }
+
+    //         var inputFieldValid = validateInput(inputField);
+
+    //         if (!inputFieldValid) {
+    //             // 상세주소 제외 빈값 있을 때 폼 제출 막음
+    //             isValid = false;
+    //             break; // 하나라도 유효하지 않은 필드가 있으면 반복문 중단
+    //         }
+    //     }
+    
+    //     return isValid;
+    // }
+    
+    // 다른 필드가 모두 입력되었는지 확인하는 함수
+    // function isOtherFieldsFilled() {
+    //     var inputFields = form.getElementsByClassName("register-input");
+    //     for (var j = 0; j < inputFields.length; j++) {
+    //         if (inputFields[j].id !== "u_email" && !inputFields[j].value.trim()) {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
+
+    // 다른 필드에 대한 유효성 검사를 실시간으로 진행하지 않도록 설정하는 함수
+    // function disableRealTimeValidationForOtherFields() {
+    //     var inputFields = form.getElementsByClassName("register-input");
+    //     for (var j = 0; j < inputFields.length; j++) {
+    //         if (inputFields[j].id !== "u_email") {
+    //             inputFields[j].removeEventListener("input", handleRealTimeValidation);
+    //         }
+    //     }
+    // }
 
     // 중복 이메일 확인 수행 함수
     function checkDuplicateEmail(apiUrl, userEmail, callback) {
@@ -123,6 +166,13 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Error:", error);
             callback(false);
         });
+    }    
+
+    // 이메일 입력 후 처리에 대한 함수
+    function proceedToNextStep(form) {
+        // 이메일 중복 확인 후 이메일 입력란 잠금
+        var emailInput = form.querySelector("#u_email");
+        emailInput.readOnly = true;
     }
 
     // 다른 필드에 대한 유효성 검사를 수행하는 함수
@@ -152,7 +202,6 @@ document.addEventListener("DOMContentLoaded", function () {
         validateInput(document.getElementById("u_tel"));
         validateInput(document.getElementById("u_postcode"));
         validateInput(document.getElementById("u_basic_address"));
-        // 다른 필드에 대한 유효성 검사 추가
 
         // 유효성 검사 통과 시 다음 단계로 진행 또는 서버로 전송
         if (isFormValidExceptEmail(form)) {
@@ -195,6 +244,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 각 입력 필드에 대한 유효성 검사를 수행하는 함수
     function validateInput(inputField) {
+        console.log("Validating input field:", inputField.id);
         var errorSpan = inputField.parentElement.querySelector('.register-required-span span');
 
         if (!inputField.value) {
