@@ -12,7 +12,19 @@ class book_info extends Model
     protected $factory = Book_infoFactory::class;
     protected $primaryKey = 'b_id';
     public $timestamps = true;
-
+    protected $fillable = [
+        'b_ISBN',
+        'b_price',
+        'b_title',
+        'b_author',
+        'b_summary',
+        'b_main_cate',
+        'b_sub_cate',
+        'b_publication_date',
+        'b_publisher',
+        'b_img_url',
+        'b_product_url',
+    ];
     // 외래키 연결목적 설정
     
     // 유저 서재 테이블

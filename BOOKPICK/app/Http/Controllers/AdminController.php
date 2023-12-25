@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book_info;
+use App\Models\Api_cate;
+use App\Models\Book_api;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -14,11 +16,11 @@ class AdminController extends Controller
     public function index()
     {
         $bookTableColumn = DB::getSchemaBuilder()->getColumnListing("book_infos");
-        $bookTableData = DB::table('book_infos')->orderBy('b_id')->paginate(10, ['*'], 'book_info_page');
+        $bookTableData = Book_info::orderBy('b_id')->paginate(10, ['*'], 'book_info_page');
         $apiCateTableColumn = DB::getSchemaBuilder()->getColumnListing("api_cates");
-        $apiCateTableData = DB::table('api_cates')->orderBy('ac_id')->paginate(10, ['*'], 'api_cate_page');
+        $apiCateTableData = Api_cate::orderBy('ac_id')->paginate(10, ['*'], 'api_cate_page');
         $bookApiTableColumn = DB::getSchemaBuilder()->getColumnListing("book_apis");
-        $bookApiTableData = DB::table('book_apis')->orderBy('ba_id', 'desc')->paginate(10, ['*'], 'book_api_page');
+        $bookApiTableData = Book_api::orderBy('ba_id', 'desc')->paginate(10, ['*'], 'book_api_page');
         
         return view( 'admin' )
             ->with('bookTableColumn', $bookTableColumn)
@@ -49,7 +51,9 @@ class AdminController extends Controller
                     break;
             }
             $cnt=1;
-            for($start=1; $start<=10; $start++) {
+            DB::beginTransaction();
+            Log::debug("#트랜잭션 시작");
+            for($start=1; $start<=4; $start++) {
                 $apiUrl = "http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbckstjddh11142001&QueryType="
                 .$QueryType
                 ."&MaxResults=50&start="
@@ -75,12 +79,10 @@ class AdminController extends Controller
                         'b_publisher' => $val['publisher'],
                         'b_img_url' => $val['cover'],
                         'b_product_url' =>$val['link'],
-                        'created_at' => now(),
-                        'updated_at' => now(),
                     ];
-                    $existingRecord = DB::table('book_infos')->where('b_isbn', $resultdata['b_ISBN'])->first();
+                    $existingRecord = Book_info::where('b_isbn', $resultdata['b_ISBN'])->first();
                     if(!$existingRecord) {
-                        DB::table('book_infos')->insert( $resultdata );
+                        Book_info::create($resultdata);
                         Log::debug($cnt.'-'.$QueryType.' 책 삽입 성공  ISBN:' . $resultdata['b_ISBN']);
                     } else {
                         Log::debug($cnt.'-'.$QueryType.' 해당 ISBN이 존재 ISBN:' . $resultdata['b_ISBN']);
@@ -88,10 +90,13 @@ class AdminController extends Controller
                     $cnt++;
                 }
             }
-            
+            DB::commit();
+            Log::debug("#트랜잭션 커밋");
             Log::debug("----------DB BookInfo INSERT 끝-----------");
             return redirect()->route('getAdmin');
         } catch (\Exception $e) {
+            DB::rollBack();
+            Log::debug("#트랜잭션 롤백");
             Log::error('postAdminBookInfo Error message: ' . $e->getMessage());
             return redirect()->route('getAdmin');
         }
@@ -128,6 +133,8 @@ class AdminController extends Controller
             $responseData = $response->json();
             $cnt=1;
             Log::debug("----------DB BookInfo-Api연동 INSERT 시작-----------");
+            DB::beginTransaction();
+            Log::debug("#트랜잭션 시작");
             foreach ($responseData['item'] as $val) {
                 $priceStandard = empty($val['priceStandard']) ? "" : $val['priceStandard'];
                 $author = empty($val['author']) ? "" : $val['author'];
@@ -145,12 +152,12 @@ class AdminController extends Controller
                     'b_publisher' => $val['publisher'],
                     'b_img_url' => $val['cover'],
                     'b_product_url' =>$val['link'],
-                    'created_at' => now(),
-                    'updated_at' => now(),
+                    // 'created_at' => now(),
+                    // 'updated_at' => now(),
                 ];
-                $existingRecord = DB::table('book_infos')->where('b_isbn', $resultdata['b_ISBN'])->first();
+                $existingRecord = Book_info::where('b_isbn', $resultdata['b_ISBN'])->first();
                 if(!$existingRecord) {
-                    DB::table('book_infos')->insert( $resultdata );
+                    Book_info::create($resultdata);
                     Log::debug($cnt.'-책 삽입 성공  ISBN:' . $resultdata['b_ISBN']);
                 } else {
                     Log::debug($cnt.'-해당 ISBN이 존재 ISBN:' . $resultdata['b_ISBN']);
@@ -168,21 +175,26 @@ class AdminController extends Controller
                 else {
                     $newData = NULL;
                 }
-                $bIdData = DB::table('book_infos')->where('b_isbn', $val['isbn'])->first();
+                $bIdData = Book_info::where('b_isbn', $val['isbn'])->first();
 
                 $resultdata = [
                     'ba_rank' => $newData,
                     'b_id' => $bIdData -> b_id,
                     'ac_id' => $apiCateInput,
-                    'created_at' => now(),
+                    // 'created_at' => now(),
                 ];
-                DB::table('book_apis')->insert( $resultdata );
+                Book_api::create($resultdata);
+                // DB::table('book_apis')->insert( $resultdata );
                 Log::debug($cnt.'-'.$QueryType.'-BookApi 책 삽입 성공 b_id:' . $resultdata['b_id']);
                 $cnt++;
             }
+            DB::commit();
+            Log::debug("#트랜잭션 커밋");
             Log::debug("----------DB BookApi INSERT 끝-----------");
             return redirect()->route('getAdmin');
         } catch (\Exception $e) {
+            DB::rollback();
+            Log::debug("#트랜잭션 롤백");
             Log::error('postAdminBookApi Error message: ' . $e->getMessage());
             return redirect()->route('getAdmin');
         }
