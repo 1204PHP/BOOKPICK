@@ -17,4 +17,8 @@ class User_wishlist extends Model
     public function user() {
         return $this->belongsTo(User::class, 'u_id')->withTrashed();
     }
+
+    public function book_info() {
+        return $this->belongsTo(Book_info::class, 'b_id')->withTrashed();
+    }
 }
