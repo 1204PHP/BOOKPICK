@@ -80,8 +80,10 @@ Route::post( '/book/detail/library', [BookController::class, 'bookDetailUserLibr
 // 관리자 페이지
 Route::get( '/admin', [AdminController::class, 'index']
 )->name( 'getAdmin' );
-Route::post( '/admin/bookInfo', [AdminController::class, 'adminBookInfo'])
-->name( 'postAdminBookInfo' );
+Route::post( '/admin/bookInfo', [AdminController::class, 'adminbookInfo'])
+->name( 'postAdminbookInfo' );
+Route::post( '/admin/bookApi', [AdminController::class, 'adminbookApi'])
+->name( 'postAdminbookApi' );
 Route::post( '/admin/apiCate', [AdminController::class, 'adminApiCate'])
 ->name( 'postAdminApiCate' );
 Route::post( '/admin/apiCateAuto', [AdminController::class, 'adminApiCateAuto'])

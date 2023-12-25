@@ -2,16 +2,13 @@
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(430px, 1fr)); /* 반응형 그리드 설정 */
 }
-
 .library-grid-left-box {
 	grid-column: span 2;
 	padding: 20px;
 }
-
 .library-grid-right-box {
 	padding: 20px;
 }
-
 .library-content {
 	border: 1px solid #ccc;
 	border-radius: 10px;
@@ -36,8 +33,8 @@
 	font-size: 16px;
 	color: rgba(0, 0, 0, 0.5);
 }
-.library-content-nop {
-	height: 300px;
+.library-no-layout{
+	height: 360px;
 }
 @media screen and (min-width: 800px) {
 	.library-media {
