@@ -177,7 +177,7 @@ class AdminController extends Controller
                     'created_at' => now(),
                 ];
                 DB::table('book_apis')->insert( $resultdata );
-                Log::debug($cnt.'-BookApi 책 삽입 성공 b_id:' . $resultdata['b_id']);
+                Log::debug($cnt.'-'.$QueryType.'-BookApi 책 삽입 성공 b_id:' . $resultdata['b_id']);
                 $cnt++;
             }
             Log::debug("----------DB BookApi INSERT 끝-----------");
