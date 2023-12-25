@@ -3,6 +3,10 @@
 @section('title', '나의 서재')
 {{-- title로 Main 표기 --}}
 @section('content')
+	@php
+		// 현재 접속중인 라우트 이름
+		$currentRoute = Route::currentRouteName();
+	@endphp
 	<div class="library-grid">
 		{{-- 왼쪽박스 --}}
 		<div class="library-grid-left-box">
@@ -11,9 +15,9 @@
 				<div class="library-title">
 					<strong class="library-title-strong">지금까지 저장한 책이에요</strong>
 					<span class="library-media"><br></span>
-						<a href="{{ route('getLibraryFinished') }}" class="library-title-button">다 읽은 책</a>
-						<a href="{{ route('getLibraryReading') }}" class="library-title-button">읽고 있는 책</a>
-						<a href="{{ route('getLibrarywishlist') }}" class="library-title-button">찜한 책</a>
+						<a href="{{ route('getLibraryFinished') }}" class="library-title-button {{ $currentRoute == 'getLibraryFinished' ? 'active' : '' }}">다 읽은 책</a>
+						<a href="{{ route('getLibraryReading') }}" class="library-title-button {{ $currentRoute == 'getLibraryReading' ? 'active' : '' }}">읽고 있는 책</a>
+						<a href="{{ route('getLibrarywishlist') }}" class="library-title-button {{ $currentRoute == 'getLibrarywishlist' ? 'active' : '' }}">찜한 책</a>
 					<p class="library-title-p">
 						총
 						<span class="library-title_txt">{{$resultCnt}}</span>
@@ -79,6 +83,32 @@
 					<p class="library-title-p">
 						메모를 클릭시 해당 책으로 이동합니다.
 					</p>
+				</div>
+				<br>
+				<div class="library-no-layout"></div>
+			</div>
+		</div>
+	</div>
+	<div class="library-top">
+		<div class="library-top1">
+			<div class="library-content">
+				<div class="library-title">
+					<strong class="library-title-strong">많이 읽은 장르</strong>
+					<p class="library-title-p">다 읽은책, 읽고 있는 책 기준</p>
+				</div>
+				<div class="library-no-layout">
+					
+				</div>
+			</div>
+		</div>
+		<div class="library-top2">
+			<div class="library-content">
+				<div class="library-title">
+					<strong class="library-title-strong">이달의 기록 현황</strong>
+					<p class="library-title-p">지난달보다 기록활동이 2회 증가했어요!</p>
+				</div>
+				<div class="library-no-layout">
+					{{-- 임시 --}}
 				</div>
 			</div>
 		</div>
