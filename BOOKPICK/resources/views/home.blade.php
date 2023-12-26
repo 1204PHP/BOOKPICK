@@ -78,8 +78,8 @@
                 <br>
                 <p>북픽회원이 가장 많이 찜한 책 TOP 5</p>
             </li>
-            <li class="home-booking">1. 오성찬님 <span class="home-booking-span">읽은책11권</span></li>
-            <li class="home-booking">2. 신호철님 <span class="home-booking-span">읽은책9권</span></li>
+            <li class="home-booking">1. 역행자 확장판 (50만 부 기념 유니버스 에디션) - 돈·시간·운명으로부터 완전한 자유를 얻는 7단계 인생 공략집</li>
+            <li class="home-booking">2. 사피엔스 - 유인원에서 사이보그까지, 인간 역사의 대담하고 위대한 질문</li>
             <li class="home-booking">3. 여중기님 <span class="home-booking-span">읽은책5권</span></li>
             <li class="home-booking">4. 김지웅님 <span class="home-booking-span">읽은책4권</span></li>
             <li class="home-booking">5. 양주은님 <span class="home-booking-span">읽은책2권</span></li>
