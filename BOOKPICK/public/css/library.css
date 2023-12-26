@@ -37,17 +37,70 @@
 	color: #4dac27;
 	font-weight: bold;
 }
+/* 그리드부분 */
+.library_layout_container {
+	padding: 0 20px;
+    display: grid;
+    gap: 10px;
+	grid-template-columns: repeat(6, 1fr);
+    /* grid-template-columns: repeat(auto-fill, minmax(5, 1fr)); */
+    grid-template-rows: repeat(2, 1fr);
+}
+.library_layout_container_a {
+	display: block;
+	width: 100%;
+	height: 150px;
+}
+@media screen and (max-width: 750px) {
+	.library_layout_container {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+@media screen and (max-width: 550px) {
+	.library_layout_container {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+.library_book_title_txt {
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	padding-top: 5px;
+	width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.library_book_author_txt {
+	font-size: 11px;
+	padding: 3px 0;
+	width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.library_layout_container_div {
+	width: 100%;
+	margin: 0 auto;
+}
 /* TODO: 데이터 넣었을때 높이 수정하기 */
 .library-no-layout{
-	height: 360px;
+	height: 450px;
 	text-align: center;
+}
+.library-no-layout1{
+	height: 300px;
+	text-align: center;
+}
+.library-no-layout2 {
+	height: 219px;
 }
 @media screen and (min-width: 800px) {
 	.library-media {
 		display: none;
 	}
 }
-@media screen and (max-width: 1290px) {
+@media screen and (max-width: 1306px) {
 	.library-grid-right-box {
 		grid-column: span 2;
 	}

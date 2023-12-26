@@ -72,6 +72,7 @@
 /* 페이지네이션 */
 .paginate_div {
 	justify-content: center;
+	align-items: center;
     display: flex;
     list-style: none;
     padding: 0;

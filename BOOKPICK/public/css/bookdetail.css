@@ -146,9 +146,9 @@
 	.modal-content {
 		width: 330px;
 	}
-	.modal-content-br {
+	/* .modal-content-br {
 		display: none;
-	}
+	} */
 	.modal-content-submit {
 		margin-top:20px;
 	}

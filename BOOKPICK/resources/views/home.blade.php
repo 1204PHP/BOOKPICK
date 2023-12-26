@@ -74,9 +74,9 @@
         </ul>
         <ul class="slide-container2-2" id="slide1">
             <li class="bookworm">
-                <strong>응원 해요 독서왕!!</strong>
+                <strong>인기 도서 찜 순위!!</strong>
                 <br>
-                <p>열심히 활동한 사람들을 소개할게요</p>
+                <p>북픽회원이 가장 많이 찜한 책 TOP 5</p>
             </li>
             <li class="home-booking">1. 오성찬님 <span class="home-booking-span">읽은책11권</span></li>
             <li class="home-booking">2. 신호철님 <span class="home-booking-span">읽은책9권</span></li>

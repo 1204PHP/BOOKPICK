@@ -26,7 +26,7 @@ class LibraryController extends Controller
                     ->where('user_libraries.u_id', $userId)
                     ->where('user_libraries.ul_end_at', '<', $currentDate)
                     ->select('book_infos.*')
-                    ->paginate(4);
+                    ->paginate(12);
                 $resultCnt = $result->total();
                 
                 Log::debug( "userId : ".$userId );
@@ -59,7 +59,7 @@ class LibraryController extends Controller
                     ->where('user_libraries.u_id', $userId)
                     ->where('user_libraries.ul_end_at', '>=', $currentDate)
                     ->select('book_infos.*')
-                    ->paginate(4);
+                    ->paginate(12);
                 $resultCnt = $result->total();
 
                 Log::debug( "userId : ".$userId );
@@ -91,7 +91,7 @@ class LibraryController extends Controller
                     ->where('user_wishlists.uw_flg', 0)
                     ->where('user_wishlists.u_id', $userId)
                     ->select('book_infos.*')
-                    ->paginate(4);
+                    ->paginate(12);
                 $resultCnt = $result->total();
 
                 Log::debug( "userId : ".$userId );

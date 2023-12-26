@@ -284,10 +284,10 @@
 	font-size: 15px;
     padding: 9px 20px;
     text-align: left;
-}
-.home-booking-span {
-	padding-left: 140px;
-    font-size: 14px;
+	width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 /* 버튼 없이 하기로 함 */
 /* .next {

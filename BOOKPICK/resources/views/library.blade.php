@@ -26,19 +26,19 @@
 				</div>
 				<br>
 				{{-- 책출력부분 --}}
-				<div class="search_layout_container">
+				<div class="library_layout_container">
 					@forelse($result as $val)
-					<div class="search_layout_container_div">
-						<a class="search_layout_container_a" href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
+					<div class="library_layout_container_div">
+						<a class="library_layout_container_a" href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
 							<img class="search_layout_container_img" src="{{$val->b_img_url}}">
 						</a>
-						<p class="search_book_title_txt">
+						<p class="library_book_title_txt">
 							<a href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">{{$val->b_title}}</a>
 						</p>
-						<p class="search_book_author_txt">{{$val->b_author}}</p>
+						<p class="library_book_author_txt">{{$val->b_author}}</p>
 					</div>
 					@empty
-						<p class="library-no-layout"></p>
+						<p class="library-no-layout2"></p>
 					@endforelse
 				</div>
 				{{-- 페이징부분 --}}
@@ -96,7 +96,7 @@
 					<strong class="library-title-strong">많이 읽은 장르</strong>
 					<p class="library-title-p">다 읽은책, 읽고 있는 책 기준</p>
 				</div>
-				<div class="library-no-layout">
+				<div class="library-no-layout1">
 					
 				</div>
 			</div>
@@ -107,7 +107,7 @@
 					<strong class="library-title-strong">이달의 기록 현황</strong>
 					<p class="library-title-p">지난달보다 기록활동이 2회 증가했어요!</p>
 				</div>
-				<div class="library-no-layout">
+				<div class="library-no-layout1">
 					{{-- 임시 --}}
 				</div>
 			</div>
