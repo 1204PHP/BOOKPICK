@@ -50,6 +50,10 @@
 	display: block;
 	width: 100%;
 	height: 150px;
+	transition: transform 0.3s;
+}
+.library_layout_container_a:hover {
+	transform: scale(1.05);
 }
 @media screen and (max-width: 750px) {
 	.library_layout_container {
@@ -85,15 +89,22 @@
 }
 /* TODO: 데이터 넣었을때 높이 수정하기 */
 .library-no-layout{
-	height: 450px;
-	text-align: center;
+	height: 448px;
 }
 .library-no-layout1{
 	height: 300px;
 	text-align: center;
 }
-.library-no-layout2 {
-	height: 219px;
+.library-no-layout2{
+	height: 448px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 15px;
+}
+/* TODO: 위에꺼까지 */
+.library-empty-style {
+	display: block;
 }
 @media screen and (min-width: 800px) {
 	.library-media {

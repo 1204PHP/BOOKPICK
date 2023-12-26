@@ -80,9 +80,9 @@
             </li>
             <li class="home-booking">1. 역행자 확장판 (50만 부 기념 유니버스 에디션) - 돈·시간·운명으로부터 완전한 자유를 얻는 7단계 인생 공략집</li>
             <li class="home-booking">2. 사피엔스 - 유인원에서 사이보그까지, 인간 역사의 대담하고 위대한 질문</li>
-            <li class="home-booking">3. 여중기님 <span class="home-booking-span">읽은책5권</span></li>
-            <li class="home-booking">4. 김지웅님 <span class="home-booking-span">읽은책4권</span></li>
-            <li class="home-booking">5. 양주은님 <span class="home-booking-span">읽은책2권</span></li>
+            <li class="home-booking">3. 보통 이하의 것들</li>
+            <li class="home-booking">4. 마흔에 읽는 쇼펜하우어 - 마음의 위기를 다스리는 철학 수업</li>
+            <li class="home-booking">5. 집단의 힘 - 조직심리학이 밝혀낸 현명한 선택과 협력을 이끄는 핵심 도구</li>
         </ul>
     </div>
     <div class="home-box3">

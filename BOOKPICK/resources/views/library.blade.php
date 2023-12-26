@@ -15,9 +15,9 @@
 				<div class="library-title">
 					<strong class="library-title-strong">지금까지 저장한 책이에요</strong>
 					<span class="library-media"><br></span>
+					<a href="{{ route('getLibrarywishlist') }}" class="library-title-button {{ $currentRoute == 'getLibrarywishlist' ? 'active' : '' }}">찜한 책</a>
 						<a href="{{ route('getLibraryFinished') }}" class="library-title-button {{ $currentRoute == 'getLibraryFinished' ? 'active' : '' }}">다 읽은 책</a>
 						<a href="{{ route('getLibraryReading') }}" class="library-title-button {{ $currentRoute == 'getLibraryReading' ? 'active' : '' }}">읽고 있는 책</a>
-						<a href="{{ route('getLibrarywishlist') }}" class="library-title-button {{ $currentRoute == 'getLibrarywishlist' ? 'active' : '' }}">찜한 책</a>
 					<p class="library-title-p">
 						총
 						<span class="library-title_txt">{{$resultCnt}}</span>
@@ -26,7 +26,7 @@
 				</div>
 				<br>
 				{{-- 책출력부분 --}}
-				<div class="library_layout_container">
+				<div class="library_layout_container @if($result->isEmpty()) library-empty-style @endif">
 					@forelse($result as $val)
 					<div class="library_layout_container_div">
 						<a class="library_layout_container_a" href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
@@ -38,7 +38,7 @@
 						<p class="library_book_author_txt">{{$val->b_author}}</p>
 					</div>
 					@empty
-						<p class="library-no-layout2"></p>
+						<div class="library-no-layout2">현재 저장 목록이 비어있습니다.</div>
 					@endforelse
 				</div>
 				{{-- 페이징부분 --}}
