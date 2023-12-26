@@ -103,6 +103,7 @@
     border-radius: 5px;
 	height: 80px;
 	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+	background-color: #fff;
 }
 #detailStartDate, #detailEndDate{
 	border: 1px solid #ccc;
