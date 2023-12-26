@@ -18,8 +18,8 @@ class User_library_comment extends Model
 
     public $timestamps = true;
 
-    public function user() {
-        return $this->belongsTo(User::class, 'u_id')->withTrashed();
+    public function user_library_comment() {
+        return $this->belongsTo(User_library_comment::class, 'ul_id')->withTrashed();
     }
 
     public function book_info() {
