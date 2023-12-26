@@ -22,7 +22,7 @@ class HomeController extends Controller
         // ->get();
         
         // 베스트셀러 도서
-        $data =book_api::where('book_apis.ac_id', 4)
+        $data =book_api::where('book_apis.ac_id', 3)
         ->whereBetween('book_apis.ba_rank', [1, 10])
         ->latest('book_apis.created_at')
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
@@ -38,7 +38,7 @@ class HomeController extends Controller
         ->get();
 
         // 신간도서 6개만 가져오기
-        $result = book_api::where('book_apis.ac_id', 1)
+        $result = book_api::where('book_apis.ac_id', 4)
         ->latest('book_apis.created_at')
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
         ->select('book_infos.*')

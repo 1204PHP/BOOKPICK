@@ -14,10 +14,16 @@ class TourController extends Controller
     {
         // (인기장르보류)(미완성) 2 주목할만한신간도서
 
-        $result = Book_info::take(6)->get();
+        $result = book_api::where('book_apis.ac_id', 2)
+        ->latest('book_apis.created_at')
+        ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
+        ->select('book_infos.*')
+        ->inRandomOrder()
+        ->limit(15) // 최대 6개의 결과만 가져옴
+        ->get();
 
         // 국내도서 베스트셀러
-        $data =book_api::where('book_apis.ac_id', 5)
+        $data =book_api::where('book_apis.ac_id', 4)
         ->whereBetween('book_apis.ba_rank', [1, 10])
         ->latest('book_apis.created_at')
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')

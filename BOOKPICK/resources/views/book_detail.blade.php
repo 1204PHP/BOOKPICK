@@ -50,12 +50,14 @@
 								<br>
 								<div id="myModal" class="modal">
 									<div class="modal-content">
+										<label class="modal-content_txt" for="detailStartDate">독서 시작 날짜:</label>
 										<input type="date" id="detailStartDate" name="detailStartDate" value="{{ now()->format('Y-m-d') }}">
 										<span class="modal-content_txt" >에서</span>
 										<span class="modal-content-br"><br></span>
+										<label class="modal-content_txt" for="detailEndDate">독서 마감 날짜:</label>
 										<input type="date" id="detailEndDate" name="detailEndDate" value="{{ now()->format('Y-m-d') }}">
 										<span class="modal-content_txt">까지</span>
-										<br>
+										
 										<button class="modal-content-submit" type="submit">등록</button>
 									</div>
 								</div>

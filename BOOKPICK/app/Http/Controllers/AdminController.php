@@ -53,7 +53,7 @@ class AdminController extends Controller
             $cnt=1;
             DB::beginTransaction();
             Log::debug("#트랜잭션 시작");
-            for($start=1; $start<=4; $start++) {
+            for($start=1; $start<=10; $start++) {
                 $apiUrl = "http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbckstjddh11142001&QueryType="
                 .$QueryType
                 ."&MaxResults=50&start="
@@ -81,6 +81,7 @@ class AdminController extends Controller
                         'b_product_url' =>$val['link'],
                     ];
                     $existingRecord = Book_info::where('b_isbn', $resultdata['b_ISBN'])->first();
+                    
                     if(!$existingRecord) {
                         Book_info::create($resultdata);
                         Log::debug($cnt.'-'.$QueryType.' 책 삽입 성공  ISBN:' . $resultdata['b_ISBN']);
@@ -193,9 +194,11 @@ class AdminController extends Controller
             Log::debug("----------DB BookApi INSERT 끝-----------");
             return redirect()->route('getAdmin');
         } catch (\Exception $e) {
+            Log::error( "--------DB adminBookInfo 에러발생---------" );
             DB::rollback();
             Log::debug("#트랜잭션 롤백");
             Log::error('postAdminBookApi Error message: ' . $e->getMessage());
+            Log::error( "------------------------------------------" );
             return redirect()->route('getAdmin');
         }
     }
@@ -203,16 +206,25 @@ class AdminController extends Controller
     {
         try {
             $result = $request->input('ApiCateInput');
+            $data = [
+                'ac_name' => $result,
+            ];
             Log::debug("----------DB ApiCate 정보 INSERT 시작-----------");
+            DB::beginTransaction();
+            Log::debug("#트랜잭션 시작");
 
-            DB::table('api_cates')->insert([
-                'ac_name' => $result
-            ]);
+            Api_cate::create($data);
+            DB::commit();
+            Log::debug("#트랜잭션 커밋");
             Log::debug("----------DB ApiCate 정보 INSERT 끝-----------");
             return redirect()->route('getAdmin');
         }
         catch (\Exception $e) {
+            Log::error( "--------DB ApiCate 에러발생---------" );
+            DB::rollback();
+            Log::debug("#트랜잭션 롤백");
             Log::error('postAdminApiCate Error message: ' . $e->getMessage());
+            Log::error( "------------------------------------" );
             return redirect()->route('getAdmin');
         }
     }
@@ -220,18 +232,35 @@ class AdminController extends Controller
     {
         try {
             Log::debug("----------DB ApiCateAuto 정보 INSERT 시작-----------");
+            DB::commit();
+            Log::debug("#트랜잭션 커밋");
             $data = [
-                ['ac_name' => '신간 전체 리스트'],
-                ['ac_name' => '주목할 만한 신간 리스트'],
-                ['ac_name' => '베스트셀러'],
-                ['ac_name' => '블로거 베스트셀러']
+                ['ac_name' => '신간 전체 리스트',
+                    'created_at' => now(),
+                    'updated_at' => now(),],
+                ['ac_name' => '주목할 만한 신간 리스트',
+                'created_at' => now(),
+                'updated_at' => now(),],
+                ['ac_name' => '베스트셀러',
+                'created_at' => now(),
+                'updated_at' => now(),],
+                ['ac_name' => '블로거 베스트셀러',
+                'created_at' => now(),
+                'updated_at' => now(),],
             ];
-            DB::table('api_cates')->insert($data);
+            
+            Api_cate::insert($data);
+            DB::commit();
+            Log::debug("#트랜잭션 커밋");
             Log::debug("----------DB ApiCateAuto 정보 INSERT 끝-----------");
             return redirect()->route('getAdmin');
         }
         catch (\Exception $e) {
+            Log::error( "--------DB ApiCateAuto 에러발생---------" );
+            DB::rollback();
+            Log::debug("#트랜잭션 롤백");
             Log::error('ApiCateAuto Error message: ' . $e->getMessage());
+            Log::error( "---------------------------------------" );
             return redirect()->route('getAdmin');
         }
     }
