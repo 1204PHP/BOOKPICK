@@ -36,7 +36,7 @@
     </div>
 	<div class="tour-box1">
         <div class="tour-title">
-            <strong>국내 도서 베스트셀러</strong>
+            <strong>블로거 베스트셀러</strong>
         </div>
         <ul class="tour-slide-container" id="slide2">
             @forelse($data as $val)
