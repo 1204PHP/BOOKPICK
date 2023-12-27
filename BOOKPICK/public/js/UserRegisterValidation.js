@@ -354,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function validateBasicAddress(basicAddressInput) {
         var basicAddressValid = true;
         var basicAddressErrorSpan = document.querySelector('.u_basic_address_errormsg');
-        var basicAddressValidRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z-]*$/;
+        var basicAddressValidRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z\s-]*$/;
         
         if(basicAddressInput) {
             if (!basicAddressInput.value) {

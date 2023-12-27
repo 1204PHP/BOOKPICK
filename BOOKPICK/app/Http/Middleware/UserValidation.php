@@ -63,7 +63,7 @@ class UserValidation
             ],
             'u_tel' => 'required|regex:/^010[0-9]{7,8}$/|max:11',
             'u_postcode' => 'required|regex:/^\d{5}$/|max:5',
-            'u_basic_address' => 'required|regex:/^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z-]*$/|max:200',
+            'u_basic_address' => 'required|regex:/^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z\s-]*$/|max:200',
             'u_detail_address' => 'max:50',
 
             // 회원정보 수정 시 유효성 검사 목록
@@ -85,7 +85,7 @@ class UserValidation
             ],
             'u_basic_address' => [
                 'nullable',
-                'regex:/^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z-]*$/',
+                'regex:/^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z\s-]*$/',
                 'max:200',
             ],
             'u_detail_address' => [

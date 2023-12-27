@@ -252,7 +252,7 @@ class UserController extends Controller
         } catch (Exception $e) {
             DB::rollback();
             Log::debug( "### 예외발생 : 롤백완료 ###" );
-            $errormsg = '회원 정보 수정에 실패했습니다. 새로고침 후 다시 수정 해주세요';
+            $errorMsg = '회원 정보 수정에 실패했습니다. 새로고침 후 다시 수정 해주세요';
             return redirect()->route('getInfo')->withErrors($errorMsg);
         } finally {
             Log::debug( "### 회원정보 수정 종료 ###" );
