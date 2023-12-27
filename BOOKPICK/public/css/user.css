@@ -5,7 +5,7 @@
     .info-container,
     .login-container,
     .password-reconfirm-container {
-        width: 100%;
+        width: 85%;
         margin: 40px auto 20px auto;
         padding: 2em 3em 2em 3em;
         border: 1px solid #ccc;
@@ -52,7 +52,7 @@
     }
 
     .register-h2 {
-        font-size: 1rem;
+        font-size: 0.8rem;
         margin-bottom: 10px;
     }
 
@@ -121,10 +121,6 @@
         border: 1px solid #53A73C;
         background-color: transparent;
         border-radius: 7px;
-    }
-
-    .register-input-area-1 {
-        margin-top: 20px;
     }
 
     .register-button,
@@ -254,62 +250,17 @@
         margin: 15px auto;
     }
 
-/* 유저컨트롤러 에러메세지 */
+    /* 유저컨트롤러 에러메세지 */
     .error-text {
         color: red;
         font-size: 0.7rem;
-        margin-left: 20px;
     }
 
-
-/* 실시간 유효성 검사 에러메세지 */
-    .u_mail_errormsg {
+    /* 실시간 유효성 검사 에러메세지 */
+    .errormsg {
         color: red;
         font-size: 0.7rem;
-        margin-left: 20px;
     }
-
-    .u_password_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_password_confirm_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_name_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_birthdate_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_tel_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_postcode_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_basic_address_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }     
 }
 
 /* 태블릿 */
@@ -432,10 +383,6 @@
         border-radius: 7px;
     }
 
-    .register-input-area-1 {
-        margin-top: 20px;
-    }
-
     .register-button,
     .info-button,
     .login-register-button,
@@ -563,62 +510,17 @@
         margin: 15px auto;
     }
 
-/* 유저컨트롤러 에러메세지 */
+    /* 유저컨트롤러 에러메세지 */
     .error-text {
         color: red;
         font-size: 0.7rem;
-        margin-left: 20px;
     }
 
-
-/* 실시간 유효성 검사 에러메세지 */
-    .u_mail_errormsg {
+    /* 실시간 유효성 검사 에러메세지 */
+    .errormsg {
         color: red;
         font-size: 0.7rem;
-        margin-left: 20px;
     }
-
-    .u_password_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_password_confirm_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_name_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_birthdate_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_tel_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_postcode_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_basic_address_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }     
 }
 
 /* 데스크탑 */
@@ -677,7 +579,7 @@
     .register-h2 {
         font-size: 1rem;
         margin-bottom: 10px;
-    }
+    }    
 
     .withdrawal-h2 {
         font-size: 1.2rem;
@@ -745,10 +647,6 @@
         border-radius: 7px;
     }
 
-    .register-input-area-1 {
-        margin-top: 20px;
-    }
-
     .register-button,
     .info-button,
     .login-register-button,
@@ -818,7 +716,6 @@
         margin: 0 20px;
     }
 
-
     .register-text {
         font-size: 1.0rem;
         font-weight: bold;
@@ -877,72 +774,16 @@
         margin: 15px auto;
     }
 
-/* 유저컨트롤러 에러메세지 */
+    /* 유저컨트롤러 에러메세지 */
     .error-text {
         color: red;
         font-size: 0.7rem;
-        margin-left: 20px;
     }
 
 
-/* 실시간 유효성 검사 에러메세지 */
-    .u_mail_errormsg {
+    /* 실시간 유효성 검사 에러메세지 */
+    .errormsg {
         color: red;
         font-size: 0.7rem;
-        margin-left: 20px;
     }
-
-    .u_password_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_password_confirm_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .new_password_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .password_confirm_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_name_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_birthdate_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_tel_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_postcode_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }
-
-    .u_basic_address_errormsg {
-        color: red;
-        font-size: 0.7rem;
-        margin-left: 20px;
-    }     
 }

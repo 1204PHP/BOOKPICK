@@ -9,60 +9,59 @@
     <form class="register-form" action="{{route('postRegister')}}" method="POST">
     @csrf        
         <p class="register-h1">북픽 가입</p>
-
-        <p class="register-h2">이메일은 아이디로 사용됩니다</p>
+        <p class="register-h2">*는 필수입력 사항입니다(이메일은 아이디로 사용됩니다)</p>
 
         <div class="register-input-area">
-            <p class="register-required-span">*<span class="u_mail_errormsg"></span></p>
             <input class="register-input" type="email" id="u_email" name="u_email" 
             placeholder="*이메일 입력" autocomplete="off">            
+            <span class="errormsg u_mail_errormsg"></span>
         </div>
         <button id="emailConfirmButton" class="register-email-button" type="button">중복 확인</button>
 
         <div class="register-input-area">
-            <p class="register-required-span">*<span class="u_password_errormsg"></span></p>              
             <input class="register-input" type="password" id="u_password" name="u_password" 
             maxlength="20" placeholder="*비밀번호 입력" autocomplete="off">            
+            <span class="errormsg u_password_errormsg"></span>             
         </div>
 
         <div class="register-input-area">
-            <p class="register-required-span">*<span class="u_password_confirm_errormsg"></span></p>
             <input class="register-input" type="password" id="u_password_confirm" name="u_password_confirm" 
             maxlength="20" placeholder="*비밀번호 확인" autocomplete="off">            
+            <span class="errormsg u_password_confirm_errormsg">
         </div>
 
         <div class="register-input-area">
-            <p class="register-required-span">*<span class="u_name_errormsg"></span></p>
             <input class="register-input" type="text" id="u_name" name="u_name" 
             maxlength="50" placeholder="*이름 입력" autocomplete="off">            
+            <span class="errormsg u_name_errormsg"></span>
         </div>
 
-        <p class="register-required-span">*<span class="u_birthdate_errormsg"></span></p>
         <div class="register-input-area">
             <input class="register-input" type="text" id="u_birthdate" name="u_birthdate" 
             maxlength="8" placeholder="*생년월일 입력 ex)20231219" autocomplete="off">            
+            <span class="errormsg u_birthdate_errormsg"></span>
         </div>
 
         <div class="register-input-area">
-            <p class="register-required-span">*<span class="u_tel_errormsg"></span></p>
             <input class="register-input" type="tel" id="u_tel" name="u_tel" 
             maxlength="11" placeholder="*휴대폰 번호 입력 ex)01012345678" autocomplete="off">            
+            <span class="errormsg u_tel_errormsg"></span>
         </div>
 
         <div class="register-input-area">
-            <p class="register-required-span">*<span class="u_postcode_errormsg"></span></p>
             <input class="register-input" type="text" id="u_postcode" name="u_postcode"
             maxlength="5" placeholder="*우편번호 입력" autocomplete="off">            
+            <span class="errormsg u_postcode_errormsg"></span>
         </div>
         <button class="register-postcode-button" type="button">주소검색</button>
 
         <div class="register-input-area">
-            <p class="register-required-span">*<span class="u_basic_address_errormsg"></span></p>
             <input class="register-input" type="text" id="u_basic_address" name="u_basic_address"
             placeholder="*기본주소 입력" autocomplete="off">            
+            <span class="errormsg u_basic_address_errormsg"></span>
         </div>
 
-        <div class="register-input-area-1">
+        <div class="register-input-area">
             <input class="register-input" type="text" id="u_detail_address" name="u_detail_address"
             placeholder="상세주소 입력" autocomplete="off">
         </div>

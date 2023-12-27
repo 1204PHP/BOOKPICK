@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             alert("사용 가능한 이메일입니다.");
                             // 중복 이메일 확인 상태 업데이트
                             isEmailValid = true;
-                            // 타 필드에 대한 유효성 검사만 진행
+                            // 이메일 외 유효성 검사 진행
                             validateOtherFieldsExceptEmail(form);
                             // 이메일 중복 확인 완료 시 다음 단계로 이동
                             proceedToNextStep(form);                            
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         }
                     });
                 } else {
-                    // 이메일 필드가 비어있는 경우
+                    // 이메일 값 미 입력 시
                     alert("이메일을 입력해주세요.");
                     // 중복 이메일 확인 상태 업데이트
                     isEmailValid = false;
@@ -48,16 +48,15 @@ document.addEventListener("DOMContentLoaded", function () {
         var submitButton = form.querySelector("#register-button");
         if (submitButton) {
             submitButton.addEventListener("click", function (event) {
-                // 빈 값이 있을 때 폼 제출을 막고 알림 표시
+                // 이메일 유효성 검사 실패 & 이메일 값 미입력 시
                 if (!isEmailValid && !form.querySelector("#u_email").value) {
                     alert("이메일 입력 또는 중복 확인을 먼저 해주세요");
                     event.preventDefault();
                 } else {
-                    // 나머지 필드에 대한 유효성 검사 수행
+                    // 이메일 외 유효성 검사 진행
                     var isOtherFieldsValid = validateOtherFieldsExceptEmail(form);
                     if (!isOtherFieldsValid) {
-                        // 폼 제출을 막음
-                        alert("필수 입력사항을 입력해주세요");
+                        alert("필수 입력사항을 입력하거나 다시 확인해주세요");
                         event.preventDefault();
                     } else {
                         alert("회원가입이 완료되었습니다. 로그인을 해주세요");
@@ -67,15 +66,14 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }  
 
-        // 각 입력 필드에 대한 실시간 유효성 검사 등록 << 수정 >>
+        // 필수입력 사항에 대한 실시간 유효성 검사 등록
         var inputFields = form.getElementsByClassName("register-input");
         for (var j = 0; j < inputFields.length; j++) {
             inputFields[j].addEventListener("input", function (event) {   
-                // 상세주소 필드인 경우에는 유효성 검사를 무시하도록 추가
+                // 상세주소 유효성 검사 무시
                 if (event.target.id === "u_detail_address") {
                     return;
                 }
-
                 // 중복 이메일 확인 상태 초기화
                 isEmailValid = false;
                 validateInput(event.target);
@@ -83,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }    
 
-    // 중복 이메일 확인 수행 함수
+    // 중복 이메일 확인(DB와 통신)
     function checkDuplicateEmail(apiUrl, userEmail, callback) {
         // fetch를 사용하여 서버에 요청
         fetch(apiUrl, {
@@ -98,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error('중복 확인 중 오류가 발생했습니다.');
             }
             return response.json();
         })
@@ -117,19 +115,19 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         })
         .catch(error => {
-            console.error("Error:", error);
+            console.error("오류:", error);
             callback(false);
         });
     }    
 
-    // 이메일 입력 후 처리에 대한 함수
+    // 이메일 입력 후 처리
     function proceedToNextStep(form) {
-        // 이메일 중복 확인 후 이메일 입력란 잠금
+        // 이메일 중복 확인 후 0으로 리턴 받을 시(사용가능) 이메일 입력란 잠금
         var emailInput = form.querySelector("#u_email");
         emailInput.readOnly = true;
     }
 
-    // 이메일을 제외한 폼 전체 유효성 검사
+    // 이메일 제외 폼 전체 유효성 검사
     function isFormValidExceptEmail() {
         return (
             validateInput(document.getElementById("u_password")) &&
@@ -142,20 +140,21 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     }
 
-    // 각 입력 필드에 대한 유효성 검사를 수행하는 함수
+    // 각 입력 값에 대한 유효성 검사
     function validateInput(inputField) {
-        var errorSpan = inputField.parentElement.querySelector('.register-required-span span');
+        var errorSpan = inputField.parentElement.querySelector('.errormsg');
 
         if (!inputField.value) {
-            // 값이 없는 경우, input 테두리 초기화
+            // 값이 없는 경우, input 테두리 초기화 + margin bottom 10px 추가 + 에러메세지 초기화
             inputField.style.border = "1px solid #ccc";
+            inputField.style.marginBottom = "10px";
             clearErrorMsg(errorSpan);
             return false;
         } else {
-            // 값이 있는 경우, 유효성 검사 수행
+            // 값이 있는 경우, 유효성 검사
             var isValid = true;
 
-            // 각 필드에 따른 추가적인 유효성 검사 규칙을 적용하고 결과에 따라 isValid를 업데이트
+            // 각 입력 값에 대한 추가적인 유효성 검사 적용
             if (inputField.id === "u_email" && !isEmailValid) {
                 isValid = validateEmail(inputField);
             } else if (inputField.id === "u_password") {
@@ -173,20 +172,21 @@ document.addEventListener("DOMContentLoaded", function () {
             } else if (inputField.id === "u_basic_address") {
                 isValid = validateBasicAddress(inputField);
             } else if (inputField.id === "u_detail_address") {
-                // 상세주소 필드는 필수가 아니므로 유효성 검사를 무시
+                // 상세주소 유효성 검사 무시
                 isValid = true;
             }
 
-            // 유효성 검사 통과 시 input 테두리 초록색
-            // 유효성 검사 실패 시 input 테두리 빨간색
             if (isValid) {
-                inputField.style.border = "3px solid #53A73C";
+                // 유효성 검사 통과 시 input 테두리 초록색 + margin bottom 10px 추가 + 에러메세지 초기화
+                inputField.style.border = "2px solid #53A73C";
+                inputField.style.marginBottom = "10px";
                 clearErrorMsg(errorSpan);
             } else {
-                inputField.style.border = "3px solid red";
+                // 유효성 검사 실패 시 input 테두리 빨간색 + margin bottom 0 설정 + 에러메세지 출력
+                inputField.style.border = "2px solid red";
+                inputField.style.marginBottom = "0px";
                 openErrorMsg(errorSpan);
             }
-
         }
         return isValid;
     }
