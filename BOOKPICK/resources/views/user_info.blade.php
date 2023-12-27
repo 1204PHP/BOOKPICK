@@ -20,12 +20,12 @@
             <div class="info-input-area">
                 <input class="info-input" type="password" 
                 id="new_password" name="new_password" maxlength="20" placeholder="변경 비밀번호">
-                <span class="new_password_errormsg"></span> 
+                <span class="errormsg new_password_errormsg"></span> 
             </div>
             <div class="info-input-area">
                 <input class="info-input" type="password" 
                 id="password_confirm" name="password_confirm" maxlength="20" placeholder="비밀번호 확인">
-                <span class="password_confirm_errormsg"></span>
+                <span class="errormsg password_confirm_errormsg"></span>
             </div>
             <div class="info-input-area">
                 <input class="info-input-readonly" type="text" readonly 
@@ -43,19 +43,19 @@
                 <div class="info-input-area">
                     <input class="info-input" type="text" id="u_postcode" name="u_postcode"
                     value={{ $userdata->u_postcode }} maxlength="5">
-                    <span class="u_postcode_errormsg"></span>
+                    <span class="errormsg u_postcode_errormsg"></span>
                 </div>
                 <button class="info-postcode-button" type="button">주소검색</button>
             </div>
             <div class="info-input-area">
                 <input class="info-input" type="text" 
                 id="u_basic_address" name="u_basic_address" value={{ $userdata->u_basic_address }}>
-                <span class="u_basic_address_errormsg"></span>
+                <span class="errormsg u_basic_address_errormsg"></span>
             </div>
             <div class="info-input-area">
                 <input class="info-input" type="text" 
                 id="u_detail_address" name="u_detail_address" value={{ $userdata->u_detail_address }}>
-                <span class="u_detail_address_errormsg"></span>
+                <span class="errormsg u_detail_address_errormsg"></span>
             </div>
             <span>@include('layout.user_error_message')</span>           
             <div class="info-button-area">
@@ -68,4 +68,13 @@
 
 @section('defer-js')
     <script src="{{ asset('/js/UserInfoValidation.js') }}" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var infoUpdate = {!! json_encode(session('infoUpdate')) !!};
+            
+            if (infoUpdate) {
+                alert(infoUpdate);
+            }
+        });
+    </script>
 @endsection

@@ -1,5 +1,12 @@
-document.addEventListener("DOMContentLoaded", function () {
-    var form = document.querySelector(".info-form");
+document.addEventListener('DOMContentLoaded', function() {
+    // 폼 전송 이벤트 리스너 등록
+    document.querySelector('.info-form').addEventListener('submit', function(event) {
+        // 폼 전송 전에 유효성 검사 수행
+        if (!isValid()) {
+            event.preventDefault(); // 폼 전송 중단
+        }
+    });
+});
     var new_password = document.getElementById("new_password");
     var password_confirm = document.getElementById("password_confirm");
     var u_postcode = document.getElementById("u_postcode");
@@ -153,4 +160,3 @@ document.addEventListener("DOMContentLoaded", function () {
             element.innerText = "";
         }
     }
-});

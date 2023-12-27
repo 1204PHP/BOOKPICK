@@ -25,6 +25,9 @@ class UserValidation
         $userBaseKey = [
             'u_email',
             'u_password',
+            'u_password_confirm',
+            'new_password',
+            'password_confirm',
             'u_name',
             'u_birthdate',
             'u_tel',
@@ -44,6 +47,14 @@ class UserValidation
                 'regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/',
                 'max:20',
             ],
+            'u_password_confirm' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/',
+                'max:20',
+                'same:u_password',
+            ],
             'u_name' => 'required|regex:/^[가-힣]{1,50}$/|max:50',
             'u_birthdate' => [
                 'required',
@@ -57,31 +68,36 @@ class UserValidation
 
             // 회원정보 수정 시 유효성 검사 목록
             'new_password' => [
-                'nullable',
-                'string',
                 'min:8',
                 'regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/',
                 'max:20',
             ],
             'password_confirm' => [
-                'nullable',
-                'string',
                 'min:8',
                 'regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/',
                 'max:20',
+                'same:new_password',
+            ],
+            'u_postcode' => [
+                'nullable',
+                'regex:/^\d{5}$/',
+                'max:5',
+            ],
+            'u_basic_address' => [
+                'nullable',
+                'regex:/^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z-]*$/',
+                'max:200',
+            ],
+            'u_detail_address' => [
+                'nullable',
+                'max:200',
             ],
         ];
 
-        // 로그인 유효성 검사 제거
+        // 로그인 유효성 검사 제외 목록
         if ($request->is('login')) {
             unset($userBaseValidation['u_email']);
             unset($userBaseValidation['u_password']);
-            unset($userBaseValidation['u_name']);
-            unset($userBaseValidation['u_birthdate']);
-            unset($userBaseValidation['u_tel']);
-            unset($userBaseValidation['u_postcode']);
-            unset($userBaseValidation['u_basic_address']);
-            unset($userBaseValidation['u_detail_address']);
         }
 
         // 회원가입 유효성 검사 제외 목록
@@ -95,6 +111,7 @@ class UserValidation
         // 이메일, 가입 시 비밀번호, 생년월일, 휴대폰 번호, 우편번호, 기본주소, 상세주소
         if ($request->is('info')) {
             unset($userBaseValidation['u_email']);
+            unset($userBaseValidation['u_password_confirm']);            
             unset($userBaseValidation['u_name']);
             unset($userBaseValidation['u_birthdate']);
             unset($userBaseValidation['u_tel']);
@@ -123,32 +140,8 @@ class UserValidation
         // 유효성 검사 실패시 처리
         if ($validator->fails()) {
             Log::debug("### User 유효성 검사 실패 ###");
-
-            // 요청 경로에 따라 리다이렉트 경로 결정
-            // $redirectPath = '/';
-
-            // switch (true) {
-            //     case $request->is('login'):
-            //         $redirectPath = 'login'; // 로그인 페이지 경로
-            //         break;
-            //     case $request->is('register'):
-            //         $redirectPath = 'register'; // 회원가입 페이지 경로
-            //         break;
-            //     case $request->is('info'):
-            //         $redirectPath = 'info'; // 회원정보 수정 페이지 경로
-            //         break;
-            // }
-            // Log::debug(" ### request Path : ". $redirectPath);
-            // Log::debug(" ### redirectPath : ". $redirectPath);
-
-            // 리다이렉트가 아닌 현재 페이지에 에러 메시지 출력
-            if ($request->ajax()) {
-                return response()->json(['errors' => $validator->errors()], 422);
-            }
     
             return back()->withErrors($validator)->withInput();
-
-            // return redirect($redirectPath)->withErrors($validator);
         }
 
         Log::debug( "### User 유효성 검사 성공 ###" );
@@ -159,27 +152,5 @@ class UserValidation
         $userModel = app(User::class);
         return 'unique:' . $userModel->getTable() . ',u_email';
     }
-
-    // 에러메세지 설정
-    // public function errormsg() {
-    //     return [
-    //         'u_email.required' => '이메일: 필수 정보입니다.',
-    //         'u_email.regex' => '이메일: 올바른 이메일 형식이 아닙니다.',
-    //         'u_email.unique' => '이메일: 이미 사용 중인 이메일입니다.',
-    //         'u_password.required' => '비밀번호: 필수 정보입니다.',
-    //         'u_password.regex' => '비밀번호: 보안강도 약함(8~20자 문자+숫자+특수문자 포함필요)',
-    //         'u_name.required' => '이름: 필수 정보입니다.',
-    //         'u_name.regex' => '이름: 한글로만 입력가능 합니다',
-    //         'u_birthdate.required' => '생년월일: 필수 정보입니다.',
-    //         'u_birthdate.regex' => '생년월일: 8자리 숫자로만 입력가능 합니다.',
-    //         'u_tel.required' => '휴대폰 번호: 필수 정보입니다.',
-    //         'u_tel.regex' => '휴대폰 번호가 정확하지 않습니다.',
-    //         'u_postcode.required' => '우편번호: 필수 정보입니다.',
-    //         'u_postcode.regex' => '우편번호: 5자리 숫자로만 입력가능 합니다.',
-    //         'u_basic_address.required' => '기본주소: 필수 정보입니다.',
-    //         'u_basic_address.required' => '기본주소: 한글, 숫자, 영어, - 만 입력가능 합니다.',
-    //         'u_detail_address.required' => '상세주소: 한글, 숫자, 영어, - 만 입력가능 합니다.',
-    //     ];
-    // }
 }
 

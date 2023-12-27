@@ -204,11 +204,6 @@ class UserController extends Controller
 
         // 요청한 데이터 중 변경된 데이터 추출
         $requestData = $request->only('new_password', 'password_confirm' ,'u_postcode', 'u_basic_address', 'u_detail_address');
-
-        // // 변경된 데이터가 없는 경우
-        // if (empty(array_filter($requestData))) {
-        //     return redirect()->route('getInfo');
-        // }
         
         // 변경된 데이터가 있는 경우
         $newRequestData = [];
@@ -252,6 +247,7 @@ class UserController extends Controller
             $loginUser->update($newRequestData);
             DB::commit();
             Log::debug( "### 커밋 완료 ###" );
+            session()->flash('infoUpdate', '회원정보가 성공적으로 수정되었습니다');
             return redirect()->route('getInfo');
         } catch (Exception $e) {
             DB::rollback();
