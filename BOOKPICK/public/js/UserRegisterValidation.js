@@ -50,18 +50,17 @@ document.addEventListener("DOMContentLoaded", function () {
             submitButton.addEventListener("click", function (event) {
                 // 빈 값이 있을 때 폼 제출을 막고 알림 표시
                 if (!isEmailValid && !form.querySelector("#u_email").value) {
-                    alert("이메일 중복 확인을 먼저 해주세요");
+                    alert("이메일 입력 또는 중복 확인을 먼저 해주세요");
                     event.preventDefault();
-                    console.log("이메일 유효성 검사로 인해 폼 제출이 방지되었습니다.");
                 } else {
                     // 나머지 필드에 대한 유효성 검사 수행
                     var isOtherFieldsValid = validateOtherFieldsExceptEmail(form);
                     if (!isOtherFieldsValid) {
                         // 폼 제출을 막음
+                        alert("필수 입력사항을 입력해주세요");
                         event.preventDefault();
-                        console.log("다른 필드 유효성 검사로 인해 폼 제출이 방지되었습니다.");
                     } else {
-                        console.log("폼이 성공적으로 제출되었습니다.");
+                        alert("회원가입이 완료되었습니다. 로그인을 해주세요");
                         form.submit();
                     }
                 }
@@ -71,9 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // 각 입력 필드에 대한 실시간 유효성 검사 등록 << 수정 >>
         var inputFields = form.getElementsByClassName("register-input");
         for (var j = 0; j < inputFields.length; j++) {
-            inputFields[j].addEventListener("input", function (event) {                
-                console.log("Validating input:", event.target.id);
-
+            inputFields[j].addEventListener("input", function (event) {   
                 // 상세주소 필드인 경우에는 유효성 검사를 무시하도록 추가
                 if (event.target.id === "u_detail_address") {
                     return;
@@ -106,8 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return response.json();
         })
         .then(data => {
-            console.log(data); // 콘솔에 서버 응답 출력
-
+            // console.log(data); 0, 1로 리턴 
             if (data && data.confirmEmail !== undefined) {
                 if (data.confirmEmail === 0) {
                     // 0인 경우 사용 가능한 이메일로 처리
@@ -148,7 +144,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 각 입력 필드에 대한 유효성 검사를 수행하는 함수
     function validateInput(inputField) {
-        console.log("Validating input field:", inputField.id);
         var errorSpan = inputField.parentElement.querySelector('.register-required-span span');
 
         if (!inputField.value) {
@@ -210,15 +205,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 유효성 검사 통과 시 다음 단계로 진행 또는 서버로 전송
         if (isFormValidExceptEmail(form)) {
-            alert("회원가입이 완료되었습니다. 로그인을 해주세요");
-        } else {
-            if(isEmailValid === true) {
-            } else {
-                // 폼이 유효하지 않은 경우 제출을 막음
-                alert("회원정보 입력사항을 다시 확인해주세요");
-            }
-        }
-        return $flg;
+            return $flg;
+        }         
     }
 });
 
