@@ -17,7 +17,7 @@
 				<p class="book_datail_author_txt">{{$result->b_author}}</p>
 				<br><br>
 				<p class="book_datail_price_txt">가격: {{ number_format($result->b_price) }}원</p>
-				<a class="book_datail_product_link" href="{{$result->b_product_url}}">구매하러가기</a>
+				<a class="book_datail_product_link" href="{{$result->b_product_url}}" target='_blank'>구매하러가기</a>
 				<br><br>
 				<p>{!!$result->b_summary!!}</p>
 				<input type="hidden" id="wishFlg" name="wishFlg" value="{{$wishFlg}}">
