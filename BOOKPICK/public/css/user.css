@@ -121,6 +121,7 @@
         border: 1px solid #53A73C;
         background-color: transparent;
         border-radius: 7px;
+        cursor: pointer;
     }
 
     .register-button,
@@ -157,12 +158,14 @@
     .login-button {
         color: #000;
         background-color: #D9D9D9;
+        cursor: pointer;
     }
     
     .login-kakaologin-button {
         color: #000;
         background-color: #FEE500;
         margin-bottom: 30px;
+        cursor: pointer;
     }
 
     .withdrawal-button,
@@ -184,12 +187,14 @@
         color: #fff;
         background-color: #53A73C;
         margin: 0 20px;
+        cursor: pointer;
     }
 
     .withdrawal-main-button {
         color: #000;
         background-color: #D9D9D9;
         margin: 0 20px;
+        cursor: pointer;
     }
 
     .register-text {
@@ -381,6 +386,7 @@
         border: 1px solid #53A73C;
         background-color: transparent;
         border-radius: 7px;
+        cursor: pointer;
     }
 
     .register-button,
@@ -417,12 +423,14 @@
     .login-button {
         color: #000;
         background-color: #D9D9D9;
+        cursor: pointer;
     }
     
     .login-kakaologin-button {
         color: #000;
         background-color: #FEE500;
         margin-bottom: 30px;
+        cursor: pointer;
     }
 
     .withdrawal-button,
@@ -444,12 +452,14 @@
         color: #fff;
         background-color: #53A73C;
         margin: 0 20px;
+        cursor: pointer;
     }
 
     .withdrawal-main-button {
         color: #000;
         background-color: #D9D9D9;
         margin: 0 20px;
+        cursor: pointer;
     }
 
     .register-text {
@@ -645,6 +655,7 @@
         border: 1px solid #53A73C;
         background-color: transparent;
         border-radius: 7px;
+        cursor: pointer;
     }
 
     .register-button,
@@ -681,12 +692,14 @@
     .login-button {
         color: #000;
         background-color: #D9D9D9;
+        cursor: pointer;
     }
     
     .login-kakaologin-button {
         color: #000;
         background-color: #FEE500;
         margin-bottom: 30px;
+        cursor: pointer;
     }
 
     .withdrawal-button,
@@ -708,12 +721,14 @@
         color: #fff;
         background-color: #53A73C;
         margin: 0 20px;
+        cursor: pointer;
     }
 
     .withdrawal-main-button {
         color: #000;
         background-color: #D9D9D9;
         margin: 0 20px;
+        cursor: pointer;
     }
 
     .register-text {
