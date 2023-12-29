@@ -39,11 +39,11 @@ header {
     font-size: 1.8em;
     font-weight: bold;
     color: #4dac27;
-	/* margin: 0 60px; */
 }
 
 .navbar-logo a {
 	color: #4dac27;
+    font-size: 1.8rem;
 }
 
 .hamburger-menu {
@@ -187,10 +187,15 @@ header {
         font-size: 1.2rem;
     }
 
+    .navbar-logo a {
+        color: #4dac27;
+        font-size: 1.2rem;
+    }
+
     .desktop-nav {
         display: none;
     }
-
+    
 	.header-logout-btn,
     .header-login-btn {
         width: 80px;
