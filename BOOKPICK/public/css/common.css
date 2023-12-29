@@ -108,17 +108,15 @@ header {
 
 .header-logout-btn,
 .header-login-btn {
-	width: 80px;
-	height: 30px;
-	margin: 0 20px;
-    font-weight: bold;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border: 1px solid #4dac27;
-	border-radius: 30px;
+    width: 100px;
+    height: 40px;
+    border: 1px solid #4dac27;
+    border-radius: 7px;
+    color: #000;
     background-color: transparent;
-	cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
 }
 
 .search-bar input {
@@ -198,18 +196,14 @@ header {
     
 	.header-logout-btn,
     .header-login-btn {
-        width: 80px;
-        height: 30px;
-        margin: 0 20px;
-        margin-right: auto;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.7rem;
+        width: 100px;
+        height: 40px;
         border: 1px solid #4dac27;
-        border-radius: 30px;
+        border-radius: 7px;
+        color: #000;
         background-color: transparent;
+        font-weight: bold;
+        font-size: 1rem;
         cursor: pointer;
     }
 
@@ -330,18 +324,14 @@ header {
 
     .header-logout-btn,
     .header-login-btn {
-        width: 80px;
-        height: 30px;
-        margin: 0 20px;
-        margin-right: auto;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.7rem;
+        width: 100px;
+        height: 40px;
         border: 1px solid #4dac27;
-        border-radius: 30px;
+        border-radius: 7px;
+        color: #000;
         background-color: transparent;
+        font-weight: bold;
+        font-size: 1rem;
         cursor: pointer;
     }
 
@@ -424,18 +414,14 @@ header {
 
     .header-logout-btn,
     .header-login-btn {
-        width: 80px;
-        height: 30px;
-        margin: 0 20px;
-        margin-right: auto;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.7rem;
+        width: 100px;
+        height: 40px;
         border: 1px solid #4dac27;
-        border-radius: 30px;
+        border-radius: 7px;
+        color: #000;
         background-color: transparent;
+        font-weight: bold;
+        font-size: 1rem;
         cursor: pointer;
     }
 
