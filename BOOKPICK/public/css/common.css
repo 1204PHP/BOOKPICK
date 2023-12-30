@@ -68,7 +68,7 @@ header {
     padding-left: 40px;
 }
 
-.desktop-nav a {
+.menu-area a {
     color:#000;
 	font-weight: bold;
     margin: 0 10px;
@@ -80,30 +80,8 @@ header {
 	font-weight: bold;
 }
 
-.search-bar {
-    display: flex;
-	flex-direction: row;
-}
-
-.desktop-search-bar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.header-search-btn {
-	width: 50px;
-	height: 30px;
-	margin: 0 20px;
-    font-weight: bold;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border: 1px solid #4dac27;
-	border-radius: 30px;
-    background-color: transparent;
-	cursor: pointer;
+.menu-area {
+    margin: 0 auto;
 }
 
 .header-logout-btn,
@@ -119,40 +97,52 @@ header {
     cursor: pointer;
 }
 
-.search-bar input {
+/* 검색 바 시작 */
+.search-area {
     width: 450px;
+    margin-left: 50px;
+}
+
+.desktop-search-bar {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.search-input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.search-input {
+    width: 100%;
+}
+
+.search-bar {
+    margin: 0 auto;
+    width: 100%;
     height: 40px;
+    padding: 1rem 0.6rem;
     background-color: transparent;
-    border: 1px solid #4dac27;
-    border-radius: 30px;
-    padding: 1rem 2rem;
-    transition: 0.3s ease;
-}
-
-.desktop-search-bar input {
-    width: 270px;
-    height: 40px;
-    justify-content: center;
-    background-color: transparent;
-    border: 1px solid #4dac27;
-    border-radius: 30px;
-    padding: 1rem 2rem;
-    transition: 0.3s ease;
-}
-
-.search-bar input::placeholder {
-    font-weight: bold;
-}
-
-.search-bar input:hover {
-    border-color: #4dac27;
-}
-
-.search-bar input:focus {
+    border: 2px solid transparent;
+    border-color: transparent transparent #4dac27 transparent;
     outline: none;
-    border-color: #4dac27;
-    box-shadow: 0 0 5px rgba(77, 172, 39, 0.5); 
 }
+
+.search-button {
+    margin-left: -30px;
+}
+
+.header-search-btn {
+    border: none;
+    cursor: pointer;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+}
+/* 검색 바 끝 */
 
 .mobile-nav {
     display: none;
@@ -225,6 +215,7 @@ header {
 
     .header-info-button {
         display: flex;
+        align-items: center;
         justify-content: end;
         font-size: 0.7rem;
     }
@@ -441,10 +432,6 @@ header {
         display: flex;
         justify-content: end;
         font-size: 0.8rem;
-    }
-
-    .desktop-search-bar {
-        margin-left: 50px;
     }
 }
 
