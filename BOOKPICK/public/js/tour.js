@@ -69,3 +69,5 @@ slider2.addEventListener('mousemove', (e) => {
 			slider2.scrollLeft = scrollLeft2 - walk2;
 	});
 });
+
+

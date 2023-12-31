@@ -14,26 +14,6 @@
 	width: 1320px;
 }
 
-/* 성찬 추가 */
-/* @media screen and (min-width: 1300px) {
-	.home-container {
-		width: 1300px;
-	}
-	#slide {
-		transition: scroll 40s ease-in-out;
-	}
-}
-@media screen and (min-width: 1024px) and (max-width: 1299.99px) {
-	.home-container {
-		width: 100%;
-	}
-	#slide {
-		transition: scroll 40s ease-in-out;
-	}
-} */
-
-
-
 
 @media screen and (max-width: 1920px) {
 	.home-container {
@@ -184,17 +164,6 @@
 	background-color: #555;
 }
 
-/* 반응형 */
-/* @media screen and (max-width: 540px) {
-
-	.home-baaner {
-		width: 100%;
-	}
-
-    .home-box {
-        top: 85%;
-    }
-} */
 /*  메인 베스트 셀러영역 */
 .slide-container2 {
 	background-color: white;
@@ -289,58 +258,38 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-/* 버튼 없이 하기로 함 */
-/* .next {
-	cursor: pointer;
-	position: relative;
-	bottom: 65%;
-	left: 40%;
-}
-.prev {
-	cursor: pointer;
-	position: relative;
-	bottom: 65%;
-	right: 40%;
-} */
-
-/* @media screen and (min-width: 960px) {
-    .next {
-        display: none;
-    }
-	.prev {
-        display: none;
-    }
-} */
 
 
-
-/**********************************************************  둘러보기 css************************** */
-.tour-main {
-	width: 100%;
+/****** 둘러보기 ****** */
+section {
 	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
+
 .tour-baaner {
-	/* background-color: white; */
 	width: 100%;
-	height: 100%;
 	display: flex;
 	transition: transform 0.5s;
 }
+
 .Tbaaner {
 	width: 100%;
-	height: 100%;
 }
+
 .tour-box1 {
 	width: 100%;
-	/* height: 30vh; */
 	position: relative;
 	padding: 20px 20px;
 }
+
 .tour-title {
 	height: 10px;
 	margin-top: 20px;
 	margin-bottom: 30px;
 }
+
 .tour-slide-container {
 	background-color: white;
 	transition: all 1s;
@@ -352,28 +301,294 @@
     border-radius: 10px;
 	padding-left: 10px;
 }
+
 .tour-slide-container::-webkit-scrollbar {
 	display: none;
 } 
+
 .tour-slide-box {
 	display: inline-block;
 	width: 170px;
 	margin-left: 30px;
 	margin-bottom: 20px;
 }
+
 .tour-slide-box img {
 	width: 150px;
     height: 200px;
     padding: 20px 0px;
 }
+
 .tour-title strong {
 	font-size: 20px;
 	font-weight: 700;
 	margin: 0px 0px 0px 10px;
 }
+
 .tour-title p {
 	display: inline-block;
 	font-size: 0.7rem;
 	color: #9d9d9d;
 	margin-left: 10px;
+}
+
+/* 광고 영역1 */
+
+/* todo 광고영역1 미디어쿼리, 폰트 찾기 
+광고영역3 이미지 찾기
+*/
+.tour-section-1 {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
+}
+
+.tour-img-text img {
+	width: 100%;
+	height: 660px;
+}
+
+.tour-text-area-1 {
+	position: absolute;
+	top: 30%;
+    left: 30%;
+	transform: translate(-50%, -50%);
+    text-align: center;
+	z-index: 2;
+}
+
+.tour-text-area {
+	margin-bottom: 50px;
+}
+
+.tour-text {
+	font-size: 2.0rem;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.tour-text-1 {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.tour-text-h2 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.tour-text-p {
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+/* 광고 영역2 */
+
+.tour-banner-container {
+	overflow: hidden;
+	position: relative;
+	width: 1300px;
+	height: 200px;
+	box-sizing: border-box;
+	margin-bottom: 20px;
+}
+
+.left-banner-area {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	animation: leftbanner 60s linear infinite;
+}
+
+.left-banner img {
+	width: 140px;
+    height: 200px;
+	margin: 0 10px;
+}
+
+@keyframes leftbanner {
+	0% {
+		transform: translate(0);
+	}
+	100% {
+		transform: translate(-100%);
+	}
+}
+
+.left-banner-reverse-area {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	animation: leftreversebanner 180s linear infinite;
+}
+
+.left-banner-reverse img {
+	width: 140px;
+    height: 200px;
+	margin: 0 10px;
+}
+
+.left-banner-reverse-area::before {
+	width: 150px;
+	height: 200px;
+	margin-right: 10px;
+}
+
+@keyframes leftreversebanner {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+/* 광고 영역3 */
+
+.tour-card-area {
+	display: grid;
+	grid-gap: 1rem;
+	padding: 1rem;
+	max-width: 1300px;
+	margin: 0 auto;
+	--d: 700ms;
+	--e: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+	.tour-card-area {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 1024px) {
+	.tour-card-area {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.tour-card {
+	position: relative;
+	display: flex;
+	overflow: hidden;
+	padding: 1rem;
+	width: 100%;
+	text-align: center;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
+	0 2px 2px rgba(0, 0, 0, 0.1),
+	0 4px 4px rgba(0, 0, 0, 0.1),
+	0 8px 8px rgba(0, 0, 0, 0.1),
+	0 16px 16px rgba(0, 0, 0, 0.1);
+
+	/* 제일 클때 카드 높이 */
+	@media (min-width: 600px) {
+			height: 300px;
+	}
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 110%;
+		background-size: cover;
+		background-position: 0 0;
+		transition: transform calc(var(--d) * 1.5) var(--e);
+		pointer-events: none;
+	}
+
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 200%;
+		pointer-events: none;
+		transform: translateY(-50%);
+		transition: transform calc(var(--d) * 2) var(--e);
+	}
+
+	&:nth-child(1):before {
+		background-color: red;
+	}
+
+	&:nth-child(2):before {
+		background-color: orange;
+	}
+
+	&:nth-child(3):before {
+		background-color: yellow;
+	}
+
+	&:nth-child(4):before {
+		background-color: green;
+	}
+}
+
+.content {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	transition: transform var(--d) var(--e);
+	z-index: 1;
+}
+
+.title {
+	font-size: 1rem;
+	font-weight: bold;
+	line-height: 1.2;
+	margin-bottom: 15px;
+}
+
+@media (hover: hover) and (min-width: 600px) {
+	.tour-card:after {
+		transform: translateY(0);
+	}
+
+	.content {
+		transform: translateY(calc(100% - 4.5rem));
+
+		> *:not(.title) {
+			opacity: 0;
+			transform: translateY(1rem);
+			transition:
+			transform var(--d) var(--e),
+			opacity var(--d) var(--e);
+		}
+	}
+
+	.tour-card:hover,
+	.tour-card:focus-within {
+		align-items: center;
+
+	&:before { transform: translateY(-4%); }
+	&:after { transform: translateY(-50%); }
+
+	.content {
+		transform: translateY(0);
+
+		> *:not(.title) {
+			opacity: 1;
+			transform: translateY(0);
+			transition-delay: calc(var(--d) / 8);
+			}
+		}
+	}
+
+	.tour-card:focus-within {
+		&:before,
+		&:after,
+		.content,
+		.content > *:not(.title) {
+		transition-duration: 0s;
+		}
+	}
 }

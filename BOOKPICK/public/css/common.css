@@ -228,6 +228,13 @@ header {
         margin-bottom: 20px;
     }
 
+    .search-input-container {
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
     .phone-search-bar input {
         width: 250px;
         height: 30px;
@@ -356,6 +363,13 @@ header {
         margin-bottom: 20px;
     }
 
+    .search-input-container {
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
     .mobile-nav {
         display: none;
         flex-direction: column;
@@ -433,33 +447,14 @@ header {
         justify-content: end;
         font-size: 0.8rem;
     }
-}
 
-/* 성찬 */
-/* @media only screen and (min-width: 1024px) and (max-width: 1299.99px){
-    .layout_header {
-		width: 100%
-    }
-    .layout_body {
-		width: 100%
-    }
-    header {
-        width: 100%;
+    .search-input-container {
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
     }
 }
-@media only screen and (min-width: 1300px) {
-    .layout_header {
-		width: 1290px;
-        margin: 0 auto;
-    }
-    .layout_body {
-		width: 1290px;
-        margin: 0 auto;
-    }
-    header {
-        width: 100%;
-    }
-} */
 
 
 /* admin table */

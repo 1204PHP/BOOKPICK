@@ -15,8 +15,8 @@ $currentRoute = Route::currentRouteName();
 		</div>
 		<nav class="desktop-nav">
 			<div class="menu-area">
-				<a href="{{ route('getLibrarywishlist') }}" class="header-link {{ in_array($currentRoute, ['getLibraryFinished', 'getLibraryReading', 'getLibrarywishlist']) ? 'active' : '' }}">나의 서재</a>
 				<a href="{{ route('bookTour') }}" class="header-link {{ $currentRoute == 'bookTour' ? 'active' : '' }}">둘러보기</a>
+				<a href="{{ route('getLibrarywishlist') }}" class="header-link {{ in_array($currentRoute, ['getLibraryFinished', 'getLibraryReading', 'getLibrarywishlist']) ? 'active' : '' }}">나의 서재</a>
 			</div>
 			<div class="search-area">
 				<form class="desktop-search-bar" action="{{ route('getsearch.index') }}" method="GET">
@@ -50,13 +50,20 @@ $currentRoute = Route::currentRouteName();
 		@endauth
 		<nav class="mobile-nav">
 			<form class="desktop-search-bar" action="{{ route('getsearch.index') }}" method="GET">
-				<input type="search" class="search-bar" name="result" value="" autocomplete="" placeholder="검색어를 입력해 주세요">
-				<a href="#" class="header-search-btn" onclick="submitSearch()">
-					<img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" alt="Search">
-				</a>
+				<div class="search-input-container">
+					<div class="search-input">
+						<input type="search" class="search-bar" name="result" value="" autocomplete="" placeholder="검색어를 입력해 주세요">
+					</div>
+					<div class="search-button">
+						<a href="#" class="header-search-btn" onclick="submitSearch()">
+							<img src="{{ asset('img/search.png') }}" class="search-icon" alt="...">
+						</a>
+					</div>
+				</div>
+
 			</form>		
-			<a href="{{ route('getLibraryFinished') }}">나의 서재</a></li>
 			<a href="{{ route('bookTour') }}">둘러보기</a></li>				
+			<a href="{{ route('getLibraryFinished') }}">나의 서재</a></li>
 		</nav>
 	</header>
 
