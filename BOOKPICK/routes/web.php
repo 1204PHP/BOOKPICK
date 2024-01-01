@@ -25,7 +25,7 @@ use App\Http\Controllers\LibraryCommentController;
 // ### 헤더 ###
 
 // 메인 페이지
-Route::get( '/', [HomeController::class, 'index'])
+Route::get( '/', [TourController::class, 'index'])
 ->name( 'index' );
 
 Route::get( '/home', [HomeController::class, 'index'])

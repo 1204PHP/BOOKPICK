@@ -18,7 +18,7 @@ class TourController extends Controller
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
         ->select('book_infos.*')
         ->get();
-        // 주목할 만한 신간 리스트 도서
+        // 주목할 만한 신간 리스트 도서        
         $data2 = book_api::where('book_apis.ac_id', 2)
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
         ->select('book_infos.*')

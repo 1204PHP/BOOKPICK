@@ -42,19 +42,19 @@
             <div class="info-input-postcode-area">
                 <div class="info-input-area">
                     <input class="info-input" type="text" id="u_postcode" name="u_postcode"
-                    value={{ $userdata->u_postcode }} maxlength="5">
+                    value={{ $userdata->u_postcode }} maxlength="5" autocomplete="off">
                     <span class="errormsg u_postcode_errormsg"></span>
                 </div>
                 <button class="info-postcode-button" type="button">주소검색</button>
             </div>
             <div class="info-input-area">
                 <input class="info-input" type="text" 
-                id="u_basic_address" name="u_basic_address" value={{ $userdata->u_basic_address }}>
+                id="u_basic_address" name="u_basic_address" value={{ $userdata->u_basic_address }} autocomplete="off">
                 <span class="errormsg u_basic_address_errormsg"></span>
             </div>
             <div class="info-input-area">
                 <input class="info-input" type="text" 
-                id="u_detail_address" name="u_detail_address" value={{ $userdata->u_detail_address }}>
+                id="u_detail_address" name="u_detail_address" value={{ $userdata->u_detail_address }} autocomplete="off">
                 <span class="errormsg u_detail_address_errormsg"></span>
             </div>
             <span>@include('layout.user_error_message')</span>           

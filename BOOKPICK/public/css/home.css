@@ -266,6 +266,7 @@ section {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	margin-bottom: 40px;
 }
 
 .tour-baaner {
@@ -320,7 +321,7 @@ section {
 }
 
 .tour-title strong {
-	font-size: 20px;
+	font-size: 1.1rem;
 	font-weight: 700;
 	margin: 0px 0px 0px 10px;
 }
@@ -330,18 +331,6 @@ section {
 	font-size: 0.7rem;
 	color: #9d9d9d;
 	margin-left: 10px;
-}
-
-/* 광고 영역1 */
-
-/* todo 광고영역1 미디어쿼리, 폰트 찾기 
-광고영역3 이미지 찾기
-*/
-.tour-section-1 {
-	width: 100%;
-	height: 100%;
-	margin: 0 auto;
-	position: relative;
 }
 
 .tour-img-text img {
@@ -383,12 +372,106 @@ section {
 	margin-bottom: 10px;
 }
 
+/* 광고 영역1 */
+
+.tour-main-area {
+	width: 100%;
+	background-color: #f0f0f0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+/* 휴대폰 */
+@media only screen and (max-width: 767px) {
+	.tour-main-text-container {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.tour-main-text {
+		font-size: 1rem;
+		margin: 40px auto;
+	}
+
+	.tour-main-text-p {
+		font-size: 0.8rem;
+		margin: 20px auto;
+	}
+
+	.tour-main-img-container {
+		width: 100%;
+	}
+
+	.tour-main-img-container img {
+		max-width: 100%;
+	}
+}
+
+/* 태블릿 */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+	.tour-main-text-container {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.tour-main-text {
+		font-size: 1.5rem;
+		margin: 40px auto;
+	}
+
+	.tour-main-text-p {
+		font-size: 1.2rem;
+		margin: 20px auto;
+	}
+
+	.tour-main-img-container {
+		width: 100%;
+	}
+
+	.tour-main-img-container img {
+		max-width: 100%;
+	}
+}
+
+/* 데스크탑 */
+@media only screen and (min-width: 1024px) {
+	.tour-main-text-container {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.tour-main-text {
+		font-size: 2rem;
+		margin: 40px auto;
+	}
+
+	.tour-main-text-p {
+		font-size: 1.5rem;
+		margin: 20px auto;
+	}
+
+	.tour-main-img-container {
+		width: 100%;
+	}
+
+	.tour-main-img-container img {
+		max-width: 100%;
+	}
+}
+
 /* 광고 영역2 */
 
 .tour-banner-container {
 	overflow: hidden;
 	position: relative;
-	width: 1300px;
+	width: 100%;
 	height: 200px;
 	box-sizing: border-box;
 	margin-bottom: 20px;
@@ -422,6 +505,7 @@ section {
 	height: 100%;
 	display: flex;
 	flex-wrap: nowrap;
+	justify-content: center;
 	animation: leftreversebanner 180s linear infinite;
 }
 
@@ -431,12 +515,6 @@ section {
 	margin: 0 10px;
 }
 
-.left-banner-reverse-area::before {
-	width: 150px;
-	height: 200px;
-	margin-right: 10px;
-}
-
 @keyframes leftreversebanner {
 	0% {
 		transform: translateX(-100%);
@@ -444,6 +522,123 @@ section {
 	100% {
 		transform: translateX(100%);
 	}
+}
+
+/* 휴대폰 */
+@media only screen and (max-width: 767px) {
+	.tour-loginbanner {
+		width: 100%;
+		height: 150px;
+		margin-top: 20px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid transparent;
+		border-radius: 10px;
+		background-image: url(../img/loginbanner.png);
+		background-repeat: no-repeat;
+		background-size: 100%;
+	}
+	
+	.tour-loginbanner-p {
+		font-size: 0.9rem;
+		color: #487968;
+		margin-bottom: 5px;
+	}
+
+	.loginbanner-loginbtn {
+		width: 200px;
+		height: 30px;
+		border: 1px solid transparent;
+		border-radius: 10px;
+		background-color: #487968;
+		font-size: 0.8rem;
+		color: #fff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 10px;
+	}
+
+}
+
+/* 태블릿 */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+	.tour-loginbanner {
+		width: 100%;
+		height: 150px;
+		margin-top: 20px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid transparent;
+		border-radius: 10px;
+		background-image: url(../img/loginbanner.png);
+		background-repeat: no-repeat;
+		background-size: 100%;
+	}
+	
+	.tour-loginbanner-p {
+		font-size: 1.3rem;
+		color: #487968;
+		margin-bottom: 5px;
+	}
+
+	.loginbanner-loginbtn {
+		width: 200px;
+		height: 30px;
+		border: 1px solid transparent;
+		border-radius: 10px;
+		background-color: #487968;
+		font-size: 0.8rem;
+		color: #fff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 10px;
+	}
+
+}
+
+/* 데스크탑 */
+@media only screen and (min-width: 1024px) {
+	.tour-loginbanner {
+		width: 100%;
+		height: 150px;
+		margin-top: 20px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid transparent;
+		border-radius: 10px;
+		background-image: url(../img/loginbanner.png);
+		background-repeat: no-repeat;
+		background-size: 100%;
+	}
+	
+	.tour-loginbanner-p {
+		font-size: 1.5rem;
+		color: #487968;
+		margin-bottom: 5px;
+	}
+	
+	.loginbanner-loginbtn {
+		width: 200px;
+		height: 30px;
+		border: 1px solid transparent;
+		border-radius: 10px;
+		background-color: #487968;
+		font-size: 1.0rem;
+		color: #fff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 10px;
+	}
+
 }
 
 /* 광고 영역3 */
@@ -458,13 +653,24 @@ section {
 	--e: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1299px) {
 	.tour-card-area {
 		grid-template-columns: repeat(2, 1fr);
 	}
+	.title {
+		font-size: 1.1rem;
+		font-weight: bold;
+		margin-bottom: 60px;
+		color: #fff;
+	}
+	
+	.copy {
+		font-size: 0.8rem;
+		color: #fff;
+	}
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1300px) {
 	.tour-card-area {
 		grid-template-columns: repeat(4, 1fr);
 	}
@@ -515,19 +721,19 @@ section {
 	}
 
 	&:nth-child(1):before {
-		background-color: red;
+		background-image: url(../img/reading1.png);
 	}
 
 	&:nth-child(2):before {
-		background-color: orange;
+		background-image: url(../img/reading2.png);
 	}
 
 	&:nth-child(3):before {
-		background-color: yellow;
+		background-image: url(../img/reading3.png);
 	}
 
 	&:nth-child(4):before {
-		background-color: green;
+		background-image: url(../img/reading4.png);
 	}
 }
 
@@ -542,10 +748,15 @@ section {
 }
 
 .title {
-	font-size: 1rem;
+	font-size: 1.2rem;
 	font-weight: bold;
-	line-height: 1.2;
-	margin-bottom: 15px;
+	margin-bottom: 60px;
+	color: #fff;
+}
+
+.copy {
+	font-size: 0.9rem;
+	color: #fff;
 }
 
 @media (hover: hover) and (min-width: 600px) {

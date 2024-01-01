@@ -11,18 +11,18 @@ $currentRoute = Route::currentRouteName();
 		<div class="bar"></div>
 		</div>
 		<div class="navbar-logo">
-			<a href="{{ route('index') }}">BOOK PICK'</a>
+			<a href="{{ route('home') }}">BOOK PICK'</a>
 		</div>
 		<nav class="desktop-nav">
 			<div class="menu-area">
-				<a href="{{ route('bookTour') }}" class="header-link {{ $currentRoute == 'bookTour' ? 'active' : '' }}">둘러보기</a>
+				<a href="{{ route('bookTour') }}" class="header-link {{ in_array($currentRoute, ['bookTour', 'index']) ? 'active' : '' }}">둘러보기</a>
 				<a href="{{ route('getLibrarywishlist') }}" class="header-link {{ in_array($currentRoute, ['getLibraryFinished', 'getLibraryReading', 'getLibrarywishlist']) ? 'active' : '' }}">나의 서재</a>
 			</div>
 			<div class="search-area">
 				<form class="desktop-search-bar" action="{{ route('getsearch.index') }}" method="GET">
 					<div class="search-input-container">
 						<div class="search-input">
-							<input type="search" class="search-bar" name="result" value="" autocomplete="" placeholder="검색어를 입력해 주세요">
+							<input type="search" class="search-bar" name="result" value="" autocomplete="off" placeholder="검색어를 입력해 주세요">
 						</div>
 						<div class="search-button">
 							<a href="#" class="header-search-btn" onclick="submitSearch()">
@@ -52,7 +52,7 @@ $currentRoute = Route::currentRouteName();
 			<form class="desktop-search-bar" action="{{ route('getsearch.index') }}" method="GET">
 				<div class="search-input-container">
 					<div class="search-input">
-						<input type="search" class="search-bar" name="result" value="" autocomplete="" placeholder="검색어를 입력해 주세요">
+						<input type="search" class="search-bar" name="result" value="" autocomplete="off" placeholder="검색어를 입력해 주세요">
 					</div>
 					<div class="search-button">
 						<a href="#" class="header-search-btn" onclick="submitSearch()">

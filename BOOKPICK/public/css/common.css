@@ -1,7 +1,21 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap'); 본고딕 */
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap'); 노토산스 */
+/* @import url('https://pretendard.com/assets/pretendard/2.001/css/pretendard.css'); 프리텐다드 */
+@font-face {
+    font-family: 'KNUTRUTHTTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/KNUTRUTHTTF.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+    /* font-family: 'Bebas Neue', sans-serif; 본고딕 */
+    /* font-family: 'Noto Sans', sans-serif; 노토산스 */
+    /* font-family: 'Pretendard', sans-serif; 프리텐다드 */
+    font-family: 'KNUTRUTHTTF', sans-serif;
 }
 
 body { 
@@ -88,13 +102,27 @@ header {
 .header-login-btn {
     width: 100px;
     height: 40px;
-    border: 1px solid #4dac27;
-    border-radius: 7px;
-    color: #000;
-    background-color: transparent;
+    border: 0 none;
+    border-radius: 36px;
+    color: #fff;
+    background-color: #4dac27;
     font-weight: bold;
     font-size: 1rem;
     cursor: pointer;
+    &:hover {
+        transition: all 150ms linear;
+    
+        opacity: .85;
+    }
+    &:active {
+        transition: all 150ms linear;
+        opacity: .75;
+    }
+    
+    &:focus {
+        outline: 1px dotted #959595;
+        outline-offset: -4px;
+    }
 }
 
 /* 검색 바 시작 */
@@ -188,25 +216,48 @@ header {
     .header-login-btn {
         width: 100px;
         height: 40px;
-        border: 1px solid #4dac27;
-        border-radius: 7px;
-        color: #000;
-        background-color: transparent;
+        margin-left: 30px;
+        border: 0 none;
+        border-radius: 36px;
+        color: #fff;
+        background-color: #4dac27;
         font-weight: bold;
-        font-size: 1rem;
+        font-size: 0.8rem;
         cursor: pointer;
+        &:hover {
+            transition: all 150ms linear;
+        
+            opacity: .85;
+        }
+        &:active {
+            transition: all 150ms linear;
+            opacity: .75;
+        }
+        
+        &:focus {
+            outline: 1px dotted #959595;
+            outline-offset: -4px;
+        }
     }
 
+    .header-info-button a {
+        font-size: 0.8rem;
+    }
     .header-info-btn {
         width: 80px;
-        height: 30px;
         margin: 0 20px;
         margin-right: auto;
         font-weight: bold;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.6rem;
+        font-size: 0.7rem;
+    }
+
+    .header-info-button {
+        display: flex;
+        justify-content: center;
+        font-size: 0.8rem;
     }
 
     .hamburger-menu {
@@ -324,25 +375,48 @@ header {
     .header-login-btn {
         width: 100px;
         height: 40px;
-        border: 1px solid #4dac27;
-        border-radius: 7px;
-        color: #000;
-        background-color: transparent;
+        margin-left: 30px;
+        border: 0 none;
+        border-radius: 36px;
+        color: #fff;
+        background-color: #4dac27;
         font-weight: bold;
         font-size: 1rem;
         cursor: pointer;
+        &:hover {
+            transition: all 150ms linear;
+        
+            opacity: .85;
+        }
+        &:active {
+            transition: all 150ms linear;
+            opacity: .75;
+        }
+        
+        &:focus {
+            outline: 1px dotted #959595;
+            outline-offset: -4px;
+        }
     }
 
+    .header-info-button a {
+        font-size: 1rem;
+    }
     .header-info-btn {
         width: 80px;
-        height: 30px;
         margin: 0 20px;
         margin-right: auto;
         font-weight: bold;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.6rem;
+        font-size: 0.7rem;
+    }
+
+    .header-info-button {
+        display: flex;
+        justify-content: center;
+        font-size: 0.8rem;
     }
 
     .hamburger-menu {
@@ -421,18 +495,35 @@ header {
     .header-login-btn {
         width: 100px;
         height: 40px;
-        border: 1px solid #4dac27;
-        border-radius: 7px;
-        color: #000;
-        background-color: transparent;
+        margin-left: 30px;
+        border: 0 none;
+        border-radius: 36px;
+        color: #fff;
+        background-color: #4dac27;
         font-weight: bold;
         font-size: 1rem;
         cursor: pointer;
+        &:hover {
+            transition: all 150ms linear;
+        
+            opacity: .85;
+        }
+        &:active {
+            transition: all 150ms linear;
+            opacity: .75;
+        }
+        
+        &:focus {
+            outline: 1px dotted #959595;
+            outline-offset: -4px;
+        }
     }
 
+    .header-info-button a {
+        font-size: 1rem;
+    }
     .header-info-btn {
         width: 80px;
-        height: 30px;
         margin: 0 20px;
         margin-right: auto;
         font-weight: bold;
@@ -444,7 +535,7 @@ header {
 
     .header-info-button {
         display: flex;
-        justify-content: end;
+        justify-content: center;
         font-size: 0.8rem;
     }
 
