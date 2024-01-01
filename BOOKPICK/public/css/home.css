@@ -20,13 +20,16 @@
 		width: 1300px;
 	}
 	#slide {
-		transition: scroll 10s ease-in-out;
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
 	}
 	#slide2 {
-		transition: scroll 30s ease-in-out;
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
 	}
 	#slide3 {
-		transition: scroll 30s ease-in-out;
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
 	}
 }
 
@@ -37,13 +40,16 @@
 	}
 	
 	#slide {
-		transition: scroll 30s ease-in-out;
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
 	}
 	#slide2 {
-		transition: scroll 30s ease-in-out;
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
 	}
 	#slide3 {
-		transition: scroll 30s ease-in-out;
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
 	}
 
 
@@ -60,13 +66,16 @@
 	}
 	
 	#slide {
-		transition: scroll 30s ease-in-out;
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
 	}
 	#slide2 {
-		transition: scroll 30s ease-in-out;
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
 	}
 	#slide3 {
-		transition: scroll 30s ease-in-out;
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
 	}
 }
 
@@ -76,13 +85,16 @@
 		margin: 0 auto;
 	}
 	#slide {
-		transition: scroll 30s ease-in-out;
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
 	}
 	#slide2 {
-		transition: scroll 30s ease-in-out;
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
 	}
 	#slide3 {
-		transition: scroll 30s ease-in-out;
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
 	}
 }
 
@@ -92,9 +104,11 @@
 		flex-direction: column;
 	}
 	#slide3 {
+		scroll-behavior: smooth;
 		width: 100%;
 	}
 	#slide1 {
+		scroll-behavior: smooth;
 		width: 100%;
 	}
 }
@@ -102,11 +116,10 @@
 
 
 .home-baaner {
-	/* background-color: white; */
 	width: 100%;
 	height: 100%;
 	display: flex;
-	transition: transform 0.5s;
+	transition: transform 0.9s;
 }
 .Hbaaner {
 	width: 100%;

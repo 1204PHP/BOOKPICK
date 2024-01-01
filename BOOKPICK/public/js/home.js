@@ -32,7 +32,7 @@ function nextSlide() {
 	showSlide(currentSlideIndex + 1);
 }
 
-setInterval(nextSlide, 3000); // 슬라이드 자동 전환
+setInterval(nextSlide, 6000); // 슬라이드 자동 전환
 
 // 베스트셀러 슬라이드
 function next() {

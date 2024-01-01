@@ -66,7 +66,7 @@ class UserController extends Controller
             return view( 'user_login' )->withErrors( $errorMsg );
         }
         Log::debug("로그인한 유저 이름: " . $result->u_name);
-        return redirect()->route( 'index' )->with('userdata', $result);
+        return redirect()->route( 'home' )->with('userdata', $result);
     }
 
     // 회원가입 화면 이동
@@ -140,14 +140,14 @@ class UserController extends Controller
         // 로그아웃
         Session::flush(); 
         // 세션파기
-        return redirect()->route( 'home' );
+        return redirect()->route( 'index' );
         // 리턴 : 로그아웃 시 / 리다이렉트
     }
 
     // 회원정보 수정 전 유저 비밀번호 확인 화면 이동
     public function getPasswordReconfirm() {
         if(!Auth::check()) {
-            return redirect()->route('home');
+            return redirect()->route('index');
         }        
         return view('user_password_reconfirm');
         // 리턴 : 유저 인증 체크하여 유저일 시, user_password_reconfirm 페이지 이동
@@ -188,7 +188,7 @@ class UserController extends Controller
             return view('user_info')->with('userdata',$user);
         }
         // 리턴 : 유저 인증 체크하여 유저일 시, user_info 리다이렉트
-        return redirect()->route( 'home' );
+        return redirect()->route( 'index' );
         // 리턴 : 유저 인증 체크하여 유저가 아닐 시, home 페이지 이동
     }
 
@@ -265,7 +265,7 @@ class UserController extends Controller
             return view( 'user_withdrawal' );
         }
         // 리턴 : 유저 인증 체크하여 유저일 시, user_withdrawal 리다이렉트
-        return redirect()->route( 'home' );
+        return redirect()->route( 'index' );
         // 리턴 : 유저 인증 체크하여 유저가 아닐 시, home 페이지 이동
     }
 
@@ -301,7 +301,7 @@ class UserController extends Controller
             Auth::logout();
             Log::debug("### 로그아웃 ###");
 
-            return redirect()->route('home');
+            return redirect()->route('index');
         } catch (Exception $e) {
             DB::rollback();
             Log::debug("### 예외발생 : 롤백완료 ###" . $e->getMessage());
