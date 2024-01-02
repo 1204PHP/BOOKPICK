@@ -35,12 +35,10 @@
 						<svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
 							<path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/>
 						</svg>
-							<p class="book_detail_zzim_txt">찜 하기</p>
+							<p class="book_detail_zzim_txt">찜하기</p>
 						@elseif($wishFlg === 1)
-						<svg class="heart-icon nolike" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-							<path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/>
-						</svg>
-							<p class="book_detail_zzim_txt">찜 하기</p>
+						<img class="heart-icon" src="{{asset("img/book_detail_noheart.png")}}" alt="">
+							<p class="book_detail_zzim_txt">찜하기</p>
 						@endif
 						</button>
 					</form>
@@ -77,12 +75,10 @@
 				@else
 				{{-- 로그인 안한 경우 --}}
 					<button type="button" class="book_detail_zzim" onclick="BookDetailConfirm()">
-						<svg class="heart-icon nolike" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-							<path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/>
-						</svg>
-							<p class="book_detail_zzim_txt">찜 하기</p>
+							<img class="heart-icon" src="{{asset("img/book_detail_noheart.png")}}" alt="">
+							<p class="book_detail_zzim_txt">찜하기</p>
 					</button>
-					<button type="submit" class="book_detail_zzim1" onclick="BookDetailConfirm()">서재에 추가</button>
+					<button type="submit" class="book_detail_zzim1" onclick="BookDetailConfirm()">서재 추가</button>
 				@endif
 			</div>
 		</div>
