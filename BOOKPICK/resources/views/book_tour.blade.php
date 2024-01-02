@@ -109,7 +109,7 @@
                 <div class="content">
                     <h2 class="title">독서, 건강해져요. </h2>
                     <p class="copy">스트레스를 효과적으로 완화하고 싶다면,<br>
-                        독서가 최고의 친구에요.</p>
+                        독서가 최고의 친구예요.</p>
                 </div>
             </div>
         </div>
