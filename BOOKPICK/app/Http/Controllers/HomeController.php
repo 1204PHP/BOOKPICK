@@ -23,7 +23,7 @@ class HomeController extends Controller
         
         // 베스트셀러 도서
         $data =book_api::where('book_apis.ac_id', 3)
-        ->whereBetween('book_apis.ba_rank', [1, 6])
+        ->whereBetween('book_apis.ba_rank', [1, 10])
         ->latest('book_apis.created_at')
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
         ->select('book_infos.*')

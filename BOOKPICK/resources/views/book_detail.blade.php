@@ -30,11 +30,17 @@
 					<form class="book_datail_form1" action="{{ route('postBookDetailWishList') }}" method="POST">
 						@csrf
 						<input type="hidden" id="b_id" name="b_id" value="{{$result->b_id}}">
-						<button type="submit" class="book_detail_zzim" onclick="BookDetailWishFlgshowAlert()">
+						<button type="submit" class="book_detail_zzim @if($wishFlg ===0) liked @endif" onclick="BookDetailWishFlgshowAlert()">
 						@if($wishFlg === 0)
-							찜 삭제	
+						<svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+							<path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/>
+						</svg>
+							<p class="book_detail_zzim_txt">찜 하기</p>
 						@elseif($wishFlg === 1)
-							찜 하기
+						<svg class="heart-icon nolike" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+							<path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/>
+						</svg>
+							<p class="book_detail_zzim_txt">찜 하기</p>
 						@endif
 						</button>
 					</form>
@@ -45,19 +51,18 @@
 						
 						@if($libraryFlg ===1)
 								<button type="button" class="book_detail_zzim1" onclick="BookDetailopenModal()">
-									서재에 추가
+									서재 추가
 								</button>
 								<br>
 								<div id="myModal" class="modal">
 									<div class="modal-content">
 										<label class="modal-content_txt" for="detailStartDate">독서 시작 날짜:</label>
 										<input type="date" id="detailStartDate" name="detailStartDate" value="{{ now()->format('Y-m-d') }}">
-										<span class="modal-content_txt" >에서</span>
-										<span class="modal-content-br"><br></span>
+										<span class="modal-content_txt">에서</span>
+										<br>
 										<label class="modal-content_txt" for="detailEndDate">독서 마감 날짜:</label>
 										<input type="date" id="detailEndDate" name="detailEndDate" value="{{ now()->format('Y-m-d') }}">
 										<span class="modal-content_txt">까지</span>
-										
 										<button class="modal-content-submit" type="submit">등록</button>
 									</div>
 								</div>
@@ -65,14 +70,19 @@
 
 						@if($libraryFlg ===0)
 							<button type="submit" class="book_detail_zzim1">
-							서재에서 삭제
+							서재 삭제
 							</button>
 						@endif
 					</form>
 				@else
 				{{-- 로그인 안한 경우 --}}
-					<button type="button" class="book_detail_zzim" onclick="BookDetailWishFlgshowAlert()">찜 하기</button>
-					<button type="submit" class="book_detail_zzim1" onclick="BookDetailLibraryFlgshowAlert()">서재에 추가</button>
+					<button type="button" class="book_detail_zzim" onclick="BookDetailConfirm()">
+						<svg class="heart-icon nolike" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+							<path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/>
+						</svg>
+							<p class="book_detail_zzim_txt">찜 하기</p>
+					</button>
+					<button type="submit" class="book_detail_zzim1" onclick="BookDetailConfirm()">서재에 추가</button>
 				@endif
 			</div>
 		</div>

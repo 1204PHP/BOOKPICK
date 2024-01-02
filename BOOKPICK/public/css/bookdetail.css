@@ -45,7 +45,56 @@
 }
 
 /* 버튼부분 */
+
+.book_detail_zzim {
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 36px;
+    color: #000;
+    background-color: #D9D9D9;
+    font-weight: bold;
+    font-size: 1rem;
+    /* transition: all .25s cubic-bezier(0, 0, 0, 0); */
+    filter: grayscale(100%);
+    user-select: none;
+    cursor: pointer;
+	margin-right: 5px;
+}
 .book_detail_zzim, .book_detail_zzim1 {
+	text-align: center;
+}
+.book_detail_zzim1 {
+    width: 100px;
+    height: 40px;
+    border: 0 none;
+    border-radius: 36px;
+    color: #fff;
+    background-color: #4DAC27;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    &:hover {
+        transition: all 150ms linear;
+        opacity: .85;
+    }
+    &:active {
+        transition: all 150ms linear;
+        opacity: .75;
+    }
+    &:focus {
+        outline: 1px dotted #959595;
+        outline-offset: -4px;
+    }
+}
+/* .book_detail_zzim {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+} */
+/* .book_detail_zzim */
+/* .book_detail_zzim1 {
 	width: 120px;
 	height: 30px;
 	text-align: center;
@@ -55,17 +104,29 @@
 	cursor:pointer;
 	font-size: 14px;
 	font-weight: bold;
+} */
+.heart-icon {
+	display: inline;
+	fill: currentColor;
+	width: 1.2em;
+	height: 1.2em;
+	position: absolute;
+	top:10px;
+	left: 13px;
 }
-.book_detail_zzim {
-	border:2px solid #a5a2a2;
-	background-color: #ccc;
+.heart-icon.nolike {
+	opacity: 0.5;
 }
-.book_detail_zzim1 {
-	border:2px solid #408e21;
-	background-color: #4dac27;
-
+.book_detail_zzim_txt {
+	margin-left: 22px;
 }
-
+.book_detail_zzim.liked {
+    color: #FF6E6F;
+    border: 0 none;
+    border-radius: 36px;
+    background-color: #D9D9D9;
+    filter: grayscale(0);
+}
 /* 미디어쿼리 */
 @media screen and (max-width: 749.99px) {
 	.book_detail_div1, .book_detail_div2 {
@@ -97,11 +158,10 @@
     display: none;
 }
 .modal-content {
-	margin: 5px;
-	padding: 5px;
+	margin: 10px 0;
+	padding: 7px;
 	border: 1px solid #ccc;
     border-radius: 5px;
-	height: 80px;
 	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 	background-color: #fff;
 }
@@ -114,7 +174,7 @@
 	outline: none;
 }
 .modal-content_txt {
-	font-size: 13px;
+	font-size: 14px;
 }
 .modal-content-submit {
 	width: 45px;
@@ -126,7 +186,7 @@
 	cursor:pointer;
 	font-size: 13px;
 	font-weight: bold;
-	border:2px solid #408e21;
+	border:1px solid #408e21;
 	background-color: #4dac27;
 }
 .book_datail_form1, .book_datail_form2 {
@@ -139,22 +199,29 @@
 	float: right;
 }
 @media screen and (max-width: 549.99px) {
-	.modal-content {
+	/* .modal-content {
 		width: 100%;
+	} */
+	.modal-content {
+		width: 280px;
+		height: 100px;
+	}
+	#detailEndDate {
+		margin-bottom: 10px;
 	}
 }
 @media screen and (min-width: 550px) {
 	.modal-content {
 		width: 330px;
+		height: 90px;
 	}
-	/* .modal-content-br {
-		display: none;
-	} */
 	.modal-content-submit {
 		margin-top:20px;
 	}
 }
-
+#detailEndDate {
+	margin-top: 11px;
+}
 
 
 
