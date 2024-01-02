@@ -1,6 +1,6 @@
 @extends('layout.layout')
 {{-- layout.blade.php 상속 --}}
-@section('title', 'home')
+@section('title', 'tour')
 {{-- title로 Main 표기 --}}
 @section('content')
 <div class="tour-container">
