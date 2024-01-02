@@ -13,14 +13,14 @@
 
         <div class="register-input-area">
             <input class="register-input" type="email" id="u_email" name="u_email" 
-            placeholder="*이메일 입력" autocomplete="off">            
+            placeholder="*이메일" autocomplete="off">            
             <span class="errormsg u_mail_errormsg"></span>
         </div>
         <button id="emailConfirmButton" class="register-email-button" type="button">중복 확인</button>
 
         <div class="register-input-area">
             <input class="register-input" type="password" id="u_password" name="u_password" 
-            maxlength="20" placeholder="*비밀번호 입력" autocomplete="off">            
+            maxlength="20" placeholder="*비밀번호" autocomplete="off">            
             <span class="errormsg u_password_errormsg"></span>             
         </div>
 
@@ -32,38 +32,38 @@
 
         <div class="register-input-area">
             <input class="register-input" type="text" id="u_name" name="u_name" 
-            maxlength="50" placeholder="*이름 입력" autocomplete="off">            
+            maxlength="50" placeholder="*이름" autocomplete="off">            
             <span class="errormsg u_name_errormsg"></span>
         </div>
 
         <div class="register-input-area">
             <input class="register-input" type="text" id="u_birthdate" name="u_birthdate" 
-            maxlength="8" placeholder="*생년월일 입력 ex)20231219" autocomplete="off">            
+            maxlength="8" placeholder="*생년월일 ex)20231219" autocomplete="off">            
             <span class="errormsg u_birthdate_errormsg"></span>
         </div>
 
         <div class="register-input-area">
             <input class="register-input" type="tel" id="u_tel" name="u_tel" 
-            maxlength="11" placeholder="*휴대폰 번호 입력 ex)01012345678" autocomplete="off">            
+            maxlength="11" placeholder="*휴대폰 번호 ex)01012345678" autocomplete="off">            
             <span class="errormsg u_tel_errormsg"></span>
         </div>
 
         <div class="register-input-area">
             <input class="register-input" type="text" id="u_postcode" name="u_postcode"
-            maxlength="5" placeholder="*우편번호 입력" autocomplete="off">            
+            maxlength="5" placeholder="*우편번호" autocomplete="off">            
             <span class="errormsg u_postcode_errormsg"></span>
         </div>
         <button class="register-postcode-button" type="button">주소검색</button>
 
         <div class="register-input-area">
             <input class="register-input" type="text" id="u_basic_address" name="u_basic_address"
-            placeholder="*기본주소 입력" autocomplete="off">            
+            placeholder="*기본주소" autocomplete="off">            
             <span class="errormsg u_basic_address_errormsg"></span>
         </div>
 
         <div class="register-input-area">
             <input class="register-input" type="text" id="u_detail_address" name="u_detail_address"
-            placeholder="상세주소 입력" autocomplete="off">
+            placeholder="상세주소" autocomplete="off">
         </div>
         <div class="register-button-area">
             <button class="register-button" id="register-button" type="submit">회원가입</button>

@@ -95,6 +95,14 @@
         font-weight: bold;
     }
 
+    .login-input {
+        color: #53A73C;
+    }
+
+    .login-input:focus {
+        border: 1px solid #53A73C;
+    }
+
     input:focus {
         outline:none;
     }
@@ -360,6 +368,10 @@
         font-weight: bold;
     }
 
+    .login-input:focus {
+        border: 1px solid #53A73C;
+    }
+
     input:focus {
         outline:none;
     }
@@ -623,6 +635,10 @@
         border-radius: 7px;
         color: #000;
         font-weight: bold;
+    }
+
+    .login-input:focus {
+        border: 1px solid #53A73C;
     }
 
     input:focus {
