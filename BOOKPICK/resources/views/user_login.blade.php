@@ -24,7 +24,8 @@
 			<button class="login-kakaologin-button" type="button">카카오계정으로 로그인</button>			
 		</div>
 		<div class="login-button-area-1">
-			<span class="login-span">개인정보 보호를 위해 공용 PC에서 사용 시 SNS계정의 로그아웃 상태를 꼭 확인해 주세요.</span> 			
+			<span class="login-span">개인정보 보호를 위해 공용 PC에서 사용 시<br>
+				SNS계정의 로그아웃 상태를 꼭 확인해 주세요.</span> 			
 		</div>	
 		<div class="login-button-area">
 			<button type="button" class="login-register-button" onclick="location.href='{{ route('getRegister') }}'">회원가입</button>
