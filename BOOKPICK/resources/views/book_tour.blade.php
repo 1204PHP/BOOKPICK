@@ -9,7 +9,7 @@
         <div class="tour-main-area">
             <div class="tour-main-text-container">
                     <h1 class="tour-main-text">독서 시간을 빛낼 BOOK PICK'</h1>
-                    <p class="tour-main-text-p">독서 모험을 더욱 풍성하게 </p>
+                    <p class="tour-main-text-p">독서 모험을 더욱 풍성하게!</p>
             </div>
             <div class="tour-main-img-container">
                 <img src="{{ asset('img/tour-main.png') }}" alt="...">
@@ -66,7 +66,7 @@
         <a href="{{ route('getLogin') }}">
             <div class="tour-loginbanner">
                 <p class="tour-loginbanner-p">독서에서 찾은 미소와 감동을 독서기록으로 남겨보세요</p>
-                <p class="tour-text-p">Bookpick은 여러분의 독서 이야기를 기다리고 있어요</p>
+                <p class="tour-text-p">Bookpick'은 여러분의 독서 이야기를 기다리고 있어요</p>
                 <span class="loginbanner-loginbtn">로그인하기</span>
             </div>
         </a>
@@ -108,7 +108,7 @@
             <div class="tour-card">
                 <div class="content">
                     <h2 class="title">독서, 건강해져요. </h2>
-                    <p class="copy">일상에서 느끼는 스트레스를 효과적으로 완화하고 싶다면,<br>
+                    <p class="copy">스트레스를 효과적으로 완화하고 싶다면,<br>
                         독서가 최고의 친구에요.</p>
                 </div>
             </div>
