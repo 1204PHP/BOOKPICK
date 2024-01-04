@@ -31,8 +31,8 @@ return [
     ],
 
     'kakao' => [    
-        'client_id' => env('8cf9b00c364b69a61cd5de7c00f8b1ec'),  
-        'client_secret' => env('4SP5VeYAW1pmxkgeJmxjogNVLEPSAJbS'),  
-        'redirect' => 'http://127.0.0.1:8000/home',
+        'client_id' => env('KAKAO_CLIENT_ID'),  
+        'client_secret' => env('KAKAO_SECRET_KEY'),  
+        'redirect' => env('KAKAO_REDIRECT'),
     ],
 ];

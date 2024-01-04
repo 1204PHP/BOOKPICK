@@ -38,7 +38,7 @@ $currentRoute = Route::currentRouteName();
 			<div class="header-user-area">
 				<div class="header-login-button-area">
 					<nav class="header-info-button">
-						<a class="header-info-btn" href="{{ route('getPasswordReconfirm') }}">{{ Auth::user()->u_name }} 님</a>
+						<a class="header-info-btn" href="{{ route('getPasswordReconfirm') }}">{{ Auth::user()->u_name }}님</a>
 						<button class="header-logout-btn" onclick="location.href='{{ route('getLogout') }}'">로그아웃</button>
 					</nav>
 				</div>

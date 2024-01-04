@@ -10,7 +10,7 @@ use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\LibraryCommentController;
-use App\Http\Controllers\SocialController;
+use App\Http\Controllers\SocialLoginController;
 use Laravel\Socialite\Facades\Socialite;
 
 /*
@@ -140,13 +140,16 @@ Route::delete( '/withdrawal', [UserController::class, 'deleteWithdrawal'])
 // ### 유저관련(소셜 로그인) ###
 
 // 카카오
-Route::get( '/auth/kakao', function () {
-    return Socialite::driver('kakao')->redirect();
-})->name( 'kakaoLogin' );
-Route::get( '/auth/callback', function () {
-    $Kakaouser = Socialite::driver('kakao')->user();
-})->name( 'kakaoLoginCallBack' );
+Route::get( '/auth/kakao', [SocialLoginController::class, 'loginKakao'])
+->name( 'loginKakao' );
+Route::get( '/auth/kakaocallback', [SocialLoginController::class, 'handleLoginKakaoCallback'])
+->name( 'handleLoginKakaoCallback' );
 
+
+// /auth/{} 세그먼트 파라미터로 설정해둘 시, 타 소셜 로그인을 할때에도 
+// 컨트롤러, 라우트 하나로 설정할 수 있음
+// /auth/{}
+// /auth/{}/callback
 
 
 

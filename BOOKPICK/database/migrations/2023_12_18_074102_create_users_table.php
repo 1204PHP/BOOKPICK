@@ -29,11 +29,7 @@ return new class extends Migration
             
             $table->string('u_name', 50);
             // 이름
-            // varchar 생성(50) / default : not null
-
-            $table->string('kakao_email')->unique()->nullable();
-            $table->string('kakao_name')->nullable();
-            // 카카오 소셜로그인 관련 카카오 email, 이름           
+            // varchar 생성(50) / default : not null        
             
             $table->date('u_birthdate');
             // 생년월일
