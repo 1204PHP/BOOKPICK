@@ -1,6 +1,6 @@
 @extends('layout.layout')
 {{-- layout.blade.php 상속 --}}
-@section('title', 'tour')
+@section('title', 'index')
 {{-- title로 Main 표기 --}}
 @section('content')
 <div class="tour-container">
@@ -26,7 +26,7 @@
         <!-- 왼쪽에서 오른쪽으로 이동하는 책 이미지 배너 -->
         <div class="tour-banner-container">
             <ul class="left-banner-area">
-                @forelse($data1 as $val)
+                @forelse($newBook as $val)
                 <li class="left-banner">
                     <img src="{{ $val->b_img_url }}" alt="...">
                 </li>
@@ -39,7 +39,7 @@
         <!-- 오른쪽에서 왼쪽으로 이동하는 책 이미지 배너 (반대 방향) -->
         <div class="tour-banner-container">
             <ul class="left-banner-reverse-area">
-                @forelse($data2 as $val)
+                @forelse($attentionBook as $val)
                 <li class="left-banner-reverse">
                     <img src="{{$val->b_img_url}}" alt="...">
                 </li>
@@ -52,7 +52,7 @@
         <!-- 왼쪽에서 오른쪽으로 이동하는 책 이미지 배너 -->
         <div class="tour-banner-container">
             <ul class="left-banner-area">
-                @forelse($data3 as $val)
+                @forelse($bestSellerBook as $val)
                 <li class="left-banner">
                     <img src="{{ $val->b_img_url }}" alt="...">
                 </li>
