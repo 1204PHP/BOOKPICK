@@ -116,49 +116,6 @@
             </div>
         </div>
     </section>
-
-    {{-- 영역4 주목할 만한 신간 영역 / 블로거 베스트셀러 영역 --}}
-    <section class="tour-section-4">
-        {{-- 주목할 만한 신간 영역 --}}
-        <div class="tour-box1">
-            <div class="tour-title">
-                <strong>주목할 만한 신간</strong>
-                <p>원하는 도서의 책을 골라보세요</p>
-            </div>
-            <ul class="tour-slide-container" id="slide">
-                @forelse($result as $val)
-                <li class="slide-box">
-                    <a href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
-                        <img src="{{$val->b_img_url}}" alt="...">
-                    </a>
-                        <p>{{$val->b_title}}</p>
-                        <p>{{$val->b_author}}</p>
-                </li>
-                @empty
-                    비어있음
-                @endforelse
-            </ul>
-        </div>
-        {{-- 블로거 베스트셀러 영역 --}}
-        <div class="tour-box1">
-            <div class="tour-title">
-                <strong>블로거 베스트셀러</strong>
-            </div>
-            <ul class="tour-slide-container" id="slide2">
-                @forelse($data as $val)
-                <li class="slide-box">
-                    <a href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
-                        <img src="{{$val->b_img_url}}" alt="...">
-                    </a>
-                        <p>{{$val->b_title}}</p>
-                        <p>{{$val->b_author}}</p>
-                </li>
-                @empty
-                    비어있음
-                @endforelse
-            </ul>
-        </div>
-    </section>
 </div>
 @endsection
 

@@ -23,11 +23,23 @@
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
+	#slide1 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
 	#slide2 {
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
 	#slide3 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
+	#slide4 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
+	#slide5 {
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
@@ -43,11 +55,23 @@
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
+	#slide1 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
 	#slide2 {
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
 	#slide3 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
+	#slide4 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
+	#slide5 {
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
@@ -69,11 +93,23 @@
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
+	#slide1 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
 	#slide2 {
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
 	#slide3 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
+	#slide4 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
+	#slide5 {
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
@@ -88,11 +124,23 @@
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
+	#slide1 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
 	#slide2 {
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
 	#slide3 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
+	#slide4 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
+	#slide5 {
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
@@ -103,7 +151,7 @@
 		width: 100%;
 		flex-direction: column;
 	}
-	#slide3 {
+	#slide {
 		scroll-behavior: smooth;
 		width: 100%;
 	}
@@ -111,6 +159,22 @@
 		scroll-behavior: smooth;
 		width: 100%;
 	}
+	#slide2 {
+		scroll-behavior: smooth;
+		width: 100%;
+	}
+	#slide3 {
+		scroll-behavior: smooth;
+		width: 100%;
+	}
+	#slide4 {
+		scroll-behavior: smooth;
+		width: 100%;
+	}
+	#slide5 {
+		scroll-behavior: smooth;
+		width: 100%;
+	}	
 }
 
 
@@ -127,30 +191,20 @@
 	border-radius: 5px;
 }
 
-/* .Hbaaner1 {
-	width: 1260px;
-	height: 100%;
-	border: 1px solid #000;
-	border-radius: 30px;
-} */
 .home-box1 {
 	width: 100%;
-	/* height: 30vh; */
 	position: relative;
 	padding: 20px 20px;
 }
 .home-box2 {
 	width: 100%;
     padding: 0px 20px;
-    /* margin-top: 20px; */
     display: flex;
     justify-content: space-between;
 }
 .home-box3 {
 	width: 100%;
-	/* height: 30vh; */
 	padding: 10px 20px;
-	/* margin-bottom: 50px; */
 }
 .home-main {
 	position: relative;
