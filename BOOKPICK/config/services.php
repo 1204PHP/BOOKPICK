@@ -30,4 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'kakao' => [    
+        'client_id' => env('8cf9b00c364b69a61cd5de7c00f8b1ec'),  
+        'client_secret' => env('4SP5VeYAW1pmxkgeJmxjogNVLEPSAJbS'),  
+        'redirect' => 'http://127.0.0.1:8000/home',
+    ],
 ];

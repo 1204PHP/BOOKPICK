@@ -711,8 +711,8 @@
         cursor: pointer;
     }
     
-    .login-kakaologin-button {
-        color: #000;
+    .login-kakaologin-button{ 
+        color: #000;   
         background-color: #FEE500;
         margin-bottom: 30px;
         cursor: pointer;

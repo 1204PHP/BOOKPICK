@@ -21,12 +21,13 @@ class User extends Authenticatable
         'u_email',
         'u_password',
         'u_name',
+        'kakao_email',
+        'kakao_nickname',
         'u_birthdate',
         'u_tel',
         'u_postcode',
         'u_basic_address',
-        'u_detail_address',
-        
+        'u_detail_address',        
     ];
 
     protected $hidden = [
