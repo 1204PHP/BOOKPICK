@@ -17,8 +17,8 @@ return new class extends Migration
             
             $table->id('u_id');
             // 유저 PK
-            // default : big_int, pk, auto_increment
-            
+            // default : big_int, pk, auto_increment         
+
             $table->string('u_email', 50)->unique();
             // 유저 이메일
             // varchar 생성(50) / default : unique, not null
@@ -30,6 +30,10 @@ return new class extends Migration
             $table->string('u_name', 50);
             // 이름
             // varchar 생성(50) / default : not null
+
+            $table->string('kakao_email')->unique()->nullable();
+            $table->string('kakao_name')->nullable();
+            // 카카오 소셜로그인 관련 카카오 email, 이름           
             
             $table->date('u_birthdate');
             // 생년월일

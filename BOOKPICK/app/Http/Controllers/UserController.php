@@ -27,21 +27,7 @@ class UserController extends Controller
 
     // 로그인 처리    
     public function postLogin( Request $request ) {   
-        
-        // // 로그인 시도 5번 제한
-        // $maxLoginAttempts = 5;
-        // // 계정 잠금 시간 5분
-        // $decayMinutes = 5;
-        // $throttleKey = $this->limiter()->key($request);
-        // if ($this->hasTooManyLoginAttempts($request)) {
-        //     $seconds = $this->limiter()->availableIn($throttleKey) / 60;
-        //     $minutes = ceil($seconds / 60);
-        //     $errorMsg = '로그인 시도가 너무 많습니다. 잠시 후 다시 시도해주세요. ' . $minutes . ' 분 후에 다시 시도할 수 있습니다.';
-        //     return view( 'user_login' )->withErrors( $errorMsg );
-        // }
-
         // 로그인 시도 처리
-
         $result = User::where( 'u_email', $request->u_email )->first();
         // User모델 내 email에서 요청보낸 email로 검색된 결과 중 첫번째 레코드 반환
 
@@ -57,8 +43,6 @@ class UserController extends Controller
         Auth::login( $result );
 
         if(Auth::check()) {
-            // $this->clearLoginAttempts($request);
-            // 정상 로그인 시 로그인 시도 제한 횟수 초기화
             session( $result->only( 'u_id' ) );
             // 세션 내 u_id 데이터 저장
         } else {

@@ -10,6 +10,8 @@ use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\LibraryCommentController;
+use App\Http\Controllers\SocialController;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,11 +39,11 @@ Route::get( '/home', [HomeController::class, 'index'])
 // ->name( 'newbookGet' );
 
 // 둘러보기 페이지
-Route::get( '/book/tour', function () {
+Route::get( '/index', function () {
     return view( 'book_tour' );
 })->name( 'bookTour' );
 
-Route::get( '/book/tour', [TourController::class, 'index'])
+Route::get( '/index', [TourController::class, 'index'])
 ->name( 'bookTour' );
 
 
@@ -134,6 +136,24 @@ Route::get( '/withdrawal', [UserController::class, 'getWithdrawal'])
 // 회원탈퇴 처리
 Route::delete( '/withdrawal', [UserController::class, 'deleteWithdrawal'])
 ->name( 'deleteWithdrawal' );
+
+// ### 유저관련(소셜 로그인) ###
+
+// 카카오
+Route::get( '/auth/kakao', function () {
+    return Socialite::driver('kakao')->redirect();
+})->name( 'kakaoLogin' );
+Route::get( '/auth/callback', function () {
+    $Kakaouser = Socialite::driver('kakao')->user();
+})->name( 'kakaoLoginCallBack' );
+
+
+
+
+
+
+
+
 
 
 // ### 나의 서재 도서 상세 > 독서기록

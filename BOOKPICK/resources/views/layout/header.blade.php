@@ -11,11 +11,11 @@ $currentRoute = Route::currentRouteName();
 		<div class="bar"></div>
 		</div>
 		<div class="navbar-logo">
-			<a href="{{ route('home') }}">BOOK PICK'</a>
+			<a href="{{ route('index') }}">BOOK PICK'</a>
 		</div>
 		<nav class="desktop-nav">
 			<div class="menu-area">
-				<a href="{{ route('bookTour') }}" class="header-link {{ in_array($currentRoute, ['bookTour', 'index']) ? 'active' : '' }}">둘러보기</a>
+				<a href="{{ route('home') }}" class="header-link {{ $currentRoute === 'home' ? 'active' : '' }}">둘러보기</a>
 				<a href="{{ route('getLibrarywishlist') }}" class="header-link {{ in_array($currentRoute, ['getLibraryFinished', 'getLibraryReading', 'getLibrarywishlist']) ? 'active' : '' }}">나의 서재</a>
 			</div>
 			<div class="search-area">
@@ -62,7 +62,7 @@ $currentRoute = Route::currentRouteName();
 				</div>
 
 			</form>		
-			<a href="{{ route('bookTour') }}">둘러보기</a></li>				
+			<a href="{{ route('home') }}">둘러보기</a></li>				
 			<a href="{{ route('getLibraryFinished') }}">나의 서재</a></li>
 		</nav>
 	</header>
