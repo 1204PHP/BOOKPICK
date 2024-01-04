@@ -7,13 +7,15 @@ use App\Models\Book_info;
 use App\Models\Book_api;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use App\Models\User_library;
 
 class HomeController extends Controller
 {
     public function index()
     {   
-        Log::error("--------------홈 화면 출력------------------------(ms)");
-        DB::enableQueryLog();
+        Log::debug("--------------홈 화면 출력------------------------(ms)");
         // 베스트 셀러 도서
         $bestSellerBook = Book_api::join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
         ->select('book_infos.b_id', 'book_infos.b_img_url', 'book_infos.b_title', 'book_infos.b_author')
@@ -24,22 +26,64 @@ class HomeController extends Controller
         ->orderBy('book_apis.ba_rank', 'asc')
         ->limit(10)
         ->get();
-        Log::error("홈 베스트셀러 끝 쿼리측정시간 :".DB::getQueryLog()[0]['time']);
 
         // 북픽 추천 도서
-        $recommendBook = Book_api::select('*')
-                    ->fromSub(
-                                Book_api::where('book_apis.ac_id', 1)
-                                ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
-                                ->select('book_infos.b_id', 'book_infos.b_img_url', 'book_infos.b_title', 'book_infos.b_author','book_apis.deleted_at')
-                                ->orderByDesc('book_apis.created_at')
-                                ->limit(50),
-                                'book_apis'
-                            )
-                    ->inRandomOrder()
-                    ->limit(10)
-                    ->get();
-        Log::error("홈 북픽 추천 도서 끝 쿼리측정시간 :".DB::getQueryLog()[1]['time']);
+        $userId = Session::get('u_id');
+        if ($userId) {
+            $resultFromQuery = User_library::select('book_infos.b_sub_cate', DB::raw('COUNT(*) as count'))
+                ->join('book_infos', 'user_libraries.b_id', '=', 'book_infos.b_id')
+                ->where('u_id',  $userId)
+                ->where('ul_flg', 0)
+                ->groupBy('b_sub_cate')
+                ->orderByDesc('count')
+                ->limit(1)
+                ->first();
+
+            if($resultFromQuery) {
+                $b_sub_cate = $resultFromQuery->b_sub_cate;
+                $subQuery = User_library::select('b_id')
+                            ->where('u_id', $userId)
+                            ->where('ul_flg',0);
+                $recommendBook = Book_info::select('b_id', 'b_img_url', 'b_title', 'b_author')
+                            ->whereNotIn('b_id', $subQuery)
+                            ->where('b_sub_cate', $b_sub_cate)
+                            ->limit(10)
+                            ->get();
+                if ($recommendBook->count() < 10) {
+                        $additionResult = Book_info::select('b_id', 'b_img_url', 'b_title', 'b_author')
+                                                    ->where('b_sub_cate', '<>', $b_sub_cate) // 기존 결과와 중복되지 않도록
+                                                    ->limit(10 - $recommendBook->count()) // 부족한 만큼 추가로 가져오기
+                                                    ->get();
+                        $recommendBook = $recommendBook->merge($additionResult);
+                    }
+            } else {
+                $recommendBook = Book_api::select('*')
+                                ->fromSub(
+                                            Book_api::where('book_apis.ac_id', 4)
+                                            ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
+                                            ->select('book_infos.b_id', 'book_infos.b_img_url', 'book_infos.b_title', 'book_infos.b_author','book_apis.deleted_at')
+                                            ->orderByDesc('book_apis.created_at')
+                                            ->limit(50),
+                                            'book_apis'
+                                        )
+                                ->inRandomOrder()
+                                ->limit(10)
+                                ->get();
+            }
+        } else {
+            $recommendBook = Book_api::select('*')
+            ->fromSub(
+                        Book_api::where('book_apis.ac_id', 4)
+                        ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
+                        ->select('book_infos.b_id', 'book_infos.b_img_url', 'book_infos.b_title', 'book_infos.b_author','book_apis.deleted_at')
+                        ->orderByDesc('book_apis.created_at')
+                        ->limit(50),
+                        'book_apis'
+                    )
+            ->inRandomOrder()
+            ->limit(10)
+            ->get();
+        }
 
         // 신간 도서
         $newBook = Book_api::select('*')
@@ -54,7 +98,6 @@ class HomeController extends Controller
                     ->inRandomOrder()
                     ->limit(10)
                     ->get();
-        Log::error("홈 신간 도서 끝 쿼리측정시간 :".DB::getQueryLog()[2]['time']);
 
         // 주목할만한 신간 도서
         $attentionBook = Book_api::select('*')
@@ -69,7 +112,6 @@ class HomeController extends Controller
                     ->inRandomOrder()
                     ->limit(10)
                     ->get();
-        Log::error("홈 주목할만한 신간 도서 끝 쿼리측정시간 :".DB::getQueryLog()[3]['time']);
         
         // 블로거 베스트셀러 도서
         $bloggerBook = Book_api::select('*')
@@ -84,9 +126,8 @@ class HomeController extends Controller
                     ->inRandomOrder()
                     ->limit(10)
                     ->get();
-        Log::error("홈 블로거 베스트셀러 끝 쿼리측정시간 :".DB::getQueryLog()[4]['time']);
 
-        Log::error("--------------홈 화면 출력 끝------------------------");
+        Log::debug("--------------홈 화면 출력 끝------------------------");
         return view( 'home' )
             ->with('bestSellerBook', $bestSellerBook)
             ->with('recommendBook', $recommendBook)

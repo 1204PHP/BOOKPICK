@@ -20,12 +20,6 @@ class LibraryCommentController extends Controller
         }
 
 
-
-
-
-
-
-
         if(!Auth::check()) {
             return view( 'user_login' );
         }
