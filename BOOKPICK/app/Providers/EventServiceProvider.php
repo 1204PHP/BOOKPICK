@@ -18,6 +18,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            'SocialiteProviders\\Zoho\\ZohoExtendSocialite@handle',
+            \SocialiteProviders\Kakao\KakaoExtendSocialite::class.'@handle',
+        ],
     ];
 
     /**
