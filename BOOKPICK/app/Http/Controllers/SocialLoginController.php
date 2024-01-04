@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+use GuzzleHttp\Client;
+use Exception;
 
 class SocialLoginController extends Controller
 {
@@ -25,7 +27,14 @@ class SocialLoginController extends Controller
         try {
             $kakaoUser = Socialite::driver('kakao')
                 ->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))
-                ->user();        
+                ->user();
+            // 기존 세션 정보 삭제
+            session()->forget('kakaoAccessToken');
+            session()->forget('kakaoUserData');
+
+            // 새로운 세션 생성
+            session(['kakaoAccessToken' => $kakaoUser->token]);
+            session(['kakaoUser' => $kakaoUser]);
         } catch (Exception $e) {
             Log::debug("카카오 로그인 오류");
             return view('user_login');
@@ -64,6 +73,8 @@ class SocialLoginController extends Controller
         if(Auth::check()) {
             session( $result->only( 'u_id' ) );
             // 세션 내 u_id 데이터 저장
+            session(['kakaoAccessToken' => $kakaoUser->token]);
+            // 세션 내 토큰 저장
         }
         Log::debug("로그인 후 사용자 정보: " . Auth::user());
         Log::debug("로그인한 카카오 유저 닉네임: " . $result->u_name);
@@ -71,15 +82,44 @@ class SocialLoginController extends Controller
     }
 
     public function logoutKakao()
-    {
-        Auth::logout();
-        // 로그아웃
-        Session::flush();
-        // 세션 삭제
-        Session::regenerate();
-        // 기존 세션 ID를 무효화하고 새로운 세션 ID를 생성
+    {   
+        // 세션에 저장된 카카오 토큰 획득
+        $kakaoAccessToken = session('kakaoAccessToken');
+        // 세션에 저장 
+        $kakaoUser = session('kakaoUser');
+        // 카카오 로그아웃 API 호출
+        try {
+            $client = new Client([
+                'verify' => false,
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $kakaoAccessToken,
+                ],
+            ]);
+    
+            $response = $client->post('https://kapi.kakao.com/v1/user/logout', [
+                'form_params' => [
+                    'target_id_type' => 'user',
+                    'target_id' => $kakaoUser->getId(), 
+                ],
+            ]);
 
-        // 로그아웃 후 홈페이지 또는 원하는 다른 페이지로 리다이렉트
-        return redirect()->route('index');    
+            if ($response->getStatusCode() === 200) {
+                // 카카오 로그아웃 성공
+                Auth::logout();
+                // 로그아웃
+                session()->flush();
+                // 세션 삭제
+                return redirect()->route('index');
+            } else {
+                // 카카오 로그아웃 실패
+                Log::error('카카오 로그아웃 API 호출 실패 - 응답 코드: ' . $response->getStatusCode());
+            }
+        } catch (RequestException $e) {
+            // Guzzle 예외 처리
+            Log::error('카카오 로그아웃 API 호출 중 Guzzle 예외 발생: ' . $e->getMessage());
+        } catch (\Exception $e) {
+            // 다른 예외 처리
+            Log::error('카카오 로그아웃 중 예외 발생: ' . $e->getMessage());
+        }
     }
 }
