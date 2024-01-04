@@ -32,7 +32,7 @@ class UserController extends Controller
         // User모델 내 email에서 요청보낸 email로 검색된 결과 중 첫번째 레코드 반환
 
         if( !$result || !( Hash::check( $request->u_password, $result->u_password ) ) ) {
-            $errorMsg = '이메일 주소와 비밀번호를 다시 확인해주세요.';
+            $errorMsg = '이메일 주소와 비밀번호를 다시 확인해주세요';
             return view( 'user_login' )->withErrors( $errorMsg );
         }
         // $result 내 결과 값이 아니거나 Hash처리 유저 입력 비밀번호와 
@@ -46,7 +46,7 @@ class UserController extends Controller
             session( $result->only( 'u_id' ) );
             // 세션 내 u_id 데이터 저장
         } else {
-            $errorMsg = '로그인에 실패했습니다. 새로고침 후 재로그인 해주세요.';
+            $errorMsg = '로그인에 실패했습니다. 새로고침 후 재로그인 해주세요';
             return view( 'user_login' )->withErrors( $errorMsg );
         }
         Log::debug("로그인한 유저 이름: " . $result->u_name);
