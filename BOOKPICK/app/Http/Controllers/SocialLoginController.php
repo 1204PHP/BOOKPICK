@@ -7,6 +7,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class SocialLoginController extends Controller
 {
@@ -16,6 +17,7 @@ class SocialLoginController extends Controller
             ->with(['prompt' => 'consent'])
             ->redirect();
     }
+    // composer require laravel/socialite zoho설치 후 계속 작업하려면 타 pc작업시 설치 후 pc 아이피 카카오에 저장
 
     // 카카오 소셜로그인
     public function handleLoginKakaoCallback()
@@ -25,8 +27,8 @@ class SocialLoginController extends Controller
                 ->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))
                 ->user();        
         } catch (Exception $e) {
-            return view('user_login');
             Log::debug("카카오 로그인 오류");
+            return view('user_login');
         }
 
         // 카카오 이메일로 사용자 찾기
@@ -34,6 +36,9 @@ class SocialLoginController extends Controller
 
         // 로그인 전 카카오 유저 정보
         Log::debug("로그인 전 카카오 유저 정보: " . $result);
+
+        // 카카오 로그인 여부 세션 저장
+        session(['kakaoLogin' => true]);
 
         if (!$result) {
             // 카카오 이메일 미존재-회원생성
@@ -62,6 +67,19 @@ class SocialLoginController extends Controller
         }
         Log::debug("로그인 후 사용자 정보: " . Auth::user());
         Log::debug("로그인한 카카오 유저 닉네임: " . $result->u_name);
-        return redirect()->route('home')->with('userdata', $result);
+        return redirect()->route('home')->with('kakaoUserData', $result);
+    }
+
+    public function logoutKakao()
+    {
+        Auth::logout();
+        // 로그아웃
+        Session::flush();
+        // 세션 삭제
+        Session::regenerate();
+        // 기존 세션 ID를 무효화하고 새로운 세션 ID를 생성
+
+        // 로그아웃 후 홈페이지 또는 원하는 다른 페이지로 리다이렉트
+        return redirect()->route('index');    
     }
 }

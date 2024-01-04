@@ -240,7 +240,8 @@ header {
         }
     }
 
-    .header-info-button a {
+    .header-info-button a,
+    .header-info-button span {
         font-size: 0.8rem;
     }
     .header-info-btn {
@@ -399,7 +400,8 @@ header {
         }
     }
 
-    .header-info-button a {
+    .header-info-button a,
+    .header-info-button span {
         font-size: 1rem;
     }
     .header-info-btn {
@@ -519,7 +521,8 @@ header {
         }
     }
 
-    .header-info-button a {
+    .header-info-button a,
+    .header-info-button span {
         font-size: 1rem;
     }
     .header-info-btn {

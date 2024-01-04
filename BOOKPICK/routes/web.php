@@ -139,11 +139,15 @@ Route::delete( '/withdrawal', [UserController::class, 'deleteWithdrawal'])
 
 // ### 유저관련(소셜 로그인) ###
 
-// 카카오
+// 카카오 로그인 처리
 Route::get( '/auth/kakao', [SocialLoginController::class, 'loginKakao'])
 ->name( 'loginKakao' );
 Route::get( '/auth/kakaocallback', [SocialLoginController::class, 'handleLoginKakaoCallback'])
 ->name( 'handleLoginKakaoCallback' );
+
+// 로그아웃 처리
+Route::get('/auth/kakao/logout', [SocialLoginController::class, 'logoutKakao'])
+->name( 'logoutKakao' );
 
 
 // /auth/{} 세그먼트 파라미터로 설정해둘 시, 타 소셜 로그인을 할때에도 
