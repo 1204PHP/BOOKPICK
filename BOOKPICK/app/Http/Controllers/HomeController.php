@@ -27,7 +27,6 @@ class HomeController extends Controller
         Log::error("홈 베스트셀러 끝 쿼리측정시간 :".DB::getQueryLog()[0]['time']);
 
         // 북픽 추천 도서
-        DB::enableQueryLog();
         $recommendBook = book_api::where('book_apis.ac_id', 1)
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
         ->select('book_infos.*')
@@ -35,10 +34,9 @@ class HomeController extends Controller
         ->orderByDesc('book_apis.created_at')
         ->limit(10)
         ->get();
-        Log::error("홈 북픽 추천 도서 끝 쿼리측정시간 :".DB::getQueryLog()[0]['time']);
+        Log::error("홈 북픽 추천 도서 끝 쿼리측정시간 :".DB::getQueryLog()[1]['time']);
 
         // 신간 도서
-        DB::enableQueryLog();
         $newBooklimit = Book_api::where('book_apis.ac_id', 1)
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
         ->select('book_infos.b_id', 'book_infos.b_img_url', 'book_infos.b_title', 'book_infos.b_author')
@@ -46,10 +44,9 @@ class HomeController extends Controller
         ->limit(50)
         ->get();
         $newBook = $newBooklimit->random(10);
-        Log::error("홈 신간 도서 끝 쿼리측정시간 :".DB::getQueryLog()[0]['time']);
+        Log::error("홈 신간 도서 끝 쿼리측정시간 :".DB::getQueryLog()[2]['time']);
 
         // 주목할만한 신간 도서
-        DB::enableQueryLog();
         $attentionBooklimit = Book_api::where('book_apis.ac_id', 2)
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
         ->select('book_infos.b_id', 'book_infos.b_img_url', 'book_infos.b_title', 'book_infos.b_author')
@@ -57,10 +54,9 @@ class HomeController extends Controller
         ->limit(50)
         ->get();
         $attentionBook = $attentionBooklimit->random(10);
-        Log::error("홈 주목할만한 신간 도서 끝 쿼리측정시간 :".DB::getQueryLog()[0]['time']);
+        Log::error("홈 주목할만한 신간 도서 끝 쿼리측정시간 :".DB::getQueryLog()[3]['time']);
         
         // 블로거 베스트셀러 도서
-        DB::enableQueryLog();
         $bloggerBooklimit = Book_api::where('book_apis.ac_id', 4)
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
         ->select('book_infos.b_id', 'book_infos.b_img_url', 'book_infos.b_title', 'book_infos.b_author')
@@ -68,7 +64,7 @@ class HomeController extends Controller
         ->limit(50)
         ->get();
         $bloggerBook = $bloggerBooklimit->random(10);
-        Log::error("홈 블로거 베스트셀러 끝 쿼리측정시간 :".DB::getQueryLog()[0]['time']);
+        Log::error("홈 블로거 베스트셀러 끝 쿼리측정시간 :".DB::getQueryLog()[4]['time']);
 
         Log::error("--------------홈 화면 출력 끝------------------------");
         return view( 'home' )
