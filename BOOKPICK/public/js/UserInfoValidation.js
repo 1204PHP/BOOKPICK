@@ -1,17 +1,54 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // 폼 전송 이벤트 리스너 등록
-    document.querySelector('.info-form').addEventListener('submit', function(event) {
-        // 폼 전송 전에 유효성 검사 수행
-        if (!isValid()) {
-            event.preventDefault(); // 폼 전송 중단
-        }
-    });
+document.addEventListener('DOMContentLoaded', function () {
+    var form = document.querySelector(".info-form");
+    var submitButton = form.querySelector("#info-button");
+
+    if (submitButton) {
+        submitButton.addEventListener("click", function (event) {
+            var new_password = document.getElementById("new_password");
+            var password_confirm = document.getElementById("password_confirm");
+            var u_postcode = document.getElementById("u_postcode");
+            var u_basic_address = document.getElementById("u_basic_address");
+            var u_detail_address = document.getElementById("u_detail_address");
+
+            // 비밀번호 & 비밀번호 확인 필드
+            if (new_password.value && password_confirm.value) {
+                if (new_password.value !== password_confirm.value) {
+                    info_errormsg.innerText = "새 비밀번호와 비밀번호 확인이 일치하지 않습니다";
+                    event.preventDefault();
+                    return;
+                } 
+            }
+
+            // 모든 입력 필드
+            var allFields = [new_password, password_confirm, u_postcode, u_basic_address, u_detail_address];
+
+            // 변경된 필드가 있는지 확인
+            if (!isFieldsChanged(allFields)) {
+                alert("수정할 내용을 입력해주세요");
+                event.preventDefault();
+                return;
+            }
+        });
+    }
 });
-    var new_password = document.getElementById("new_password");
-    var password_confirm = document.getElementById("password_confirm");
-    var u_postcode = document.getElementById("u_postcode");
-    var u_basic_address = document.getElementById("u_basic_address");
-    var u_detail_address = document.getElementById("u_detail_address");
+
+    // 입력값에 변동이 있는지 확인하는 함수
+    function isFieldsChanged(fields) {
+        return fields.some(function (field) {
+            // 주소 변경 필드인 경우
+            if (field.id === "u_postcode" || field.id === "u_basic_address" || field.id === "u_detail_address") {
+                return field.value !== field.defaultValue;
+            }
+    
+            // 비밀번호 필드인 경우
+            if (field.id === "new_password") {
+                return field.value !== field.defaultValue;
+            }
+    
+            // 기타 경우 (주소 변경 및 비밀번호 이외의 필드)
+            return field.value !== field.defaultValue;
+        });
+    }
 
     // 각 입력 필드에 대한 유효성 검사를 수행하는 함수
     function validateInput(inputField) {
@@ -106,44 +143,44 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 우편번호 유효성 검사
-    function validatePostcode(postcodeInput) {
-        var postcodeValid = true;
-        var postcodeErrorSpan = document.querySelector(".u_postcode_errormsg");
-        var postcodeRegex = /^\d{5}$/;
+    // function validatePostcode(postcodeInput) {
+    //     var postcodeValid = true;
+    //     var postcodeErrorSpan = document.querySelector(".u_postcode_errormsg");
+    //     var postcodeRegex = /^\d{5}$/;
 
-        if (postcodeInput) {
-            if (!postcodeInput.value) {
-                postcodeValid = false;
-                openErrorMsg(postcodeErrorSpan, "우편번호: 필수 정보입니다.");
-            } else if (!postcodeRegex.test(postcodeInput.value || postcodeInput.value.length > 6)) {
-                postcodeValid = false;
-                openErrorMsg(postcodeErrorSpan, "우편번호는 5자리 숫자로만 입력해주세요");
-            } else {
-                clearErrorMsg(postcodeErrorSpan);
-            }
-        }
-        return postcodeValid;
-    }
+    //     if (postcodeInput) {
+    //         if (!postcodeInput.value) {
+    //             postcodeValid = false;
+    //             openErrorMsg(postcodeErrorSpan, "우편번호: 필수 정보입니다.");
+    //         } else if (!postcodeRegex.test(postcodeInput.value || postcodeInput.value.length > 6)) {
+    //             postcodeValid = false;
+    //             openErrorMsg(postcodeErrorSpan, "우편번호는 5자리 숫자로만 입력해주세요");
+    //         } else {
+    //             clearErrorMsg(postcodeErrorSpan);
+    //         }
+    //     }
+    //     return postcodeValid;
+    // }
 
     // 기본주소 유효성 검사
-    function validateBasicAddress(basicAddressInput) {
-        var basicAddressValid = true;
-        var basicAddressErrorSpan = document.querySelector(".u_basic_address_errormsg");
-        var basicAddressValidRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z\s-]*$/;
+    // function validateBasicAddress(basicAddressInput) {
+    //     var basicAddressValid = true;
+    //     var basicAddressErrorSpan = document.querySelector(".u_basic_address_errormsg");
+    //     var basicAddressValidRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z\s-]*$/;
 
-        if (basicAddressInput) {
-            if (!basicAddressInput.value) {
-                basicAddressValid = false;
-                openErrorMsg(basicAddressErrorSpan, "기본주소를 입력해주세요");
-            } else if (!basicAddressValidRegex.test(basicAddressInput.value || basicAddressInput.value.length > 201)) {
-                basicAddressValid = false;
-                openErrorMsg(basicAddressErrorSpan, "기본주소는 한글, 숫자, 영어, -를 포함하여 입력해주세요");
-            } else {
-                clearErrorMsg(basicAddressErrorSpan);
-            }
-        }
-        return basicAddressValid;
-    }
+    //     if (basicAddressInput) {
+    //         if (!basicAddressInput.value) {
+    //             basicAddressValid = false;
+    //             openErrorMsg(basicAddressErrorSpan, "기본주소를 입력해주세요");
+    //         } else if (!basicAddressValidRegex.test(basicAddressInput.value || basicAddressInput.value.length > 201)) {
+    //             basicAddressValid = false;
+    //             openErrorMsg(basicAddressErrorSpan, "기본주소는 한글, 숫자, 영어, -를 포함하여 입력해주세요");
+    //         } else {
+    //             clearErrorMsg(basicAddressErrorSpan);
+    //         }
+    //     }
+    //     return basicAddressValid;
+    // }
 
     function openErrorMsg(element, message) {
         // 내용이 비어있지 않으면 오류 메시지 표시

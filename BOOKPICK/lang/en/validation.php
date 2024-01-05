@@ -188,7 +188,7 @@ return [
                 'file' => ':attribute는 최소 :min자리 이상입니다',
                 'string' => '',
                 'array' => '',
-            ],            
+            ],         
         ],        
         
         // 새 비밀번호 확인
@@ -204,7 +204,8 @@ return [
                 'string' => '',
                 'array' => ' ',
             ],
-            'same' => '새 비밀번호와 :attribute이 일치하지 않습니다',
+            'same' => '새 비밀번호와 :attribute이 일치하지 않습니다',            
+            'required_with' => ':values와 :attribute이 일치하지 않습니다',  
         ],
         
         // 이름

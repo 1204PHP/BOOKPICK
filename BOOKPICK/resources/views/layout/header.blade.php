@@ -39,12 +39,12 @@ $currentRoute = Route::currentRouteName();
 				<div class="header-login-button-area">
 					<nav class="header-info-button">						
 						@if(Auth::check())
-						@if(session('kakaoUserData'))
-						<!-- 카카오 로그아웃 -->
-						<span class="header-info-btn">{{ Auth::user()->u_name }} 님</span>
-						<button class="header-logout-btn" onclick="location.href='{{ route('logoutKakao') }}'">로그아웃</button>
-						@else
-						<!-- 일반 로그아웃 -->
+							@if(session('kakaoUser'))
+							<!-- 카카오 로그아웃 -->
+							<span class="header-info-btn">{{ Auth::user()->u_name }} 님</span>
+							<button class="header-logout-btn" onclick="location.href='{{ route('logoutKakao') }}'">로그아웃</button>
+							@else
+							<!-- 일반 로그아웃 -->
 								<a class="header-info-btn" href="{{ route('getPasswordReconfirm') }}">{{ Auth::user()->u_name }} 님</a>
 								<button class="header-logout-btn" onclick="location.href='{{ route('getLogout') }}'">로그아웃</button>
 							@endif
