@@ -21,14 +21,14 @@ class HomeController extends Controller
 
         // 베스트 셀러 도서
         $bestSellerBook = Book_api::join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
-        ->select('book_infos.b_id', 'book_infos.b_img_url', 'book_infos.b_title', 'book_infos.b_author')
-        ->where('book_apis.ac_id', 3)
-        ->where('book_apis.ba_rank', '>=', 1)
-        ->where('book_apis.ba_rank', '<=', 10)
-        ->orderByDesc('book_apis.created_at')
-        ->orderBy('book_apis.ba_rank', 'asc')
-        ->limit(10)
-        ->get();
+                        ->select('book_infos.b_id', 'book_infos.b_img_url', 'book_infos.b_title', 'book_infos.b_author')
+                        ->where('book_apis.ac_id', 3)
+                        ->where('book_apis.ba_rank', '>=', 1)
+                        ->where('book_apis.ba_rank', '<=', 10)
+                        ->orderByDesc('book_apis.created_at')
+                        ->orderBy('book_apis.ba_rank', 'asc')
+                        ->limit(10)
+                        ->get();
 
         // 신간 도서
         $newBook = Book_api::select('*')
@@ -118,7 +118,7 @@ class HomeController extends Controller
                                             ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
                                             ->select('book_infos.b_id', 'book_infos.b_img_url', 'book_infos.b_title', 'book_infos.b_author','book_apis.deleted_at')
                                             ->orderByDesc('book_apis.created_at')
-                                            ->where('book_apis.ba_rank', '>=', 10)
+                                            ->where('book_apis.ba_rank', '>=', 11)
                                             ->where('book_apis.ba_rank', '<=', 50)
                                             ->limit(40),
                                             'book_apis'
@@ -134,7 +134,7 @@ class HomeController extends Controller
                         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
                         ->select('book_infos.b_id', 'book_infos.b_img_url', 'book_infos.b_title', 'book_infos.b_author','book_apis.deleted_at')
                         ->orderByDesc('book_apis.created_at')
-                        ->where('book_apis.ba_rank', '>=', 10)
+                        ->where('book_apis.ba_rank', '>=', 11)
                         ->where('book_apis.ba_rank', '<=', 50)
                         ->limit(40),
                         'book_apis'
@@ -143,8 +143,7 @@ class HomeController extends Controller
             ->limit(10)
             ->get();
         }
-
-
+        
         Log::debug("쿼리 측정 시간(ms)");
         $getQueryLog = DB::getQueryLog();
         $i=1;

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\Book_info;
+use App\Models\Book_api;
 use App\Models\User_wishlist;
 use App\Models\User_library;
 use Illuminate\Support\Facades\Session;
@@ -59,14 +60,50 @@ class BookController extends Controller
                 $libraryFlg = 2;
             }
 
-            Log::debug( "result : ".$result );
-            Log::debug( "wishFlg : ".$wishFlg );
-            Log::debug( "libraryFlg : ".$libraryFlg );
-            Log::debug( "--------도서상세출력 끝---------" );
+
+            // **********연관도서 부분***************
+            $relatedCate = Book_info::where('b_id', $id)->first();
+            $relatedBook = Book_info::select('b_id', 'b_img_url', 'b_title', 'b_author')
+                        ->where('b_id', '<>', $id)
+                        ->where(function ($query) use ($relatedCate) {
+                            $query->Where('b_title', 'like', '%'.$relatedCate->b_title.'%')
+                                ->orWhere('b_author', 'like', '%'.$relatedCate->b_author.'%');
+                        })
+                        ->limit(10)
+                        ->get();
+            if($relatedBook->count() < 10) {
+                $additionResult = Book_info::select('b_id', 'b_img_url', 'b_title', 'b_author')
+                                ->where('b_id', '<>', $id)
+                                ->where('b_sub_cate', '=', $relatedCate->b_sub_cate) // 기존 결과와 중복되지 않도록
+                                ->inRandomOrder()
+                                ->limit(10 - $relatedBook->count()) // 부족한 만큼 추가로 가져오기
+                                ->get();
+                $relatedBook = $relatedBook->merge($additionResult);
+                if($relatedBook->count() < 10) {
+                    $additionResult1 = Book_api::select('*')
+                    ->fromSub(
+                                Book_api::where('book_apis.ac_id', 3)
+                                ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
+                                ->select('book_infos.b_id', 'book_infos.b_img_url', 'book_infos.b_title', 'book_infos.b_author','book_apis.deleted_at')
+                                ->orderByDesc('book_apis.created_at')
+                                ->where('book_apis.ba_rank', '>=', 11)
+                                ->where('book_apis.ba_rank', '<=', 30)
+                                ->limit(20),
+                                'book_apis'
+                            )
+                    ->inRandomOrder()
+                    ->limit(10 - $relatedBook->count())
+                    ->get();
+                    $relatedBook = $relatedBook->concat($additionResult1);
+                }
+            }
+            
+            Log::debug( "--------도서상세출력 끝-----------" );
             return view('book_detail',
                         ['result' => $result,
                         'wishFlg' => $wishFlg,
-                        'libraryFlg' => $libraryFlg]);
+                        'libraryFlg' => $libraryFlg,
+                        'relatedBook' => $relatedBook]);
         } catch(Exception $e) {
             Log::error( "--------도서상세출력 에러발생---------" );
             Log::error( "에러내용:".$e->getMessage());

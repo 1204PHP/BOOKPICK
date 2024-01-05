@@ -55,29 +55,59 @@ function BookDetailopenModal() {
 }
 
 
+function setupSliderEvents(slider) {
+	let isMouseDown = false;
+	let startX, scrollLeft;
 
+	slider.addEventListener('mousedown', (e) => {
+		isMouseDown = true;
+		slider.classList.add('active');
+		startX = e.pageX - slider.offsetLeft;
+		scrollLeft = slider.scrollLeft;
+	});
+
+	slider.addEventListener('mouseleave', handleMouseUp);
+	slider.addEventListener('mouseup', handleMouseUp);
+
+	slider.addEventListener('mousemove', (e) => {
+		if (!isMouseDown) return;
+		e.preventDefault();
+		const x = e.pageX - slider.offsetLeft;
+		const walk = (x - startX) * 1.5;
+		requestAnimationFrame(() => {
+		slider.scrollLeft = scrollLeft - walk;
+		});
+	});
+
+	function handleMouseUp() {
+		isMouseDown = false;
+		slider.classList.remove('active');
+	}
+}
+const slider6 = document.getElementById('slide6');
+setupSliderEvents(slider6);
 
 
 
 
 //  호철 // 댓글 추가 모달 열기 닫기
-const modalOpenBtn = document.querySelector("#book_detail_comment_modal_btn").addEventListener("click", (e) => {
-	const modal = document.querySelector('.book_detail_comment_modal');
-		modal.classList.toggle('show');
-	});
+// const modalOpenBtn = document.querySelector("#book_detail_comment_modal_btn").addEventListener("click", (e) => {
+// 	const modal = document.querySelector('.book_detail_comment_modal');
+// 		modal.classList.toggle('show');
+// 	});
 	
-	const closeModalBtn = document.querySelector('.book_detail_comment_close_modal_btn');
-	closeModalBtn.addEventListener('click', (e) => {
-		const modal = document.querySelector('.book_detail_comment_modal');
+// 	const closeModalBtn = document.querySelector('.book_detail_comment_close_modal_btn');
+// 	closeModalBtn.addEventListener('click', (e) => {
+// 		const modal = document.querySelector('.book_detail_comment_modal');
 	
-		modal.classList.toggle('show');
-	});
+// 		modal.classList.toggle('show');
+// 	});
 	
-	const modalBackground = document.querySelector('.book_detail_comment_modal');
-	modalBackground.addEventListener('click', (e) => {
-		const modal = document.querySelector('.book_detail_comment_modal');
+// 	const modalBackground = document.querySelector('.book_detail_comment_modal');
+// 	modalBackground.addEventListener('click', (e) => {
+// 		const modal = document.querySelector('.book_detail_comment_modal');
 	
-		if (e.target === modal) {
-		modal.classList.toggle('show');
-		}
-	});
+// 		if (e.target === modal) {
+// 		modal.classList.toggle('show');
+// 		}
+// 	});

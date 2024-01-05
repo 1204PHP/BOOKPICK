@@ -14,7 +14,6 @@
 	width: 1320px;
 }
 
-
 @media screen and (max-width: 1920px) {
 	.home-container {
 		width: 1300px;
@@ -40,6 +39,10 @@
 		transition: scroll 100s ease-in-out;
 	}
 	#slide5 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
+	#slide6 {
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
@@ -75,7 +78,10 @@
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
-
+	#slide6 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
 
 }
 
@@ -113,6 +119,10 @@
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
+	#slide6 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
 }
 
 @media only screen and (min-width: 1022px) and (max-width: 1920px){
@@ -144,6 +154,10 @@
 		scroll-behavior: smooth;
 		transition: scroll 100s ease-in-out;
 	}
+	#slide6 {
+		scroll-behavior: smooth;
+		transition: scroll 100s ease-in-out;
+	}
 }
 
 @media only screen and (max-width: 1320px) {
@@ -172,6 +186,10 @@
 		width: 100%;
 	}
 	#slide5 {
+		scroll-behavior: smooth;
+		width: 100%;
+	}
+	#slide6 {
 		scroll-behavior: smooth;
 		width: 100%;
 	}

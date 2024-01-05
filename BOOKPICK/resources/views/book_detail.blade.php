@@ -83,6 +83,25 @@
 			</div>
 		</div>
 	</div>
+	<div class="home-box3">
+		<div class="home-title">
+			<strong>관련 도서 추천</strong>
+			<p>검색한 책과 관련된 도서를 추천해드려요!</p>
+		</div>
+		<ul class="slide-container" id="slide6">
+			@forelse($relatedBook as $val)
+			<li class="slide-box">
+				<a href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
+					<img src="{{$val->b_img_url}}" alt="...">
+				</a>
+					<p>{{$val->b_title}}</p>
+					<p>{{$val->b_author}}</p>
+			</li>
+			@empty
+				비어있음
+			@endforelse
+		</ul>
+	</div>
 		{{--연관 책 추천 여역  --}}
 	{{-- <div class="book_detail_box1">
         <div class="book_detail_title">
