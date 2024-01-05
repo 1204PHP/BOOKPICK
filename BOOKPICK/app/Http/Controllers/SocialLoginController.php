@@ -29,8 +29,7 @@ class SocialLoginController extends Controller
                 ->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))
                 ->user();
             // 기존 세션 정보 삭제
-            session()->forget('kakaoAccessToken');
-            session()->forget('kakaoUserData');
+            session()->forget('kakaoUser');
 
             // 새로운 세션 생성
             session(['kakaoAccessToken' => $kakaoUser->token]);
@@ -71,7 +70,7 @@ class SocialLoginController extends Controller
         Auth::login($result);
         session()->flash('success', '로그인 되었습니다.');
         if(Auth::check()) {
-            session( $result->only( 'u_id' ) );
+            session($result->only('u_id'));
             // 세션 내 u_id 데이터 저장
             session(['kakaoAccessToken' => $kakaoUser->token]);
             // 세션 내 토큰 저장
@@ -95,7 +94,7 @@ class SocialLoginController extends Controller
                     'Authorization' => 'Bearer ' . $kakaoAccessToken,
                 ],
             ]);
-    
+
             $response = $client->post('https://kapi.kakao.com/v1/user/logout', [
                 'form_params' => [
                     'target_id_type' => 'user',
@@ -106,9 +105,7 @@ class SocialLoginController extends Controller
             if ($response->getStatusCode() === 200) {
                 // 카카오 로그아웃 성공
                 Auth::logout();
-                // 로그아웃
                 session()->flush();
-                // 세션 삭제
                 return redirect()->route('index');
             } else {
                 // 카카오 로그아웃 실패
@@ -117,7 +114,7 @@ class SocialLoginController extends Controller
         } catch (RequestException $e) {
             // Guzzle 예외 처리
             Log::error('카카오 로그아웃 API 호출 중 Guzzle 예외 발생: ' . $e->getMessage());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // 다른 예외 처리
             Log::error('카카오 로그아웃 중 예외 발생: ' . $e->getMessage());
         }

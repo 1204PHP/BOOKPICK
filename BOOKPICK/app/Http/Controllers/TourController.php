@@ -27,11 +27,17 @@ class TourController extends Controller
         $bestSellerBook = book_api::where('book_apis.ac_id', 3)
         ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
         ->select('book_infos.*')
-        ->get();        
+        ->get();
+        // 베스트셀러
+        $blogerBestSellerBook = book_api::where('book_apis.ac_id', 4)
+        ->join('book_infos', 'book_apis.b_id', '=', 'book_infos.b_id')
+        ->select('book_infos.*')
+        ->get();     
 
         return view( 'book_tour' )
             ->with('newBook', $newBook)
             ->with('attentionBook', $attentionBook)
-            ->with('bestSellerBook', $bestSellerBook);
+            ->with('bestSellerBook', $bestSellerBook)
+            ->with('blogerBestSellerBook', $blogerBestSellerBook);
     }
 }

@@ -68,11 +68,14 @@ class UserValidation
 
             // 회원정보 수정 시 유효성 검사 목록
             'new_password' => [
+                'nullable',
                 'min:8',
                 'regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/',
                 'max:20',
             ],
             'password_confirm' => [
+                'nullable',
+                'required_with:new_password',
                 'min:8',
                 'regex:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/',
                 'max:20',

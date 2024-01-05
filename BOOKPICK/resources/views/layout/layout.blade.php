@@ -25,7 +25,7 @@
         @include('layout.header')
     </div>
     <div class="layout_body">
-        <br>
+        <br>        
         @yield('content')
     </div>
     @yield('defer-js')

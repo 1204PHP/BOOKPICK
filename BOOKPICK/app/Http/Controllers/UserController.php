@@ -169,12 +169,15 @@ class UserController extends Controller
         if(Auth::check()) {
             // 현재 로그인한 유저 정보 획득
             $user = Auth::user();
+            $user->u_basic_address = str_replace(" ", "&nbsp;",$user->u_basic_address);
+            $user->u_detail_address = str_replace(" ", "&nbsp;",$user->u_detail_address);
+            Log::debug("mesg".$user->u_basic_address);
             return view('user_info')->with('userdata',$user);
         }
         // 리턴 : 유저 인증 체크하여 유저일 시, user_info 리다이렉트
         return redirect()->route( 'index' );
         // 리턴 : 유저 인증 체크하여 유저가 아닐 시, home 페이지 이동
-    }
+    }    
 
     // 회원정보 수정 처리
     public function putInfo(Request $request) {

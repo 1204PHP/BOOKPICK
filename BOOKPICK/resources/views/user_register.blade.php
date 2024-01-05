@@ -48,12 +48,14 @@
             <span class="errormsg u_tel_errormsg"></span>
         </div>
 
+        <button class="register-postcode-button" type="button" 
+        id="register-postcode-button" onclick="execDaumPostcode()">주소검색</button>
+
         <div class="register-input-area">
             <input class="register-input" type="text" id="u_postcode" name="u_postcode"
             maxlength="5" placeholder="*우편번호" autocomplete="off">            
             <span class="errormsg u_postcode_errormsg"></span>
-        </div>
-        <button class="register-postcode-button" type="button">주소검색</button>
+        </div>        
 
         <div class="register-input-area">
             <input class="register-input" type="text" id="u_basic_address" name="u_basic_address"
@@ -65,9 +67,11 @@
             <input class="register-input" type="text" id="u_detail_address" name="u_detail_address"
             placeholder="상세주소" autocomplete="off">
         </div>
+
         <div class="register-button-area">
             <button class="register-button" id="register-button" type="submit">회원가입</button>
         </div>
+        
         <div class="register-text">
             <span>이미 회원이신가요?</span> <a class="register-login-link" href="{{ route('getLogin') }}">로그인하기</a>
         </div>        
@@ -77,4 +81,6 @@
 
 @section('defer-js')
     <script src="{{ asset('/js/UserRegisterValidation.js') }}" defer></script>
+    <script src="{{ asset('/js/UserAddress.js') }}" defer></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 @endsection
