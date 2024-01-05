@@ -60,11 +60,27 @@
                 <br>
                 <p>북픽회원이 가장 많이 찜한 책 TOP 5</p>
             </li>
-            <li class="home-booking">찜한 책1</li>
-            <li class="home-booking">찜한 책2</li>
-            <li class="home-booking">찜한 책3</li>
-            <li class="home-booking">찜한 책4</li>
-            <li class="home-booking">찜한 책5</li>
+            @forelse($hotWishListNum as $key => $val)
+                <li class="home-booking">
+                    {{$key+1}}. 
+                    <a href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
+                        {{$val->b_title}}
+                    </a>
+                </li>
+                @if ($loop->last)
+                    @if ( ($loop->iteration) === 5)
+                    @else
+                        @for ($i=($loop->iteration); $i < 5; $i++)
+                            <li class="home-booking">{{$i+1}}. 없음</li>
+                        @endfor
+
+                    @endif
+                @endif
+            @empty
+                @for($i = 1; $i <= 5; $i++)
+                    <li class="home-booking">{{$i}}. 없음</li>
+                @endfor
+            @endforelse
         </ul>
     </div>
     {{-- 신간 도서 추천 영역 --}}
