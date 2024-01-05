@@ -591,14 +591,14 @@ th {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(156, 156, 156, 0.3); /* 흐림 효과를 조절하려면 투명도를 조절하세요 */
+    background: rgba(156, 156, 156, 0.2); /* 흐림 효과를 조절하려면 투명도를 조절하세요 */
     z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.book-p {
+.loading-p {
     color: #FFFFFF;
     text-align: center;
     font-family: sans-serif;
@@ -611,7 +611,7 @@ th {
     z-index: 2;
 }
 
-.book-p:after {
+.loading-p:after {
     position: absolute;
     content: "";
     -webkit-animation: Dots 2s cubic-bezier(0, .39, 1, .68) infinite;
@@ -619,7 +619,7 @@ th {
 }
 
 .loader,
-.book {
+.loading-book {
     border: 4px solid #FFFFFF;
     width: 60px;
     height: 45px;
@@ -631,7 +631,7 @@ th {
     z-index: 2;
 }
 
-.page {
+.loading-page {
     display: block;
     width: 30px;
     height: 45px;
@@ -648,17 +648,17 @@ th {
     transform-origin: left center;
 }
 
-.book .page:nth-child(1) {
+.loading-book .loading-page:nth-child(1) {
     -webkit-animation: pageTurn 1.2s cubic-bezier(0, .39, 1, .68) 1.6s infinite;
     animation: pageTurn 1.2s cubic-bezier(0, .39, 1, .68) 1.6s infinite;
 }
 
-.book .page:nth-child(2) {
+.loading-book .loading-page:nth-child(2) {
     -webkit-animation: pageTurn 1.2s cubic-bezier(0, .39, 1, .68) 1.45s infinite;
     animation: pageTurn 1.2s cubic-bezier(0, .39, 1, .68) 1.45s infinite;
 }
 
-.book .page:nth-child(3) {
+.loading-book .loading-page:nth-child(3) {
     -webkit-animation: pageTurn 1.2s cubic-bezier(0, .39, 1, .68) 1.2s infinite;
     animation: pageTurn 1.2s cubic-bezier(0, .39, 1, .68) 1.2s infinite;
 }

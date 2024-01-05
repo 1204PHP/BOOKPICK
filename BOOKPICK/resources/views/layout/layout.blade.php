@@ -24,12 +24,12 @@
 <body>
     <div class="loading-animation">
         <div class="overlay"></div>
-        <div class="loader book">
-            <figure class="page"></figure>
-            <figure class="page"></figure>
-            <figure class="page"></figure>
+        <div class="loader loading-book">
+            <figure class="loading-page"></figure>
+            <figure class="loading-page"></figure>
+            <figure class="loading-page"></figure>
         </div>
-        <p class="book-p">Reading</p>
+        <p class="loading-p">Reading</p>
     </div>    
     
     <div class="layout_header">
