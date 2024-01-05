@@ -61,19 +61,6 @@
                 @endforelse
             </ul>
         </div>
-
-        <!-- 오른쪽에서 왼쪽으로 이동하는 책 이미지 배너 (반대 방향) -->
-        <div class="tour-banner-container">
-            <ul class="left-banner-reverse-area">
-                @forelse($blogerBestSellerBook as $val)
-                <li class="left-banner-reverse">
-                    <img src="{{$val->b_img_url}}" alt="...">
-                </li>
-                @empty
-                비어있음
-                @endforelse  
-            </ul>
-        </div>
         
         {{-- 로그인유도 배너 --}}
         @if(!(Auth::check()))
