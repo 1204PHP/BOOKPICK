@@ -5,21 +5,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // 페이지 로딩 완료 후 숨김 처리
     loader.style.display = 'none';
 
-    // 페이지 이동 이벤트 감지
-    window.addEventListener('beforeunload', function () {
-        console.log("Before unload event detected.");
-        if (!isLoading) {
-            loader.style.display = 'flex';
-            document.body.classList.add('loading');
-            isLoading = true;
-        }
+    // 뒤로가기 이벤트 감지
+    window.addEventListener('popstate', function () {
+        loader.style.display = 'flex';
+        document.body.classList.add('loading');
+        isLoading = true;
     });
-    
+
     // 페이지 이동이 완료된 후 로딩 상태 초기화
     window.addEventListener('load', function () {
-        loader.style.display = 'none';
-        document.body.classList.remove('loading');
-        isLoading = false;
-        // window.location.reload(true); 
+        if (isLoading) {
+            loader.style.display = 'none';
+            document.body.classList.remove('loading');
+            isLoading = false;
+        }
     });
 });
