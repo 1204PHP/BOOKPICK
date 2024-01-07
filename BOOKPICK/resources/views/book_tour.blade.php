@@ -16,8 +16,63 @@
             </div>
         </div>
     </section>
-
     {{-- 광고 영역2 --}}
+    <section class="tour-section-4">
+        <div class="tour-text-area">
+            <h2 class="tour-text-h2">책 속의 모험, 지금 시작하세요</h2>
+            <p class="tour-text-p">책 속의 이야기로 새로운 모험을 시작해보세요</p>
+        </div>
+        <div class="slide-container-1">
+            <div class="slide-content">
+                <img src="./img/ad-1.png" alt="...">
+            </div> 
+            <div class="slide-content">
+                <img src="./img/ad-2.png" alt="...">
+            </div>  
+            <div class="slide-content">
+                <img src="./img/ad-3.png" alt="...">
+            </div>
+            <div class="slide-content">
+                <img src="./img/ad-4.png" alt="...">
+            </div>
+            <div class="slide-content">
+                <img src="./img/ad-5.png" alt="...">
+            </div>
+            <div class="slide-content">
+                <img src="./img/ad-6.png" alt="...">
+            </div>
+            <div class="slide-content">
+                <img src="./img/ad-7.png" alt="...">
+            </div>
+            <div class="slide-content">
+                <img src="./img/ad-8.png" alt="...">
+            </div>
+            <div class="slide-content">
+                <img src="./img/ad-9.png" alt="...">
+            </div>
+            <div class="slide-content">
+                <img src="./img/ad-10.png" alt="...">
+            </div>
+            <div class="slide-content">
+                <img src="./img/ad-11.png" alt="...">
+            </div>
+            <a class="prev" onclick="plusSlide(-1)">&#10094</a>
+            <a class="next" onclick="plusSlide(1)">&#10095</a>
+            <div id="pagination">
+                <div class="ball" onclick="currentSlide(1)"></div>
+                <div class="ball" onclick="currentSlide(2)"></div>
+                <div class="ball" onclick="currentSlide(3)"></div>
+                <div class="ball" onclick="currentSlide(4)"></div>
+                <div class="ball" onclick="currentSlide(5)"></div>
+                <div class="ball" onclick="currentSlide(6)"></div>
+                <div class="ball" onclick="currentSlide(7)"></div>
+                <div class="ball" onclick="currentSlide(8)"></div>
+                <div class="ball" onclick="currentSlide(9)"></div>
+                <div class="ball" onclick="currentSlide(10)"></div>
+                <div class="ball" onclick="currentSlide(11)"></div>
+            </div>    
+    </section>
+    {{-- 광고 영역3 --}}
     <section class="tour-section-2">
         <div class="tour-text-area">
             <h2 class="tour-text-h2">당신을 위한 책들이 정리되어 있어요</h2>
@@ -74,7 +129,7 @@
         @endif
     </section>
 
-    {{-- 광고 영역3 --}}
+    {{-- 광고 영역4 --}}
     <section class="tour-section-3">
         <div class="tour-text-area">
             <h2 class="tour-text-h2">북픽과 함께하는 새로운 시작</h2>
