@@ -11,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\LibraryCommentController;
 use App\Http\Controllers\SocialLoginController;
+use App\Http\Controllers\VerificationController;
 use Laravel\Socialite\Facades\Socialite;
 
 /*
@@ -148,6 +149,24 @@ Route::get( '/auth/kakaocallback', [SocialLoginController::class, 'handleLoginKa
 // 로그아웃 처리
 Route::get('/auth/kakao/logout', [SocialLoginController::class, 'logoutKakao'])
 ->name( 'logoutKakao' );
+
+// ### 유저관련(이메일 검증) ###
+
+Route::middleware(['auth'])->group(function () {
+    // 이메일 검증 링크 발송
+    Route::get('/email/verify', [VerificationController::class, 'showVerificationNotice'])
+        ->name('verification.notice');
+
+    // 이메일 검증 핸들러
+    Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verifyEmail'])
+        ->middleware('signed')
+        ->name('verification.verify');
+
+    // 이메일 검증 재발송
+    Route::post('/email/verification-notification', [VerificationController::class, 'resendVerificationNotification'])
+        ->middleware('throttle:6,1')
+        ->name('verification.send');
+});
 
 
 // /auth/{} 세그먼트 파라미터로 설정해둘 시, 타 소셜 로그인을 할때에도 

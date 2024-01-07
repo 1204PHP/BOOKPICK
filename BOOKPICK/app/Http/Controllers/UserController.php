@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller
 {
@@ -89,8 +90,15 @@ class UserController extends Controller
             Log::debug( "### 회원가입(회원정보 저장) 완료 ###" );
             DB::commit();
             Log::debug( "### 커밋 완료 ###" );
-            // 회원가입 처리 성공 시 로그인 페이지로 이동
-            return redirect()->route( 'getLogin' );    
+            return redirect()->route('getLogin');
+            
+            // ------------수정예정------------
+            // 이메일 전송 이벤트 발생
+            // event(new Registered($user));
+            // 회원가입 처리 성공 시 이메일 검증 페이지로 이동
+            // return redirect()->route('verification.notice');
+            // ------------수정예정------------
+            
         } catch(Exception $e) {
             DB::rollback();
             Log::debug( "### 예외발생 : 롤백완료 ###" );
