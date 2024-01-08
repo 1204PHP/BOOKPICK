@@ -17,6 +17,7 @@
     {{-- <script src="{{ asset('/js/User.js') }}" defer></script> --}}
     {{-- <script src="{{ asset('/js/UserInfoValidation.js') }}" defer></script> --}}
     {{-- <script src="{{ asset('/js/UserRegisterValidation.js') }}" defer></script> --}}
+    {{-- <script src="{{ asset('/js/UserVerification.js') }}" defer></script> --}}
     {{-- <script src="{{ asset('/js/bookDetail.js') }}" defer></script> --}}
     <script src="{{ asset('/js/Loading.js') }}" defer></script>
     <title>@yield('title', 'bookpick')</title>

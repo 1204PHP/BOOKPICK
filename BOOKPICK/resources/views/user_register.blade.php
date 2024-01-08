@@ -12,11 +12,9 @@
         <p class="register-h2">*는 필수입력 사항입니다(이메일은 아이디로 사용됩니다)</p>
 
         <div class="register-input-area">
-            <input class="register-input" type="email" id="u_email" name="u_email" 
-            value="{{ $userData['u_email'] }}">            
-            {{-- <span class="errormsg u_mail_errormsg"></span> --}}
+            <input class="register-input" type="email" id="u_email" name="u_email" readonly
+            value="{{ $userData['u_email'] }}">
         </div>
-        {{-- <button id="emailConfirmButton" class="register-email-button" type="button">중복 확인</button> --}}
         
         <div class="register-input-area">
             <input class="register-input" type="password" id="u_password" name="u_password" 

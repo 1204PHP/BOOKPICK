@@ -56,60 +56,107 @@ class UserController extends Controller
 
     // 회원가입 화면 이동
     public function getRegister() {
-        $aaaa = session('userData');
-        Log::debug($aaaa);
-        return view( 'user_register' )->with('userData', $aaaa);
+        $registerUser = session('userData');
+    
+        // 세션 내 userData 없을 경우
+        if (!$registerUser) {
+            return redirect()->route('index');
+        }
+    
+        return view('user_register')->with('userData', $registerUser);
     }
 
     // 회원가입 처리
-    public function postRegister( Request $request ) {        
-        // DB저장데이터(이메일, 비밀번호, 이름, 생년월일, 
-        // 휴대폰 번호, 우편번호, 기본주소, 상세주소) 획득
-        $data = $request->only('u_email', 'u_password', 'u_name', 'u_birthdate',
-        'u_tel', 'u_postcode', 'u_basic_address', 'u_detail_address');
-        // Hash처리 비밀번호 암호화
-        $data['u_password'] = Hash::make( $data['u_password'] );
+    public function postRegister(Request $request) {  
+        // 이메일 검증시도 유저의 이메일 저장
+        $userEmail = $request->input('u_email');
+        // 이메일 검증시도 유저의 정보 저장
+        $user = User::where('u_email', $userEmail)->first();
+        
+        if (!$user) {
+            Log::debug("### 검증유저X : 로그인 페이지로 이동 ###");
+            $errorMsg = '이미 존재하는 이메일 주소입니다';
+            return redirect()->route('getLogin')->withErrors($errorMsg);
+        } else {
+            // DB 저장 데이터 획득 및 암호화
+            $requestData = $request
+            ->only('u_password', 'u_name' ,'u_birthdate', 'u_tel', 'u_postcode', 'u_basic_address', 'u_detail_address');
+            // 변경된 데이터가 있는 경우
+            $newRequestData = [];
+            // 유저 비밀번호 암호화
+            if (array_key_exists('u_password', $requestData)) {
+                $userPassword = Hash::make($requestData['u_password']);
+                $newRequestData['u_password'] = $userPassword;
+                Log::debug("### 비밀번호 암호화 처리 완료 ###");
+            }
+        }
+        
+        // 비밀번호 제외 타 데이터 변경 처리
+        foreach (['u_name', 'u_birthdate', 'u_tel', 'u_postcode', 'u_basic_address', 'u_detail_address'] as $field) {
+            if (array_key_exists($field, $requestData)) {
+                $newRequestData[$field] = $requestData[$field];
+            }
+        }
+        
         // 회원가입 진행
-        Log::debug( "### 회원가입(회원정보 저장) 시작 ###" );
+        Log::debug( "### 회원가입 시작 ###" );
         try {
             DB::beginTransaction();
             Log::debug( "### 트랜잭션 시작 ###" );
-            // 이메일, 암호화 된 비밀번호, 이름, 생년월일, 
-            // 휴대폰 번호, 우편번호, 기본주소, 상세주소
-            // DB저장
-            $user = User::firstOrNew(['u_email' => $data['u_email']]);
-            if (!$user->exists) {
-                // 중복된 이메일이 존재하지 않는 경우
-                $user->fill($data);
-                $user->save();
-                Log::debug( "### 회원가입(회원정보 저장) ###" );
-            } else {
-                // 중복된 이메일이 존재하는 경우
-                $errorMsg = '이미 존재하는 이메일 주소입니다.';
-                return view('user_register')->withErrors($errorMsg)
-                ->withInput($request->except('u_password', 'u_password_confirm'));
-            }
-            Log::debug( "### 회원가입(회원정보 저장) 완료 ###" );
+            // remember_token 삭제
+            $user->remember_token = null;
+            $user->update($newRequestData);
             DB::commit();
-            Log::debug( "### 커밋 완료 ###" );
+            Log::debug( "### 커밋 완료 ###" );	
             return redirect()->route('getLogin');
-            
-            // ------------수정예정------------
-            // 이메일 전송 이벤트 발생
-            // event(new Registered($user));
-            // 회원가입 처리 성공 시 이메일 검증 페이지로 이동
-            // return redirect()->route('verification.notice');
-            // ------------수정예정------------
-            
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             DB::rollback();
             Log::debug( "### 예외발생 : 롤백완료 ###" );
-            $errorMsg = '회원가입에 실패했습니다. 새로고침 후 재가입 해주세요';
-            return redirect()->route( 'getRegister' )->withErrors( $errorMsg );
-        } finally {
-            Log::debug( "### 회원가입(회원정보 저장) 종료 ###" );
+            $errorMsg = '회원가입에 실패했습니다. 이메일 인증을 다시 해주세요';
+            return redirect()->route('getVerification')->withErrors($errorMsg);
         }
     }
+
+    // public function postRegister( Request $request ) {        
+    //     // DB저장데이터(이메일, 비밀번호, 이름, 생년월일, 
+    //     // 휴대폰 번호, 우편번호, 기본주소, 상세주소) 획득
+    //     $data = $request->only('u_email', 'u_password', 'u_name', 'u_birthdate',
+    //     'u_tel', 'u_postcode', 'u_basic_address', 'u_detail_address');
+    //     // Hash처리 비밀번호 암호화
+    //     $data['u_password'] = Hash::make( $data['u_password'] );
+    //     // 회원가입 진행
+    //     Log::debug( "### 회원가입(회원정보 저장) 시작 ###" );
+    //     try {
+    //         DB::beginTransaction();
+    //         Log::debug( "### 트랜잭션 시작 ###" );
+    //         // 이메일, 암호화 된 비밀번호, 이름, 생년월일, 
+    //         // 휴대폰 번호, 우편번호, 기본주소, 상세주소
+    //         // DB저장
+    //         $user = User::firstOrNew(['u_email' => $data['u_email']]);
+    //         if (!$user->exists) {
+    //             // 중복된 이메일이 존재하지 않는 경우
+    //             $user->fill($data);
+    //             $user->save();
+    //             Log::debug( "### 회원가입(회원정보 저장) ###" );
+    //         } else {
+    //             // 중복된 이메일이 존재하는 경우
+    //             $errorMsg = '이미 존재하는 이메일 주소입니다.';
+    //             return view('user_register')->withErrors($errorMsg)
+    //             ->withInput($request->except('u_password', 'u_password_confirm'));
+    //         }
+    //         Log::debug( "### 회원가입(회원정보 저장) 완료 ###" );
+    //         DB::commit();
+    //         Log::debug( "### 커밋 완료 ###" );
+    //         return redirect()->route('getLogin');
+    //     } catch(Exception $e) {
+    //         DB::rollback();
+    //         Log::debug( "### 예외발생 : 롤백완료 ###" );
+    //         $errorMsg = '회원가입에 실패했습니다. 새로고침 후 재가입 해주세요';
+    //         return redirect()->route( 'getRegister' )->withErrors( $errorMsg );
+    //     } finally {
+    //         Log::debug( "### 회원가입(회원정보 저장) 종료 ###" );
+    //     }
+    // }
 
     // 회원가입 시 이메일 중복체크(api)
     public function confirmEmail(Request $request) {

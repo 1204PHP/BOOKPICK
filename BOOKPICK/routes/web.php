@@ -13,7 +13,6 @@ use App\Http\Controllers\LibraryCommentController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\VerificationController;
 use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,23 +30,12 @@ use Illuminate\Support\Facades\URL;
 // 메인 페이지
 Route::get( '/', [TourController::class, 'index'])
 ->name( 'index' );
-
-Route::get( '/home', [HomeController::class, 'index'])
-->name( 'home' );
-
-// Route::get( '/home', [HomeController::class, 'bestsellerGet'])
-// ->name( 'bestsellerGet' );
-// Route::get( '/home', [HomeController::class, 'newbookGet'])
-// ->name( 'newbookGet' );
-
-// 둘러보기 페이지
-Route::get( '/index', function () {
-    return view( 'book_tour' );
-})->name( 'bookTour' );
-
 Route::get( '/index', [TourController::class, 'index'])
 ->name( 'bookTour' );
 
+// 둘러보기 페이지
+Route::get( '/home', [HomeController::class, 'index'])
+->name( 'home' );
 
 // 나의 서재 페이지(유저컨트롤러 정의)
 

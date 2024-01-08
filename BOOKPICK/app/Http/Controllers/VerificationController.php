@@ -62,10 +62,10 @@ class VerificationController extends Controller
     // 이메일 검증 핸들러
     public function verifyEmail(Request $request, $userEmail)
     {           
-         // remember_token에서 이메일과 해시 값을 가져옴
+        // remember_token에서 이메일과 해시 값을 가져옴
         $userData = json_decode(User::where('u_email', $userEmail)->value('remember_token'), true);
         Log::debug("저장된 remember_token : " . json_encode($userData));
-        Log::debug($userData);
+        Log::debug("이메일 검증 시도 유저이메일 : " . $userData['u_email']);
         if ($userData) {
             // remember_token 확인되면 회원가입 페이지로 이동
             return redirect()->route('getRegister')->with('userData', $userData);

@@ -106,6 +106,7 @@ class UserValidation
         // 회원가입 유효성 검사 제외 목록
         // 수정 비밀번호, 비밀번호 재확인
         if ($request->is('register')) {
+            unset($userBaseValidation['u_email']);
             unset($userBaseValidation['new_password']);
             unset($userBaseValidation['password_confirm']);
         }
