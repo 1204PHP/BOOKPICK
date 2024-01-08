@@ -723,3 +723,10 @@ th {
         content: "...";
     }
 }
+
+.common_book_hover{
+    transition: transform 0.3s;
+}
+.common_book_hover:hover{
+    transform: scale(1.1);
+}
