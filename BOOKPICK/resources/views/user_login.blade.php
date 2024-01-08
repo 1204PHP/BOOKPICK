@@ -28,7 +28,7 @@
 				SNS계정의 로그아웃 상태를 꼭 확인해 주세요.</span> 			
 		</div>	
 		<div class="login-button-area">
-			<button type="button" class="login-register-button" onclick="location.href='{{ route('getRegister') }}'">회원가입</button>
+			<button type="button" class="login-register-button" onclick="location.href='{{ route('getVerification') }}'">회원가입</button>
 		</div>	
 	</form>
 </div>

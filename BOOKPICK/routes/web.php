@@ -13,6 +13,7 @@ use App\Http\Controllers\LibraryCommentController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\VerificationController;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -151,22 +152,24 @@ Route::get('/auth/kakao/logout', [SocialLoginController::class, 'logoutKakao'])
 ->name( 'logoutKakao' );
 
 // ### 유저관련(이메일 검증) ###
+// 이메일 검증 화면 이동
+Route::get('/email/verification', [VerificationController::class, 'getVerification'])
+    ->name('getVerification');
 
-Route::middleware(['auth'])->group(function () {
-    // 이메일 검증 링크 발송
-    Route::get('/email/verify', [VerificationController::class, 'showVerificationNotice'])
-        ->name('verification.notice');
+// 이메일 검증 발송
+Route::post('/email/verification-email', [VerificationController::class, 'sendVerification'])
+    ->name('sendVerification');
 
-    // 이메일 검증 핸들러
-    Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verifyEmail'])
-        ->middleware('signed')
-        ->name('verification.verify');
+// 이메일 검증 핸들러
+Route::get('/email/verify/{email}/{hash}', [VerificationController::class, 'verifyEmail'])
+    ->middleware('signed')
+    ->name('verifyEmail');
 
-    // 이메일 검증 재발송
-    Route::post('/email/verification-notification', [VerificationController::class, 'resendVerificationNotification'])
-        ->middleware('throttle:6,1')
-        ->name('verification.send');
-});
+// 이메일 검증 재발송
+Route::post('/email/verification-ReEmail', [VerificationController::class, 'reSendVerification'])
+    ->middleware('throttle:3,1')
+    ->name('reSendVerification');
+
 
 
 // /auth/{} 세그먼트 파라미터로 설정해둘 시, 타 소셜 로그인을 할때에도 

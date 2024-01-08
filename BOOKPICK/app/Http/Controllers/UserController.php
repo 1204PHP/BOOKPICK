@@ -56,7 +56,9 @@ class UserController extends Controller
 
     // 회원가입 화면 이동
     public function getRegister() {
-        return view( 'user_register' );
+        $aaaa = session('userData');
+        Log::debug($aaaa);
+        return view( 'user_register' )->with('userData', $aaaa);
     }
 
     // 회원가입 처리
