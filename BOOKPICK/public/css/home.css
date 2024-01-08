@@ -642,7 +642,7 @@ section {
 	transition: width 0.5s;
 }
 
-.active {
+.ball.active {
 	background: #717171;
 	width: 35px;
 }
