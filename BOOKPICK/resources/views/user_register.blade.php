@@ -13,11 +13,11 @@
 
         <div class="register-input-area">
             <input class="register-input" type="email" id="u_email" name="u_email" 
-            placeholder="*이메일" autocomplete="off">            
-            <span class="errormsg u_mail_errormsg"></span>
+            value="{{ $userData['u_email'] }}">            
+            {{-- <span class="errormsg u_mail_errormsg"></span> --}}
         </div>
-        <button id="emailConfirmButton" class="register-email-button" type="button">중복 확인</button>
-
+        {{-- <button id="emailConfirmButton" class="register-email-button" type="button">중복 확인</button> --}}
+        
         <div class="register-input-area">
             <input class="register-input" type="password" id="u_password" name="u_password" 
             maxlength="20" placeholder="*비밀번호" autocomplete="off">            

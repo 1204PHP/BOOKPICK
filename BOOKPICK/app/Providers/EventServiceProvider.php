@@ -6,6 +6,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Listeners\LogVerifiedUser;
+use Illuminate\Auth\Events\Verified;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -21,6 +23,9 @@ class EventServiceProvider extends ServiceProvider
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
             'SocialiteProviders\\Zoho\\ZohoExtendSocialite@handle',
             \SocialiteProviders\Kakao\KakaoExtendSocialite::class.'@handle',
+        ],
+        Verified::class => [
+            LogVerifiedUser::class,
         ],
     ];
 
