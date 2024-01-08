@@ -97,18 +97,48 @@
 					<p class="library-title-p">다 읽은책, 읽고 있는 책 기준</p>
 				</div>
 				<div class="library-no-layout1">
-					
+					<div class="library-pichart">
+						<canvas id="myPieChart" width="300" height="300"></canvas>
+					</div>
+					<div class="library-pichart-list">
+						@forelse($pichartData as $key => $val)
+							<div class="library-pichart-list-div">
+								<div class="library-pichart-list-div-bg library-pichart-list-div-bg{{$key}}">
+								</div>
+								{{$key+1}}위 : {{$val->b_sub_cate}}
+								<span class="library-pichart-list-count" data-value="{{$val->count}}" id="pichartlist{{$key}}">
+									({{$val->count}})
+								</span>
+							</div>
+						@empty
+							
+						@endforelse
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="library-top2">
 			<div class="library-content">
 				<div class="library-title">
+					<div class="library-dn" id="chartData1" data-hidden-data="{{$chartData1}}">data1</div>
+					<div class="library-dn" id="chartData2" data-hidden-data="{{$chartData2}}">data2</div>
+					<div class="library-dn" id="chartData3" data-hidden-data="{{$chartData3}}">data3</div>
+						
 					<strong class="library-title-strong">이달의 기록 현황</strong>
-					<p class="library-title-p">지난달보다 기록활동이 2회 증가했어요!</p>
+					<p class="library-title-p">
+						@if($chartData3 === $chartData2)
+						지난달과 이번달의 기록활동에 변동이 없어요!
+						@elseif($chartData3>$chartData2)
+						지난달보다 기록활동이 {{$chartData3-$chartData2}}회 증가했어요!
+						@elseif(($chartData3<$chartData2))
+						지난달보다 기록활동이 {{$chartData2-$chartData3}}회 감소했어요!
+						@endif
+					</p>
 				</div>
-				<div class="library-no-layout1">
-					{{-- 임시 --}}
+				<div class="library-no-layout10">
+					<div class="library-chart">
+						<canvas id="myChart" width="300" height="150"></canvas>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -117,4 +147,6 @@
 
 @section('defer-js')
     <script src="{{ asset('/js/common.js') }}" defer></script>
+    <script src="{{ asset('/js/library.js') }}" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 @endsection
