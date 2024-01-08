@@ -83,8 +83,8 @@
 .library_layout_container_a::before {
     content: '';
     display: block;
-    width: inherit;
-    height: inherit;
+    /* width: inherit; */
+    /* height: inherit; */
     position: absolute;
     z-index: -1;
     top: 0;
@@ -126,14 +126,19 @@
 }
 /* TODO: 데이터 넣었을때 높이 수정하기 */
 .library-no-layout{
-	height: 448px;
+	height: 444px;
 }
-.library-no-layout1{
-	height: 300px;
+.library-no-layout10{
 	text-align: center;
 }
+.library-no-layout1 {
+	/* height: 300px; */
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
 .library-no-layout2{
-	height: 448px;
+	height: 444px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -159,6 +164,7 @@
 	display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+	margin-bottom: 30px;
 }
 
 .library-top1, .library-top2 {
@@ -166,8 +172,97 @@
 	display: inline-block;
 	padding: 20px;
 }
-@media (max-width: 768px) {
-    .library-top1, .library-top2 {
-        width: 100%;
-    }
+.library-pichart {
+	width: 300px;
+	margin-left: 20px;
+}
+.library-pichart-list {
+	margin-left: 20px;
+	width: 300px;
+	margin-top: 60px;
+	font-size: 18px;
+	color:rgba(0, 0, 0,0.5);
+}
+#myPieChart {
+	width: 300px;
+	height: 350px;
+}
+@media screen and (max-width: 650px) {
+	.library-no-layout1 {
+		flex-direction: column;
+	}
+	.library-pichart-list {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+}
+@media screen and (min-width: 900px) and (max-width: 1306px) {
+	.library-pichart {
+		margin-left: 0px;
+		width: 150px;
+	}
+	.library-pichart-list {
+		margin-left: 50px;
+		width: 300px;
+		font-size: 13px;
+		color:rgba(0, 0, 0,0.5);
+	}
+	#myPieChart {
+		width: 200px;
+		height: 355px;
+	}
+}
+@media (max-width: 900px) {
+	.library-top1, .library-top2 {
+		width: 100%;
+	}
+}
+.library-pichart-list-div {
+	margin-top: 10px;
+}
+.library-pichart-list-count {
+	font-size: 13px;
+}
+.library-pichart-list-div-bg {
+	width: 18px;
+	height: 18px;
+	display: inline-block;
+	margin-right: 3px;
+}
+.library-pichart-list-div-bg0 {
+	background-color: #58A533;
+}
+.library-pichart-list-div-bg1 {
+	background-color: #9FC745;
+}
+.library-pichart-list-div-bg2 {
+	background-color: #C7DDEB;
+}
+.library-pichart-list-div-bg3 {
+	background-color: #CEA668;
+}
+.library-pichart-list-div-bg4 {
+	background-color: #F2CD9E;
+}
+
+.library-dn {
+	display: none;
+}
+/* .library-chart {
+	height: 300px;
+} */
+
+#myChart {
+    width: 300px;
+    height: 150px;
+	margin-top: 10px;
+}
+
+@media screen and (min-width: 900px) {
+	#myChart {
+		margin-top: 50px;
+	}
+	.library-chart {
+		height: 310px;
+	}
 }
