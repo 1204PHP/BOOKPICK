@@ -14,22 +14,6 @@ window.addEventListener("resize", function () {
     }
 });
 
-// 유저 아이콘
-const userIcon = document.querySelector(".user-icon");
-const userMenu = document.querySelector(".user-menu");
-
-userIcon.addEventListener("click", function() {
-    userMenu.style.display = (userMenu.style.display === "flex") ? "none" : "flex";
-    userIcon.classList.toggle("open");
-});
-
-window.addEventListener("resize", function () {
-    if (this.window.innerWidth > 768) {
-        userMenu.style.display = "none";
-        userIcon.classList.remove("open")
-    }
-});
-
 // tour 광고 캐러셀
 
 var slideIndex = 1;
@@ -73,5 +57,22 @@ function slideTime(n){
 }
 
 setInterval(slideTime, 5000);
+
+
+// 유저 아이콘
+const userIcon = document.querySelector(".user-icon");
+const userMenu = document.querySelector(".user-menu");
+
+userIcon.addEventListener("click", function() {
+    userMenu.style.display = (userMenu.style.display === "flex") ? "none" : "flex";
+    userIcon.classList.toggle("open");
+});
+
+window.addEventListener("resize", function () {
+    if (this.window.innerWidth > 768) {
+        userMenu.style.display = "none";
+        userIcon.classList.remove("open")
+    }
+});
 
 

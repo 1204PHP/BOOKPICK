@@ -111,8 +111,9 @@ class VerificationController extends Controller
             Log::debug("### 메일발송 완료 ###");
 
             return view('user_verification')->with('u_email', $userEmail);
-        } 
-        return redirect()->route('mailTokenExpired');        
+        } else {
+            return redirect()->route('mailTokenExpired'); 
+        }
     }
     
     // 이메일 인증시간 만료
