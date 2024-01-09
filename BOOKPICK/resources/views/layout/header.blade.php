@@ -54,7 +54,7 @@ $currentRoute = Route::currentRouteName();
 			</div>
 		@else
 			<div class="header-login-button-area">
-					<button class="header-login-btn" onclick="location.href='{{ route('getLogin') }}'">로그인</button>
+				<button class="header-login-btn" onclick="location.href='{{ route('getLogin') }}'">로그인</button>
 			</div>
 		@endauth
 		<nav class="mobile-nav">
@@ -69,7 +69,6 @@ $currentRoute = Route::currentRouteName();
 						</a>
 					</div>
 				</div>
-
 			</form>		
 			<a href="{{ route('home') }}">둘러보기</a></li>				
 			<a href="{{ route('getLibraryFinished') }}">나의 서재</a></li>
