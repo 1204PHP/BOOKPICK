@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -38,4 +39,15 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    // 이메일 3회 초과 요청시 처리
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof TooManyRequestsHttpException) {
+            return response()->view('user_token_expired', [], 429);
+        }
+
+        return parent::render($request, $exception);
+    }
 }
+

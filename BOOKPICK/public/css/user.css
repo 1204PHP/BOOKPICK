@@ -53,10 +53,25 @@
         text-align: center;
     }
 
+    .expired-h1 {
+        font-size: 1.5rem;
+        margin: 60px auto;
+        font-weight: bold;
+        color: #53A73C;
+        text-align: center;
+    }
+
     .register-h2,
     .verification-h2 {
         font-size: 0.8rem;
         margin-bottom: 10px;
+    }
+    
+    .expired-h2 {
+        font-size: 0.8rem;
+        margin-bottom: 50px;
+        font-weight: bold;
+        text-align: center;
     }
 
     .withdrawal-h2 {
@@ -74,13 +89,10 @@
         color: red;
     }
 
+    .login-input::placeholder,
+    .verification-input::placeholder,
     .register-input::placeholder,
     .info-input::placeholder {
-        color: #000;
-    }
-
-    .login-input::placeholder,
-    .verification-input::placeholder {
         color: #A6A6A6;
     }
 
@@ -112,6 +124,10 @@
 
     input:focus {
         outline:none;
+    }
+
+    button:focus {
+        outline: none;
     }
 
     .info-input-readonly {
@@ -175,6 +191,44 @@
     .verification-button {
         color: #000;
         background-color: #D9D9D9;
+        cursor: pointer;
+    }
+
+    .login-button,
+    .login-kakaologin-button,
+    #verification-button {
+        width: 100%;
+        height: 40px;   
+        margin-top: 10px;     
+        margin-bottom: 10px;
+        background-color: #F9FAFA;
+        font-size: 1rem;
+        font-weight: bold;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        color: #53A73C;
+        cursor: pointer;
+    }
+
+    #emailConfirmButton {
+        margin-left: 10px;
+    }
+
+    .login-button,
+    #verification-button {
+        color: #000;
+        background-color: #D9D9D9;
+        cursor: pointer;
+    }
+
+    .verification-input-area {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .reverification-link {
+        background-color: transparent;
+        border: 0 none;
         cursor: pointer;
     }
     
@@ -271,7 +325,7 @@
     .password-reconfirm-span {
         font-size: 0.6rem;
         margin: 15px auto;
-    }
+    }    
 
     /* 유저컨트롤러 에러메세지 */
     .error-text {
@@ -341,10 +395,25 @@
         text-align: center;
     }
 
+    .expired-h1 {
+        font-size: 1.7rem;
+        margin: 60px auto;
+        font-weight: bold;
+        color: #53A73C;
+        text-align: center;
+    }
+
     .register-h2,
     .verification-h2 {
         font-size: 1rem;
         margin-bottom: 10px;
+    }
+
+    .expired-h2 {
+        font-size: 1rem;
+        margin-bottom: 50px;
+        font-weight: bold;
+        text-align: center;
     }
 
     .withdrawal-h2 {
@@ -357,13 +426,10 @@
         color: red;
     }
 
+    .login-input::placeholder,
+    .verification-input::placeholder,
     .register-input::placeholder,
     .info-input::placeholder {
-        color: #000;
-    }
-
-    .login-input::placeholder,
-    .verification-input::placeholder {
         color: #A6A6A6;
     }
 
@@ -436,7 +502,7 @@
 
     .login-button,
     .login-kakaologin-button,
-    .verification-button {
+    #verification-button {
         width: 100%;
         height: 40px;   
         margin-top: 10px;     
@@ -450,10 +516,25 @@
         cursor: pointer;
     }
 
+    #emailConfirmButton {
+        margin-left: 10px;
+    }
+
     .login-button,
-    .verification-button {
+    #verification-button {
         color: #000;
         background-color: #D9D9D9;
+        cursor: pointer;
+    }
+
+    .verification-input-area {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .reverification-link {
+        background-color: transparent;
+        border: 0 none;
         cursor: pointer;
     }
     
@@ -620,11 +701,27 @@
         text-align: center;
     }
 
+    .expired-h1 {
+        font-size: 1.7rem;
+        margin: 60px auto;
+        font-weight: bold;
+        color: #53A73C;
+        text-align: center;
+    }
+
     .register-h2,
     .verification-h2 {
         font-size: 1rem;
+        font-weight: bold;
         margin-bottom: 10px;
-    }    
+    }
+
+    .expired-h2 {
+        font-size: 1rem;
+        margin-bottom: 50px;
+        text-align: center;
+        font-weight: bold;
+    }
 
     .withdrawal-h2 {
         font-size: 1.2rem;
@@ -636,13 +733,10 @@
         color: red;
     }
 
+    .login-input::placeholder,
+    .verification-input::placeholder,
     .register-input::placeholder,
     .info-input::placeholder {
-        color: #000;
-    }
-
-    .login-input::placeholder,
-    .verification-input::placeholder {
         color: #A6A6A6;
     }
 
@@ -719,7 +813,7 @@
 
     .login-button,
     .login-kakaologin-button,
-    .verification-button {
+    #verification-button {
         width: 100%;
         height: 40px;   
         margin-top: 10px;     
@@ -733,10 +827,25 @@
         cursor: pointer;
     }
 
+    #emailConfirmButton {
+        margin-left: 10px;
+    }
+
     .login-button,
-    .verification-button {
+    #verification-button {
         color: #000;
         background-color: #D9D9D9;
+        cursor: pointer;
+    }
+
+    .verification-input-area {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .reverification-link {
+        background-color: transparent;
+        border: 0 none;
         cursor: pointer;
     }
     
@@ -833,7 +942,7 @@
     .password-reconfirm-span {
         font-size: 0.9rem;
         margin: 15px auto;
-    }
+    }    
 
     /* 유저컨트롤러 에러메세지 */
     .error-text {
