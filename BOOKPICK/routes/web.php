@@ -50,9 +50,32 @@ Route::get( '/library/wishlist', [LibraryController::class, 'librarywishlist'])
 ->name( 'getLibrarywishlist' );
 
 // 서재 도서 상세 페이지
-Route::get( '/library/detail/{id}', function ($id) {
-    return view( 'user_library_detail', ['id' => $id] );
-})->name( 'libraryDetail' );
+Route::get( '/library/detail/{id}', [LibraryController::class, 'libraryDetailIndex'])
+    ->name( 'getLibraryDetail' );
+Route::post( '/library/detail', [LibraryController::class, 'libraryDetailUpdate'])
+    ->name( 'postLibraryDetail' );
+Route::delete( '/library/detail', [LibraryController::class, 'libraryDetailDelete'])
+    ->name( 'deleteLibraryDetail' );
+Route::post( '/library/detail/{id}', [LibraryController::class, 'libraryDetailCommentInsert'])
+    ->name( 'postLibraryDetailComment' );
+Route::put( '/library/detail/{id}/comment', [LibraryController::class, 'libraryDetailCommentUpdate'])
+    ->name( 'putLibraryDetailComment' );
+Route::delete( '/library/detail/{id}/comment', [LibraryController::class, 'libraryDetailCommentDelete'])
+    ->name( 'deleteLibraryDetailComment' );
+
+// Route::middleware('auth')->prefix('library')->group(function () {
+//     Route::resource('detail', LibraryCommentController::class, [
+//         'names' => [
+//             'index' => 'lcDetailIndex', // (GET)나의 서재 도서 상세 화면 이동
+//             'create' => 'lcDetailCreate', // (GET)나의 서재 도서 상세 화면 이동(게시판 작성 화면 이동)
+//             'store' => 'lcDetailStore', // (POST)나의 서재 도서 상세 화면 게시글 insert 처리
+//             'show' => 'lcDetailShow', // (GET)나의 서재 도서 상세 화면 이동(게시판 디테일 화면 이동)
+//             'edit' => 'lcDetailEdit', // (GET)나의 서재 도서 상세 화면 이동(게시판 수정 화면 이동)
+//             'update' => 'lcDetailUpdate', // (PUT)나의 서재 도서 상세 화면 게시글 update 처리
+//             'destory' => 'lcDetailDestory', // (DELETE)나의 서재 도서 상세 화면 게시글 delete 처리
+//         ]
+//     ]);
+// });
 
 // 검색 결과 페이지
 Route::get('/search', [SearchController::class, 'index'])
@@ -68,6 +91,8 @@ Route::post( '/book/detail/wish', [BookController::class, 'bookDetailWishList'])
     ->name( 'postBookDetailWishList' );
 Route::post( '/book/detail/library', [BookController::class, 'bookDetailUserLibrary'])
     ->name( 'postBookDetailUserLibrary' );
+// Route::post( '/book/detail/library/{id}', [BookController::class, 'bookDetailCommentInsert'])
+//     ->name( 'postbookDetailComment' );
 
 // 관리자 페이지
 Route::get( '/admin', [AdminController::class, 'index']
@@ -167,24 +192,18 @@ Route::post('/email/verification-ReEmail', [VerificationController::class, 'reSe
 
 
 
-
-
-
-
-
-
 // ### 나의 서재 도서 상세 > 독서기록
-Route::middleware('auth')->prefix('library')->group(function () {
-    Route::resource('detail', LibraryCommentController::class, [
-        'names' => [
-            'index' => 'lcDetailIndex', // (GET)나의 서재 도서 상세 화면 이동
-            'create' => 'lcDetailCreate', // (GET)나의 서재 도서 상세 화면 이동(게시판 작성 화면 이동)
-            'store' => 'lcDetailStore', // (POST)나의 서재 도서 상세 화면 게시글 insert 처리
-            'show' => 'lcDetailShow', // (GET)나의 서재 도서 상세 화면 이동(게시판 디테일 화면 이동)
-            'edit' => 'lcDetailEdit', // (GET)나의 서재 도서 상세 화면 이동(게시판 수정 화면 이동)
-            'update' => 'lcDetailUpdate', // (PUT)나의 서재 도서 상세 화면 게시글 update 처리
-            'destory' => 'lcDetailDestory', // (DELETE)나의 서재 도서 상세 화면 게시글 delete 처리
-        ]
-    ]);
-});
+// Route::middleware('auth')->prefix('library')->group(function () {
+//     Route::resource('detail', LibraryCommentController::class, [
+//         'names' => [
+//             'index' => 'lcDetailIndex', // (GET)나의 서재 도서 상세 화면 이동
+//             'create' => 'lcDetailCreate', // (GET)나의 서재 도서 상세 화면 이동(게시판 작성 화면 이동)
+//             'store' => 'lcDetailStore', // (POST)나의 서재 도서 상세 화면 게시글 insert 처리
+//             'show' => 'lcDetailShow', // (GET)나의 서재 도서 상세 화면 이동(게시판 디테일 화면 이동)
+//             'edit' => 'lcDetailEdit', // (GET)나의 서재 도서 상세 화면 이동(게시판 수정 화면 이동)
+//             'update' => 'lcDetailUpdate', // (PUT)나의 서재 도서 상세 화면 게시글 update 처리
+//             'destory' => 'lcDetailDestory', // (DELETE)나의 서재 도서 상세 화면 게시글 delete 처리
+//         ]
+//     ]);
+// });
 

@@ -89,25 +89,3 @@ setupSliderEvents(slider6);
 
 
 
-
-//  호철 // 댓글 추가 모달 열기 닫기
-// const modalOpenBtn = document.querySelector("#book_detail_comment_modal_btn").addEventListener("click", (e) => {
-// 	const modal = document.querySelector('.book_detail_comment_modal');
-// 		modal.classList.toggle('show');
-// 	});
-	
-// 	const closeModalBtn = document.querySelector('.book_detail_comment_close_modal_btn');
-// 	closeModalBtn.addEventListener('click', (e) => {
-// 		const modal = document.querySelector('.book_detail_comment_modal');
-	
-// 		modal.classList.toggle('show');
-// 	});
-	
-// 	const modalBackground = document.querySelector('.book_detail_comment_modal');
-// 	modalBackground.addEventListener('click', (e) => {
-// 		const modal = document.querySelector('.book_detail_comment_modal');
-	
-// 		if (e.target === modal) {
-// 		modal.classList.toggle('show');
-// 		}
-// 	});

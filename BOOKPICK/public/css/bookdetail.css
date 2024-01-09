@@ -37,6 +37,7 @@
 	color: #000;
 }
 .book_datail_product_link {
+	margin-left: 3px;
 	font-size: 13px;
 	color: #4dac27;
 }
@@ -128,7 +129,7 @@
     filter: grayscale(0);
 }
 /* 미디어쿼리 */
-@media screen and (max-width: 749.99px) {
+@media screen and (max-width: 849.99px) {
 	.book_detail_div1, .book_detail_div2 {
 		padding: 10px;
 		float: none;
@@ -139,7 +140,7 @@
 	}
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 850px) {
 	.book_detail_div1, .book_detail_div2 {
 		padding: 10px;
 		float: left;
@@ -224,6 +225,9 @@
 }
 
 
+.book_detail_div1 {
+	margin-top: 20px;
+}
 
 
 
@@ -322,8 +326,10 @@
 }
 .book_detail_comment_grid-item {
 	width: 100%;
-    background-color: #ccc;
-	color: white;
+	padding: 10px;
+    background-color: #E9F2DF;
+	color: #000;
+	border-radius: 0 0 10px 10px;
 }
 
 
@@ -338,6 +344,7 @@
 	height: 100%;
 	display: none;
 	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 999;
 }
 
 .book_detail_comment_modal.show {
@@ -348,37 +355,29 @@
 	position: fixed;
 	left: 50%;
 	top: 50%;
-	width: 32rem;
-	height: 20rem;
+	width: 450px;
+	height: 450px;
 	background-color: rgb(255, 255, 255);
 	border-radius: 1.2rem;
 	text-align: center;
 	transform: translateX(-50%) translateY(-50%);
 }
 .book_detail_comment_modal_form{
-	padding: 20px 20px;
+	padding: 5px 20px;
 	width: 100%;
 	/* height: 100%; */
 	text-align: center;
 }
-.book_detail_comment_modal_header{
-	margin-top: 20px;
-}
 .book_detail_comment_modal_footer{
 	display: flex;
     justify-content: space-around;
-    margin: 20px 10px;
+    margin: 5px 10px;
 	padding: 0px 20px;
-}
-.book_detail_comment_modal_header textarea {
-	resize: none;
-	height: 30px;
-    width: 400px;
 }
 .book_detail_comment_modal_content textarea {
 	resize: none;
-	height: 150px;
-    width: 400px;
+	height: 380px;
+    width: 100%;
 }
 .book_detail_comment_close_modal_btn {
 	width: 100px;
@@ -406,14 +405,14 @@
 	.book_detail_comment_modal_body {
 		width: 20rem;
 	}
-	.book_detail_comment_modal_header textarea {
+	/* .book_detail_comment_modal_header textarea {
 		resize: none;
 		height: 30px;
 		width: 100%;
-	}
+	} */
 	.book_detail_comment_modal_content textarea {
 		resize: none;
-		height: 150px;
+		height: 380px;
 		width: 100%;
 	}
 }

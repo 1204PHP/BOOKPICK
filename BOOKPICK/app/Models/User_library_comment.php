@@ -14,6 +14,7 @@ class User_library_comment extends Model
 
     protected $fillable = [
         'ulc_comment',
+        'ul_id',
     ];
 
     public $timestamps = true;
