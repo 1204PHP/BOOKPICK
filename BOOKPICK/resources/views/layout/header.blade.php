@@ -55,7 +55,7 @@ $currentRoute = Route::currentRouteName();
 		@else
 			<div class="header-login-button-area">
 				<button class="header-login-btn" onclick="location.href='{{ route('getLogin') }}'">로그인</button>
-			</div>
+			</div>			
 		@endauth
 		<nav class="mobile-nav">
 			<form class="desktop-search-bar" action="{{ route('getsearch.index') }}" method="GET">
@@ -70,9 +70,33 @@ $currentRoute = Route::currentRouteName();
 					</div>
 				</div>
 			</form>		
-			<a href="{{ route('home') }}">둘러보기</a></li>				
-			<a href="{{ route('getLibraryFinished') }}">나의 서재</a></li>
+			<a href="{{ route('home') }}">둘러보기</a>				
+			<a href="{{ route('getLibraryFinished') }}">나의 서재</a>
 		</nav>
+		{{-- 유저 아이콘 --}}
+		<nav class="user-menu">					
+			@if(Auth::check())
+				@if(session('kakaoUser'))
+				<!-- 카카오 로그아웃 -->
+				<div class="kakao-user">
+					<span class="user-info-name">{{ Auth::user()->u_name }}님</span>
+					<a href="{{ route('logoutKakao') }}">로그아웃</button>
+				</div>
+				@else
+				<!-- 일반 로그아웃 -->
+				<div class="general-user">
+					<span class="user-info-name">{{ Auth::user()->u_name }}님</span>
+					<a href="{{ route('getPasswordReconfirm') }}">정보수정</a>
+					<a href="{{ route('getLogout') }}">로그아웃</a>
+				</div>
+				@endif
+			@endif		
+		</nav>
+		@if(Auth::check())
+			<div class="user-icon" onclick="addEventListener()">
+				<img class="user-img" src="{{ asset('img/user.png') }}" alt="">
+			</div>
+		@endif
 	</header>
 
 	<script>

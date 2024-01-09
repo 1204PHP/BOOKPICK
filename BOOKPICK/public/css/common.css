@@ -96,6 +96,9 @@ header {
 .header-login-btn {
     width: 100px;
     height: 40px;
+    position: absolute;
+    top: 60px;
+    right: 0;
     border: 0 none;
     border-radius: 36px;
     color: #fff;
@@ -187,6 +190,9 @@ header {
 
     header {
         width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
     }
 
 	.layout_body {
@@ -195,6 +201,7 @@ header {
 
     .navbar-logo {
         font-size: 1.2rem;
+        margin-left: 20px;
     }
 
     .navbar-logo a {
@@ -210,7 +217,9 @@ header {
     .header-login-btn {
         width: 100px;
         height: 40px;
-        margin-left: 30px;
+        position: absolute;
+        top: 15px;
+        right: 10px;
         border: 0 none;
         border-radius: 36px;
         color: #fff;
@@ -238,6 +247,7 @@ header {
     .header-info-button span {
         font-size: 0.8rem;
     }
+
     .header-info-btn {
         width: 80px;
         margin: 0 20px;
@@ -325,6 +335,61 @@ header {
         font-size: 0.8rem;
         font-weight: bold;
     }
+
+    /* 유저 아이콘 */
+    .user-menu {
+        display: none;
+        flex-direction: column;
+        height: 15%;
+        box-sizing: border-box;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: rgba(249, 250, 250, 0.9);
+        padding: 10px;
+		z-index: 10;
+		opacity: 0;
+        transform: translateY(-20px);
+		animation: fadeInDown 0.5s ease both;
+    }
+
+    .kakao-user,
+    .general-user {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .user-icon {
+        display: flex;
+    }
+
+    .user-img {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        position: absolute;
+        right: 40px;
+        top: 15px;
+    }
+
+    .user-info-link {
+        margin: 30px auto;
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .user-menu a,
+    .user-info-name {
+        margin: 10px 0px;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .header-info-button {
+        display: none;
+    }
 	
 	@keyframes fadeInDown {
 		from {
@@ -342,6 +407,10 @@ header {
 
     header {
         width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
     }
 
 	.layout_body {
@@ -349,34 +418,33 @@ header {
 	}
 
     .navbar-logo {
-        font-size: 1.4rem;
-		text-align: center;
+        font-size: 1.2rem;
+        margin-left: 20px;
     }
 
-    .site-name {
-        order: 2;
-        margin: 0 auto;
+    .navbar-logo a {
+        color: #4dac27;
+        font-size: 1.5rem;
     }
 
     .desktop-nav {
         display: none;
     }
-
-    .hamburger-menu {
-        display: flex;
-    }
-
-    .header-logout-btn,
+    
+	.header-logout-btn,
     .header-login-btn {
         width: 100px;
         height: 40px;
+        position: absolute;
+        top: 15px;
+        right: 10px;
         margin-left: 30px;
         border: 0 none;
         border-radius: 36px;
         color: #fff;
         background-color: #4dac27;
         font-weight: bold;
-        font-size: 1rem;
+        font-size: 0.8rem;
         cursor: pointer;
         &:hover {
             transition: all 150ms linear;
@@ -396,8 +464,9 @@ header {
 
     .header-info-button a,
     .header-info-button span {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
+
     .header-info-btn {
         width: 80px;
         margin: 0 20px;
@@ -421,8 +490,9 @@ header {
 
     .header-info-button {
         display: flex;
+        align-items: center;
         justify-content: end;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 
     .desktop-search-bar {
@@ -434,10 +504,31 @@ header {
     }
 
     .search-input-container {
-        width: 50%;
+        width: 60%;
         display: flex;
         flex-direction: row;
         align-items: center;
+    }
+
+    .phone-search-bar input {
+        width: 250px;
+        height: 30px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        background-color: transparent;
+        border: 1px solid #4dac27;
+        border-radius: 30px;
+        padding: 1rem 2rem;
+    }
+
+    .phone-search-bar button {
+        width: 50px;
+        height: 30px;
+        margin-top: 10px;
+        margin-left: 10px;
+        background-color: transparent;
+        border: 1px solid #4dac27;
+        border-radius: 30px;
     }
 
     .mobile-nav {
@@ -450,10 +541,8 @@ header {
         position: absolute;
         top: 60px;
         left: 0;
-        font-size: 1rem;
-        font-weight: bold;
         background-color: rgba(249, 250, 250, 0.9);
-        padding: 2rem;
+        padding: 10px;
 		z-index: 10;
 		opacity: 0;
 		transform: translateY(-20px);
@@ -462,6 +551,64 @@ header {
 
     .mobile-nav a {
         margin-bottom: 30px;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    /* 유저 아이콘 */
+    .user-menu {
+        display: none;
+        flex-direction: column;
+        width: 120px;
+        height: 15%;
+        box-sizing: border-box;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: rgba(249, 250, 250, 0.9);
+        padding: 10px;
+		z-index: 10;
+		opacity: 0;
+        transform: translateY(-20px);
+		animation: fadeInDown 0.5s ease both;
+    }
+
+    .kakao-user,
+    .general-user {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .user-icon {
+        display: flex;
+    }
+
+    .user-img {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        position: absolute;
+        right: 40px;
+        top: 15px;
+    }
+
+    .user-info-link {
+        margin: 30px auto;
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .user-menu a,
+    .user-info-name {
+        margin: 10px 0px;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .header-info-button {
+        display: none;
     }
 	
 	@keyframes fadeInDown {
@@ -480,17 +627,21 @@ header {
     .layout_header {
         width: 1300px;
         margin: 0 auto;
+        position: relative;
     }
 
     .layout_body {
         width: 1300px;
         margin: 0 auto;
     }
-
+    
     .header-logout-btn,
     .header-login-btn {
         width: 100px;
         height: 40px;
+        position: absolute;
+        top: 15px;
+        right: 10px;
         margin-left: 30px;
         border: 0 none;
         border-radius: 36px;
@@ -518,6 +669,7 @@ header {
     .header-info-button a,
     .header-info-button span {
         font-size: 1rem;
+        display: none;
     }
     .header-info-btn {
         width: 80px;
@@ -541,6 +693,11 @@ header {
         display: flex;
         flex-direction: row;
         align-items: center;
+    }
+
+    .user-icon,
+    .user-menu {
+        display: none;
     }
 }
 
