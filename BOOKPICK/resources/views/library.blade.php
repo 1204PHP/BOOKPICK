@@ -6,6 +6,8 @@
 	@php
 		// 현재 접속중인 라우트 이름
 		$currentRoute = Route::currentRouteName();
+		$movementRoute = ($currentRoute == 'getLibraryFinished' || $currentRoute == 'getLibraryReading') ? 'getLibraryDetail' : 'getBookDetail';
+
 	@endphp
 	<div class="library-grid">
 		{{-- 왼쪽박스 --}}
@@ -29,7 +31,7 @@
 				<div class="library_layout_container @if($result->isEmpty()) library-empty-style @endif">
 					@forelse($result as $val)
 					<div class="library_layout_container_div">
-						<a class="library_layout_container_a" href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
+						<a class="library_layout_container_a" href="{{ route($movementRoute, ['id' => $val->b_id]) }}">
 							<img class="search_layout_container_img" src="{{$val->b_img_url}}">
 						</a>
 						<p class="library_book_title_txt">

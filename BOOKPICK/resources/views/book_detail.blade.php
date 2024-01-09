@@ -102,24 +102,6 @@
 			@endforelse
 		</ul>
 	</div>
-		{{--연관 책 추천 여역  --}}
-	{{-- <div class="book_detail_box1">
-        <div class="book_detail_title">
-            <strong>검색 연관 도서</strong>
-            <p>이런 도서는 어떠세요?</p>
-        </div>
-        <ul class="book_detail_slide_container" id="slide">
-            @forelse($result as $val)
-            <li class="book_detail_slide-box">
-				<img src="..." alt="...">
-                <p></p>
-                <p></p>
-            </li>
-            @empty
-                비어있음
-            @endforelse
-        </ul>
-    </div> --}}
 		{{--댓글 작성 영역  --}}
 	{{-- <div class="book_detail_comment_layout">
 		<div class="book_detail_comment_section-box">
