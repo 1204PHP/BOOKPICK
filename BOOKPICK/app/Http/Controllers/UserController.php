@@ -113,7 +113,7 @@ class UserController extends Controller
             DB::rollback();
             Log::debug( "### 예외발생 : 롤백완료 ###" );
             $errorMsg = '회원가입에 실패했습니다. 이메일 인증을 다시 해주세요';
-            return redirect()->route('getVerification')->withErrors($errorMsg);
+            return redirect()->route('mailTokenExpired');
         }
     }
 

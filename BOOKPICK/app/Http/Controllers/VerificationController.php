@@ -11,12 +11,13 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class VerificationController extends Controller
 {   
     // 이메일 검증 화면 이동
     public function getVerification() 
-    {
+    {   
         return view('user_verification');
     }
 
@@ -41,9 +42,14 @@ class VerificationController extends Controller
             ]);
             // 이메일 미존재 회원정보 임시 저장
             Log::debug("이메일 미존재-회원정보 임시저장 : " . $user);
+
+            // 세션 내 유저입력 이메일 저장
+            session(['u_email' => $userEmail]);
+            Log::debug("세션 저장/검증대상 회원정보 : " . $user);
+
             $verificationLink = URL::temporarySignedRoute(
                 'verifyEmail',
-                now()->addMinutes(60), // 검증유효시간 60분
+                now()->addMinutes(5),
                 [
                     'email' => $userEmail,
                     'hash' => $hash,
@@ -51,15 +57,12 @@ class VerificationController extends Controller
             );
             // 생성된 링크를 이용하여 이메일 발송
             Mail::to($userEmail)->send(new VerificationEmail($verificationLink));
-
-            // 세션 내 u_email 저장
-            $request->session()->flash('u_email', $userEmail);
-            Log::debug("세션 저장 u_email : " . session('u_email'));
-
-            return view('user_verification');
+            Log::debug("### 메일발송 완료 ###");
+            
+            return view('user_verification')->with('u_email', $userEmail);
         } else {
             // 이미 등록된 이메일일 시 로그인 페이지로 이동
-            return redirect()->route('getLogin');
+            return redirect()->route('mailTokenExpired');
         }
     }
 
@@ -69,63 +72,54 @@ class VerificationController extends Controller
         // remember_token에서 이메일과 해시 값을 가져옴
         $userData = json_decode(User::where('u_email', $userEmail)->value('remember_token'), true);
         Log::debug("저장된 remember_token : " . json_encode($userData));
-        Log::debug("이메일 검증 시도 유저이메일 : " . $userData['u_email']);
         if ($userData) {
-            // remember_token 확인되면 회원가입 페이지로 이동
+            // 검증이 성공하면 remember_token 업데이트
+            $user = User::where('u_email', $userEmail)->first();
+            $user->update(['remember_token' => null]);
+    
             return redirect()->route('getRegister')->with('userData', $userData);
         } else {
-            // remember_token이 없거나 일치하지 않으면 로그인 페이지로 이동
-            return redirect()->route('getLogin');            
+            session()->flush();
+            return redirect()->route('mailTokenExpired');
         }
     }
 
+    // 이메일 검증 재발송
     public function reSendVerification(Request $request)
     {
         $userEmail = $request->input('u_email');
         $user = User::where('u_email', $userEmail)->first();
 
         if ($user) {
-            $newhash = Str::random(32);
-
-            // 기존 remember_token 무효화
+            // 새로운 hash 생성
+            $newHash = Str::random(32);
+            // remember_token 업데이트
             $user->update([
-                'remember_token' => null,
+                'remember_token' => json_encode(['u_email' => $userEmail, 'hash' => $newHash]),
             ]);
-                
-            // remember_token의 hash 값 변경
-            $user->update([
-                'remember_token' => json_encode(['u_email' => $userEmail, 'hash' => $newhash]),
-            ]);
-
             // 새로운 검증 링크 생성
             $verificationLink = URL::temporarySignedRoute(
                 'verifyEmail',
-                now()->addMinutes(60),
+                now()->addMinutes(5),
                 [
                     'email' => $userEmail,
-                    'hash' => $newhash,
+                    'hash' => $newHash,
                 ]
             );
-
-            // 이메일 발송
+            // 새로운 검증 이메일 전송
             Mail::to($userEmail)->send(new VerificationEmail($verificationLink));
+            Log::debug("### 메일발송 완료 ###");
 
-            return view('user_verification');
-        } else {
-            // 사용자가 존재하지 않는 경우에 대한 처리
-            return redirect()->route('getLogin');
-        }
+            return view('user_verification')->with('u_email', $userEmail);
+        } 
+        return redirect()->route('mailTokenExpired');        
     }
-
-
-
-
-
-
-
-
-
-
+    
+    // 이메일 인증시간 만료
+    public function mailTokenExpired() 
+    {
+        return view('user_token_expired');
+    }
 
 
 

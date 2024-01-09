@@ -12,11 +12,8 @@
     <form class="verification-form" action="{{ route('sendVerification') }}" method="POST">
     @csrf
         <div class="register-input-area">
-            @php
-                $u_email = session('u_email');
-            @endphp
             <input class="verification-input" type="email" id="u_email" name="u_email" 
-            placeholder="이메일 주소" autocomplete="off" value="{{ $u_email }}">
+            placeholder="이메일 주소" autocomplete="off" value="{{ isset($u_email)?$u_email:'' }}">
             <button id="emailConfirmButton" class="register-email-button" type="button">중복 확인</button>
             <span class="errormsg u_email_errormsg"></span>
         </div>
