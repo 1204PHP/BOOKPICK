@@ -6,8 +6,18 @@
 }
 /* 홈 광고 배너 부분 */
 .home-main {
-	width: 100%;
+	/* width: 100%;
 	height: 300px;
+	position: relative; */
+	max-width: 1300px;
+	height: auto;
+	margin: 0 auto;
+}
+
+.home-baaner img {
+	width: 100%;
+	height: auto;
+	border-radius: 5px;
 }
 
 .home.slide-area {
@@ -227,7 +237,7 @@
 
 .home-box1 {
 	width: 100%;
-	position: relative;
+	/* position: relative; */
 	padding: 20px 20px;
 }
 .home-box2 {
@@ -241,14 +251,19 @@
 	padding: 10px 20px;
 }
 .home-main {
+	max-width: 1300px;
+	height: auto;
+	margin: 0 auto;
 	position: relative;
 }
+
 .home-box {
 	position: absolute;
-	top: 93%;
-	width: 100%;
+	bottom: 5%;
+	left: 47%;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	transform: translateY(-50%);
 }
 

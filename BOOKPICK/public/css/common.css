@@ -669,8 +669,11 @@ header {
     .header-info-button a,
     .header-info-button span {
         font-size: 1rem;
-        display: none;
+        position: absolute;
+        top: 25px;
+        right: 120px;
     }
+    
     .header-info-btn {
         width: 80px;
         margin: 0 20px;
