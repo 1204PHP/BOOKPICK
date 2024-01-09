@@ -42,21 +42,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
             });
         }
+
         
         var submitButton = form.querySelector("#verification-button");
         if (submitButton) {
             submitButton.addEventListener("click", function (event) {
-                // 이메일 유효성 검사 실패 & 이메일 값 미입력 시
-                if (!isEmailValid && !form.querySelector("#u_email").value) {
-                    alert("이메일 입력 또는 중복 확인을 먼저 해주세요");
+                // 이메일 값 미입력 시
+                var userEmailInput = form.querySelector("#u_email");
+                if (!userEmailInput.value) {
+                    alert("이메일을 입력해주세요");
                     event.preventDefault();
-                } else {
-                        alert("회원가입이 완료되었습니다. 로그인을 해주세요");
-                        form.submit();
-                }                
+                    return;
+                }
+                // 이메일 중복 확인을 하지 않은 경우
+                if (!isEmailValid) {
+                    alert("이메일 중복 확인을 먼저 해주세요");
+                    event.preventDefault();
+                    return;
+                } else {                
+                    alert("이메일이 전송되었습니다. 입력하신 이메일에서 인증을 해주세요");
+                    form.submit();
+                }
             });
         }
-        
+
         var inputFields = form.getElementsByClassName("verification-input");
         for (var j = 0; j < inputFields.length; j++) {
             inputFields[j].addEventListener("input", function (event) {
@@ -119,12 +128,10 @@ function validateInput(inputField, isEmailValid) {
         clearErrorMsg(errorSpan);
         isValid = false;
     } else {
-
         // 입력 값에 대한 유효성 검사
         if (inputField.id === "u_email" && !isEmailValid) {
             isValid = validateEmail(inputField);
-        } 
-
+        }
         if (isValid) {
             // 유효성 검사 통과 시 input 테두리 초록색 + margin bottom 10px 추가 + 에러메세지 초기화
             inputField.style.border = "2px solid #53A73C";
@@ -171,3 +178,4 @@ function clearErrorMsg(element) {
         element.innerText = "";
     }
 }
+

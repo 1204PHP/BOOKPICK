@@ -158,8 +158,6 @@ Route::post('/email/verification-ReEmail', [VerificationController::class, 'reSe
     ->middleware('throttle:3,1')
     ->name('reSendVerification');
 
-
-
 // /auth/{} 세그먼트 파라미터로 설정해둘 시, 타 소셜 로그인을 할때에도 
 // 컨트롤러, 라우트 하나로 설정할 수 있음
 // /auth/{}

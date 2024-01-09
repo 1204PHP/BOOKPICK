@@ -43,7 +43,7 @@ class VerificationController extends Controller
             Log::debug("이메일 미존재-회원정보 임시저장 : " . $user);
             $verificationLink = URL::temporarySignedRoute(
                 'verifyEmail',
-                now()->addMinutes(60), // 만료 시간을 조절할 수 있습니다.
+                now()->addMinutes(60), // 검증유효시간 60분
                 [
                     'email' => $userEmail,
                     'hash' => $hash,
@@ -51,7 +51,11 @@ class VerificationController extends Controller
             );
             // 생성된 링크를 이용하여 이메일 발송
             Mail::to($userEmail)->send(new VerificationEmail($verificationLink));
-            
+
+            // 세션 내 u_email 저장
+            $request->session()->flash('u_email', $userEmail);
+            Log::debug("세션 저장 u_email : " . session('u_email'));
+
             return view('user_verification');
         } else {
             // 이미 등록된 이메일일 시 로그인 페이지로 이동
@@ -75,17 +79,84 @@ class VerificationController extends Controller
         }
     }
 
-    // 이메일 검증 재발송
     public function reSendVerification(Request $request)
     {
-        $userData = json_decode(User::where('u_email', $userEmail)->value('remember_token'), true);
+        $userEmail = $request->input('u_email');
+        $user = User::where('u_email', $userEmail)->first();
 
-        if ($userData) {
-            $user->sendEmailVerificationNotification();
-            return back()->with('message', 'Verification link sent!');
+        if ($user) {
+            $newhash = Str::random(32);
+
+            // 기존 remember_token 무효화
+            $user->update([
+                'remember_token' => null,
+            ]);
+                
+            // remember_token의 hash 값 변경
+            $user->update([
+                'remember_token' => json_encode(['u_email' => $userEmail, 'hash' => $newhash]),
+            ]);
+
+            // 새로운 검증 링크 생성
+            $verificationLink = URL::temporarySignedRoute(
+                'verifyEmail',
+                now()->addMinutes(60),
+                [
+                    'email' => $userEmail,
+                    'hash' => $newhash,
+                ]
+            );
+
+            // 이메일 발송
+            Mail::to($userEmail)->send(new VerificationEmail($verificationLink));
+
+            return view('user_verification');
         } else {
-            // 사용자를 찾을 수 없을 때의 처리 (예: 에러 메시지 출력)
-            return back()->with('error', 'User not found!');
+            // 사용자가 존재하지 않는 경우에 대한 처리
+            return redirect()->route('getLogin');
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // 이메일 검증 재발송
+    // public function reSendVerification(Request $request)
+    // {
+    //     // 유저 이메일 저장
+    //     $userEmail = $request->input('u_email');
+
+    //     // 이메일을 가진 유저 찾기
+    //     $user = User::where('u_email', $userEmail)->first();
+        
+    //     if ($user) {
+    //         // 유저 이메일 존재 시 이메일 재전송
+    //         $user->sendEmailVerificationNotification();
+    //         return back()->with('message', 'Verification link sent!');
+    //     } else {
+    //         // 사용자를 찾을 수 없을 때의 처리 (예: 에러 메시지 출력)
+    //         return back()->with('error', 'User not found!');
+    //     }
+    // }
 }
