@@ -11,16 +11,14 @@
     </div>
     <form class="verification-form" action="{{ route('sendVerification') }}" method="POST">
     @csrf
-        <div class="register-input-area">
+        <div class="verification-input-area">
             <input class="verification-input" type="email" id="u_email" name="u_email" 
             placeholder="이메일 주소" autocomplete="off" value="{{ isset($u_email)?$u_email:'' }}">
-            <button id="emailConfirmButton" class="register-email-button" type="button">중복 확인</button>
-            <span class="errormsg u_email_errormsg"></span>
+            <button id="emailConfirmButton" class="register-email-button" type="button">중복 확인</button>            
         </div>
-        <div class="verification-button-area">
-            <button id="verification-button" type="submit">인증 이메일 전송</button>
-            <button type="button" class="reverification-link" onclick="action='{{ route('reSendVerification') }}'; submit();">인증 이메일 재전송</button>
-        </div>
+        <button id="verification-button" type="submit">인증 이메일 전송</button><br>
+        <button type="button" class="reverification-link" onclick="action='{{ route('reSendVerification') }}'; submit();">재전송</button>
+        
     </form>
 </div>
 @endsection
