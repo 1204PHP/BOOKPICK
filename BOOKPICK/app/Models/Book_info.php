@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
+use Laravel\Scout\Searchable;
 
 class book_info extends Model
 {
-    use HasFactory, softDeletes;
+    use HasFactory, softDeletes, Searchable;
     protected $factory = Book_infoFactory::class;
     protected $primaryKey = 'b_id';
     public $timestamps = true;
@@ -25,6 +26,15 @@ class book_info extends Model
         'b_img_url',
         'b_product_url',
     ];
+
+    // algolia 인덱스명 설정
+    public function searchableAs() {
+        return 'BOOKPICK_search';
+    }
+
+
+
+
     // 외래키 연결목적 설정
     
     // 유저 서재 테이블
