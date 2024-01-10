@@ -12,6 +12,7 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\LibraryCommentController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\AlgoliaSearchController;
 use Laravel\Socialite\Facades\Socialite;
 
 /*
@@ -191,13 +192,14 @@ Route::get('/email/token-expired', [VerificationController::class, 'mailTokenExp
 
 
 // algolia 테스트
-// Route::get('searchAlgolia', function() {
-//     $query = '쇼펜'; // <-- Change the query for testing.
+// 검색 페이지
+// Route::get('/search', [AlgoliaSearchController::class, 'search'])->name('search');
 
-//     $book_info = App\Models\book_info::search($query)->get();
+// // 검색 결과 페이지
+// Route::get('/search-results', [AlgoliaSearchController::class, 'searchResults'])->name('search.results');
 
-//     return $book_info;
-// });
+// // 연관 검색어를 위한 라우트
+// Route::get('/searchAlgolia', [AlgoliaSearchController::class, 'searchAlgolia'])->name('search.algolia');
 
 
 

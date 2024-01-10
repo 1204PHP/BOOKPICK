@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book_info;
+use Algolia\ScoutExtended\Facades\Algolia;
 
 class AlgoliaSearchController extends Controller
 {
@@ -14,7 +15,7 @@ class AlgoliaSearchController extends Controller
      * @param  string  $id
      * @return Response
      */
-    // algolia 검색관련 데이터 전달 목적
+    // algolia / DB 저장된 검색관련 데이터 전달 목적
     public function update(Request $request, $id)
     {
         $book_info = Book_info::find(request('b_id'));
@@ -27,5 +28,25 @@ class AlgoliaSearchController extends Controller
          *  changes to your Algolia search index.
          */
         $book_info->update();
+    }
+
+    // algolia / 유저 입력 값 데이터 전달 목적
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $results = Algolia::search('book_info')
+            ->query($query)
+            ->get();
+
+        $searchResult = $results->map(function ($result) {
+            return [
+                'b_sub_cate' => $result['b_sub_cate'],
+                'b_author' => $result['b_author'],
+                'b_title' => $result['b_title'],
+            ];
+        })->take(5); // 5개의 결과만 반환
+
+        return response()->json($searchResult);
     }
 }
