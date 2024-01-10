@@ -12,7 +12,7 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\LibraryCommentController;
 use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\VerificationController;
-use App\Http\Controllers\AlgoliaSearchController;
+use App\Http\Controllers\AutoSearchController;
 use Laravel\Socialite\Facades\Socialite;
 
 /*
@@ -81,6 +81,9 @@ Route::delete( '/library/detail/{id}/comment', [LibraryController::class, 'libra
 // 검색 결과 페이지
 Route::get('/search', [SearchController::class, 'index'])
     ->name('getsearch.index');
+
+// Route::get("/search",[AutoSearchController::class, 'autoSearch'])
+//     ->name('getsearch.index');
 
 // 도서 상세 페이지
 // Route::get( '/book/detail/{id}', function ($id) {
@@ -193,13 +196,7 @@ Route::get('/email/token-expired', [VerificationController::class, 'mailTokenExp
 
 // algolia 테스트
 // 검색 페이지
-// Route::get('/search', [AlgoliaSearchController::class, 'search'])->name('search');
 
-// // 검색 결과 페이지
-// Route::get('/search-results', [AlgoliaSearchController::class, 'searchResults'])->name('search.results');
-
-// // 연관 검색어를 위한 라우트
-// Route::get('/searchAlgolia', [AlgoliaSearchController::class, 'searchAlgolia'])->name('search.algolia');
 
 
 
