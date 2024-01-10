@@ -21,11 +21,15 @@ return new class extends Migration
             $table->string('bdc_comment', 1000);
             // 댓글 내용
             // varchar 생성(1000) / default : not null
+            
+            // 댓글 플래그 1이 상위 2가 하위
+            $table->unsignedBigInteger('bdc_flg')->default(1);
 
-            $table->unsignedBigInteger('bdc_like')->default(0);
-            // 좋아요
+            // 좋아요, 싫어요
             // unsignedBigInteger 생성 / default : not null, 플래그 0
             // 좋아요는 음수가 될 수 없는 값으로, 부호 없는 정수형으로 정의
+            $table->unsignedBigInteger('bdc_like')->default(0);
+            $table->unsignedBigInteger('bdc_dislike')->default(0);
 
             $table->timestamps();
             // created_at, updated_at 라라벨 내부 설정 값으로 자동 생성 / default : null
