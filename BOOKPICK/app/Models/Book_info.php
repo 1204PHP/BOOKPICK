@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
+use Laravel\Scout\Searchable;
 
 class book_info extends Model
 {
-    use HasFactory, softDeletes;
+    use HasFactory, softDeletes, Searchable;
     protected $factory = Book_infoFactory::class;
     protected $primaryKey = 'b_id';
     public $timestamps = true;
@@ -27,22 +28,10 @@ class book_info extends Model
     ];
 
     // ### algolia 설정 ###
-    // 모델 인덱스 설정
-    // public function searchableAs() {
-    //     return 'book_infos_index';
-    // }
-
-    // public function toSearchableArray()
-    // {
-    // $array = $this->toArray();
-        
-    // return array('title' => $array['b_title'],
-    //             'author' => $array['b_author'],
-    //             'cate'   =>   $array['b_sub_cate']);
-    // }
-
-
-
+    // 모델 인덱스명 설정
+    public function searchableAs() {
+        return 'book_info';
+    }
 
     // 외래키 연결목적 설정
     

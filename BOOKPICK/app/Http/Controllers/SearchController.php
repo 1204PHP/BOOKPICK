@@ -48,4 +48,54 @@ class SearchController extends Controller
             return redirect()->route( 'index' );
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    // ############### 알고리아 검색 
+
+
+
+    // Algolia 인덱스 업데이트
+    // public function update(Request $request, $id)
+    // {
+    //     Book_info::find(request('id'));
+    //     // Book_info 내 생성일, 수정일, 삭제일 제외 나머지 DB 저장 값
+    //     $bookInfo->b_ISBN = request('b_ISBN');
+    //     $bookInfo->b_price = request('b_price');
+    //     $bookInfo->b_title = request('b_title');
+    //     $bookInfo->b_author = request('b_author');
+    //     $bookInfo->b_summary = request('b_summary');
+    //     $bookInfo->b_main_cate = request('b_main_cate');
+    //     $bookInfo->b_sub_cate = request('b_sub_cate');
+    //     $bookInfo->b_publication_date = request('b_publication_date');
+    //     $bookInfo->b_publisher = request('b_publisher');
+    //     $bookInfo->b_img_url = request('b_img_url');
+    //     $bookInfo->b_product_url = request('b_product_url');
+    //     // 인덱스 업데이트
+    //     $bookInfo->update();
+    //     Log::debug("Algolia 저장완료");
+    // }
+
+    // public function index(Request $request)
+    // {   
+    //     // 유저 검색 쿼리 저장
+    //     $query = $request->input('query');
+    //     Log::debug('Algolia Query: ' . $query);
+    //     // algolia 인덱스 내 모든 정보 저장
+    //     $bookInfo = book_info::search($query)->get();
+    //     Log::debug('Algolia return: ' . json_encode($bookInfo));
+
+    //     $autoSearch = $bookInfo->pluck('b_title', 'b_author', 'b_sub_cate');
+    //     Log::debug('책 제목, 저자, 장르: ' . json_encode($autoSearch));
+    //     return $autoSearch; <<<< json 형태로 넘어오는 값을 처리해야함 / 성찬이랑 검색결과 수정논의
+    // }
 }

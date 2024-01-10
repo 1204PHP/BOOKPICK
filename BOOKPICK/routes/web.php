@@ -14,6 +14,8 @@ use App\Http\Controllers\SocialLoginController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\AutoSearchController;
 use Laravel\Socialite\Facades\Socialite;
+use App\Models\Book_info;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -77,13 +79,20 @@ Route::delete( '/library/detail/{id}/comment', [LibraryController::class, 'libra
 //         ]
 //     ]);
 // });
+// Route::get("/search",[AutoSearchController::class, 'autoSearch'])
+//     ->name('getsearch.index');
+
+
+
+
+
+
 
 // 검색 결과 페이지
 Route::get('/search', [SearchController::class, 'index'])
     ->name('getsearch.index');
-
-// Route::get("/search",[AutoSearchController::class, 'autoSearch'])
-//     ->name('getsearch.index');
+// #### 알고리아 검색결과 페이지
+// Route::get('search', [SearchController::class, 'index'])->name('getsearch.index');
 
 // 도서 상세 페이지
 // Route::get( '/book/detail/{id}', function ($id) {
