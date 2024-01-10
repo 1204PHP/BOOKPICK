@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'queue' => env('SCOUT_QUEUE', true),
+    'queue' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -114,8 +114,10 @@ return [
     'algolia' => [
         'id' => env('ALGOLIA_APP_ID', ''),
         'secret' => env('ALGOLIA_SECRET', ''),
+        'search_only_key' => env('ALGOLIA_SEARCH_ONLY_KEY', ''),
+        'default_language' =>'ko',
     ],
-
+    
     /*
     |--------------------------------------------------------------------------
     | Meilisearch Configuration

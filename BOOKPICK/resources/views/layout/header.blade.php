@@ -19,6 +19,7 @@ $currentRoute = Route::currentRouteName();
 				<a href="{{ route('getLibrarywishlist') }}" class="header-link {{ in_array($currentRoute, ['getLibraryFinished', 'getLibraryReading', 'getLibrarywishlist']) ? 'active' : '' }}">나의 서재</a>
 			</div>
 			<div class="search-area">
+				{{-- <form class="desktop-search-bar" action="{{ route('searchAlgolia') }}" method="GET"> --}}
 				<form class="desktop-search-bar" action="{{ route('getsearch.index') }}" method="GET">
 					<div class="search-input-container">
 						<div class="search-input">
@@ -80,7 +81,7 @@ $currentRoute = Route::currentRouteName();
 				<!-- 카카오 로그아웃 -->
 				<div class="kakao-user">
 					<span class="user-info-name">{{ Auth::user()->u_name }}님</span>
-					<a href="{{ route('logoutKakao') }}">로그아웃</button>
+					<a href="{{ route('logoutKakao') }}">로그아웃</a>
 				</div>
 				@else
 				<!-- 일반 로그아웃 -->

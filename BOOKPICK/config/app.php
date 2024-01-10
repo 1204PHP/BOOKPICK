@@ -165,6 +165,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
+        Algolia\ScoutExtended\ScoutExtendedServiceProvider::class,
 
         /*
          * Package Service Providers...

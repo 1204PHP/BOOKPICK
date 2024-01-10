@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\softDeletes;
 use Laravel\Scout\Searchable;
+use Algolia\ScoutExtended\Facades\Algolia;
 
 class book_info extends Model
 {
@@ -27,9 +28,25 @@ class book_info extends Model
         'b_product_url',
     ];
 
+    // ### algolia 설정 ###
+
     // algolia 인덱스명 설정
     public function searchableAs() {
-        return 'BOOKPICK_search';
+        return config('scout.prefix').'BOOKPICK_search';
+    }
+    // // algolia 검색 전용 api 키 생성
+    // public function searchKey()
+    // {
+    //     return Algolia::searchKey(book_info::class);
+    // }
+    // algolia 연관 검색어 목록(책 제목, 책 저자, 책 서브카테고리)
+    public function toSearchableArray()
+    {
+        return [
+            'title' => $this->b_title,
+            'author' => $this->b_author,
+            'sub_category' => $this->b_sub_cate,
+        ];
     }
 
 
