@@ -12,6 +12,10 @@
     font-family: 'KNUTRUTHTTF', sans-serif;
 }
 
+.font-1 * {
+    font-family: "Helvetica","sans-serif","돋움", "굴림", "바탕";
+}
+
 body { 
 	width: 100%;
 	height: 100%;

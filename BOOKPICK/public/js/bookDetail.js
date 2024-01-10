@@ -89,3 +89,25 @@ setupSliderEvents(slider6);
 
 
 
+// 상세 페이지 댓글 부분 자바스크립트 구현
+function handleInput(textarea) {
+    // 텍스트 영역의 값이 비어 있으면 레이블을 표시하고, 값이 있는 경우에는 숨깁니다.
+    const label = document.querySelector('label[for="content"]');
+    label.style.display = (textarea.value.trim() === '') ? 'block' : 'none';
+}
+
+
+function limitCharacters() {
+    const commentInput = document.getElementById('content');
+    const Count = document.getElementById('count');
+    const maxCharacters = 700;
+
+    var currentCharacters = commentInput.value.length;
+
+    if (currentCharacters > maxCharacters) {
+		alert("700자까지 입력할 수 있습니다.");
+		currentCharacters == 701 ? currentCharacters = 700 : currentCharacters;
+    	commentInput.value = commentInput.value.slice(0, maxCharacters);
+    }
+	Count.textContent = `${currentCharacters}` + " / " + maxCharacters;
+}
