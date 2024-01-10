@@ -124,7 +124,7 @@
 	width: 100%;
 	margin: 0 auto;
 }
-/* TODO: 데이터 넣었을때 높이 수정하기 */
+/*데이터 넣었을때 높이 수정 */
 .library-no-layout{
 	height: 444px;
 }
@@ -144,7 +144,52 @@
 	justify-content: center;
 	font-size: 15px;
 }
-/* TODO: 위에꺼까지 */
+
+.library-recent-comment-grid {
+	width: 100%;
+    display: grid;
+	grid-template-columns: repeat(1, 100%);
+	grid-auto-rows: 130px;
+	gap: 5px;
+}
+.library-recent-comment-grid-item {
+	width: 100%;
+	padding: 5px;
+}
+.library-recent-comment-grid-txt {
+	display: block;
+	padding: 5px;
+    background-color: #E9F2DF;
+	color: #000;
+	word-wrap: break-word;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+.library-recent-comment-txt-at, .library-recent-comment-txt-title {
+	width: 90%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.library-recent-comment-txt-content {
+	width:90%;
+	display: -webkit-box;
+	word-wrap: break-word;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+/*  */
+.library-recent-comment {
+	width: 100%;
+	height: 130px;
+	padding: 5px;
+	margin: 5px 0;
+	background-color: #000;
+}
+
 .library-empty-style {
 	display: block;
 }
@@ -177,9 +222,9 @@
 	margin-left: 20px;
 }
 .library-pichart-list {
-	margin-left: 20px;
+	margin-left: 0px;
 	width: 300px;
-	margin-top: 70px;
+	margin-top: 80px;
 	font-size: 18px;
 	color:rgba(0, 0, 0,0.5);
 }

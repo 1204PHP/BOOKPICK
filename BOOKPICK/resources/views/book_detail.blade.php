@@ -102,45 +102,6 @@
 			@endforelse
 		</ul>
 	</div>
-		{{--댓글 작성 영역  --}}
-	{{-- <div class="book_detail_comment_layout">
-		<div class="book_detail_comment_section-box">
-			<div class="book_detail_comment_section-1">
-				<strong>독자들의 코멘트</strong>
-				<button id="book_detail_comment_modal_btn" type="button">코멘트 작성</button>
-				<div class="book_detail_comment_modal">
-					<div class="book_detail_comment_modal_body">
-					<form class="book_detail_comment_modal_form">
-						<div class="book_detail_comment_modal_header">
-							<label for="title"></label>
-							<textarea id="title" name="title" rows="1" cols="30" maxlength=50 placeholder="제목을 입력해 주세요"></textarea>
-						</div>
-						<br>
-						<div class="book_detail_comment_modal_content">
-							<label for="content"></label>
-							<textarea id="content" name="content" rows="4" cols="30" maxlength=300 placeholder="댓글을 남겨주세요"></textarea>
-						<br>
-						</div>
-						<div class="book_detail_comment_modal_footer">
-							<button class="book_detail_comment_close_modal_btn" type="button">취소</button>
-							<button class="book_detail_comment_complete_modal_btn" type="submit">댓글 등록</button>
-						</div>
-					</form>
-					</div>
-				</div>
-			</div>
-			<div class="book_detail_comment_grid">
-				<div class="book_detail_comment_grid-item">호철</div>
-				<div class="book_detail_comment_grid-item">중기</div>
-				<div class="book_detail_comment_grid-item">중중기</div>
-				<div class="book_detail_comment_grid-item">중중중기</div>
-				<div class="book_detail_comment_grid-item">중중중중기</div>
-				<div class="book_detail_comment_grid-item">중중중중기</div>
-				<div class="book_detail_comment_grid-item">중중중중기</div>
-				<div class="book_detail_comment_grid-item">중중중기중</div>
-			</div>
-		</div>
-	</div> --}}
 @endsection
 
 @section('defer-js')

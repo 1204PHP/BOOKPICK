@@ -87,7 +87,47 @@
 					</p>
 				</div>
 				<br>
-				<div class="library-no-layout"></div>
+				<div class="library-no-layout">
+					@forelse($libraryRecentComment as $val)
+						<div class="library-recent-comment-grid">
+							<div class="library-recent-comment-grid-item">
+								<a href="{{ route('getLibraryDetail', ['id' => $val->b_id]) }}" class="library-recent-comment-grid-txt">
+									<p class="library-recent-comment-txt-at">{{$val->formatted_created_at}}</p>
+									<p class="library-recent-comment-txt-title">{{$val->b_title}}</p>
+									<p class="library-recent-comment-txt-content">{!! nl2br(e($val->ulc_comment))!!}</p>
+								</a>
+							</div>
+						</div>
+						@if($loop->last)
+							@if(count($libraryRecentComment) < 3)
+								@for($i=0; $i<3-count($libraryRecentComment); $i++)
+								<div class="library-recent-comment-grid">
+									<div class="library-recent-comment-grid-item">
+										<div class="library-recent-comment-grid-txt">
+											<p class="library-recent-comment-txt-at"></p>
+											<p class="library-recent-comment-txt-title"></p>
+											<p class="library-recent-comment-txt-content"></p>
+										</div>
+									</div>
+								</div>
+								@endfor
+							@endif
+						@endif
+					@empty
+						@for($j=0; $j<3; $j++)
+						<div class="library-recent-comment-grid">
+							<div class="library-recent-comment-grid-item">
+								<div class="library-recent-comment-grid-txt">
+									<p class="library-recent-comment-txt-at"></p>
+									<p class="library-recent-comment-txt-title"></p>
+									<p class="library-recent-comment-txt-content"></p>
+								</div>
+							</div>
+						</div>
+						@endfor
+					@endforelse
+
+				</div>
 			</div>
 		</div>
 	</div>

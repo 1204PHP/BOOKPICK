@@ -131,7 +131,8 @@
 							{{$val->formatted_created_at}}
 						</span>
 						<br>
-						{{$val->ulc_comment}}
+						{{-- 줄바꿈 인식 --}}
+						{!! nl2br(e($val->ulc_comment))!!}
 					</div>
 				@empty
 				<div class="book_detail_comment_grid-item"></div>
