@@ -31,6 +31,8 @@ $currentRoute = Route::currentRouteName();
 							</a>
 						</div>
 					</div>
+					{{-- 연관 검색어 영역 --}}
+					<div class="algolia-search-result"></div>	
 				</form>
 			</div>
 		</nav>
@@ -63,7 +65,7 @@ $currentRoute = Route::currentRouteName();
 				<div class="search-input-container">
 					<div class="search-input">
 						<input type="search" class="search-bar" name="result" value="" autocomplete="off" placeholder="검색어를 입력해 주세요">
-					</div>
+					</div>					
 					<div class="search-button">
 						<a href="#" class="header-search-btn" onclick="submitSearch()">
 							<img src="{{ asset('img/search.png') }}" class="search-icon" alt="...">
@@ -100,13 +102,17 @@ $currentRoute = Route::currentRouteName();
 		@endif
 	</header>
 
-	<script>
+	{{-- <script>
 		function submitSearch() {
 			var form = document.querySelector('.desktop-search-bar')
 			if (form) {
 				form.submit();
 			}
 		}
-	</script>
+	</script> --}}
 @endif
+
+@section('defer-js')
+    <script src="{{ asset('/js/algolia.js') }}" defer></script>
+@endsection
 
