@@ -69,6 +69,20 @@ class LibraryController extends Controller
                     ->where('user_library_comments.created_at', '<', $now)
                     ->count();
 
+                $libraryRecentComment = User_library_comment::select('book_infos.b_id','book_infos.b_title', 'user_library_comments.created_at', 'user_library_comments.ulc_comment')
+                ->join('user_libraries', 'user_library_comments.ul_id', '=', 'user_libraries.ul_id')
+                ->join('book_infos', 'book_infos.b_id', '=', 'user_libraries.b_id')
+                ->where('user_libraries.u_id', $userId)
+                ->where('user_libraries.ul_flg', 0)
+                ->orderby('user_library_comments.created_at', 'desc')
+                ->limit(3)
+                ->get();
+                foreach ($libraryRecentComment as $comment) {
+                    $replace_before=['/-/','/-/'];
+                    $replace_after=['년 ','월 '];
+                    $replace_created_at = date('Y-m-d', strtotime($comment->created_at));
+                    $comment->formatted_created_at = preg_replace($replace_before, $replace_after, $replace_created_at, 1)."일";
+                }
                 Log::debug( "userId : ".$userId );
                 Log::debug( "--------서재(읽은책)페이지출력 끝---------" );
 
@@ -78,6 +92,7 @@ class LibraryController extends Controller
                     'chartData1' => $chartData1,
                     'chartData2' => $chartData2,
                     'chartData3' => $chartData3,
+                    'libraryRecentComment' => $libraryRecentComment,
                     'resultCnt' => $resultCnt]);
             }
             else {
@@ -145,6 +160,21 @@ class LibraryController extends Controller
                     ->where('user_library_comments.created_at', '>=', $nowFirstMonth)
                     ->where('user_library_comments.created_at', '<', $now)
                     ->count();
+
+                $libraryRecentComment = User_library_comment::select('book_infos.b_id','book_infos.b_title', 'user_library_comments.created_at', 'user_library_comments.ulc_comment')
+                    ->join('user_libraries', 'user_library_comments.ul_id', '=', 'user_libraries.ul_id')
+                    ->join('book_infos', 'book_infos.b_id', '=', 'user_libraries.b_id')
+                    ->where('user_libraries.u_id', $userId)
+                    ->where('user_libraries.ul_flg', 0)
+                    ->orderby('user_library_comments.created_at', 'desc')
+                    ->limit(3)
+                    ->get();
+                foreach ($libraryRecentComment as $comment) {
+                    $replace_before=['/-/','/-/'];
+                    $replace_after=['년 ','월 '];
+                    $replace_created_at = date('Y-m-d', strtotime($comment->created_at));
+                    $comment->formatted_created_at = preg_replace($replace_before, $replace_after, $replace_created_at, 1)."일";
+                }
                 Log::debug( "userId : ".$userId );
                 Log::debug( "--------서재(읽고있는책)페이지출력 끝---------" );
                 return view('library',
@@ -153,6 +183,7 @@ class LibraryController extends Controller
                     'chartData1' => $chartData1,
                     'chartData2' => $chartData2,
                     'chartData3' => $chartData3,
+                    'libraryRecentComment' => $libraryRecentComment,
                     'resultCnt' => $resultCnt]);
             }
             else {
@@ -219,7 +250,21 @@ class LibraryController extends Controller
                     ->where('user_library_comments.created_at', '>=', $nowFirstMonth)
                     ->where('user_library_comments.created_at', '<', $now)
                     ->count();
-                
+
+                $libraryRecentComment = User_library_comment::select('book_infos.b_id','book_infos.b_title', 'user_library_comments.created_at', 'user_library_comments.ulc_comment')
+                    ->join('user_libraries', 'user_library_comments.ul_id', '=', 'user_libraries.ul_id')
+                    ->join('book_infos', 'book_infos.b_id', '=', 'user_libraries.b_id')
+                    ->where('user_libraries.u_id', $userId)
+                    ->where('user_libraries.ul_flg', 0)
+                    ->orderby('user_library_comments.created_at', 'desc')
+                    ->limit(3)
+                    ->get();
+                foreach ($libraryRecentComment as $comment) {
+                    $replace_before=['/-/','/-/'];
+                    $replace_after=['년 ','월 '];
+                    $replace_created_at = date('Y-m-d', strtotime($comment->created_at));
+                    $comment->formatted_created_at = preg_replace($replace_before, $replace_after, $replace_created_at, 1)."일";
+                }
                 Log::debug( "userId : ".$userId );
                 Log::debug( "--------서재(찜목록)페이지출력 끝---------" );
                 return view('library',
@@ -228,6 +273,7 @@ class LibraryController extends Controller
                     'chartData1' => $chartData1,
                     'chartData2' => $chartData2,
                     'chartData3' => $chartData3,
+                    'libraryRecentComment' => $libraryRecentComment,
                     'resultCnt' => $resultCnt]);
                     
             }
