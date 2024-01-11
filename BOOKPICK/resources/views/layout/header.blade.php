@@ -23,8 +23,6 @@ $currentRoute = Route::currentRouteName();
 					<div class="search-input-container">
 						<div class="search-input">
 							<input type="text" class="search-bar" id= "query" name="query" value="" autocomplete="off" placeholder="검색어를 입력해 주세요">
-							{{-- 연관 검색어 영역 --}}
-							<ul id="auto-search"></ul>	
 						</div>
 						<div class="search-button">
 							<a href="#" class="header-search-btn" onclick="submitSearch()">
@@ -32,6 +30,8 @@ $currentRoute = Route::currentRouteName();
 							</a>
 						</div>
 					</div>
+					{{-- 연관 검색어 영역 --}}
+					<ul id="auto-search"></ul>						
 				</form>
 			</div>
 		</nav>
@@ -93,7 +93,8 @@ $currentRoute = Route::currentRouteName();
 				</div>
 				@endif
 			@endif		
-		</nav>
+		</nav>	
+
 		@if(Auth::check())
 			<div class="user-icon" onclick="addEventListener()">
 				<img class="user-img" src="{{ asset('img/user.png') }}" alt="">
