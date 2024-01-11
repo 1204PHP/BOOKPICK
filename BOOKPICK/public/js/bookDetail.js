@@ -131,7 +131,6 @@ function insertFormCheck() {
 
 
 
-
 document.addEventListener('DOMContentLoaded', function() {
     let formData = new FormData();
 	let bId = document.getElementById("bdc_b_id").value;
@@ -142,12 +141,19 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .then(response => response.json())
     .then(data => {
-		for (let i = 0; i < data.length; i++) {
+		let commentResult = data.commentResult;
+        let commentCount = data.commentCount;
+		
+		var BinDiv = document.createElement('div');
+		var bdcHeadTxtCount = document.getElementById('bdc-head-txt-count');
+		bdcHeadTxtCount.innerHTML = commentCount;
+		for (let i = 0; i < commentResult.length; i++) {
 			var parentElement = document.getElementById('bdc-list');
 
 			// 새로운 div 요소 생성
 			var newDivElement = document.createElement('div');
-			newDivElement.className = 'bdc-list-area';
+			var StrNum = commentResult[i]['bdc_id'];
+			newDivElement.id = "bdc-list-area" + StrNum;
 	
 			// 리스트 상단 영역 생성
 			var topArea = document.createElement('div');
@@ -160,11 +166,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 			var nameElement = document.createElement('span');
 			nameElement.className = 'bdc-list-area-name';
-			nameElement.textContent = data[i]['u_name'];
+			nameElement.textContent = commentResult[i]['u_name'];
 	
 			var dateElement = document.createElement('span');
 			dateElement.className = 'bdc-list-area-at';
-			dateElement.textContent = new Date(data[i]['created_at'])
+			dateElement.textContent = new Date(commentResult[i]['created_at'])
 										.toLocaleString('ko-KR', 
 											{year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: false});
 	
@@ -178,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 			var contentElement = document.createElement('p');
 			contentElement.className = 'bdc-list-area-content';
-			contentElement.textContent = data[i]['bdc_comment'];
+			contentElement.textContent = commentResult[i]['bdc_comment'];
 	
 			middleArea.appendChild(contentElement);
 	
@@ -189,10 +195,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			var replyLink = document.createElement('a');
 			replyLink.className = 'bdc-list-area-reply';
 			replyLink.textContent = '답글';
-	
+			replyLink.onclick = function() {
+				var StrNum = commentResult[i]['bdc_id'];
+				aaaa(StrNum);
+			};
+
 			var replyCount = document.createElement('span');
 			replyCount.className = 'bdc-list-area-reply-cnt';
-			replyCount.textContent = data[i]['reply_count'];
+			replyCount.textContent = commentResult[i]['reply_count'];
 	
 			replyLink.appendChild(replyCount);
 	
@@ -208,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			likeImg.alt = '';
 	
 			var likeCount = document.createElement('span');
-			likeCount.textContent = data[i]['like'];
+			likeCount.textContent = commentResult[i]['like'];
 
 			likeBox.appendChild(likeImg);
 			likeBox.appendChild(likeCount);
@@ -222,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			dislikeImg.alt = '';
 	
 			var dislikeCount = document.createElement('span');
-			dislikeCount.textContent = data[i]['dislike'];
+			dislikeCount.textContent = commentResult[i]['dislike'];
 	
 			dislikeBox.appendChild(dislikeImg);
 			dislikeBox.appendChild(dislikeCount);
@@ -233,10 +243,15 @@ document.addEventListener('DOMContentLoaded', function() {
 			bottomArea.appendChild(replyLink);
 			bottomArea.appendChild(recommendArea);
 	
+			var BinDiv = document.createElement('div');
+			BinDiv.className = 'bdc-list-area';
+
 			// 새로운 div 요소에 생성한 영역들 추가
-			newDivElement.appendChild(topArea);
-			newDivElement.appendChild(middleArea);
-			newDivElement.appendChild(bottomArea);
+			BinDiv.appendChild(topArea);
+			BinDiv.appendChild(middleArea);
+			BinDiv.appendChild(bottomArea);
+
+			newDivElement.appendChild(BinDiv);
 	
 			// 부모 요소에 새로운 div 요소 추가
 			parentElement.appendChild(newDivElement);
@@ -246,3 +261,123 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('오류 발생:', error);
     })
 });
+
+
+let clickedIds = [];
+
+function aaaa(bdc_id) {
+	if (!clickedIds.includes(bdc_id)) {
+		clickedIds.push(bdc_id);
+		let formData = new FormData();
+		formData.append('bdc_id', bdc_id);
+
+		fetch('/book/detail/reply/print', {
+			method: 'POST',
+			body: formData,
+		})
+		.then(response => response.json())
+		.then(data => {
+			let replyResult = data.replyResult;
+			let strNum = "bdc-list-area" + bdc_id;
+			let parentElement = document.getElementById(strNum);
+
+			for (let i = 0; i < replyResult.length; i++) {
+				// 새로운 댓글 영역을 생성
+				var newReplyArea = document.createElement('div');
+				newReplyArea.className = 'bdc-list-reply-area';
+
+				// 리스트 상단 영역 생성
+				var topArea = document.createElement('div');
+				topArea.className = 'bdc-list-top-area';
+
+				// 이미지 생성
+				var imgElement = document.createElement('img');
+				imgElement.className = 'bdc-list-area-img';
+				imgElement.src = '/img/user.png';
+
+				// 이름 생성
+				var nameElement = document.createElement('span');
+				nameElement.className = 'bdc-list-area-name';
+				nameElement.textContent = '정**';
+
+				// 시간 생성
+				var timeElement = document.createElement('span');
+				timeElement.className = 'bdc-list-area-at';
+				timeElement.textContent = new Date(replyResult[i]['created_at'])
+											.toLocaleString('ko-KR', 
+												{year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: false});
+
+
+				// 리스트 중단 영역 생성
+				var middleArea = document.createElement('div');
+				middleArea.className = 'bdc-list-middle-area font-1';
+
+				var contentElement = document.createElement('p');
+				contentElement.className = 'bdc-list-area-content';
+				contentElement.textContent = replyResult[i]['bdr_comment'];
+
+				// 리스트 하단 영역 생성
+				var bottomArea = document.createElement('div');
+				bottomArea.className = 'bdc-list-reply-bottom-area';
+
+				var recommendArea = document.createElement('div');
+				recommendArea.className = 'bdc-list-recommend-area';
+
+				// 좋아요 링크 생성
+				var likeLink = document.createElement('a');
+				likeLink.className = 'bdc-list-area-like-box';
+
+				var likeImage = document.createElement('img');
+				likeImage.className = 'bdc-dis-like-btn';
+				likeImage.src = '/img/book_detail_like.png';
+
+				var likeCount = document.createElement('span');
+				likeCount.textContent = '254';
+
+				likeLink.appendChild(likeImage);
+				likeLink.appendChild(likeCount);
+
+				// 싫어요 링크 생성
+				var dislikeLink = document.createElement('a');
+				dislikeLink.href = '#';
+				dislikeLink.className = 'bdc-list-area-dislike-box';
+
+				var dislikeImage = document.createElement('img');
+				dislikeImage.className = 'bdc-dis-like-btn';
+				dislikeImage.src = '/img/book_detail_dislike.png';
+				dislikeImage.alt = '';
+
+				var dislikeCount = document.createElement('span');
+				dislikeCount.textContent = '1';
+
+				dislikeLink.appendChild(dislikeImage);
+				dislikeLink.appendChild(dislikeCount);
+
+				recommendArea.appendChild(likeLink);
+				recommendArea.appendChild(dislikeLink);
+
+				bottomArea.appendChild(recommendArea);
+
+				middleArea.appendChild(contentElement);
+
+				topArea.appendChild(imgElement);
+				topArea.appendChild(nameElement);
+				topArea.appendChild(timeElement);
+
+				newReplyArea.appendChild(topArea);
+				newReplyArea.appendChild(middleArea);
+				newReplyArea.appendChild(bottomArea);
+
+				// 부모 요소에 새로 생성한 댓글 영역 추가
+				parentElement.appendChild(newReplyArea);
+			}
+
+			
+		})
+		.catch(error => {
+			console.error('오류 발생:', error);
+		})
+	} else {
+		
+	}
+}

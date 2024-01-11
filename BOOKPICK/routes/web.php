@@ -109,10 +109,13 @@ Route::post( '/book/detail/wish', [BookController::class, 'bookDetailWishList'])
 Route::post( '/book/detail/library', [BookController::class, 'bookDetailUserLibrary'])
     ->name( 'postBookDetailUserLibrary' );
 // 도서 상세 페이지 - 댓글
-Route::post( '/book/detail/comment/print', [BookController::class, 'bookDetailCommentPrint'])
-->name( 'postbookDetailPrint' );
+
 Route::post( '/book/detail/comment/{id}}', [BookController::class, 'bookDetailCommentInsert'])
     ->name( 'postbookDetailComment' );
+Route::post( '/book/detail/comment/print', [BookController::class, 'bookDetailCommentPrint'])
+->name( 'postbookDetailPrint' );
+Route::post( '/book/detail/reply/print', [BookController::class, 'bookDetailReplyPrint'])
+->name( 'postbookDetailReplyPrint' );
 
 
 
