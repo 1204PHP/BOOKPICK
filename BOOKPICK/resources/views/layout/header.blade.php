@@ -114,10 +114,4 @@ $currentRoute = Route::currentRouteName();
 	</script>
 @endif
 
-{{-- @section('defer-js')
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="{{ asset('/js/AutoSearch.js') }}" defer></script>
-		
-	
-@endsection --}}
 

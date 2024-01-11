@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('book_info_auto_search', function (Blueprint $table) {
+        Schema::create('book_info_auto_searches', function (Blueprint $table) {
             $table->id();
             $table->string('b_sub_cate');
             $table->string('b_title');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_info_autosearch');
+        Schema::dropIfExists('book_info_auto_searches');
     }
 };

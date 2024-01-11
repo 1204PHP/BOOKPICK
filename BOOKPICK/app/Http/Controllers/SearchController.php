@@ -141,10 +141,19 @@ class SearchController extends Controller
     // 실시간 연관검색어 처리
     public function autoSearch(Request $request)
     {
-        $query = $request->input('query');
-        $autoSearch = Book_info::search($query)->take(5)->pluck('b_sub_cate, b_title')->toArray();
-        Log::debug('책 장르, 제목: ' 
-                . json_encode($autoSearch, JSON_UNESCAPED_UNICODE));
-        return response()->json(['autoSearch' => $autoSearch]);
+        try {
+            $query = $request->input('query');
+            if ($query) {
+                $autoSearch = Book_info::search($query)->take(5)->get(['b_sub_cate', 'b_title'])->toArray();
+                Log::debug('책 장르, 제목: ' . json_encode($autoSearch, JSON_UNESCAPED_UNICODE));
+                return response()->json(['autoSearch' => $autoSearch]);
+            } else {
+                Log::debug('검색어 없음');
+                return response()->json(['autoSearch' => []]);
+            }
+        } catch (\Exception $e) {
+            Log::debug('연관검색어 에러: ' . $e->getMessage());
+            return redirect()->route('index');
+        }
     }
 }

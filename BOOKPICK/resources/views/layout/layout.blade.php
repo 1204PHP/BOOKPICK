@@ -20,6 +20,7 @@
     {{-- <script src="{{ asset('/js/UserVerification.js') }}" defer></script> --}}
     {{-- <script src="{{ asset('/js/bookDetail.js') }}" defer></script> --}}
     <script src="{{ asset('/js/Loading.js') }}" defer></script>
+    <script src="{{ asset('/js/search.js') }}" defer></script>
     <title>@yield('title', 'bookpick')</title>
 </head>
 <body>
