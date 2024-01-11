@@ -50,8 +50,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(User_wishlist::class, 'u_id');
     }
 
-    // 책 상세 댓글 테이블
     public function book_detail_comment() {
         return $this->hasMany(Book_detail_comment::class, 'u_id');
+    }
+    public function book_detail_reply() {
+        return $this->hasMany(Book_detail_reply::class, 'u_id');
+    }
+        
+    public function book_detail_comment_state() {
+        return $this->hasMany(Book_detail_comment_state::class, 'u_id');
+    }
+    public function book_detail_reply_state() {
+        return $this->hasMany(Book_detail_reply_state::class, 'u_id');
     }
 }

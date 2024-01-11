@@ -34,7 +34,7 @@ return new class extends Migration
             // 책 제목
             // varchar 생성(100) / default : not null
             
-            $table->string('b_author', 200);
+            $table->string('b_author', 500);
             // 책 저자
             // varchar 생성(100) / default : not null
             

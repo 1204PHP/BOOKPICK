@@ -278,6 +278,7 @@ class LibraryController extends Controller
                     
             }
             else {
+                Log::debug( "--------사용자 ID가 없음--------" );
                 return redirect()->route('getLogin');
             }
         } catch(Exception $e) {
@@ -328,6 +329,7 @@ class LibraryController extends Controller
                     return redirect()->route('getLibrarywishlist');
                 }
             } else {
+                Log::debug( "--------사용자 ID가 없음--------" );
                 return redirect()->route('getLogin');
             }
             Log::debug( "--------서재 도서 상세 페이지출력 끝---------" );
@@ -355,6 +357,7 @@ class LibraryController extends Controller
                 $result->save();
                 return redirect()->route('getLibraryDetail', ['id' => $b_id]);
             } else {
+                Log::debug( "--------사용자 ID가 없음--------" );
                 return redirect()->route('getLogin');
             }
             Log::debug( "--------서재 도서 상세 책 기간수정 끝---------" );
@@ -388,7 +391,7 @@ class LibraryController extends Controller
                     return redirect()->route('getLibraryFinished');
                 }
             } else {
-                Log::debug( "--------서재 도서 상세 책 삭제 끝3---------" );
+                Log::debug( "--------사용자 ID가 없음--------" );
                 return redirect()->route('getLogin');
             }
         } catch(Exception $e) {
@@ -416,7 +419,7 @@ class LibraryController extends Controller
                 ]);
                 return redirect()->route('getLibraryDetail', ['id' => $id]);
             } else {
-                Log::debug( "--------서재 도서 댓글 삽입  끝3---------" );
+                Log::debug( "--------사용자 ID가 없음---------" );
                 return redirect()->route('getLogin');
             }
         } catch(Exception $e) {
@@ -442,7 +445,7 @@ class LibraryController extends Controller
                 Log::debug( "--------서재 도서 댓글 수정 끝1---------" );
                 return redirect()->route('getLibraryDetail', ['id' => $id]);
             } else {
-                Log::debug( "--------서재 도서 댓글 수정 끝2---------" );
+                Log::debug( "--------사용자 ID가 없음---------" );
                 return redirect()->route('getLogin');
             }
         } catch(Exception $e) {
