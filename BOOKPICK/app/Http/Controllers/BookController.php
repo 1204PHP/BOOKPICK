@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use App\Models\Book_info;
 use App\Models\Book_detail_comment;
 use App\Models\Book_detail_comment_state;
+use App\Models\Book_detail_reply_state;
 use App\Models\Book_detail_reply;
 use App\Models\Book_api;
 use App\Models\User_wishlist;
@@ -244,40 +245,6 @@ class BookController extends Controller
         }
     }
 
-
-    public function bookDetailCommentPrint(Request $request)
-    {
-        try {
-            Log::debug( "--------댓글 출력 ajax 시작---------" );
-            $id= $request->b_id;
-            $commentResult = Book_detail_comment::join('users', 'book_detail_comments.u_id', '=', 'users.u_id')
-            ->select('book_detail_comments.*','users.u_name')
-            ->where('book_detail_comments.b_id', $id)
-            ->addSelect(['like' => Book_detail_comment_state::selectRaw('COUNT(*)')
-                ->whereColumn('book_detail_comment_states.bdc_id', 'book_detail_comments.bdc_id')
-                ->where('book_detail_comment_states.bdcs_flg', 1)
-            ])
-            ->addSelect(['dislike' => Book_detail_comment_state::selectRaw('COUNT(*)')
-                ->whereColumn('book_detail_comment_states.bdc_id', 'book_detail_comments.bdc_id')
-                ->where('book_detail_comment_states.bdcs_flg', 2)
-            ])
-            ->addSelect(['reply_count' => Book_detail_reply::selectRaw('COUNT(*)')
-                ->whereColumn('book_detail_replies.bdc_id', 'book_detail_comments.bdc_id')
-            ])
-            ->orderby('book_detail_comments.created_at', 'desc')
-            ->limit(5)
-            ->get();
-            Log::debug( "--------댓글 출력 ajax 끝---------" );
-            return response()->json($commentResult);
-        } catch(Exception $e) {
-            Log::error( "--------댓글 출력 ajax  에러발생---------" );
-            Log::error( "에러내용:".$e->getMessage());
-            Log::error( "------------------------------------" );
-            return redirect()->route( 'index' );
-        }
-    }
-
-
     public function bookDetailCommentInsert($id, Request $request)
     {
         try {
@@ -303,6 +270,77 @@ class BookController extends Controller
             }
         } catch(Exception $e) {
             Log::error( "--------서재 도서 댓글 삽입  에러발생---------" );
+            Log::error( "에러내용:".$e->getMessage());
+            Log::error( "------------------------------------" );
+            return redirect()->route( 'index' );
+        }
+    }
+
+    public function bookDetailCommentPrint(Request $request)
+    {
+        try {
+            Log::debug( "--------댓글 출력 ajax 시작---------" );
+            $id= $request->b_id;
+            $commentResult = Book_detail_comment::join('users', 'book_detail_comments.u_id', '=', 'users.u_id')
+            ->select('book_detail_comments.*','users.u_name')
+            ->where('book_detail_comments.b_id', $id)
+            ->addSelect(['like' => Book_detail_comment_state::selectRaw('COUNT(*)')
+                ->whereColumn('book_detail_comment_states.bdc_id', 'book_detail_comments.bdc_id')
+                ->where('book_detail_comment_states.bdcs_flg', 1)
+            ])
+            ->addSelect(['dislike' => Book_detail_comment_state::selectRaw('COUNT(*)')
+                ->whereColumn('book_detail_comment_states.bdc_id', 'book_detail_comments.bdc_id')
+                ->where('book_detail_comment_states.bdcs_flg', 2)
+            ])
+            ->addSelect(['reply_count' => Book_detail_reply::selectRaw('COUNT(*)')
+                ->whereColumn('book_detail_replies.bdc_id', 'book_detail_comments.bdc_id')
+            ])
+            ->orderby('book_detail_comments.created_at', 'desc')
+            ->limit(5)
+            ->get();
+            
+            $commentCount = Book_detail_comment::where('b_id', $id)
+                ->count();
+
+            $responseData = [
+                'commentResult' => $commentResult,
+                'commentCount' => $commentCount,
+            ];
+            Log::debug( "--------댓글 출력 ajax 끝---------" );
+            return response()->json($responseData);
+        } catch(Exception $e) {
+            Log::error( "--------댓글 출력 ajax  에러발생---------" );
+            Log::error( "에러내용:".$e->getMessage());
+            Log::error( "------------------------------------" );
+            return redirect()->route( 'index' );
+        }
+    }
+
+    public function bookDetailReplyPrint(Request $request)
+    {
+        try {
+            Log::debug( "--------대댓글 출력 ajax 시작---------" );
+            $bdcId= $request->bdc_id;
+            $replyResult = Book_detail_reply::join('users', 'Book_detail_replies.u_id', '=', 'users.u_id')
+            ->select('Book_detail_replies.*','users.u_name')
+            ->where('Book_detail_replies.bdc_id', $bdcId)
+            ->addSelect(['like' => Book_detail_reply_state::selectRaw('COUNT(*)')
+                ->whereColumn('book_detail_reply_states.bdr_id', 'Book_detail_replies.bdr_id')
+                ->where('book_detail_reply_states.bdrs_flg', 1)
+            ])
+            ->addSelect(['dislike' => Book_detail_reply_state::selectRaw('COUNT(*)')
+                ->whereColumn('book_detail_reply_states.bdr_id', 'Book_detail_replies.bdr_id')
+                ->where('book_detail_reply_states.bdrs_flg', 2)
+            ])
+            ->orderby('Book_detail_replies.created_at', 'asc')
+            ->get();
+            $responseData = [
+                'replyResult' => $replyResult,
+            ];
+            Log::debug( "--------대댓글 출력 ajax 끝---------" );
+            return response()->json($responseData);
+        } catch(Exception $e) {
+            Log::error( "--------대댓글 출력 ajax  에러발생---------" );
             Log::error( "에러내용:".$e->getMessage());
             Log::error( "------------------------------------" );
             return redirect()->route( 'index' );

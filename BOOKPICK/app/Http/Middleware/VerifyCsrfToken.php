@@ -14,5 +14,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
         '/book/detail/comment/print',
+        '/book/detail/reply/print',
     ];
 }

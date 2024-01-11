@@ -151,7 +151,7 @@
 			{{-- 제목 영역 --}}
 			<div class="bdc-head">
 				<p class="bdc-head-txt">
-					<span class="bdc-head-txt-count">
+					<span id ="bdc-head-txt-count" class="bdc-head-txt-count">
 						171
 					</span>
 					개의 댓글
@@ -178,7 +178,7 @@
 
 					{{-- 리스트 하단 영역 --}}
 					<div class="bdc-list-bottom-area">
-						<a class="bdc-list-area-reply" href="#">
+						<a onclick="aaaa(3)" class="bdc-list-area-reply" href="#">
 							답글
 							<span class="bdc-list-area-reply-cnt">
 								1
