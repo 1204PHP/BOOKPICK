@@ -115,6 +115,8 @@ return [
         'id' => env('ALGOLIA_APP_ID', ''),
         'secret' => env('ALGOLIA_SECRET', ''),
         'search_only_key' => env('ALGOLIA_SEARCH_ONLY_KEY', ''),
+        'key' => env('ALGOLIA_API_KEY', ''),
+        'prefix' => env('ALGOLIA_PREFIX', ''),
         'default_language' =>'ko',
     ],
     

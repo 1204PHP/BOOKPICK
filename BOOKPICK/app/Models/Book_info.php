@@ -28,10 +28,23 @@ class book_info extends Model
     ];
 
     // ### algolia 설정 ###
-    // 모델 인덱스명 설정
+    // 검색결과 인덱스명 설정
     public function searchableAs() {
         return 'book_info';
     }
+    // 검색결과 import 컬럼 설정
+    public function toSearchableArray()
+    {
+        return [
+            'b_sub_cate' => $this->b_sub_cate,
+            'b_title' => $this->b_title,
+            'b_author' => $this->b_author,
+            'b_summary' => $this->b_summary,
+            'b_main_cate' => $this->b_main_cate,
+            'b_publisher' => $this->b_publisher,
+            'b_img_url' => $this->b_img_url,
+        ];
+    }    
 
     // 외래키 연결목적 설정
     

@@ -20,14 +20,12 @@ $currentRoute = Route::currentRouteName();
 			</div>
 			<div class="search-area">
 				<form class="desktop-search-bar" action="{{ route('getsearch.index') }}" method="GET">
-				{{-- <form class="desktop-search-bar" action="{{ route('search') }}" method="GET"> --}}
-						<div class="search-input-container">
-							<div class="search-input">
-								<input type="search" class="search-bar" id="auto-search" name="result" value="" autocomplete="off" placeholder="검색어를 입력해 주세요">
-								{{-- <input type="text" class="search-bar" name="query" value="" autocomplete="off" placeholder="검색어를 입력해 주세요"> --}}
+					<div class="search-input-container">
+						<div class="search-input">
+							<input type="text" class="search-bar" id= "query" name="query" value="" autocomplete="off" placeholder="검색어를 입력해 주세요">
+							{{-- 연관 검색어 영역 --}}
+							<ul id="auto-search"></ul>	
 						</div>
-						{{-- 연관 검색어 영역 --}}
-						<div id="auto-search-list"></div>	
 						<div class="search-button">
 							<a href="#" class="header-search-btn" onclick="submitSearch()">
 								<img src="{{ asset('img/search.png') }}" class="search-icon" alt="...">

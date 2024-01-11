@@ -15,15 +15,15 @@
 
 	{{-- 도서 부분 --}}
 	<div class="search_layout_container">
-		@forelse($result as $val)
+		@forelse($result as $book)
 		<div class="search_layout_container_div">
-			<a class="search_layout_container_a" href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
-				<img class="search_layout_container_img" src="{{$val->b_img_url}}">
+			<a class="search_layout_container_a" href="{{ route('getBookDetail', $book['b_id']) }}">
+				<img class="search_layout_container_img" src="{{$book['b_img_url']}}">
 			</a>
 			<p class="search_book_title_txt">
-				<a href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">{{$val->b_title}}</a>
+				<a href="{{ route('getBookDetail', $book['b_id']) }}">{{$book['b_title']}}</a>
 			</p>
-			<p class="search_book_author_txt">{{$val->b_author}}</p>
+			<p class="search_book_author_txt">{{$book['b_author']}}</p>
 		</div>
 		@empty
 			<p class="search_book_nosearch_txt">검색어 결과가 없습니다.</p>

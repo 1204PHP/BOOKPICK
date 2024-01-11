@@ -89,10 +89,12 @@ Route::delete( '/library/detail/{id}/comment', [LibraryController::class, 'libra
 
 
 // 검색 결과 페이지
-Route::get('/search', [SearchController::class, 'index'])
-    ->name('getsearch.index');
+// Route::get('/search', [SearchController::class, 'index'])
+//     ->name('getsearch.index');
 // #### 알고리아 검색결과 페이지
-// Route::get('search', [SearchController::class, 'index'])->name('getsearch.index');
+Route::get('/search', [SearchController::class, 'index'])->name('getsearch.index');
+// 알고리아 실시간 연관검색어
+Route::get('/query-autosearch', [SearchController::class, 'autoSearch']);
 
 // 도서 상세 페이지
 // Route::get( '/book/detail/{id}', function ($id) {
@@ -199,20 +201,6 @@ Route::post('/email/verification-ReEmail', [VerificationController::class, 'reSe
 // 이메일 토큰 만료 
 Route::get('/email/token-expired', [VerificationController::class, 'mailTokenExpired'])
     ->name('mailTokenExpired');
-
-
-
-
-// algolia 테스트
-// 검색 페이지
-
-
-
-
-
-
-
-
 
 
 
