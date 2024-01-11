@@ -51,6 +51,7 @@ Route::get( '/library/reading', [LibraryController::class, 'libraryReading'])
 ->name( 'getLibraryReading' );
 Route::get( '/library/wishlist', [LibraryController::class, 'librarywishlist'])
 ->name( 'getLibrarywishlist' );
+    // TODO: auth처리 해줘야함
 
 // 서재 도서 상세 페이지
 Route::get( '/library/detail/{id}', [LibraryController::class, 'libraryDetailIndex'])
@@ -65,6 +66,7 @@ Route::put( '/library/detail/{id}/comment', [LibraryController::class, 'libraryD
     ->name( 'putLibraryDetailComment' );
 Route::delete( '/library/detail/{id}/comment', [LibraryController::class, 'libraryDetailCommentDelete'])
     ->name( 'deleteLibraryDetailComment' );
+    // TODO: auth처리 해줘야함
 
 // Route::middleware('auth')->prefix('library')->group(function () {
 //     Route::resource('detail', LibraryCommentController::class, [
@@ -104,8 +106,13 @@ Route::post( '/book/detail/wish', [BookController::class, 'bookDetailWishList'])
     ->name( 'postBookDetailWishList' );
 Route::post( '/book/detail/library', [BookController::class, 'bookDetailUserLibrary'])
     ->name( 'postBookDetailUserLibrary' );
-// Route::post( '/book/detail/library/{id}', [BookController::class, 'bookDetailCommentInsert'])
-//     ->name( 'postbookDetailComment' );
+// 도서 상세 페이지 - 댓글
+Route::post( '/book/detail/comment/print', [BookController::class, 'bookDetailCommentPrint'])
+->name( 'postbookDetailPrint' );
+Route::post( '/book/detail/comment/{id}}', [BookController::class, 'bookDetailCommentInsert'])
+    ->name( 'postbookDetailComment' );
+
+
 
 // 관리자 페이지
 Route::get( '/admin', [AdminController::class, 'index']

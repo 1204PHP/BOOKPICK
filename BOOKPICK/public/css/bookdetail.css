@@ -46,7 +46,6 @@
 }
 
 /* 버튼부분 */
-
 .book_detail_zzim {
     width: 100px;
     height: 40px;
@@ -62,6 +61,7 @@
     cursor: pointer;
 	margin-right: 5px;
 }
+
 .book_detail_zzim, .book_detail_zzim1 {
 	text-align: center;
 }
@@ -430,7 +430,13 @@
 /* 레이아웃 */
 .bdc-layout {
 	width: 100%;
-    padding: 0px 20px;
+    padding: 0px 200px;
+}
+
+@media only screen and (max-width: 1320px) {
+    .bdc-layout {
+		padding: 0px 20px;
+	}
 }
 
 .bdc-box {
@@ -443,7 +449,7 @@
 .bdc-head {
 	width: 100%;
 	border-radius: 10px;
-	padding: 10px;
+	margin-top: 30px;
 }
 
 .bdc-head-txt {
@@ -550,12 +556,16 @@
 }
 
 /* 리스트 영역 */
-.bdc-list {
-	margin-top: 25px;
-}
 .bdc-list-area {
 	border-bottom: 1px solid #ccc;
-	padding-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.bdc-list-reply-area {
+	border-bottom: 1px solid #ccc;
+	background-color: rgba(204, 204, 204, 0.146);
+	padding: 10px 0px 20px 20px;
 }
 /* 리스트 상단 영역 */
 .bdc-list-top-area {
@@ -566,7 +576,7 @@
 .bdc-list-area-img, .bdc-list-area-name, .bdc-list-area-at {
 	position: absolute;
 }
-.bdc-list-area-name, .bdc-list-area-at {
+.bdc-list-area-name {
 	font-size: 15px;
 }
 .bdc-list-area-img {
@@ -586,12 +596,13 @@
 	left: 50px;
 	top: 25px;
 	color:#999;
+	font-size: 13px;
 }
 
 /* 리스트 중단 영역 */
 .bdc-list-middle-area {
 	padding-right: 10px;
-	padding-bottom: 10px;
+	padding-bottom: 15px;
 }
 .bdc-list-area-content {
 	font-size: 15px;
@@ -601,14 +612,45 @@
 
 
 /* 리스트 하단 영역 */
-/* .bdc-list-bottom-area {
-	
-} */
+.bdc-list-bottom-area {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-right: 10px;
+}
+.bdc-list-reply-bottom-area {
+	display: flex;
+	align-items: center;
+	justify-content: right;
+	padding-right: 10px;
+}
 .bdc-list-area-reply {
 	color: #555;
-	font-size: 13px;
+	font-size: 14px;
 }
 
 .bdc-list-area-reply-cnt {
+	color: #000;
+	margin-left: 2px;
 	font-weight: bold;
+}
+
+.bdc-list-recommend-area, .bdc-list-area-like-box, .bdc-list-area-dislike-box {
+	display: inline-block;
+}
+.bdc-list-recommend-area {
+	font-size: 14px;
+}
+.bdc-list-area-like-box{
+	margin-right: 15px;
+	color: #555;
+}
+.bdc-list-area-dislike-box{
+	margin-right: 10px;
+	color: #555;
+}
+.bdc-dis-like-btn{
+	width: 13px;
+	height: 13px;
+	margin-right: 1px;
 }

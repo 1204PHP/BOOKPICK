@@ -103,17 +103,11 @@
 		</ul>
 	</div>
 	<br>
+
+	<input id="bdc_b_id" type="hidden" value="{{$result->b_id}}">
+
 	<div class="bdc-layout">
 		<div class="bdc-box">
-			{{-- 제목 영역 --}}
-			<div class="bdc-head">
-				<p class="bdc-head-txt">
-					<span class="bdc-head-txt-count">
-						171
-					</span>
-					개의 댓글
-				</p>
-			</div>
 			{{-- 작성 영역 --}}
 			<div class="bdc-write">
 				{{-- 프로필 영역 --}}
@@ -124,33 +118,47 @@
 					</p>
 				</div>
 				{{-- 글 영역 --}}
-				<div class="bdc-write-box">
-					<div class="bdc-write-inbox-area font-1">
-						<textarea class="bdc-write-area" id="content" rows="5" cols="30" name="content" maxlength=700 oninput="limitCharacters(); handleInput(this)"></textarea>
-						<label class="bdc-write-label" for="content">
-							다양한 의견이 서로 존중될 수 있도록 다른 사람에게 불쾌감을 주는 욕설, 혐오, 비하의 
-							표현이나 타인의 권리를 침해하는 내용은 주의해주세요.
-							모든 작성자는 
-							<span class="bdc-write-label-span">
-								본인이 작성한 의견에 대해 법적 책임을 갖는다는 점
-							</span>
-								유의하시기 바랍니다.
-						</label>
+				<form action="{{ route('postbookDetailComment', ['id' => $result->b_id]) }}" onsubmit="return insertFormCheck()" method="POST">
+					@csrf
+					<div class="bdc-write-box">
+						<div class="bdc-write-inbox-area font-1">
+							<textarea class="bdc-write-area" id="content" rows="5" cols="30" name="content" maxlength=700 oninput="limitCharacters(); handleInput(this)"></textarea>
+							<label class="bdc-write-label" for="content">
+								다양한 의견이 서로 존중될 수 있도록 다른 사람에게 불쾌감을 주는 욕설, 혐오, 비하의 
+								표현이나 타인의 권리를 침해하는 내용은 주의해주세요.
+								모든 작성자는 
+								<span class="bdc-write-label-span">
+									본인이 작성한 의견에 대해 법적 책임을 갖는다는 점
+								</span>
+									유의하시기 바랍니다.
+							</label>
+						</div>
 					</div>
-				</div>
-				{{-- 버튼 영역 --}}
-				<div class="bdc-write-upload">
-					<span class="bdc-write-upload-cnt" id="count">
-						0 / 700
-					</span>
-					<button type="submit" class="bdc-write-upload-btn">
-						등록
-					</button>
-				</div>
+
+					{{-- 버튼 영역 --}}
+					<div class="bdc-write-upload">
+						<span class="bdc-write-upload-cnt" id="count">
+							0 / 700
+						</span>
+						<button type="submit" class="bdc-write-upload-btn">
+							등록
+						</button>
+					</div>
+				
+				</form>
 			</div>
 
+			{{-- 제목 영역 --}}
+			<div class="bdc-head">
+				<p class="bdc-head-txt">
+					<span class="bdc-head-txt-count">
+						171
+					</span>
+					개의 댓글
+				</p>
+			</div>
 			{{-- 리스트 영역 전체 --}}
-			<div class="bdc-list">
+			<div id="bdc-list" class="bdc-list">
 				{{-- 리스트 --}}
 				<div class="bdc-list-area">
 
@@ -161,14 +169,14 @@
 						<span class="bdc-list-area-at">2024.01.01 12:57</span>
 					</div>
 
-					{{-- 리스트중단영역 --}}
+					{{-- 리스트 중단 영역 --}}
 					<div class="bdc-list-middle-area font-1">
 						<p class="bdc-list-area-content">
 							ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
 						</p>
 					</div>
 
-					{{-- 리스트 중단영역 --}}
+					{{-- 리스트 하단 영역 --}}
 					<div class="bdc-list-bottom-area">
 						<a class="bdc-list-area-reply" href="#">
 							답글
@@ -176,6 +184,45 @@
 								1
 							</span>
 						</a>
+						<div class="bdc-list-recommend-area">
+							<a href="#" class="bdc-list-area-like-box">
+								<img class="bdc-dis-like-btn" src="{{ asset('img/book_detail_like.png') }}" alt="">
+								<span>254</span>
+							</a>
+							<a href="#" class="bdc-list-area-dislike-box">
+								<img class="bdc-dis-like-btn" src="{{ asset('img/book_detail_dislike.png') }}" alt="">
+								<span>1</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				{{-- 리스트 댓글 영역 --}}
+				<div class="bdc-list-reply-area">
+					{{-- 리스트 상단 영역 --}}
+					<div class="bdc-list-top-area">
+						<img class="bdc-list-area-img" src="{{ asset('img/user.png') }}" alt="">
+						<span class="bdc-list-area-name">정**</span>
+						<span class="bdc-list-area-at">2024.01.01 12:57</span>
+					</div>
+					{{-- 리스트 중단 영역 --}}
+					<div class="bdc-list-middle-area font-1">
+						<p class="bdc-list-area-content">
+							ㅁㅁㅁㅁㅁㅁㅁ
+						</p>
+					</div>
+					{{-- 리스트 하단 영역 --}}
+					<div class="bdc-list-reply-bottom-area">
+						<div class="bdc-list-recommend-area">
+							<a href="#" class="bdc-list-area-like-box">
+								<img class="bdc-dis-like-btn" src="{{ asset('img/book_detail_like.png') }}" alt="">
+								<span>254</span>
+							</a>
+							<a href="#" class="bdc-list-area-dislike-box">
+								<img class="bdc-dis-like-btn" src="{{ asset('img/book_detail_dislike.png') }}" alt="">
+								<span>1</span>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
