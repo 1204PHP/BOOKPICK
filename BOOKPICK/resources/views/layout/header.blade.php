@@ -5,7 +5,7 @@ $currentRoute = Route::currentRouteName();
 
 @if(!in_array(Route::currentRouteName(), ['getLogin', 'getRegister', 'postLogin', 'postRegister', 'getVerification', 'sendVerification', 'reSendVerification', 'mailTokenExpired', 'loginKakao', 'handleLoginKakaoCallback']))
 	<header>
-		<div class="hamburger-menu" onclick="addEventListener()">
+		<div class="hamburger-menu" onclick="hamburgerMenuOpenClose()">
 		<div class="bar"></div>
 		<div class="bar"></div>
 		<div class="bar"></div>
@@ -30,7 +30,8 @@ $currentRoute = Route::currentRouteName();
 						</div>
 						
 						<div class="search-button">
-							<a href="#" class="header-search-btn" onclick="submitSearch()">
+							{{-- a링크 클릭 시 url에 아무것도 노출되지 않음 --}}
+							<a href="javascript:void(0);" class="header-search-btn" onclick="submitSearch()">
 								<img src="{{ asset('img/search.png') }}" class="search-icon" alt="...">
 							</a>
 						</div>
@@ -99,7 +100,7 @@ $currentRoute = Route::currentRouteName();
 		</nav>	
 
 		@if(Auth::check())
-			<div class="user-icon" onclick="addEventListener()">
+			<div class="user-icon">
 				<img class="user-img" src="{{ asset('img/user.png') }}" alt="">
 			</div>
 		@endif
@@ -109,7 +110,6 @@ $currentRoute = Route::currentRouteName();
 		function submitSearch() {
 			var form = document.querySelector('.desktop-search-bar')
 			if (form) {
-				console.log('폼제출');
 				form.submit();
 			} else {
 				console.log('폼 못찾음');
