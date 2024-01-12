@@ -243,7 +243,7 @@
 						</div>
 						<div class="bdc-reply-write-box">
 							<div class="bdc-write-inbox-area font-1">
-								<textarea class="bdc-reply-write-area" id="replycontent" rows="5" cols="30" name="replycontent" maxlength=301 @if(!auth::check()) onclick="loginCheckConfirm()" @endif oninput="replyLimitCharacters(); replyHandleInput(this)"></textarea>
+								<textarea class="bdc-reply-write-area" id="replycontent" spellcheck="false" rows="5" cols="30" name="replycontent" maxlength=301 @if(!auth::check()) onclick="loginCheckConfirm()" @endif oninput="replyLimitCharacters(); replyHandleInput(this)"></textarea>
 								<label class="bdc-write-label" for="replycontent">
 									@if(Auth::check())
 									다양한 의견이 서로 존중될 수 있도록 다른 사람에게 불쾌감을 주는 욕설, 혐오, 비하의 

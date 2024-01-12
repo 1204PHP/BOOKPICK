@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book_info;
+use App\Models\Book_info_autoSearch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -91,7 +92,6 @@ class SearchController extends Controller
             $bookInfo = book_info::search($query)->get();
             Log::debug('Algolia return: ' . json_encode($bookInfo, JSON_UNESCAPED_UNICODE));
 
-
             if ($searchResult) {
                 // 검색어가 있는 경우
                 $bookInfo = book_info::search($query)
@@ -126,9 +126,9 @@ class SearchController extends Controller
             Log::debug('책 pk, 제목, 저자, 장르, 이미지url: ' 
                 . json_encode($algoliaResult, JSON_UNESCAPED_UNICODE));
             return view('search', [
-                    'result' => $algoliaResult,
+                    'algoliaResult' => $algoliaResult,
                     'searchResult' => $searchResult,
-                    'searchCnt' => $algoliaCnt,
+                    'algoliaCnt' => $algoliaCnt,
                     ]);
         } catch(Exception $e) {
             Log::debug( "--------검색 에러발생---------" );
@@ -138,13 +138,14 @@ class SearchController extends Controller
         }
     }
 
-    // 실시간 연관검색어 처리
+    // 실시간 연관검색어 처리(책 장르, 제목 기준)
     public function autoSearch(Request $request)
     {
         try {
             $query = $request->input('query');
             if ($query) {
-                $autoSearch = Book_info::search($query)->take(3)->get(['b_sub_cate', 'b_title'])->toArray();
+                // $autoSearch = Book_info::search($query)->take(5)->get(['b_sub_cate', 'b_title'])->toArray();
+                $autoSearch = Book_info_autoSearch::search($query)->get(['b_sub_cate', 'b_title'])->toArray();
                 Log::debug('책 장르, 제목: ' . json_encode($autoSearch, JSON_UNESCAPED_UNICODE));
                 return response()->json(['autoSearch' => $autoSearch]);
             } else {

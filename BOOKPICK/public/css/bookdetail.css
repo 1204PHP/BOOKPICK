@@ -128,6 +128,7 @@
     background-color: #D9D9D9;
     filter: grayscale(0);
 }
+
 /* 미디어쿼리 */
 @media screen and (max-width: 849.99px) {
 	.book_detail_div1, .book_detail_div2 {
@@ -560,7 +561,7 @@
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* 인터넷익스플로러 */
     user-select: none;
-	cursor: pointer;
+	cursor: text;
 }
 
 .bdc-write-label-span{
@@ -698,6 +699,24 @@
 	width: 13px;
 	height: 13px;
 	margin-right: 1px;
+}
+
+#book_detail_comment_modal_btn {
+	text-align: center;
+    width: 100px;
+    height: 40px;
+    border: 0 none;
+    border-radius: 36px;
+    color: #fff;
+    background-color: #4DAC27;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#book_detail_comment_modal_btn:hover {
+    transition: all 150ms linear;
+    opacity: .85;
 }
 
 .bdc-reply-fold-box{

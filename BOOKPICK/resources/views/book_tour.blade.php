@@ -83,7 +83,9 @@
             <ul class="left-banner-area">
                 @forelse($newBook as $val)
                 <li class="left-banner">
-                    <img src="{{ $val->b_img_url }}" alt="...">
+                    <a href="{{ route('getBookDetail', $val['b_id']) }}">
+                        <img src="{{ $val->b_img_url }}" alt="...">
+                    </a>
                 </li>
                 @empty
                     비어있음
@@ -96,7 +98,9 @@
             <ul class="left-banner-reverse-area">
                 @forelse($attentionBook as $val)
                 <li class="left-banner-reverse">
-                    <img src="{{$val->b_img_url}}" alt="...">
+                    <a href="{{ route('getBookDetail', $val['b_id']) }}">
+                        <img src="{{$val->b_img_url}}" alt="...">
+                    </a>
                 </li>
                 @empty
                 비어있음
@@ -109,7 +113,9 @@
             <ul class="left-banner-area">
                 @forelse($bestSellerBook as $val)
                 <li class="left-banner">
-                    <img src="{{ $val->b_img_url }}" alt="...">
+                    <a href="{{ route('getBookDetail', $val['b_id']) }}">
+                        <img src="{{ $val->b_img_url }}" alt="...">
+                    </a>
                 </li>
                 @empty
                     비어있음
