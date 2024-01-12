@@ -19,21 +19,11 @@
     {{-- <script src="{{ asset('/js/UserRegisterValidation.js') }}" defer></script> --}}
     {{-- <script src="{{ asset('/js/UserVerification.js') }}" defer></script> --}}
     {{-- <script src="{{ asset('/js/bookDetail.js') }}" defer></script> --}}
-    <script src="{{ asset('/js/Loading.js') }}" defer></script>
     <script src="{{ asset('/js/search.js') }}" defer></script>
+    {{-- <script src="{{ asset('/js/Loading.js') }}" defer></script> --}}
     <title>@yield('title', 'bookpick')</title>
 </head>
-<body>
-    <div class="loading-animation">
-        <div class="overlay"></div>
-        <div class="loader loading-book">
-            <figure class="loading-page"></figure>
-            <figure class="loading-page"></figure>
-            <figure class="loading-page"></figure>
-        </div>
-        <p class="loading-p">Reading</p>
-    </div>    
-    
+<body>   
     <div class="layout_header">
         @include('layout.header')
     </div>

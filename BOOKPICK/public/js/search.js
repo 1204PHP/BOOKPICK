@@ -12,8 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
             if (!isLoading) {
-                if (query.trim() !== '') {
-                    fetchData(query);
+                if(query.length >= 2 && isKorean(query)) {
+                    if (query.trim() !== '') {
+                        fetchData(query);
+                    } else {
+                        // 입력값이 없을 경우 autoSearchArea를 숨김
+                        autoSearchArea.style.display = 'none';
+                    }
                 } else {
                     // 입력값이 없을 경우 autoSearchArea를 숨김
                     autoSearchArea.style.display = 'none';
@@ -22,10 +27,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 300);
     });
 
+    function isKorean(text) {
+        const KoreanRegex = /[ㄱ-ㅎㅏ-ㅣ가-힣]/;
+        return KoreanRegex.test(text);
+    }
+
     function fetchData(query) {
         isLoading = true; // 데이터 로딩 중
 
-        // 이 부분에서 검색어가 변경될 때만 page를 초기화
+        // 검색어가 변경될 때만 페이지 초기화
         if (searchInput.dataset.prevQuery !== query) {
             page = 1;
             searchInput.dataset.prevQuery = query;
@@ -40,36 +50,55 @@ document.addEventListener('DOMContentLoaded', function () {
                 // 검색결과를 받아올 때마다 기존 리스트 초기화
                 suggestionsList.innerHTML = '';
 
-                data.autoSearch.forEach(suggestion => {
+                if (data.autoSearch.length === 0) {
+                    // 검색결과가 없는 경우 메시지 출력
                     const li = document.createElement('li');
-                    const cateSpan = document.createElement('span');
-                    const spaceSpan = document.createElement('span');                    
-                    const titleSpan = document.createElement('span');
-
-                    li.addEventListener('click', function () {
-                        const inputValue = suggestion.b_title.replace(/ - .*$/, '');
-                        searchInput.value = inputValue;
-                    });
-
-                    cateSpan.textContent = suggestion.b_sub_cate;
-                    spaceSpan.textContent = '\n';
-                    titleSpan.textContent = suggestion.b_title;
-
-                    cateSpan.style.color = '#4dac27';
-                    cateSpan.style.textDecoration = 'underline';
-                    spaceSpan.style.whiteSpace = 'pre';
-                    titleSpan.style.color = '#000';
-                    // titleSpan.style.textDecoration = 'underline';
-
-                    li.appendChild(titleSpan);
-                    li.appendChild(spaceSpan);
-                    li.appendChild(cateSpan);
-
+                    li.textContent = '일치하는 결과가 없습니다.';                    
                     fragment.appendChild(li);
-                });
+                    // 입력값이 없을 경우 autoSearchArea를 숨김
+                    if (query.trim() === '') {
+                        autoSearchArea.style.display = 'none';
+                    } else {
+                        autoSearchArea.style.display = 'block';
+                        autoSearchArea.style.height = '60px';
+                        autoSearchArea.style.overflowY = 'hidden';
+                    } 
+                } else {
+                    data.autoSearch.forEach(suggestion => {
+                        const li = document.createElement('li');
+                        const cateSpan = document.createElement('span');
+                        const spaceSpan = document.createElement('span');                    
+                        const titleSpan = document.createElement('span');
 
+                        li.addEventListener('click', function () {
+                            const inputValue = suggestion.b_title.replace(/ - .*$/, '');
+                            searchInput.value = inputValue;
+                        });
+
+                        cateSpan.textContent = suggestion.b_sub_cate;
+                        spaceSpan.textContent = '\n';
+                        titleSpan.textContent = suggestion.b_title;
+
+                        cateSpan.style.color = '#4dac27';
+                        cateSpan.style.fontSize = '1rem';
+                        cateSpan.style.textDecoration = 'underline';
+                        spaceSpan.style.whiteSpace = 'pre';
+                        titleSpan.style.color = '#000';
+                        cateSpan.style.fontSize = '0.8rem';
+                        titleSpan.style.cursor = 'pointer';
+
+                        li.appendChild(titleSpan);
+                        li.appendChild(spaceSpan);
+                        li.appendChild(cateSpan);
+
+                        fragment.appendChild(li);
+                    });
+                    autoSearchArea.style.display = 'block';
+                    autoSearchArea.style.height = '150px';
+                    autoSearchArea.style.overflowY = 'auto';
+                    autoSearchArea.style.border = '2px solid #4dac27';
+                }
                 suggestionsList.appendChild(fragment);
-                autoSearchArea.style.display = 'block';
                 isLoading = false; // 데이터 로딩 완료
                 page++; // 다음 페이지로 이동
             })

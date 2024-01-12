@@ -48,6 +48,12 @@ class book_info_autoSearch extends Model
 }
 
 
+// 모델 import
+// 1) 기존 정보 모델
+// php artisan scout:import "App\Models\book_info"
+// 2) 기본 모델 참고하는 연관 모델
+// php artisan scout:import "App\Models\book_info_autoSearch"
+
 // 실시간 연관검색어 추가
 // php artisan tinker
 // \App\Models\book_info_autoSearch::importDataFromBookInfo();

@@ -26,7 +26,7 @@ $currentRoute = Route::currentRouteName();
 				<form class="desktop-search-bar" action="{{ route('getsearch.index') }}" method="GET">
 					<div class="search-input-container">
 						<div class="search-input">
-							<input type="text" class="search-bar" id= "query" name="query" value="" autocomplete="off" placeholder="검색어를 입력해 주세요">
+							<input type="text" class="search-bar" id= "query" name="query" value="" autocomplete="off" spellcheck="false" placeholder="2글자 이상 검색어를 입력해 주세요">
 						</div>
 						
 						<div class="search-button">
@@ -34,8 +34,7 @@ $currentRoute = Route::currentRouteName();
 								<img src="{{ asset('img/search.png') }}" class="search-icon" alt="...">
 							</a>
 						</div>
-					</div>
-											
+					</div>											
 				</form>
 			</div>
 		</nav>
