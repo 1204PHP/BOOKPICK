@@ -125,4 +125,16 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
+    document.addEventListener('click', function (event) {
+        const autoSearchArea = document.getElementById('auto-search-area');
+    
+        if (event.target.closest('#auto-search-area')) {
+            return;
+        }
+        // autoSearchArea 외 none
+        autoSearchArea.style.display = 'none';
+    });
 });
+
+

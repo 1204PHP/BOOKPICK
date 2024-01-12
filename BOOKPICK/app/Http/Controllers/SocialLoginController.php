@@ -36,9 +36,9 @@ class SocialLoginController extends Controller
             session(['kakaoUser' => $kakaoUser]);
         } catch (Exception $e) {
             Log::debug("카카오 로그인 오류");
-            return view('user_login');
+            $errorMsg = '로그인에 실패했습니다. 새로고침 후 재로그인 해주세요';
+            return redirect( 'user_login' )->withErrors( $errorMsg );
         }
-
         // 카카오 이메일로 사용자 찾기
         $result = User::where('u_email', $kakaoUser->getEmail())->first();
 

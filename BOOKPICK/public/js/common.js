@@ -1,16 +1,41 @@
-// 햄버거 버튼
-const hamburgerMenu = document.querySelector(".hamburger-menu");
-const mobileNav = document.querySelector(".mobile-nav");
+// 햄버거버튼 
+document.addEventListener('click', function () {
+    const hamburgerMenu = document.querySelector(".hamburger-menu");
+    const mobileNav = document.querySelector(".mobile-nav");
 
-hamburgerMenu.addEventListener("click", function () {
-    mobileNav.style.display = (mobileNav.style.display === "flex") ? "none" : "flex";
-    hamburgerMenu.classList.toggle("open");
+    if (hamburgerMenu && mobileNav) {
+        hamburgerMenu.addEventListener("click", function () {
+            mobileNav.style.display = (mobileNav.style.display === "flex") ? "none" : "flex";
+            hamburgerMenu.classList.toggle("open");
+        });    
+        window.addEventListener("resize", function () {
+            if (window.innerWidth > 768) {
+                mobileNav.style.display = "none";
+                hamburgerMenu.classList.remove("open");
+            }
+        });
+    }
 });
 
-window.addEventListener("resize", function () {
-    if (window.innerWidth > 768) {
-        mobileNav.style.display = "none";
-        hamburgerMenu.classList.remove("open");
+// 유저 아이콘
+document.addEventListener("DOMContentLoaded", function() {
+    const userIcon = document.querySelector(".user-icon");
+    const userMenu = document.querySelector(".user-menu");
+
+    if (userMenu && userIcon) {
+        userIcon.addEventListener("click", function () {
+            userMenu.style.display = (userMenu.style.display === "flex") ? "none" : "flex";
+            userIcon.classList.toggle("open");
+        });
+    
+        window.addEventListener("resize", function () {
+            if (window.innerWidth > 768) {
+                userMenu.style.display = "none";
+                userIcon.classList.remove("open");
+            }
+        });
+    } else {
+        console.error("Error: One or more elements not found.");
     }
 });
 
@@ -58,21 +83,5 @@ function slideTime(n){
 
 setInterval(slideTime, 5000);
 
-
-// 유저 아이콘
-const userIcon = document.querySelector(".user-icon");
-const userMenu = document.querySelector(".user-menu");
-
-userIcon.addEventListener("click", function() {
-    userMenu.style.display = (userMenu.style.display === "flex") ? "none" : "flex";
-    userIcon.classList.toggle("open");
-});
-
-window.addEventListener("resize", function () {
-    if (this.window.innerWidth > 768) {
-        userMenu.style.display = "none";
-        userIcon.classList.remove("open")
-    }
-});
 
 
