@@ -105,6 +105,12 @@
 	<br>
 
 	<input id="bdc_b_id" type="hidden" value="{{$result->b_id}}">
+	@if(Auth::check())
+	<input id="ac_flg" type="hidden" value="1">
+	<input id="u_name" type="hidden" value="{{ Auth::user()->u_name }}">
+	@else
+	<input id="ac_flg" type="hidden" value="2">
+	@endif
 
 	<div class="bdc-layout">
 		<div class="bdc-box">
@@ -113,17 +119,22 @@
 				{{-- 프로필 영역 --}}
 				<div class="bdc-profile-area">
 					<img class="bdc-profile-img" src="{{ asset('img/user.png') }}" alt="">
-					<p class="bdc-profile-name">
-						admin
-					</p>
+					@if(Auth::check())
+						<p class="bdc-profile-name">
+							{{ Auth::user()->u_name }}
+						</p>
+					@else
+						<p class="bdc-profile-noname">
+							로그인 후 이용 바랍니다.
+						</p>
+					@endif
 				</div>
 				{{-- 글 영역 --}}
-				<form action="{{ route('postbookDetailComment', ['id' => $result->b_id]) }}" onsubmit="return insertFormCheck()" method="POST">
-					@csrf
 					<div class="bdc-write-box">
 						<div class="bdc-write-inbox-area font-1">
-							<textarea class="bdc-write-area" id="content" rows="5" cols="30" name="content" maxlength=700 oninput="limitCharacters(); handleInput(this)"></textarea>
+							<textarea class="bdc-write-area" id="content" rows="5" cols="30" name="content" maxlength=701 @if(!auth::check()) onclick="loginCheckConfirm()" @endif oninput="limitCharacters(); handleInput(this)"></textarea>
 							<label class="bdc-write-label" for="content">
+								@if(Auth::check())
 								다양한 의견이 서로 존중될 수 있도록 다른 사람에게 불쾌감을 주는 욕설, 혐오, 비하의 
 								표현이나 타인의 권리를 침해하는 내용은 주의해주세요.
 								모든 작성자는 
@@ -131,6 +142,9 @@
 									본인이 작성한 의견에 대해 법적 책임을 갖는다는 점
 								</span>
 									유의하시기 바랍니다.
+								@else
+									로그인 후 이용 바랍니다.
+								@endif
 							</label>
 						</div>
 					</div>
@@ -140,12 +154,10 @@
 						<span class="bdc-write-upload-cnt" id="count">
 							0 / 700
 						</span>
-						<button type="submit" class="bdc-write-upload-btn">
+						<button type="button" class="bdc-write-upload-btn" @if(!auth::check()) onclick="loginCheckConfirm()" @else onclick="insertFormCheck()" @endif>
 							등록
 						</button>
 					</div>
-				
-				</form>
 			</div>
 
 			{{-- 제목 영역 --}}
@@ -159,7 +171,7 @@
 			</div>
 			{{-- 리스트 영역 전체 --}}
 			<div id="bdc-list" class="bdc-list">
-				{{-- 리스트 --}}
+				{{-- 리스트 댓글 --}}
 				<div class="bdc-list-area">
 
 					{{-- 리스트 상단 영역 --}}
@@ -178,7 +190,7 @@
 
 					{{-- 리스트 하단 영역 --}}
 					<div class="bdc-list-bottom-area">
-						<a onclick="aaaa(3)" class="bdc-list-area-reply" href="#">
+						<a onclick="replyOpen(3)" class="bdc-list-area-reply" href="#">
 							답글
 							<span class="bdc-list-area-reply-cnt">
 								1
@@ -197,7 +209,7 @@
 					</div>
 				</div>
 
-				{{-- 리스트 댓글 영역 --}}
+				{{-- 리스트 대댓글 --}}
 				<div class="bdc-list-reply-area">
 					{{-- 리스트 상단 영역 --}}
 					<div class="bdc-list-top-area">
@@ -225,6 +237,53 @@
 						</div>
 					</div>
 				</div>
+				<div class="bdc-reply-write">
+					<div class="bdc-write">
+						{{-- 프로필 영역 --}}
+						<div class="bdc-profile-area">
+							<img class="bdc-profile-img" src="{{ asset('img/user.png') }}" alt="">
+							@if(Auth::check())
+									<p class="bdc-profile-name">
+										{{ Auth::user()->u_name }}
+									</p>
+								@else
+									<p class="bdc-profile-noname">
+										로그인 후 이용 바랍니다.
+									</p>
+								@endif
+						</div>
+						{{-- 글 영역 --}}
+						<div class="bdc-reply-write-box">
+							<div class="bdc-write-inbox-area font-1">
+								<textarea class="bdc-reply-write-area" id="replycontent" rows="5" cols="30" name="replycontent" maxlength=301 @if(!auth::check()) onclick="loginCheckConfirm()" @endif oninput="replyLimitCharacters(); replyHandleInput(this)"></textarea>
+								<label class="bdc-write-label" for="replycontent">
+									@if(Auth::check())
+									다양한 의견이 서로 존중될 수 있도록 다른 사람에게 불쾌감을 주는 욕설, 혐오, 비하의 
+									표현이나 타인의 권리를 침해하는 내용은 주의해주세요.
+									모든 작성자는 
+									<span class="bdc-write-label-span">
+										본인이 작성한 의견에 대해 법적 책임을 갖는다는 점
+									</span>
+										유의하시기 바랍니다.
+									@else
+										로그인 후 이용 바랍니다.
+									@endif
+								</label>
+							</div>
+						</div>
+	
+						{{-- 버튼 영역 --}}
+						<div class="bdc-write-upload">
+							<span class="bdc-write-upload-cnt" id="replycount">
+								0 / 300
+							</span>
+							<button type="button" class="bdc-write-upload-btn" @if(!auth::check()) onclick="loginCheckConfirm()" @else onclick="aa()" @endif>
+								등록
+							</button>
+						</div>
+					</div>
+				</div>
+				
 			</div>
 
 

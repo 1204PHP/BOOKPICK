@@ -10,6 +10,7 @@ use App\Models\Book_detail_comment;
 use App\Models\Book_detail_comment_state;
 use App\Models\Book_detail_reply_state;
 use App\Models\Book_detail_reply;
+use App\Models\User;
 use App\Models\Book_api;
 use App\Models\User_wishlist;
 use App\Models\User_library;
@@ -245,28 +246,38 @@ class BookController extends Controller
         }
     }
 
-    public function bookDetailCommentInsert($id, Request $request)
+    public function bookDetailCommentInsert(Request $request)
     {
         try {
             Log::debug( "--------도서 상세 댓글 삽입 시작---------" );
             $userId = Session::get('u_id');
             $comment = $request->content;
+            $id = $request->b_id;
             if($comment === NULL) {
                 $comment = "";
             }
 
             if ($userId) {
-                $result = Book_detail_comment::create([
+                $commentResult = Book_detail_comment::create([
                     'bdc_comment' => $comment,
                     'b_id' => $id,
                     'u_id' => $userId,
                 ]);
+                $uNameResult = User::select('u_name')
+                                ->where('u_id',$userId)
+                                ->first();
+                $responseData = [
+                    'commentResult' => $commentResult,
+                    'uNameResult' => $uNameResult,
+                ];
                 Log::debug( "userId : ". $userId );
                 Log::debug( "comment : ". $comment );
-                return redirect()->route('getBookDetail', ['id' => $id]);
+                return response()->json($responseData);
             } else {
-                Log::debug( "--------사용자 ID가 없음---------" );
-                return redirect()->route('getLogin');
+                $responseData = [
+                    'errorMsg' => "로그인 후 이용 바랍니다.",
+                ];
+                return response()->json($responseData);
             }
         } catch(Exception $e) {
             Log::error( "--------서재 도서 댓글 삽입  에러발생---------" );

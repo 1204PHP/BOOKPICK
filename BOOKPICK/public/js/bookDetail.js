@@ -92,13 +92,13 @@ setupSliderEvents(slider6);
 
 
 
-// 상세 페이지 댓글 부분 자바스크립트 구현
+// *************상세 페이지 댓글 부분 자바스크립트 구현*************
+// 댓글 삽입 placeholder + 글자 체크
 function handleInput(textarea) {
-    // 텍스트 영역의 값이 비어 있으면 레이블을 표시하고, 값이 있는 경우에는 숨깁니다.
+    // 텍스트 영역의 값이 비어 있으면 레이블을 표시
     const label = document.querySelector('label[for="content"]');
     label.style.display = (textarea.value.trim() === '') ? 'block' : 'none';
 }
-
 
 function limitCharacters() {
     const commentInput = document.getElementById('content');
@@ -114,19 +114,185 @@ function limitCharacters() {
     }
 	Count.textContent = `${currentCharacters}` + " / " + maxCharacters;
 }
-var scrollPosition = 0;
-document.addEventListener('DOMContentLoaded', function () {
-	scrollPosition = window.scrollY;
-});
+
+// 대댓글 삽입 placeholder + 글자 체크
+
+function replyHandleInput(textarea) {
+    // 텍스트 영역의 값이 비어 있으면 레이블을 표시
+    const replylabel = document.querySelector('label[for="replycontent"]');
+    replylabel.style.display = (textarea.value.trim() === '') ? 'block' : 'none';
+}
+
+function replyLimitCharacters() {
+    const replyInput = document.getElementById('replycontent');
+    const replyCount = document.getElementById('replycount');
+    const replyMaxCharacters = 300;
+
+    var replyCurrentCharacters = replyInput.value.length;
+
+    if (replyCurrentCharacters > replyMaxCharacters) {
+		alert("300자까지 입력할 수 있습니다.");
+		replyCurrentCharacters == 301 ? replyCurrentCharacters = 300 : replyCurrentCharacters;
+    	replyInput.value = replyInput.value.slice(0, maxCharacters);
+    }
+	replyCount.textContent = `${replyCurrentCharacters}` + " / " + replyMaxCharacters;
+}
+
+function loginCheckConfirm() {
+	if(confirm("로그인을 하신 후 이용해 주시기 바랍니다.")){
+		window.location.href = "/login";
+	} else {
+	}
+}
 
 function insertFormCheck() {
-	const content = document.getElementById("content").value;
-	console.log(content);
-	if (content.trim() === "") {
-		alert("내용을 입력해주세요.");
-		return false;
-	}
-	return true;
+	let contentValue = document.getElementById("content").value;
+	if (contentValue.trim() === "") {
+			alert("내용을 입력해주세요.");
+	} else {
+			let formData = new FormData();
+			let bId = document.getElementById("bdc_b_id").value;
+			formData.append('b_id', bId);
+			formData.append('content', contentValue);
+			fetch('/book/detail/comment/insert', {
+				method: 'POST',
+				body: formData,
+			})
+			.then(response => response.json())
+			.then(data => {
+       			let errorMsg = data.errorMsg;
+				if(errorMsg) {
+					if(confirm("로그인을 하신 후 이용해 주시기 바랍니다.")){
+						window.location.href = "/login";
+					} else {
+					}
+				} else {
+					let commentResult = data.commentResult;
+					let uNameResult = data.uNameResult;
+					var parentElement = document.getElementById('bdc-list');
+
+					var bdcHeadTxtCountDOM = document.getElementById('bdc-head-txt-count');
+					var currentCount = parseInt(bdcHeadTxtCountDOM.innerHTML, 10);
+					var newCount = currentCount + 1;
+
+					bdcHeadTxtCountDOM.innerHTML = newCount;
+					console.log(newCount);
+					
+					// 새로운 div 요소 생성
+					var newDivElement = document.createElement('div');
+					var StrNum = commentResult['bdc_id'];
+					newDivElement.id = "bdc-list-area" + StrNum;
+			
+					// 리스트 상단 영역 생성
+					var topArea = document.createElement('div');
+					topArea.className = 'bdc-list-top-area';
+			
+					var imgElement = document.createElement('img');
+					imgElement.className = 'bdc-list-area-img';
+					imgElement.src = '/img/user.png';
+					imgElement.alt = '';
+			
+					var nameElement = document.createElement('span');
+					nameElement.className = 'bdc-list-area-name';
+					nameElement.textContent = uNameResult['u_name'];
+			
+					var dateElement = document.createElement('span');
+					dateElement.className = 'bdc-list-area-at';
+					dateElement.textContent = new Date(commentResult['created_at'])
+												.toLocaleString('ko-KR', 
+													{year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: false});
+			
+					topArea.appendChild(imgElement);
+					topArea.appendChild(nameElement);
+					topArea.appendChild(dateElement);
+		
+					// 리스트 중단 영역 생성
+					var middleArea = document.createElement('div');
+					middleArea.className = 'bdc-list-middle-area font-1';
+			
+					var contentElement = document.createElement('p');
+					contentElement.className = 'bdc-list-area-content';
+					contentElement.textContent = commentResult['bdc_comment'];
+			
+					middleArea.appendChild(contentElement);
+			
+					// 리스트 하단 영역 생성
+					var bottomArea = document.createElement('div');
+					bottomArea.className = 'bdc-list-bottom-area';
+			
+					var replyLink = document.createElement('a');
+					replyLink.className = 'bdc-list-area-reply';
+					replyLink.textContent = '답글';
+					replyLink.onclick = function() {
+						var StrNum = commentResult['bdc_id'];
+						replyOpen(StrNum);
+					};
+		
+					var replyCount = document.createElement('span');
+					replyCount.className = 'bdc-list-area-reply-cnt';
+					replyCount.textContent = '0';
+			
+					replyLink.appendChild(replyCount);
+			
+					var recommendArea = document.createElement('div');
+					recommendArea.className = 'bdc-list-recommend-area';
+			
+					var likeBox = document.createElement('a');
+					likeBox.className = 'bdc-list-area-like-box';
+			
+					var likeImg = document.createElement('img');
+					likeImg.className = 'bdc-dis-like-btn';
+					likeImg.src = '/img/book_detail_like.png';
+					likeImg.alt = '';
+					
+					var likeCount = document.createElement('span');
+					likeCount.textContent = '0';
+		
+					likeBox.appendChild(likeImg);
+					likeBox.appendChild(likeCount);
+					var dislikeBox = document.createElement('a');
+					dislikeBox.className = 'bdc-list-area-dislike-box';
+			
+					var dislikeImg = document.createElement('img');
+					dislikeImg.className = 'bdc-dis-like-btn';
+					dislikeImg.src = '/img/book_detail_dislike.png';
+					dislikeImg.alt = '';
+			
+					var dislikeCount = document.createElement('span');
+					dislikeCount.textContent = '0';
+			
+					dislikeBox.appendChild(dislikeImg);
+					dislikeBox.appendChild(dislikeCount);
+			
+					recommendArea.appendChild(likeBox);
+					recommendArea.appendChild(dislikeBox);
+			
+					bottomArea.appendChild(replyLink);
+					bottomArea.appendChild(recommendArea);
+			
+					var BinDiv = document.createElement('div');
+					BinDiv.className = 'bdc-list-area';
+		
+					// 새로운 div 요소에 생성한 영역들 추가
+					BinDiv.appendChild(topArea);
+					BinDiv.appendChild(middleArea);
+					BinDiv.appendChild(bottomArea);
+		
+					newDivElement.appendChild(BinDiv);
+			
+					// 부모 요소에 새로운 div 요소 추가
+					parentElement.insertBefore(newDivElement, parentElement.firstChild);
+					document.getElementById("content").value = "";
+					document.getElementById("count").innerHTML = "0 / 700";
+    				document.querySelector('label[for="content"]').style.display = 'block';
+
+
+				}
+			})
+			.catch(error => {
+				console.error('오류 발생:', error);
+			})
+		}
 }
 
 
@@ -197,7 +363,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			replyLink.textContent = '답글';
 			replyLink.onclick = function() {
 				var StrNum = commentResult[i]['bdc_id'];
-				aaaa(StrNum);
+				replyOpen(StrNum);
 			};
 
 			var replyCount = document.createElement('span');
@@ -256,16 +422,17 @@ document.addEventListener('DOMContentLoaded', function() {
 			// 부모 요소에 새로운 div 요소 추가
 			parentElement.appendChild(newDivElement);
 		}
-    })
-    .catch(error => {
-        console.error('오류 발생:', error);
-    })
+
+		})
+		.catch(error => {
+			console.error('오류 발생:', error);
+		})
 });
 
 
 let clickedIds = [];
 
-function aaaa(bdc_id) {
+function replyOpen(bdc_id) {
 	if (!clickedIds.includes(bdc_id)) {
 		clickedIds.push(bdc_id);
 		let formData = new FormData();
@@ -280,6 +447,11 @@ function aaaa(bdc_id) {
 			let replyResult = data.replyResult;
 			let strNum = "bdc-list-area" + bdc_id;
 			let parentElement = document.getElementById(strNum);
+			let acFlg = document.getElementById("ac_flg").value;
+			let uName = document.getElementById("u_name").value;
+			console.log(data);
+			console.log(strNum);
+			console.log(parentElement);
 
 			for (let i = 0; i < replyResult.length; i++) {
 				// 새로운 댓글 영역을 생성
@@ -372,12 +544,125 @@ function aaaa(bdc_id) {
 				parentElement.appendChild(newReplyArea);
 			}
 
+
+			console.log(data);
+			console.log(strNum);
+			console.log(parentElement);
+			var bdcReplyWriteDiv = document.createElement('div');
+			bdcReplyWriteDiv.classList.add('bdc-reply-write');
+
+			var bdcWriteDiv = document.createElement('div');
+			bdcWriteDiv.classList.add('bdc-write');
+
+			var profileAreaDiv = document.createElement('div');
+			profileAreaDiv.classList.add('bdc-profile-area');
+
+			var profileImg = document.createElement('img');
+			profileImg.classList.add('bdc-profile-img');
+			profileImg.src = '/img/user.png';
+			profileImg.alt = '';
+
+			profileAreaDiv.appendChild(profileImg);
+
+			if( acFlg == 1 ) {
+				var profileName = document.createElement('p');
+				profileName.classList.add('bdc-profile-name');
+				profileName.textContent = uName;
+				profileAreaDiv.appendChild(profileName);
+			} else if (acFlg == 2) {
+				var profileNoName = document.createElement('p');
+				profileNoName.classList.add('bdc-profile-noname');
+				profileNoName.textContent = '로그인 후 이용 바랍니다.';
+				profileAreaDiv.appendChild(profileNoName);
+			}
+
+			var writeBoxDiv = document.createElement('div');
+			writeBoxDiv.classList.add('bdc-reply-write-box');
+
+			var writeInboxAreaDiv = document.createElement('div');
+			writeInboxAreaDiv.classList.add('bdc-write-inbox-area', 'font-1');
+
+			var replyContentTextarea = document.createElement('textarea');
+			replyContentTextarea.classList.add('bdc-reply-write-area');
+			replyContentTextarea.id = 'replycontent';
+			replyContentTextarea.rows = '5';
+			replyContentTextarea.cols = '30';
+			replyContentTextarea.name = 'replycontent';
+			replyContentTextarea.maxlength = '301';
+
+			if( acFlg == 1 ) {
+				replyContentTextarea.onclick = loginCheckConfirm;
+			}
+			replyContentTextarea.oninput = function() {
+				replyLimitCharacters();
+				replyHandleInput(this);
+			};
+			var writeLabel = document.createElement('label');
+			writeLabel.classList.add('bdc-write-label');
+			writeLabel.htmlFor = 'replycontent';
+			if( acFlg == 1 ) {
+				writeLabel.innerHTML = '다양한 의견이 서로 존중될 수 있도록 다른 사람에게 불쾌감을 주는 욕설, 혐오, 비하의 ' +
+									'표현이나 타인의 권리를 침해하는 내용은 주의해주세요. ' +
+									'모든 작성자는 ' +
+									'<span class="bdc-write-label-span">' +
+									'본인이 작성한 의견에 대해 법적 책임을 갖는다는 점' +
+									'</span>' +
+									' 유의하시기 바랍니다.';
+			} else if(acFlg == 2) {
+				writeLabel.textContent = '로그인 후 이용 바랍니다.';
+			}
 			
+			writeInboxAreaDiv.appendChild(replyContentTextarea);
+			writeInboxAreaDiv.appendChild(writeLabel);
+
+			writeBoxDiv.appendChild(writeInboxAreaDiv);
+			var writeUploadDiv = document.createElement('div');
+			writeUploadDiv.classList.add('bdc-write-upload');
+
+			var replyCountSpan = document.createElement('span');
+			replyCountSpan.classList.add('bdc-write-upload-cnt');
+			replyCountSpan.id = 'replycount';
+			replyCountSpan.textContent = '0 / 300';
+
+			var uploadButton = document.createElement('button');
+			uploadButton.type = 'button';
+			uploadButton.classList.add('bdc-write-upload-btn');
+
+			if( acFlg == 2 ) {
+				uploadButton.onclick = loginCheckConfirm;
+			} else if(acFlg == 1) {
+				uploadButton.onclick = function() {
+					aa();
+				};
+			}
+
+			uploadButton.textContent = '등록';
+
+			writeUploadDiv.appendChild(replyCountSpan);
+			writeUploadDiv.appendChild(uploadButton);
+
+			bdcWriteDiv.appendChild(profileAreaDiv);
+			bdcWriteDiv.appendChild(writeBoxDiv);
+			bdcWriteDiv.appendChild(writeUploadDiv);
+
+			bdcReplyWriteDiv.appendChild(bdcWriteDiv);
+			parentElement.appendChild(bdcReplyWriteDiv);
+		
 		})
 		.catch(error => {
 			console.error('오류 발생:', error);
 		})
 	} else {
-		
+		let strNum = "bdc-list-area" + bdc_id;
+		let parentElement = document.getElementById(strNum);
+		var childElements = parentElement.children;
+		for (var i = 0; i < childElements.length; i++) {
+			childElements[i].classList.toggle('display-none');
+		}
 	}
+}
+
+
+function aa() {
+	alert("성공")
 }
