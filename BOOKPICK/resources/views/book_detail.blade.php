@@ -160,35 +160,29 @@
 					</div>
 			</div>
 
-			{{-- 제목 영역 --}}
 			<div class="bdc-head">
 				<p class="bdc-head-txt">
 					<span id ="bdc-head-txt-count" class="bdc-head-txt-count">
-						171
+						
 					</span>
 					개의 댓글
 				</p>
 			</div>
-			{{-- 리스트 영역 전체 --}}
 			<div id="bdc-list" class="bdc-list">
-				{{-- 리스트 댓글 --}}
-				<div class="bdc-list-area">
+				{{-- <div class="bdc-list-area">
 
-					{{-- 리스트 상단 영역 --}}
 					<div class="bdc-list-top-area">
 						<img class="bdc-list-area-img" src="{{ asset('img/user.png') }}" alt="">
 						<span class="bdc-list-area-name">정**</span>
 						<span class="bdc-list-area-at">2024.01.01 12:57</span>
 					</div>
 
-					{{-- 리스트 중단 영역 --}}
 					<div class="bdc-list-middle-area font-1">
 						<p class="bdc-list-area-content">
 							ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
 						</p>
 					</div>
 
-					{{-- 리스트 하단 영역 --}}
 					<div class="bdc-list-bottom-area">
 						<a onclick="replyOpen(3)" class="bdc-list-area-reply" href="#">
 							답글
@@ -209,21 +203,17 @@
 					</div>
 				</div>
 
-				{{-- 리스트 대댓글 --}}
 				<div class="bdc-list-reply-area">
-					{{-- 리스트 상단 영역 --}}
 					<div class="bdc-list-top-area">
 						<img class="bdc-list-area-img" src="{{ asset('img/user.png') }}" alt="">
 						<span class="bdc-list-area-name">정**</span>
 						<span class="bdc-list-area-at">2024.01.01 12:57</span>
 					</div>
-					{{-- 리스트 중단 영역 --}}
 					<div class="bdc-list-middle-area font-1">
 						<p class="bdc-list-area-content">
 							ㅁㅁㅁㅁㅁㅁㅁ
 						</p>
 					</div>
-					{{-- 리스트 하단 영역 --}}
 					<div class="bdc-list-reply-bottom-area">
 						<div class="bdc-list-recommend-area">
 							<a href="#" class="bdc-list-area-like-box">
@@ -237,9 +227,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="bdc-reply-write">
+				<div id="bdc-reply-write" class="bdc-reply-write">
 					<div class="bdc-write">
-						{{-- 프로필 영역 --}}
 						<div class="bdc-profile-area">
 							<img class="bdc-profile-img" src="{{ asset('img/user.png') }}" alt="">
 							@if(Auth::check())
@@ -252,7 +241,6 @@
 									</p>
 								@endif
 						</div>
-						{{-- 글 영역 --}}
 						<div class="bdc-reply-write-box">
 							<div class="bdc-write-inbox-area font-1">
 								<textarea class="bdc-reply-write-area" id="replycontent" spellcheck="false" rows="5" cols="30" name="replycontent" maxlength=301 @if(!auth::check()) onclick="loginCheckConfirm()" @endif oninput="replyLimitCharacters(); replyHandleInput(this)"></textarea>
@@ -272,26 +260,22 @@
 							</div>
 						</div>
 	
-						{{-- 버튼 영역 --}}
 						<div class="bdc-write-upload">
 							<span class="bdc-write-upload-cnt" id="replycount">
 								0 / 300
 							</span>
-							<button type="button" class="bdc-write-upload-btn" @if(!auth::check()) onclick="loginCheckConfirm()" @else onclick="aa()" @endif>
+							<button type="button" class="bdc-write-upload-btn" @if(!auth::check()) onclick="loginCheckConfirm()" @else onclick="replyInsertFormCheck()" @endif>
 								등록
 							</button>
 						</div>
 					</div>
-				</div>
-				
+					<div class="bdc-reply-fold-box">
+						<button class="bdc-reply-fold-item" onclick="CloseReply(bdc_id)">
+							답글 접기 ∧
+						</button>
+					</div>
+				</div> --}}
 			</div>
-
-
-
-
-
-
-
 		</div>
 	</div>
 	<br><br>

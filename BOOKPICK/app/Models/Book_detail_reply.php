@@ -13,6 +13,11 @@ class Book_detail_reply extends Model
     protected $primaryKey = 'bdr_id';
     public $timestamps = true;
 
+    protected $fillable = [
+        'bdr_comment',
+        'bdc_id',
+        'u_id',
+    ];
     public function user() {
         return $this->belongsTo(User::class, 'u_id')->withTrashed();
     }

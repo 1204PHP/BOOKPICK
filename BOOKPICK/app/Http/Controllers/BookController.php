@@ -103,31 +103,31 @@ class BookController extends Controller
             }
 
             // *************댓글부분******************
-            $commentResult = Book_detail_comment::join('users', 'book_detail_comments.u_id', '=', 'users.u_id')
-                            ->select('book_detail_comments.*','users.u_name')
-                            ->where('book_detail_comments.b_id', $id)
-                            ->addSelect(['like' => Book_detail_comment_state::selectRaw('COUNT(*)')
-                                ->whereColumn('book_detail_comment_states.bdc_id', 'book_detail_comments.bdc_id')
-                                ->where('book_detail_comment_states.bdcs_flg', 1)
-                            ])
-                            ->addSelect(['dislike' => Book_detail_comment_state::selectRaw('COUNT(*)')
-                                ->whereColumn('book_detail_comment_states.bdc_id', 'book_detail_comments.bdc_id')
-                                ->where('book_detail_comment_states.bdcs_flg', 2)
-                            ])
-                            ->addSelect(['reply_count' => Book_detail_reply::selectRaw('COUNT(*)')
-                                ->whereColumn('book_detail_replies.bdc_id', 'book_detail_comments.bdc_id')
-                            ])
-                            ->orderby('book_detail_comments.created_at', 'desc')
-                            ->limit(5)
-                            ->get();
+            // $commentResult = Book_detail_comment::join('users', 'book_detail_comments.u_id', '=', 'users.u_id')
+            //                 ->select('book_detail_comments.*','users.u_name')
+            //                 ->where('book_detail_comments.b_id', $id)
+            //                 ->addSelect(['like' => Book_detail_comment_state::selectRaw('COUNT(*)')
+            //                     ->whereColumn('book_detail_comment_states.bdc_id', 'book_detail_comments.bdc_id')
+            //                     ->where('book_detail_comment_states.bdcs_flg', 1)
+            //                 ])
+            //                 ->addSelect(['dislike' => Book_detail_comment_state::selectRaw('COUNT(*)')
+            //                     ->whereColumn('book_detail_comment_states.bdc_id', 'book_detail_comments.bdc_id')
+            //                     ->where('book_detail_comment_states.bdcs_flg', 2)
+            //                 ])
+            //                 ->addSelect(['reply_count' => Book_detail_reply::selectRaw('COUNT(*)')
+            //                     ->whereColumn('book_detail_replies.bdc_id', 'book_detail_comments.bdc_id')
+            //                 ])
+            //                 ->orderby('book_detail_comments.created_at', 'desc')
+            //                 ->limit(5)
+            //                 ->get();
             Log::debug($id);
-            Log::debug($commentResult);
+            // Log::debug($commentResult);
             Log::debug( "--------도서상세출력 끝-----------" );
             return view('book_detail',
                         ['result' => $result,
                         'wishFlg' => $wishFlg,
                         'libraryFlg' => $libraryFlg,
-                        'commentResult' => $commentResult,
+                        // 'commentResult' => $commentResult,
                         'relatedBook' => $relatedBook]);
         } catch(Exception $e) {
             Log::error( "--------도서상세출력 에러발생---------" );
@@ -307,7 +307,7 @@ class BookController extends Controller
                 ->whereColumn('book_detail_replies.bdc_id', 'book_detail_comments.bdc_id')
             ])
             ->orderby('book_detail_comments.created_at', 'desc')
-            ->limit(5)
+            // ->limit(5)
             ->get();
             
             $commentCount = Book_detail_comment::where('b_id', $id)
@@ -352,6 +352,48 @@ class BookController extends Controller
             return response()->json($responseData);
         } catch(Exception $e) {
             Log::error( "--------대댓글 출력 ajax  에러발생---------" );
+            Log::error( "에러내용:".$e->getMessage());
+            Log::error( "------------------------------------" );
+            return redirect()->route( 'index' );
+        }
+    }
+
+    public function bookDetailReplyInsert(Request $request)
+    {
+        try {
+            Log::debug( "--------도서 상세 대댓글 삽입 시작---------" );
+            $userId = Session::get('u_id');
+            $comment = $request->content;
+            $id = $request->b_id;
+            $bdc_id = $request->bdc_id;
+            if($comment === NULL) {
+                $comment = "";
+            }
+
+            if ($userId) {
+                $commentResult = Book_detail_reply::create([
+                    'bdr_comment' => $comment,
+                    'u_id' => $userId,
+                    'bdc_id' => $bdc_id,
+                ]);
+                $uNameResult = User::select('u_name')
+                                ->where('u_id',$userId)
+                                ->first();
+                $responseData = [
+                    'commentResult' => $commentResult,
+                    'uNameResult' => $uNameResult,
+                ];
+                Log::debug( "userId : ". $userId );
+                Log::debug( "comment : ". $comment );
+                return response()->json($responseData);
+            } else {
+                $responseData = [
+                    'errorMsg' => "로그인 후 이용 바랍니다.",
+                ];
+                return response()->json($responseData);
+            }
+        } catch(Exception $e) {
+            Log::error( "--------서재 도서 대댓글 삽입  에러발생---------" );
             Log::error( "에러내용:".$e->getMessage());
             Log::error( "------------------------------------" );
             return redirect()->route( 'index' );

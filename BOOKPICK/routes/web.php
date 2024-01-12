@@ -113,6 +113,9 @@ Route::post( '/book/detail/comment/insert', [BookController::class, 'bookDetailC
     ->name( 'postbookDetailComment' );
 Route::post( '/book/detail/comment/print', [BookController::class, 'bookDetailCommentPrint'])
 ->name( 'postbookDetailPrint' );
+// 도서 상세 페이지 - 대댓글
+Route::post( '/book/detail/reply/insert', [BookController::class, 'bookDetailReplyInsert'])
+->name( 'postbookDetailReply' );
 Route::post( '/book/detail/reply/print', [BookController::class, 'bookDetailReplyPrint'])
 ->name( 'postbookDetailReplyPrint' );
 
