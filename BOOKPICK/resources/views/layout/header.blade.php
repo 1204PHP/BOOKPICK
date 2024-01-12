@@ -3,7 +3,7 @@
 $currentRoute = Route::currentRouteName();
 @endphp
 
-@if(!in_array(Route::currentRouteName(), ['getLogin', 'getRegister', 'postLogin', 'postRegister', 'getVerification', 'sendVerification', 'reSendVerification', 'mailTokenExpired']))
+@if(!in_array(Route::currentRouteName(), ['getLogin', 'getRegister', 'postLogin', 'postRegister', 'getVerification', 'sendVerification', 'reSendVerification', 'mailTokenExpired', 'loginKakao']))
 	<header>
 		<div class="hamburger-menu" onclick="addEventListener()">
 		<div class="bar"></div>
