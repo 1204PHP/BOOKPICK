@@ -144,7 +144,8 @@ class SearchController extends Controller
         try {
             $query = $request->input('query');
             if ($query) {
-                $autoSearch = Book_info::search($query)->take(3)->get(['b_sub_cate', 'b_title'])->toArray();
+                // $autoSearch = Book_info::search($query)->take(5)->get(['b_sub_cate', 'b_title'])->toArray();
+                $autoSearch = Book_info::search($query)->get(['b_sub_cate', 'b_title'])->toArray();
                 Log::debug('책 장르, 제목: ' . json_encode($autoSearch, JSON_UNESCAPED_UNICODE));
                 return response()->json(['autoSearch' => $autoSearch]);
             } else {
