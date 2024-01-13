@@ -587,13 +587,13 @@ section {
 	}
 }
 
-/* 광고 영역2 */
+/* 광고 영역4 */
 
 .slide-container-1 {
-	position: relative;
 	max-width: 1300px;
 	height: auto;
 	margin: 0 auto;
+	position: relative;
 }
 
 .slide-container-1 img {
@@ -611,14 +611,16 @@ section {
 	transform: translateX(0);
 }
 
+
 .prev,
 .next {
 	cursor: pointer;
 	position: absolute;
-	top: 43%;
 	width: auto;
 	margin-top: -22px;
 	padding: 16px;
+	top: 57%;
+	transform: translateY(-50%);
 	color: #fff;
 	font-size: 2rem;
 	font-weight: bold;
@@ -626,9 +628,13 @@ section {
 	transition: 600ms ease;
 }
 
+.prev {
+	left: 0;
+	
+}
+
 .next {
 	right: 0;
-	border-radius: 3px 0 0 3px;
 }
 
 .prev:hover,
@@ -638,7 +644,7 @@ section {
 
 #pagination {
 	position: absolute;
-	bottom: 5%;
+	bottom: 7%;
 	left: 50%;
 	transform: translateX(-50%);
 	margin: 0 auto;
@@ -662,7 +668,7 @@ section {
 	width: 35px;
 }
 
-/* 광고 영역3 */
+/* 광고 영역2 */
 
 .tour-banner-container {
 	overflow: hidden;
@@ -840,7 +846,50 @@ section {
 
 }
 
-/* 광고 영역4 */
+/* 광고 영역3 */
+
+.tour-memo-container {
+	width: 100%;
+	padding: 20px 20px;	
+}
+
+.tour-memo-container strong{
+	font-size: 20px;
+}
+
+.tour-memo-container p{
+	font-size: 0.7rem;
+	color: #9d9d9d;
+	margin-top: 5px;
+}
+
+.book-detail-memo-container {
+	background-color: white;
+    white-space: nowrap;
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding-left: 10px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.book-detail-memo-area {
+	width: 100%;
+	background-color: #E9F2DF;
+}
+
+
+
+
+
+
+
+
+/* 광고 영역5 */
 
 .tour-card-area {
 	display: grid;
@@ -851,6 +900,45 @@ section {
 	--d: 700ms;
 	--e: cubic-bezier(0.19, 1, 0.22, 1);
 }
+
+.tour-card {
+	cursor: pointer;
+}
+
+/* 광고 모달 시작 */
+.tour-modal {
+    display: none;
+    width: 400px;
+	height: 500px;
+    background-color: transparent;
+	z-index: 444;
+	position: fixed;
+	top: 50%;
+    left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.tour-modal-content {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+.tour-modal-content img {
+	width: 100%;
+	height: 100%;
+}
+
+.tour-modal-close {
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+	position: absolute;
+    top: 15px;
+	right: 30px;
+}
+/* 광고 모달 끝 */
 
 @media (min-width: 768px) and (max-width: 1299px) {
 	.tour-card-area {
@@ -923,15 +1011,15 @@ section {
 		background-image: url(../img/reading1.png);
 	}
 
-	&:nth-child(2):before {
+	&:nth-child(3):before {
 		background-image: url(../img/reading2.png);
 	}
 
-	&:nth-child(3):before {
+	&:nth-child(5):before {
 		background-image: url(../img/reading3.png);
 	}
 
-	&:nth-child(4):before {
+	&:nth-child(7):before {
 		background-image: url(../img/reading4.png);
 	}
 }

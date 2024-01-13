@@ -104,6 +104,9 @@ $currentRoute = Route::currentRouteName();
 				<img class="user-img" src="{{ asset('img/user.png') }}" alt="">
 			</div>
 		@endif
+		@if(!in_array(Route::currentRouteName(), ['getLogin', 'getRegister', 'postLogin', 'postRegister', 'getPasswordReconfirm', 'getInfo', 'getWithdrawal', 'getVerification', 'sendVerification', 'reSendVerification', 'mailTokenExpired', 'loginKakao', 'handleLoginKakaoCallback']))
+		<a id="top-button" class="top-button" href="javascript:void(0);"><img src="{{ asset('img/top-button.png') }}" alt=""></a>
+		@endif
 	</header>
 
 	<script>
@@ -115,6 +118,24 @@ $currentRoute = Route::currentRouteName();
 				console.log('폼 못찾음');
 			}
 		}
+
+		document.addEventListener('DOMContentLoaded', function () {
+            var topButton = document.getElementById('top-button');
+
+            // Show the button when scrolling down
+            window.onscroll = function () {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    topButton.style.display = 'block';
+                } else {
+                    topButton.style.display = 'none';
+                }
+            };
+
+            topButton.addEventListener('click', function () {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            });
+        });
 	</script>
 @endif
 

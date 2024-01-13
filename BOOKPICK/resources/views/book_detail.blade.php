@@ -132,7 +132,7 @@
 				{{-- 글 영역 --}}
 					<div class="bdc-write-box">
 						<div class="bdc-write-inbox-area font-1">
-							<textarea class="bdc-write-area" id="content" rows="5" cols="30" name="content" maxlength=701 @if(!auth::check()) onclick="loginCheckConfirm()" @endif oninput="limitCharacters(); handleInput(this)"></textarea>
+							<textarea class="bdc-write-area" id="content" rows="5" cols="30" name="content" maxlength=701 spellcheck="false" @if(!auth::check()) onclick="loginCheckConfirm()" @endif oninput="limitCharacters(); handleInput(this)"></textarea>
 							<label class="bdc-write-label" for="content">
 								@if(Auth::check())
 								다양한 의견이 서로 존중될 수 있도록 다른 사람에게 불쾌감을 주는 욕설, 혐오, 비하의 

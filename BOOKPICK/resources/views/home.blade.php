@@ -6,14 +6,18 @@
 <div class="home-container">
     <div class="home-main">
         <div class="home-baaner">
-            <img src="{{ asset('img/home-book1.png') }}" class="Hbaaner" alt="...">
-            <img src="{{ asset('img/home-book2.png') }}" class="Hbaaner" alt="...">
-            <img src="{{ asset('img/home-book3.png') }}" class="Hbaaner" alt="...">
+            <img src="{{ asset('img/ad-4.png') }}" class="Hbaaner" alt="...">
+            <img src="{{ asset('img/ad-5.png') }}" class="Hbaaner" alt="...">
+            <img src="{{ asset('img/ad-6.png') }}" class="Hbaaner" alt="...">
+            <img src="{{ asset('img/ad-9.png') }}" class="Hbaaner" alt="...">
+            <img src="{{ asset('img/ad-10.png') }}" class="Hbaaner" alt="...">
         </div>
         <div class="home-box">
             <div class="indicator active" onclick="currentSlide(1)"></div>
             <div class="indicator" onclick="currentSlide(2)"></div>
             <div class="indicator" onclick="currentSlide(3)"></div>
+            <div class="indicator" onclick="currentSlide(4)"></div>
+            <div class="indicator" onclick="currentSlide(5)"></div>
         </div>
     </div>
     {{-- 베스트셀러 영역 --}}

@@ -78,3 +78,49 @@ document.addEventListener('click', function () {
 		});
 	}
 });
+
+
+// 메인 모달 관련
+
+// 현재 열려있는 모달을 저장하는 변수
+var openModal = null;
+
+// 모달 열기
+function openTourModal(modalId) {
+	var modal = document.getElementById(modalId);
+    // 현재 열려있는 모달이 없다면 모달을 열고 openModal 변수에 저장
+    if (!openModal) {
+        modal.style.display = 'block';
+        openModal = modal;
+    }
+}
+
+// 모달 닫기
+function closeTourModal() {
+    if (openModal) {
+        openModal.style.display = 'none';
+        openModal = null;
+    }
+}
+
+// tour-card 클릭 시 모달 열기
+function addTourCardClickListener(cardId, modalId) {
+    var tourCard = document.getElementById(cardId);
+
+    tourCard.addEventListener('click', function () {
+        openTourModal(modalId);
+    });
+}
+
+// 각각의 tour-card에 클릭 이벤트 추가
+addTourCardClickListener('tour-card-1', 'tour-modal-1');
+addTourCardClickListener('tour-card-2', 'tour-modal-2');
+addTourCardClickListener('tour-card-3', 'tour-modal-3');
+addTourCardClickListener('tour-card-4', 'tour-modal-4');
+
+// 모달 닫기 버튼에 클릭 이벤트 추가
+document.querySelectorAll('.tour-modal-close').forEach(function (closeButton) {
+    closeButton.addEventListener('click', function () {
+        closeTourModal();
+    });
+});

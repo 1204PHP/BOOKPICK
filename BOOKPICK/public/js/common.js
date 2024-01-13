@@ -81,7 +81,7 @@ function slideTime(n){
     showSlides(slideIndex += n);
 }
 
-setInterval(slideTime, 5000);
+setInterval(slideTime, 6000);
 
 
 

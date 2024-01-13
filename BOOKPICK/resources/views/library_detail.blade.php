@@ -79,7 +79,7 @@
 						<br>
 						<div class="book_detail_comment_modal_content">
 							<label for="content"></label>
-							<textarea id="content" name="content" rows="4" cols="30" maxlength=300 placeholder="댓글을 남겨주세요"></textarea>
+							<textarea id="content" class="book_detail_comment_modal_content_textarea" name="content" rows="4" cols="30" maxlength=300 spellcheck="false" placeholder="댓글을 남겨주세요"></textarea>
 						<br>
 						</div>
 						<div class="book_detail_comment_modal_footer">
