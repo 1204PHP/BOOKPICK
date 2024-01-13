@@ -36,9 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 userIcon.classList.remove("open");
             }
         });
-    } else {
-        console.error("Error: One or more elements not found.");
-    }
+    } 
 });
 
 // tour 광고 캐러셀

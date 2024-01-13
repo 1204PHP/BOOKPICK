@@ -5,6 +5,7 @@
     font-style: normal;
 }
 
+
 * {
 	margin: 0;
 	padding: 0;
@@ -789,3 +790,85 @@ th {
 	display: inline-block;
 }
 
+/* 슬라이드 영역 호버 효과 */
+.common_book_hover{
+    transition: transform 0.3s;
+}
+.common_book_hover:hover{
+    transform: scale(1.1);
+}
+
+/* 푸터 */
+
+
+.footer-container {
+    width: 100%;
+    padding: 40px 0 40px;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-section-left,
+.footer-section-right {
+    margin: 0 auto;
+}
+
+.footer-logo a{
+    color: #4dac27;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.footer-text {
+    font-weight: bold;
+    font-size: 1.0rem;
+    margin-bottom: 10px;
+}
+
+.footer-copytext {
+    font-size: 1.0rem;
+}
+
+.footer-section-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.footer-sns, .footer-app {
+    margin: 10px 0;
+}
+
+.footer-sns img {
+    width: 40px;
+    height: 40px;
+}
+
+.footer-app img {
+    margin: 0 5px;
+}
+
+.footer-copytext-right {
+    display: none;
+}
+
+@media only screen and (max-width: 1320px) {
+    .footer-section-left {
+        display: none;
+    }
+
+    .footer-copytext-right {
+        display: block;
+    }
+
+    .footer-section-right {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+}

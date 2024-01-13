@@ -338,6 +338,12 @@
         color: red;
         font-size: 0.7rem;
     }
+
+    .user-footer {
+        width: 100%;
+        position: fixed;
+        bottom: 0;       
+    }
 }
 
 /* 태블릿 */
@@ -644,6 +650,12 @@
         color: red;
         font-size: 0.7rem;
     }
+
+    .user-footer {
+        width: 100%;
+        position: fixed;
+        bottom: 0;       
+    }
 }
 
 /* 데스크탑 */
@@ -660,7 +672,7 @@
         border: 1px solid #ccc;
         border-radius: 7px;
         background-color: #FCFDFD;
-    }
+    }  
 
     .withdrawal-container {
         width: 750px;
@@ -709,10 +721,14 @@
         text-align: center;
     }
 
-    .register-h2,
-    .verification-h2 {
+    .register-h2 {
         font-size: 1rem;
         font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .verification-h2 {
+        font-size: 1rem;
         margin-bottom: 10px;
     }
 
@@ -955,5 +971,11 @@
     .errormsg {
         color: red;
         font-size: 0.7rem;
+    }
+
+    .user-footer {
+        width: 100%;
+        position: fixed;
+        bottom: 0;       
     }
 }
