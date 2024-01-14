@@ -117,7 +117,7 @@
 									<br>
 									<div class="book_detail_comment_modal_content">
 										<label for="content"></label>
-										<textarea id="content" name="content" rows="4" cols="30" maxlength=300 placeholder="댓글을 남겨주세요">{{$val->ulc_comment}}</textarea>
+										<textarea id="content" name="content" class="book_detail_comment_modal_content_textarea" rows="4" cols="30" maxlength=300 placeholder="댓글을 남겨주세요">{{$val->ulc_comment}}</textarea>
 									<br>
 									</div>
 									<div class="book_detail_comment_modal_footer">
