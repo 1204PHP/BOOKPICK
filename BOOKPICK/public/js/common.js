@@ -42,6 +42,8 @@ document.addEventListener("DOMContentLoaded", function() {
 // tour 광고 캐러셀
 
 var slideIndex = 1;
+var slideInterval;
+
 showSlides(slideIndex);
 
 function plusSlide(n) {
@@ -76,8 +78,25 @@ function showSlides(n) {
 }
 
 function slideTime(n){
-    n=1
+    n = 1;
     showSlides(slideIndex += n);
 }
 
-setInterval(slideTime, 6000);
+// setInterval(slideTime, 6000);
+
+function startInterval() {
+    slideInterval = setInterval(slideTime, 6000);
+}
+
+function stopInterval() {
+    clearInterval(slideInterval);
+}
+
+// 마우스가 캐러셀 영역에 들어왔을 때
+document.querySelector('.slide-container-1').addEventListener('mouseenter', stopInterval);
+
+// 마우스가 캐러셀 영역에서 나갔을 때
+document.querySelector('.slide-container-1').addEventListener('mouseleave', startInterval);
+
+// 초기에 인터벌 시작
+startInterval();

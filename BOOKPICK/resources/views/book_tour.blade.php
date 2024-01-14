@@ -59,7 +59,7 @@
 
     
     {{-- 광고 영역2 --}}
-    <section class="tour-section-5">
+    {{-- <section class="tour-section-5">
         <div class="tour-text-area">
             <h2 class="tour-text-h2">나만의 생각, 지금 공유하세요</h2>
             <p class="tour-text-p">책에 대한 다양한 생각을 함께 나눠보세요</p>
@@ -81,7 +81,7 @@
                 @endforelse
             </div>
         </div>
-    </section>
+    </section> --}}
 
     {{-- 광고 영역3 --}}
     <section class="tour-section-4">
@@ -89,7 +89,7 @@
             <h2 class="tour-text-h2">망설이는 당신을 위해, 이 책 어때요?</h2>
             <p class="tour-text-p">선택의 어려움을 덜어줄 다양한 추천 도서를 만나보세요</p>
         </div>
-        {{-- 첫번째 캐러셀 --}}
+        {{-- 캐러셀 --}}
         <div class="slide-container-1">
             <div class="slide-content">
                 <img src="{{ asset('img/ad-1.png') }}" alt="...">
