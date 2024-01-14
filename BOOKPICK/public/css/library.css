@@ -165,12 +165,28 @@
 	width: 100%;
 	height: 100%;
 	border-radius: 5px;
+	transition: transform 0.3s;
 }
+
+.library-recent-comment-grid-txt:hover{
+	transform: scale(1.01);
+}
+
 .library-recent-comment-txt-at, .library-recent-comment-txt-title {
 	width: 90%;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
+}
+.library-recent-comment-txt-at{
+	padding-top: 2px;
+	font-size: 12px;
+	color: #808080;
+}
+
+.library-recent-comment-txt-title{
+	font-size: 14px;
+	font-weight: bold;
 }
 .library-recent-comment-txt-content {
 	width:90%;
@@ -180,6 +196,8 @@
 	-webkit-box-orient: vertical;
 	text-overflow: ellipsis;
 	overflow: hidden;
+	padding-top: 5px;
+	font-size: 13px;
 }
 /*  */
 .library-recent-comment {
@@ -226,7 +244,7 @@
 	width: 300px;
 	margin-top: 80px;
 	font-size: 18px;
-	color:rgba(0, 0, 0,0.5);
+	color:#000;
 }
 #myPieChart {
 	width: 300px;
@@ -250,7 +268,7 @@
 		margin-left: 50px;
 		width: 300px;
 		font-size: 13px;
-		color:rgba(0, 0, 0,0.5);
+		color:#000;
 	}
 	#myPieChart {
 		width: 200px;
@@ -275,19 +293,19 @@
 	margin-right: 3px;
 }
 .library-pichart-list-div-bg0 {
-	background-color: #58A533;
+	background-color: #8d99ae;
 }
 .library-pichart-list-div-bg1 {
-	background-color: #9FC745;
+	background-color: #b0c4b1;
 }
 .library-pichart-list-div-bg2 {
-	background-color: #C7DDEB;
+	background-color: #dedbd2;
 }
 .library-pichart-list-div-bg3 {
-	background-color: #CEA668;
+	background-color: #f7e1d7;
 }
 .library-pichart-list-div-bg4 {
-	background-color: #F2CD9E;
+	background-color: #edafb8;
 }
 
 .library-dn {

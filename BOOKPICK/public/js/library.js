@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		intValue0 = 100;
 	}
 	var data = [intValue0,intValue1,intValue2,intValue3,intValue4];
-	var colors = ['#58A533', '#9FC745', '#C7DDEB','#CEA668','#F2CD9E'];
+	var colors = ['#8d99ae', '#b0c4b1', '#dedbd2','#f7e1d7','#edafb8'];
 
 	var total = data.reduce(function(acc, value) {
 		return acc + value;
@@ -73,15 +73,15 @@ var data = new Chart(ctx, {
 				label: '기록현황',
 				borderColor: 
 					[
-						'#58A533',
-						'#9FC745',
-						'#c3e475'
+						'#74c69d',
+						'#95d5b2',
+						'#d8f3dc'
 					],
 				backgroundColor:
 					[
-						'#58A533',
-						'#9FC745',
-						'#c3e475'
+						'#74c69d',
+						'#95d5b2',
+						'#d8f3dc'
 					],
 				borderWidth: 2,
 				data: [chartData1Value, chartData2Value, chartData3Value],

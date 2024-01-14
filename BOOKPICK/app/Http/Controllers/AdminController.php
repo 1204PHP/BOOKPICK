@@ -232,7 +232,7 @@ class AdminController extends Controller
     {
         try {
             Log::debug("----------DB ApiCateAuto 정보 INSERT 시작-----------");
-            DB::commit();
+            DB::beginTransaction();
             Log::debug("#트랜잭션 시작");
             $data = [
                 ['ac_name' => '신간 전체 리스트',
