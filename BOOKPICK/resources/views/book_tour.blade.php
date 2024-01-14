@@ -7,10 +7,10 @@
 
     {{-- 광고 영역1 --}}
     <section class="tour-section-2">
-        <div class="tour-text-area">
+        {{-- <div class="tour-text-area">
             <h2 class="tour-text-h2">당신을 위한 책들이 정리되어 있어요</h2>
             <p class="tour-text-p">지식의 물결을 따라 새로운 시야를 열어보세요</p>
-        </div>
+        </div> --}}
         <!-- 왼쪽에서 오른쪽으로 이동하는 책 이미지 배너 -->
         <div class="tour-banner-container">
             <ul class="left-banner-area">
@@ -83,13 +83,13 @@
         </div>
     </section>
 
-
     {{-- 광고 영역3 --}}
     <section class="tour-section-4">
         <div class="tour-text-area">
             <h2 class="tour-text-h2">망설이는 당신을 위해, 이 책 어때요?</h2>
             <p class="tour-text-p">선택의 어려움을 덜어줄 다양한 추천 도서를 만나보세요</p>
         </div>
+        {{-- 첫번째 캐러셀 --}}
         <div class="slide-container-1">
             <div class="slide-content">
                 <img src="{{ asset('img/ad-1.png') }}" alt="...">
@@ -101,10 +101,25 @@
                 <img src="{{ asset('img/ad-3.png') }}" alt="...">
             </div>
             <div class="slide-content">
+                <img src="{{ asset('img/ad-4.png') }}" alt="...">
+            </div>
+            <div class="slide-content">
+                <img src="{{ asset('img/ad-5.png') }}" alt="...">
+            </div>
+            <div class="slide-content">
+                <img src="{{ asset('img/ad-6.png') }}" alt="...">
+            </div>
+            <div class="slide-content">
                 <img src="{{ asset('img/ad-7.png') }}" alt="...">
             </div>
             <div class="slide-content">
                 <img src="{{ asset('img/ad-8.png') }}" alt="...">
+            </div>
+            <div class="slide-content">
+                <img src="{{ asset('img/ad-9.png') }}" alt="...">
+            </div>
+            <div class="slide-content">
+                <img src="{{ asset('img/ad-10.png') }}" alt="...">
             </div>
             <a class="prev" onclick="plusSlide(-1)">&#10094</a>
             <a class="next" onclick="plusSlide(1)">&#10095</a>
@@ -114,9 +129,13 @@
                 <div class="ball" onclick="currentSlide(3)"></div>
                 <div class="ball" onclick="currentSlide(4)"></div>
                 <div class="ball" onclick="currentSlide(5)"></div>
+                <div class="ball" onclick="currentSlide(6)"></div>
+                <div class="ball" onclick="currentSlide(7)"></div>
+                <div class="ball" onclick="currentSlide(8)"></div>
+                <div class="ball" onclick="currentSlide(9)"></div>
+                <div class="ball" onclick="currentSlide(10)"></div>
             </div>
         </div>
-
         {{-- 로그인유도 배너 --}}
         @if(!(Auth::check()))
         <a href="{{ route('getLogin') }}">

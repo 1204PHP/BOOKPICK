@@ -75,13 +75,9 @@ function showSlides(n) {
     }
 }
 
-
 function slideTime(n){
     n=1
     showSlides(slideIndex += n);
 }
 
 setInterval(slideTime, 6000);
-
-
-
