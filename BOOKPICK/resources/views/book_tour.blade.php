@@ -84,15 +84,17 @@
             <strong>가장 뜨거운 인기게시물!! TOP 3</strong>
             <p>당신의 생각은 어떤가요?</p>
             <div class="book-detail-memo-container">
-                <div class="book-detail-memo-area memo1">
-                    <span>게시물1</span>
-                </div>
-                <div class="book-detail-memo-area memo2">
-                    <span>게시물2</span>
-                </div>
-                <div class="book-detail-memo-area memo3">
-                    <span>게시물3</span>
-                </div>
+                @forelse($bookCommentTop3 as $val)
+                <a href="{{ route('getBookDetail', ['id' => $val['b_id']]) }}">
+                    <div class="book-detail-memo-area memo1">
+                        <p>{{ $val['b_title'] }}</p>
+                        <span>{{ $val['u_email'] }}</span>
+                        <span>{{ $val['bdc_comment'] }}</span>
+                    </div>
+                </a>
+                @empty
+                <p>내용없음</p>
+                @endforelse
             </div>
         </div>
     </section>

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Book_info;
+use App\Models\book_info;
+use App\Models\Book_detail_comment;
 use App\Models\Book_api;
-use App\Models\Book_detail_comment_state;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -30,17 +31,27 @@ class TourController extends Controller
         ->select('book_infos.*')
         ->get();
 
-        // 좋아요 가장 많은 3개 게시물
-        // $bookDetailMemo = Book_detail_comment_state::orderBy('bdcs_flg', 'desc')->take(3)
-        // ->join('book_detail_comments', 'book_detail_comment_states.bdc_id', '=', 'book_detail_comments.bdc_id')
-        // ->join('book_infos', 'book_detail_comments.b_id', '=', 'book_infos.b_id')
-        // ->select('book_detail_comment_states.bdcs_flg', 'book_detail_comments.bdc_comment', 'book_infos.b_title')
+        // 도서 중 댓글 가장 많이 달린 3개 게시물
+        // $bookCommentTop3 = Book_detail_comment::with(['book_info', 'user'])
+        // ->select('u_email', 'b_title', 'bdc_comment')
+        // ->orderByDesc(DB::raw('(SELECT COUNT(*) FROM book_detail_comments WHERE b_id = book_detail_comments.b_id)'))
+        // ->limit(3)
         // ->get();
+        $bookComment3 = DB::table('book_detail_comments as BDC')
+        ->join('book_infos as BI', 'BDC.b_id', '=', 'BI.b_id')
+        ->join('users as U', 'BDC.u_id', '=', 'U.u_id')
+        ->select('U.u_email', 'BI.b_id', 'BI.b_title', 'BDC.bdc_comment')
+        ->orderBy(DB::raw('(SELECT COUNT(*) FROM book_detail_comments WHERE b_id = BI.b_id)'), 'DESC')
+        ->limit(3)
+        ->get();
+
+        $bookCommentTop3 = json_decode($bookComment3, true);
+        Log::debug('bookComment3:' . $bookComment3);
 
         return view( 'book_tour' )
             ->with('newBook', $newBook)
             ->with('attentionBook', $attentionBook)
-            ->with('bestSellerBook', $bestSellerBook);
-            // ->with('bookDetailMemo', $bookDetailMemo);
+            ->with('bestSellerBook', $bestSellerBook)
+            ->with('bookCommentTop3', $bookCommentTop3);
     }
 }
