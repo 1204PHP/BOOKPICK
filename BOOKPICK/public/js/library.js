@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		intValue0 = 100;
 	}
 	var data = [intValue0,intValue1,intValue2,intValue3,intValue4];
-	var colors = ['#4a5759', '#b0c4b1', '#dedbd2','#f7e1d7','#edafb8'];
+	var colors = ['#8d99ae', '#b0c4b1', '#dedbd2','#f7e1d7','#edafb8'];
 
 	var total = data.reduce(function(acc, value) {
 		return acc + value;
