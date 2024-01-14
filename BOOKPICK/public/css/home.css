@@ -770,7 +770,111 @@ section {
 }
 
 
-/* 광고 영역4 */
+
+
+
+
+
+
+
+
+/* 광고 영역2 */
+
+.tour-memo-container {
+	max-width: 1000px;
+	min-height: 300px;
+	margin: 0 auto;
+	border: 1px solid #4dac27;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.tour-memo-button-area {
+	display: flex;
+}
+
+.tour-memo-button-area button {
+	width: 100%;
+	padding: 10px 10px;
+	border: 1px solid #4dac27;
+	cursor: pointer;
+	text-transform: uppercase;
+	background-color: #4dac27;
+	color: #fff;
+	opacity: 0.6;
+}
+
+.tour-memo-button-area button.active,
+.tour-memo-button-area button:hover {
+	opacity: 1;
+}
+
+.tour-memo-content {
+	padding: 2rem 1.3rem;
+	display: flex;
+}
+
+.tab-img {
+	text-align: center;
+	margin: 0 50px;
+}
+
+.tab-img:hover {
+	transform: scale(1.1);
+	transition: 0.5s;
+}
+
+.tour-memo-content img {
+	width: 150px;
+	height: 200px;
+}
+
+.tab-text {
+	width: 100%;
+	padding: 1.5rem 1.3rem;
+}
+
+.tab-title {
+	font-size: 2.3rem;
+}
+
+.tab-email,
+.tab-comment {
+	font-size: 1rem;
+	margin-bottom: 20px;
+}
+
+.hidden {
+	display: none;
+}
+
+.tab-button {
+	width: 100px;
+    height: 40px;
+    border: 0 none;
+    border-radius: 36px;
+    color: #fff;
+    background-color: #4DAC27;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+	margin-bottom: 20px;
+}
+
+.tab-button:hover {
+    transition: all 150ms linear;
+    opacity: .85;
+}
+
+
+
+
+
+
+
+
+
+/* 광고 영역3 */
 
 .slide-container-1 {
 	max-width: 1300px;
@@ -858,52 +962,7 @@ section {
 	width: 35px;
 }
 
-
-
-/* 광고 영역3 */
-
-.tour-memo-container {
-	width: 100%;
-	padding: 20px 20px;	
-}
-
-.tour-memo-container strong{
-	font-size: 20px;
-}
-
-.tour-memo-container p{
-	font-size: 0.7rem;
-	color: #9d9d9d;
-	margin-top: 5px;
-}
-
-.book-detail-memo-container {
-	background-color: white;
-    white-space: nowrap;
-    width: 100%;
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding-left: 10px;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-}
-
-.book-detail-memo-area {
-	width: 100%;
-	background-color: #E9F2DF;
-}
-
-
-
-
-
-
-
-
-/* 광고 영역5 */
+/* 광고 영역4 */
 
 .tour-card-area {
 	display: grid;

@@ -123,3 +123,39 @@ document.querySelectorAll('.tour-modal-close').forEach(function (closeButton) {
         closeTourModal();
     });
 });
+
+
+// 이메일 마스킹 처리
+document.addEventListener("DOMContentLoaded", function() {
+	function maskEmail(email) {
+		// @이메일 주소 찾기
+		var atIndex = email.indexOf("@");
+		// 이메일 앞 아이디 저장
+		var username = email.substring(0, atIndex);
+		// 이름 2자 제외 나머지 마스킹 처리
+		var maskUsername = username.substring(0, 2) + "*".repeat(username.length - 2);
+		var maskedEmail = maskUsername + email.substring(atIndex);
+		return maskedEmail;
+	}
+
+	var elements = document.getElementsByClassName("tab-email");
+	for (var i = 0; i < elements.length; i++) {
+		var originalEmail = elements[i].innerText;
+		var maskedEmailResult = maskEmail(originalEmail);
+		elements[i].innerText = maskedEmailResult;
+	}
+});
+
+// 광고영역2 탭
+
+const tabs = document.querySelectorAll(".tab");
+const tabContent = document.querySelectorAll(".tour-memo-content");
+
+tabs.forEach((tab, i) => {
+    tab.addEventListener("click", function () {
+    tabs.forEach(tab => tab.classList.remove("active"));
+    this.classList.add("active");
+    tabContent.forEach(content => content.classList.add("hidden"));
+    tabContent[i].classList.remove("hidden");
+    });
+});

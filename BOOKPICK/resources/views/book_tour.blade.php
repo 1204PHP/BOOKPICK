@@ -59,29 +59,75 @@
 
     
     {{-- 광고 영역2 --}}
-    {{-- <section class="tour-section-5">
-        <div class="tour-text-area">
-            <h2 class="tour-text-h2">나만의 생각, 지금 공유하세요</h2>
-            <p class="tour-text-p">책에 대한 다양한 생각을 함께 나눠보세요</p>
-        </div>
+    <section class="tour-section-5">
         <div class="tour-memo-container">
-            <strong>가장 뜨거운 인기게시물!! TOP 3</strong>
-            <p>당신의 생각은 어떤가요?</p>
-            <div class="book-detail-memo-container">
-                @forelse($bookCommentTop3 as $val)
-                <a href="{{ route('getBookDetail', ['id' => $val['b_id']]) }}">
-                    <div class="book-detail-memo-area memo1">
-                        <p>{{ $val['b_title'] }}</p>
-                        <span>{{ $val['u_email'] }}</span>
-                        <span>{{ $val['bdc_comment'] }}</span>
-                    </div>
-                </a>
-                @empty
-                <p>내용없음</p>
-                @endforelse
+            <div class="tour-memo-button-area">
+                <button class="tab active">가장 많은 댓글이 모인 인기 책/최다댓글 책</button>
+                <button class="tab">최신 댓글에는 새로운 시선이 담겨 있어요/최신댓글 책</button>
+                <button class="tab">좋아요가 폭발적으로 쏟아지고 있어요!/최다좋아요 책</button>
+            </div>
+            <div class="tour-memo-content">
+                <div class="tab-img">
+                    <img src=" {{ $commentTopBook['commentTop']['b_img_url'] }} " alt="">
+                </div>				
+                <div class="tab-text">
+                    <p class="tab-title">{{$commentTopBook['commentTop']['b_title']}}</p>
+                    <button class="tab-button" type="button" onclick="location='{{ route('getBookDetail', $commentTopBook['commentTop']['b_id']) }}'">자세히 보기</button>
+                    <p class="tab-email">{{$commentTopBook['currentCommentTop']['u_email']}}</p>
+                    <p class="tab-comment">{{$commentTopBook['currentCommentTop']['bdc_comment']}}</p>
+                </div>
+            </div>
+            <div class="tour-memo-content hidden">
+                <div class="tab-img">
+                    <img src="./img/user.png" alt="">
+                </div>				
+                <div class="tab-text">
+                    <h2>책 제목1</h2>
+                    <h4>유저 이메일</h4>
+                    <p>댓글 내용</p>
+                </div>
+            </div>			
+            <div class="tour-memo-content hidden">
+                <div class="tab-img">
+                    <img src="./img/user.png" alt="">
+                </div>				
+                <div class="tab-text">
+                    <h2>책 제목2</h2>
+                    <h4>유저 이메일</h4>
+                    <p>댓글 내용</p>
+                </div>
             </div>
         </div>
-    </section> --}}
+    </section>
+
+
+                {{-- <div class="book-memo-intro">
+                    <strong>가장 많은 댓글이 모인 인기 책/최다댓글 책</strong>
+                    <p class="tour-memo-p">당신도 활발한 토론에 참여하세요</p>
+                </div>
+                <div class="book-memo-intro">
+                    <strong>최신 댓글에는 새로운 시선이 담겨 있어요/최신댓글 책</strong>
+                    <p class="tour-memo-p">당신의 이야기도 들려주세요</p>
+                </div>
+                <div class="book-memo-intro">
+                    <strong>좋아요가 폭발적으로 쏟아지고 있어요!/최다좋아요 책</strong>
+                    <p class="tour-memo-p">당신의 의견도 더해보세요</p>
+                </div> --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     {{-- 광고 영역3 --}}
     <section class="tour-section-4">

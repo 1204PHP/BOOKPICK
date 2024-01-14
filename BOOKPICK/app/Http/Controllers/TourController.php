@@ -31,27 +31,40 @@ class TourController extends Controller
         ->select('book_infos.*')
         ->get();
 
-        // 도서 중 댓글 가장 많이 달린 3개 게시물
-        // $bookCommentTop3 = Book_detail_comment::with(['book_info', 'user'])
-        // ->select('u_email', 'b_title', 'bdc_comment')
-        // ->orderByDesc(DB::raw('(SELECT COUNT(*) FROM book_detail_comments WHERE b_id = book_detail_comments.b_id)'))
-        // ->limit(3)
-        // ->get();
-        $bookComment3 = DB::table('book_detail_comments as BDC')
-        ->join('book_infos as BI', 'BDC.b_id', '=', 'BI.b_id')
-        ->join('users as U', 'BDC.u_id', '=', 'U.u_id')
-        ->select('U.u_email', 'BI.b_id', 'BI.b_title', 'BDC.bdc_comment')
-        ->orderBy(DB::raw('(SELECT COUNT(*) FROM book_detail_comments WHERE b_id = BI.b_id)'), 'DESC')
-        ->limit(3)
-        ->get();
+        // 댓글 가장 많이 달린 도서 중 가장 최신 댓글 정보
+        //(책 제목, 책 이미지, 댓글내용, 유저 이메일
+        $commentTop = Book_detail_comment::join('book_infos', 'book_infos.b_id', '=', 'book_detail_comments.b_id')
+        ->select('book_detail_comments.b_id', DB::raw('COUNT(*) as comment_count'), 'book_infos.b_title', 'book_infos.b_img_url')
+        ->groupBy('book_detail_comments.b_id', 'book_infos.b_title', 'book_infos.b_img_url')
+        ->orderByDesc('comment_count')
+        ->limit(1)
+        ->first();
+        Log::debug("댓글 가장 많이 달린 도서/(책 pk, 댓글 갯수, 책 제목, 책 이미지주소)" . $commentTop);
+        $currentCommentTop = Book_detail_comment::join('users', 'users.u_id', '=', 'book_detail_comments.u_id')
+        ->select('users.u_email', 'book_detail_comments.bdc_comment', 'book_detail_comments.b_id')
+        ->orderByDesc('book_detail_comments.created_at')
+        ->limit(1)
+        ->first();
+        Log::debug("댓글 가장 많이 달린 도서/(유저이메일, 댓글내용)" .$currentCommentTop);
 
-        $bookCommentTop3 = json_decode($bookComment3, true);
-        Log::debug('bookComment3:' . $bookComment3);
+        $commentTopBook = [
+            'commentTop' => [
+                'b_id' => $commentTop->b_id,
+                'b_title' => $commentTop->b_title,
+                'b_img_url' => $commentTop->b_img_url,
+            ],
+            'currentCommentTop' => [
+                'u_email' => $currentCommentTop->u_email,
+                'bdc_comment' => $currentCommentTop->bdc_comment,
+            ],
+        ];
+
+
 
         return view( 'book_tour' )
             ->with('newBook', $newBook)
             ->with('attentionBook', $attentionBook)
             ->with('bestSellerBook', $bestSellerBook)
-            ->with('bookCommentTop3', $bookCommentTop3);
+            ->with('commentTopBook', $commentTopBook);
     }
 }
