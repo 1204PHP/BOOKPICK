@@ -4,6 +4,17 @@
 {{-- title로 Main 표기 --}}
 @section('content')
 <div class="home-container">
+    <section class="tour-section-1">
+        <div class="tour-main-area">
+            <div class="tour-main-text-container">
+                    <h1 class="tour-main-text">독서 시간을 빛낼 BOOK PICK'</h1>
+                    <p class="tour-main-text-p">독서 모험을 더욱 풍성하게!</p>
+            </div>
+            <div class="tour-main-img-container">
+                <img src="{{ asset('img/tour-main.png') }}" alt="...">
+            </div>
+        </div>
+    </section>
     <div class="home-main">
         <div class="home-baaner">
             <img src="{{ asset('img/ad-4.png') }}" class="Hbaaner" alt="...">

@@ -3,21 +3,9 @@
 @section('title', 'index')
 {{-- title로 Main 표기 --}}
 @section('content')
-<div class="tour-container">
-    {{-- 광고 영역1 --}}
-    <section class="tour-section-1">
-        <div class="tour-main-area">
-            <div class="tour-main-text-container">
-                    <h1 class="tour-main-text">독서 시간을 빛낼 BOOK PICK'</h1>
-                    <p class="tour-main-text-p">독서 모험을 더욱 풍성하게!</p>
-            </div>
-            <div class="tour-main-img-container">
-                <img src="{{ asset('img/tour-main.png') }}" alt="...">
-            </div>
-        </div>
-    </section>
+<div class="tour-container">    
 
-    {{-- 광고 영역2 --}}
+    {{-- 광고 영역1 --}}
     <section class="tour-section-2">
         <div class="tour-text-area">
             <h2 class="tour-text-h2">당신을 위한 책들이 정리되어 있어요</h2>
@@ -69,12 +57,8 @@
         </div>       
     </section>
 
-
-
-
-
     
-    {{-- 광고 영역3 --}}
+    {{-- 광고 영역2 --}}
     <section class="tour-section-5">
         <div class="tour-text-area">
             <h2 class="tour-text-h2">나만의 생각, 지금 공유하세요</h2>
@@ -100,21 +84,7 @@
     </section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {{-- 광고 영역4 --}}
+    {{-- 광고 영역3 --}}
     <section class="tour-section-4">
         <div class="tour-text-area">
             <h2 class="tour-text-h2">망설이는 당신을 위해, 이 책 어때요?</h2>
@@ -212,21 +182,14 @@
                     <span class="tour-modal-close">&times;</span>
                 </div>
             </div>
-        
-            <div class="tour-card" id="tour-card-4">
-                <div class="content">
-                    <h2 class="title">지금, 북픽하세요.</h2>
-                    <p class="copy">서재에 가득 채우고,<br>
-                        함께 공유해요.</p>
+            <a href="{{ route('getLogin') }}">
+                <div class="tour-card" id="tour-card-4">
+                    <div class="content">
+                        <h2 class="title">지금, 북픽하세요.</h2>
+                        <p class="copy">로그인하기
+                    </div>
                 </div>
-            </div>
-            {{-- 4 카드 모달 --}}
-            <div class="tour-modal" id="tour-modal-4">
-                <div class="tour-modal-content">
-                    <img src="{{ asset('img/tour-c4.png') }}" alt="">
-                    <span class="tour-modal-close">&times;</span>
-                </div>
-            </div>
+            </a>           
         </div>
     </section>
 </div>

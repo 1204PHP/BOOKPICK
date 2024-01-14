@@ -116,7 +116,6 @@ function addTourCardClickListener(cardId, modalId) {
 addTourCardClickListener('tour-card-1', 'tour-modal-1');
 addTourCardClickListener('tour-card-2', 'tour-modal-2');
 addTourCardClickListener('tour-card-3', 'tour-modal-3');
-addTourCardClickListener('tour-card-4', 'tour-modal-4');
 
 // 모달 닫기 버튼에 클릭 이벤트 추가
 document.querySelectorAll('.tour-modal-close').forEach(function (closeButton) {
