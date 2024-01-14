@@ -92,8 +92,8 @@
 						<div class="library-recent-comment-grid">
 							<div class="library-recent-comment-grid-item">
 								<a href="{{ route('getLibraryDetail', ['id' => $val->b_id]) }}" class="library-recent-comment-grid-txt">
-									<p class="library-recent-comment-txt-at">{{$val->formatted_created_at}}</p>
 									<p class="library-recent-comment-txt-title">{{$val->b_title}}</p>
+									<p class="library-recent-comment-txt-at">{{$val->formatted_created_at}}</p>
 									<p class="library-recent-comment-txt-content">{!! nl2br(e($val->ulc_comment))!!}</p>
 								</a>
 							</div>
