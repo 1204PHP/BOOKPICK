@@ -73,22 +73,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="memo-title">
+                {{-- <div class="memo-title">
                     <p class="memo-many-comment-title">최신 댓글에는 새로운 시선이 담겨 있어요</p>
                     <div class="memo-many-comment-data">
                         <div class="memo-many-comment-content-img">
-                            <img src=" {{ $lastestCommentInfo['b_img_url'] }} " alt="">
+                            <img src=" {{ $lastestBookCommentInfo['b_img_url'] }} " alt="">
                         </div>
                         <div class="memo-many-comment-content-content">
-                            <p class="memo-data-title">{{$lastestCommentInfo['b_title']}}</p>
-                            <p class="memo-data-email">{{$lastestCommentInfo['u_email']}}</p>
-                            <p class="memo-data-comment">{{$lastestCommentInfo['bdc_comment']}}</p>
+                            <p class="memo-data-title">{{$lastestBookCommentInfo['b_title']}}</p>
+                            <p class="memo-data-email">{{$lastestBookCommentInfo['u_email']}}</p>
+                            <p class="memo-data-comment">{{$lastestBookCommentInfo['bdc_comment']}}</p>
                             <div class="memo-data-button-area">
-                                <button class="memo-data-button" type="button" onclick="location='{{ route('getBookDetail', $lastestCommentInfo['b_id']) }}'">자세히 보기</button>
+                                <button class="memo-data-button" type="button" onclick="location='{{ route('getBookDetail', $lastestBookCommentInfo['b_id']) }}'">자세히 보기</button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="memo-title">
                     <p class="memo-many-comment-title">좋아요가 쏟아지고 있어요</p>
                     <div class="memo-many-comment-data">

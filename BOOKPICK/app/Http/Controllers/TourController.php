@@ -71,10 +71,46 @@ class TourController extends Controller
             // 가장 많은 댓글이 달린 책 정보
             Log::debug("가장 많은 댓글 관련 정보" , $lastestCommentInfo);                
         }
-        return view('book_tour')->with('newBook', $newBook)            
+
+        // 가장 최신 댓글과 책pk, 유저pk
+        // $latestBookComment = Book_detail_comment::select('bdc_comment', 'b_id', 'u_id')
+        // ->orderByDesc('created_at')
+        // ->limit(1)
+        // ->first();
+
+        // if ($latestBookComment) {
+        //     $latestBookInfo = book_info::join('book_detail_comments as bdc', 'book_infos.b_id', '=', 'bdc.b_id')
+        //         ->join('users as u', 'bdc.u_id', '=', 'u.u_id')
+        //         ->select('book_infos.b_title', 'book_infos.b_img_url', 'u.u_email')
+        //         ->where('bdc.b_id', '=', function ($query) {
+        //             $query->select('bdc_inner.b_id')
+        //                 ->from('book_detail_comments as bdc_inner')
+        //                 ->orderByDesc('bdc_inner.created_at')
+        //                 ->limit(1);
+        //         })
+        //         ->limit(1)
+        //         ->first();
+        
+
+        //     $lastestBookCommentInfo = [
+        //         'b_id' => $latestBookComment->b_id,
+        //         'u_id' => $latestBookComment->u_id,
+        //         'b_img_url' => $latestBookInfo->b_img_url,
+        //         'u_email' => $latestBookInfo->u_email,
+        //         'b_title' => $latestBookInfo->b_title,
+        //         'bdc_comment' => $latestBookComment->bdc_comment,
+        //     ];
+        
+
+        //     Log::debug("가장 최신 댓글 관련 정보" , $lastestBookCommentInfo); 
+        // }        
+
+        return view('book_tour')
+            ->with('newBook', $newBook)            
             ->with('attentionBook', $attentionBook)
             ->with('bestSellerBook', $bestSellerBook)
             ->with('adBookId', $adBookId)
             ->with('lastestCommentInfo', $lastestCommentInfo);
+            // ->with('lastestBookCommentInfo', $lastestBookCommentInfo);
     }
 }
