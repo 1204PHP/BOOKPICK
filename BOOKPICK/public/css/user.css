@@ -342,7 +342,8 @@
     .user-footer {
         width: 100%;
         position: fixed;
-        bottom: 0;       
+        bottom: 0;
+        left: 0;     
     }
 }
 
@@ -654,7 +655,8 @@
     .user-footer {
         width: 100%;
         position: fixed;
-        bottom: 0;       
+        bottom: 0;
+        left: 0;     
     }
 }
 

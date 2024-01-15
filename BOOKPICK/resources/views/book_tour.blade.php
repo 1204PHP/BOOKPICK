@@ -7,10 +7,6 @@
 
     {{-- 광고 영역1 --}}
     <section class="tour-section-2">
-        {{-- <div class="tour-text-area">
-            <h2 class="tour-text-h2">당신을 위한 책들이 정리되어 있어요</h2>
-            <p class="tour-text-p">지식의 물결을 따라 새로운 시야를 열어보세요</p>
-        </div> --}}
         <!-- 왼쪽에서 오른쪽으로 이동하는 책 이미지 배너 -->
         <div class="tour-banner-container">
             <ul class="left-banner-area">
@@ -59,7 +55,7 @@
 
     
     {{-- 광고 영역2 --}}
-    <section class="tour-section-5">
+    {{-- <section class="tour-section-5">
         <div class="tour-memo-container">
             <div class="tour-memo-button-area">
                 <button class="tab active">가장 많은 댓글이 모인 인기 책/최다댓글 책</button>
@@ -98,7 +94,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
 
                 {{-- <div class="book-memo-intro">

@@ -35,6 +35,7 @@
 @endsection
 
 @section('footer')
+        
     <footer class="user-footer">
         <div class="footer-container">
             <div class="footer-section-left">
