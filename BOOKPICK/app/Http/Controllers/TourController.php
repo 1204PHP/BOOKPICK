@@ -31,40 +31,50 @@ class TourController extends Controller
         ->select('book_infos.*')
         ->get();
 
-        // 댓글 가장 많이 달린 도서 중 가장 최신 댓글 정보
-        //(책 제목, 책 이미지, 댓글내용, 유저 이메일
-        $commentTop = Book_detail_comment::join('book_infos', 'book_infos.b_id', '=', 'book_detail_comments.b_id')
-        ->select('book_detail_comments.b_id', DB::raw('COUNT(*) as comment_count'), 'book_infos.b_title', 'book_infos.b_img_url')
-        ->groupBy('book_detail_comments.b_id', 'book_infos.b_title', 'book_infos.b_img_url')
-        ->orderByDesc('comment_count')
-        ->limit(1)
-        ->first();
-        Log::debug("댓글 가장 많이 달린 도서/(책 pk, 댓글 갯수, 책 제목, 책 이미지주소)" . $commentTop);
-        $currentCommentTop = Book_detail_comment::join('users', 'users.u_id', '=', 'book_detail_comments.u_id')
-        ->select('users.u_email', 'book_detail_comments.bdc_comment', 'book_detail_comments.b_id')
-        ->orderByDesc('book_detail_comments.created_at')
-        ->limit(1)
-        ->first();
-        Log::debug("댓글 가장 많이 달린 도서/(유저이메일, 댓글내용)" .$currentCommentTop);
+        // 캐러셀 슬라이드 배너 b_id 연동
+        $adBookIds = [8, 77, 82, 90, 96, 102, 104, 108, 116, 176];
 
-        $commentTopBook = [
-            'commentTop' => [
-                'b_id' => $commentTop->b_id,
-                'b_title' => $commentTop->b_title,
-                'b_img_url' => $commentTop->b_img_url,
-            ],
-            'currentCommentTop' => [
-                'u_email' => $currentCommentTop->u_email,
-                'bdc_comment' => $currentCommentTop->bdc_comment,
-            ],
-        ];
+        $adBookId = book_info::whereIn('b_id', $adBookIds)
+        ->pluck('b_id');
+        Log::debug("광고배너 책pk: " . $adBookId);    
 
+        
+        // 가장 많은 댓글이 달린 책의 최신 댓글과 책pk, 유저pk
+        $lastestComment = Book_detail_comment::orderByDesc('created_at')->first();
 
+        if ($lastestComment) {
+            // 책pk
+            $b_id = $lastestComment->b_id;
+            // 유저pk
+            $u_id = $lastestComment->u_id;
+            // 최신 댓글 내용
+            $bdc_comment = $lastestComment->bdc_comment;
 
-        return view( 'book_tour' )
-            ->with('newBook', $newBook)
+            // 가장 많은 댓글이 달린 책 정보
+            $bookInfo = book_info::find($b_id);
+            $b_title = $bookInfo->b_title;
+            $b_img_url = $bookInfo->b_img_url;
+
+            // 댓글에 대한 유저 정보
+            $user = User::find($u_id);
+            $u_email = $user->u_email;
+
+            // 결과 저장
+            $lastestCommentInfo = [
+                'b_id' => $b_id,
+                'u_id' => $u_id,
+                'b_img_url' => $b_img_url,
+                'u_email' => $u_email,
+                'b_title' => $b_title,
+                'bdc_comment' => $bdc_comment,
+            ];
+            // 가장 많은 댓글이 달린 책 정보
+            Log::debug("가장 많은 댓글 관련 정보" , $lastestCommentInfo);                
+        }
+        return view('book_tour')->with('newBook', $newBook)            
             ->with('attentionBook', $attentionBook)
             ->with('bestSellerBook', $bestSellerBook)
-            ->with('commentTopBook', $commentTopBook);
+            ->with('adBookId', $adBookId)
+            ->with('lastestCommentInfo', $lastestCommentInfo);
     }
 }

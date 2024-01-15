@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		return maskedEmail;
 	}
 
-	var elements = document.getElementsByClassName("tab-email");
+	var elements = document.getElementsByClassName("memo-data-email");
 	for (var i = 0; i < elements.length; i++) {
 		var originalEmail = elements[i].innerText;
 		var maskedEmailResult = maskEmail(originalEmail);

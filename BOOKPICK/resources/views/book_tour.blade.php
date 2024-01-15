@@ -52,78 +52,63 @@
             </ul>
         </div>       
     </section>
-
     
     {{-- 광고 영역2 --}}
-    {{-- <section class="tour-section-5">
+    <section class="tour-section-5">
         <div class="tour-memo-container">
-            <div class="tour-memo-button-area">
-                <button class="tab active">가장 많은 댓글이 모인 인기 책/최다댓글 책</button>
-                <button class="tab">최신 댓글에는 새로운 시선이 담겨 있어요/최신댓글 책</button>
-                <button class="tab">좋아요가 폭발적으로 쏟아지고 있어요!/최다좋아요 책</button>
-            </div>
-            <div class="tour-memo-content">
-                <div class="tab-img">
-                    <img src=" {{ $commentTopBook['commentTop']['b_img_url'] }} " alt="">
-                </div>				
-                <div class="tab-text">
-                    <p class="tab-title">{{$commentTopBook['commentTop']['b_title']}}</p>
-                    <button class="tab-button" type="button" onclick="location='{{ route('getBookDetail', $commentTopBook['commentTop']['b_id']) }}'">자세히 보기</button>
-                    <p class="tab-email">{{$commentTopBook['currentCommentTop']['u_email']}}</p>
-                    <p class="tab-comment">{{$commentTopBook['currentCommentTop']['bdc_comment']}}</p>
+            <div class="memo-many-comment-area">
+                <div class="memo-title">
+                    <p class="memo-many-comment-title">가장 많은 댓글이 모인 인기 책</p>
+                    <div class="memo-many-comment-data">
+                        <div class="memo-many-comment-content-img">
+                            <img src=" {{ $lastestCommentInfo['b_img_url'] }} " alt="">
+                        </div>
+                        <div class="memo-many-comment-content-content">
+                            <p class="memo-data-title">{{$lastestCommentInfo['b_title']}}</p>
+                            <p class="memo-data-email">{{$lastestCommentInfo['u_email']}}</p>
+                            <p class="memo-data-comment">{{$lastestCommentInfo['bdc_comment']}}</p>
+                            <div class="memo-data-button-area">
+                                <button class="memo-data-button" type="button" onclick="location='{{ route('getBookDetail', $lastestCommentInfo['b_id']) }}'">자세히 보기</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="tour-memo-content hidden">
-                <div class="tab-img">
-                    <img src="./img/user.png" alt="">
-                </div>				
-                <div class="tab-text">
-                    <h2>책 제목1</h2>
-                    <h4>유저 이메일</h4>
-                    <p>댓글 내용</p>
+                <div class="memo-title">
+                    <p class="memo-many-comment-title">최신 댓글에는 새로운 시선이 담겨 있어요</p>
+                    <div class="memo-many-comment-data">
+                        <div class="memo-many-comment-content-img">
+                            <img src=" {{ $lastestCommentInfo['b_img_url'] }} " alt="">
+                        </div>
+                        <div class="memo-many-comment-content-content">
+                            <p class="memo-data-title">{{$lastestCommentInfo['b_title']}}</p>
+                            <p class="memo-data-email">{{$lastestCommentInfo['u_email']}}</p>
+                            <p class="memo-data-comment">{{$lastestCommentInfo['bdc_comment']}}</p>
+                            <div class="memo-data-button-area">
+                                <button class="memo-data-button" type="button" onclick="location='{{ route('getBookDetail', $lastestCommentInfo['b_id']) }}'">자세히 보기</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>			
-            <div class="tour-memo-content hidden">
-                <div class="tab-img">
-                    <img src="./img/user.png" alt="">
-                </div>				
-                <div class="tab-text">
-                    <h2>책 제목2</h2>
-                    <h4>유저 이메일</h4>
-                    <p>댓글 내용</p>
+                <div class="memo-title">
+                    <p class="memo-many-comment-title">좋아요가 쏟아지고 있어요</p>
+                    <div class="memo-many-comment-data">
+                        <div class="memo-many-comment-content-img">
+                            <img src=" {{ $lastestCommentInfo['b_img_url'] }} " alt="">
+                        </div>
+                        <div class="memo-many-comment-content-content">
+                            <p class="memo-data-title">{{$lastestCommentInfo['b_title']}}</p>
+                            <p class="memo-data-email">{{$lastestCommentInfo['u_email']}}</p>
+                            <p class="memo-data-comment">{{$lastestCommentInfo['bdc_comment']}}</p>
+                            <div class="memo-data-button-area">
+                                <button class="memo-data-button" type="button" onclick="location='{{ route('getBookDetail', $lastestCommentInfo['b_id']) }}'">자세히 보기</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
         </div>
-    </section> --}}
-
-
-                {{-- <div class="book-memo-intro">
-                    <strong>가장 많은 댓글이 모인 인기 책/최다댓글 책</strong>
-                    <p class="tour-memo-p">당신도 활발한 토론에 참여하세요</p>
-                </div>
-                <div class="book-memo-intro">
-                    <strong>최신 댓글에는 새로운 시선이 담겨 있어요/최신댓글 책</strong>
-                    <p class="tour-memo-p">당신의 이야기도 들려주세요</p>
-                </div>
-                <div class="book-memo-intro">
-                    <strong>좋아요가 폭발적으로 쏟아지고 있어요!/최다좋아요 책</strong>
-                    <p class="tour-memo-p">당신의 의견도 더해보세요</p>
-                </div> --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </section>
 
     {{-- 광고 영역3 --}}
     <section class="tour-section-4">
@@ -133,36 +118,61 @@
         </div>
         {{-- 캐러셀 --}}
         <div class="slide-container-1">
+            @forelse ($adBookId as $val)
             <div class="slide-content">
-                <img src="{{ asset('img/ad-1.png') }}" alt="...">
+                <a href="{{ route('getBookDetail', ['id' => 8]) }}">
+                    <img src="{{ asset('img/ad-01.png') }}" alt="...">
+                </a>
             </div>
             <div class="slide-content">
-                <img src="{{ asset('img/ad-2.png') }}" alt="...">
+                <a href="{{ route('getBookDetail', ['id' => 77]) }}">
+                    <img src="{{ asset('img/ad-02.png') }}" alt="...">
+                </a>
+            </div>            
+            <div class="slide-content">
+                <a href="{{ route('getBookDetail', ['id' => 82]) }}">
+                    <img src="{{ asset('img/ad-03.png') }}" alt="...">
+                </a>            
             </div>
             <div class="slide-content">
-                <img src="{{ asset('img/ad-3.png') }}" alt="...">
+                <a href="{{ route('getBookDetail', ['id' => 90]) }}">
+                    <img src="{{ asset('img/ad-04.png') }}" alt="...">
+                </a>            
             </div>
             <div class="slide-content">
-                <img src="{{ asset('img/ad-4.png') }}" alt="...">
+                <a href="{{ route('getBookDetail', ['id' => 96]) }}">
+                    <img src="{{ asset('img/ad-05.png') }}" alt="...">
+                </a>            
             </div>
             <div class="slide-content">
-                <img src="{{ asset('img/ad-5.png') }}" alt="...">
+                <a href="{{ route('getBookDetail', ['id' => 102]) }}">
+                    <img src="{{ asset('img/ad-06.png') }}" alt="...">
+                </a>            
             </div>
             <div class="slide-content">
-                <img src="{{ asset('img/ad-6.png') }}" alt="...">
+                <a href="{{ route('getBookDetail', ['id' => 104]) }}">
+                    <img src="{{ asset('img/ad-07.png') }}" alt="...">
+                </a>            
             </div>
             <div class="slide-content">
-                <img src="{{ asset('img/ad-7.png') }}" alt="...">
+                <a href="{{ route('getBookDetail', ['id' => 108]) }}">
+                    <img src="{{ asset('img/ad-08.png') }}" alt="...">
+                </a>            
             </div>
             <div class="slide-content">
-                <img src="{{ asset('img/ad-8.png') }}" alt="...">
+                <a href="{{ route('getBookDetail', ['id' => 116]) }}">
+                    <img src="{{ asset('img/ad-09.png') }}" alt="...">
+                </a>            
             </div>
             <div class="slide-content">
-                <img src="{{ asset('img/ad-9.png') }}" alt="...">
+                <a href="{{ route('getBookDetail', ['id' => 176]) }}">
+                    <img src="{{ asset('img/ad-10.png') }}" alt="...">
+                </a>            
             </div>
-            <div class="slide-content">
-                <img src="{{ asset('img/ad-10.png') }}" alt="...">
-            </div>
+            @empty
+                <p>없음</p>
+            @endforelse
+
             <a class="prev" onclick="plusSlide(-1)">&#10094</a>
             <a class="next" onclick="plusSlide(1)">&#10095</a>
             <div id="pagination">

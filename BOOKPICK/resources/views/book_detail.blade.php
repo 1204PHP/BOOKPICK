@@ -92,7 +92,7 @@
 			@forelse($relatedBook as $val)
 			<li class="slide-box">
 				<a href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
-					<img src="{{$val->b_img_url}}" alt="...">
+					<img class="common_book_hover" src="{{$val->b_img_url}}" alt="...">
 				</a>
 					<p>{{$val->b_title}}</p>
 					<p>{{$val->b_author}}</p>
