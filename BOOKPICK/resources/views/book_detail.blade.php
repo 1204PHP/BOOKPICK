@@ -168,6 +168,20 @@
 					개의 댓글
 				</p>
 			</div>
+			<div id="categoryBtnDiv" class="categoryBtnDiv">
+				<p onclick="categoryBtn(1)" id="categoryBtn1" class="bdc-list-cate">
+					최신순
+				</p>
+				<p onclick="categoryBtn(2)" id="categoryBtn2" class="bdc-list-cate">
+					순공감순
+				</p>
+				<p onclick="categoryBtn(3)" id="categoryBtn3" class="bdc-list-cate">
+					답글순
+				</p>
+				<p onclick="categoryBtn(4)" id="categoryBtn4" class="bdc-list-cate">
+					과거순
+				</p>
+			</div>
 			<div id="bdc-list" class="bdc-list">
 				{{-- <div class="bdc-list-area">
 
