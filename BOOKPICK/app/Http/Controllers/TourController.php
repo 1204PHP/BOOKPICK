@@ -32,14 +32,14 @@ class TourController extends Controller
         ->get();
 
         // 캐러셀 슬라이드 배너 b_id 연동
-        $adBookIds = [8, 77, 82, 90, 96, 102, 104, 108, 116, 176];
+        $adBookIds = [132, 113, 108, 111, 115, 120];
 
         $adBookId = book_info::whereIn('b_id', $adBookIds)
         ->pluck('b_id');
         Log::debug("광고배너 책pk: " . $adBookId);    
 
         
-        // 가장 많은 댓글이 달린 책의 최신 댓글과 책pk, 유저pk
+        // 최신 댓글과 책pk, 유저pk
         $lastestComment = Book_detail_comment::orderByDesc('created_at')->first();
 
         if ($lastestComment) {
@@ -109,8 +109,8 @@ class TourController extends Controller
             ->with('newBook', $newBook)            
             ->with('attentionBook', $attentionBook)
             ->with('bestSellerBook', $bestSellerBook)
-            ->with('adBookId', $adBookId)
-            ->with('lastestCommentInfo', $lastestCommentInfo);
+            ->with('adBookId', $adBookId);
+            // ->with('lastestCommentInfo', $lastestCommentInfo);
             // ->with('lastestBookCommentInfo', $lastestBookCommentInfo);
     }
 }
