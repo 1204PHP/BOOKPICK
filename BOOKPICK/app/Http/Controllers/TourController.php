@@ -36,9 +36,42 @@ class TourController extends Controller
 
         $adBookId = book_info::whereIn('b_id', $adBookIds)
         ->pluck('b_id');
-        Log::debug("광고배너 책pk: " . $adBookId);    
+        Log::debug("광고배너 책pk: " . $adBookId);
 
-        
+        // 가장 많은 댓글이 달린 책(책pk, 유저pk, 책imgurl, 유저 이메일, 책 제목, 댓글 내용)
+        $popularBookComment = book_info::select(
+            'manycom.b_id',
+            'manycom.u_id',
+            'book_infos.b_img_url',
+            'users.u_email',
+            'book_infos.b_title',
+            'book_detail_comments.bdc_comment'
+        )
+        ->joinSub(
+            function ($query) {
+                $query->from('book_detail_comments')
+                    ->select('b_id', 'u_id')
+                    ->groupBy('b_id', 'u_id')  // 여기에 'u_id' 추가
+                    ->orderByDesc(DB::raw('count(*)'))
+                    ->orderByDesc(DB::raw('MAX(created_at)'))
+                    ->limit(1);
+            },
+            'manycom',
+            function ($join) {
+                $join->on('book_infos.b_id', '=', 'manycom.b_id');
+            }
+        )
+        ->join('book_detail_comments', function ($join) {
+            $join->on('manycom.b_id', '=', 'book_detail_comments.b_id')
+                ->on('manycom.u_id', '=', 'book_detail_comments.u_id');
+        })
+        ->join('users', 'manycom.u_id', '=', 'users.u_id')
+        ->orderByDesc('book_detail_comments.created_at')
+        ->first();
+    
+        // 가장 많은 댓글이 달린 책 정보
+        Log::debug("가장 많은 댓글 관련 정보", $popularBookComment->toArray());
+
         // 최신 댓글과 책pk, 유저pk
         $lastestComment = Book_detail_comment::orderByDesc('created_at')->first();
 
@@ -50,12 +83,12 @@ class TourController extends Controller
             // 최신 댓글 내용
             $bdc_comment = $lastestComment->bdc_comment;
 
-            // 가장 많은 댓글이 달린 책 정보
+            // 최신 댓글 댓글이 달린 책 정보
             $bookInfo = book_info::find($b_id);
             $b_title = $bookInfo->b_title;
             $b_img_url = $bookInfo->b_img_url;
 
-            // 댓글에 대한 유저 정보
+            // 최신 댓글에 대한 유저 정보
             $user = User::find($u_id);
             $u_email = $user->u_email;
 
@@ -68,49 +101,16 @@ class TourController extends Controller
                 'b_title' => $b_title,
                 'bdc_comment' => $bdc_comment,
             ];
-            // 가장 많은 댓글이 달린 책 정보
-            Log::debug("가장 많은 댓글 관련 정보" , $lastestCommentInfo);                
+            // 최신 댓글이 달린 책 정보
+            Log::debug("최신 댓글 관련 정보" , $lastestCommentInfo);                
         }
-
-        // 가장 최신 댓글과 책pk, 유저pk
-        // $latestBookComment = Book_detail_comment::select('bdc_comment', 'b_id', 'u_id')
-        // ->orderByDesc('created_at')
-        // ->limit(1)
-        // ->first();
-
-        // if ($latestBookComment) {
-        //     $latestBookInfo = book_info::join('book_detail_comments as bdc', 'book_infos.b_id', '=', 'bdc.b_id')
-        //         ->join('users as u', 'bdc.u_id', '=', 'u.u_id')
-        //         ->select('book_infos.b_title', 'book_infos.b_img_url', 'u.u_email')
-        //         ->where('bdc.b_id', '=', function ($query) {
-        //             $query->select('bdc_inner.b_id')
-        //                 ->from('book_detail_comments as bdc_inner')
-        //                 ->orderByDesc('bdc_inner.created_at')
-        //                 ->limit(1);
-        //         })
-        //         ->limit(1)
-        //         ->first();
-        
-
-        //     $lastestBookCommentInfo = [
-        //         'b_id' => $latestBookComment->b_id,
-        //         'u_id' => $latestBookComment->u_id,
-        //         'b_img_url' => $latestBookInfo->b_img_url,
-        //         'u_email' => $latestBookInfo->u_email,
-        //         'b_title' => $latestBookInfo->b_title,
-        //         'bdc_comment' => $latestBookComment->bdc_comment,
-        //     ];
-        
-
-        //     Log::debug("가장 최신 댓글 관련 정보" , $lastestBookCommentInfo); 
-        // }        
 
         return view('book_tour')
             ->with('newBook', $newBook)            
             ->with('attentionBook', $attentionBook)
             ->with('bestSellerBook', $bestSellerBook)
-            ->with('adBookId', $adBookId);
-            // ->with('lastestCommentInfo', $lastestCommentInfo);
-            // ->with('lastestBookCommentInfo', $lastestBookCommentInfo);
+            ->with('adBookId', $adBookId)
+            ->with('popularBookComment', $popularBookComment) // 가장 많은 댓글
+            ->with('lastestCommentInfo', $lastestCommentInfo); // 최신 댓글
     }
 }

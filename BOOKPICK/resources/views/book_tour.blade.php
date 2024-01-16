@@ -85,10 +85,10 @@
     </section>
     {{-- 광고 영역4 --}}
     <section class="tour-section-3">
-        <div class="tour-text-area">
+        {{-- <div class="tour-text-area">
             <h2 class="tour-text-h2">북픽과 함께하는 새로운 시작</h2>
             <p class="tour-text-p">성공을 향한 여정, 독서와 함께 떠나보세요</p>
-        </div>
+        </div> --}}
         <div class="tour-card-area">
             <div class="tour-card" id="tour-card-1">
                 <div class="content">
@@ -156,6 +156,77 @@
         </a>
         @endif  
     </section>
+    {{-- 광고 영역2 --}}
+    <section class="tour-section-5">
+        <div class="tour-memo-container">
+            <div class="memo-comment-area">                
+                <div class="memo-title">
+                    <p class="memo-comment-title">가장 많은 댓글이 모인 인기 책</p>
+                    <div class="memo-comment-data">
+                        <div class="memo-comment-content-img">
+                            <img src=" {{ $popularBookComment['b_img_url'] }} " alt="">
+                        </div>
+                        <div class="memo-comment-content-content">
+                            <div class="memo-data-comment-container">
+                                <p class="memo-data-title">{{$popularBookComment['b_title']}}</p>
+                                <p class="memo-data-email">{{$popularBookComment['u_email']}}</p>
+                                <div class="memo-data-comment-area">
+                                    <p class="memo-data-comment">{{$popularBookComment['bdc_comment']}}</p>
+                                </div>
+                            </div>
+                            <div class="memo-data-button-area">
+                                <button class="memo-data-button" type="button" onclick="location='{{ route('getBookDetail', $popularBookComment['b_id']) }}'">자세히 보기</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="memo-comment-area">
+                <div class="memo-title">
+                    <p class="memo-comment-title">최신 댓글에는 새로운 시선이 담겨 있어요</p>
+                    <div class="memo-comment-data">
+                        <div class="memo-comment-content-img">
+                            <img src=" {{ $lastestCommentInfo['b_img_url'] }} " alt="">
+                        </div>
+                        <div class="memo-comment-content-content">
+                            <div class="memo-data-comment-container">
+                                <p class="memo-data-title">{{$lastestCommentInfo['b_title']}}</p>
+                                <p class="memo-data-email">{{$lastestCommentInfo['u_email']}}</p>
+                                <div class="memo-data-comment-area">
+                                    <p class="memo-data-comment">{{$lastestCommentInfo['bdc_comment']}}</p>
+                                </div>
+                            </div>
+                            <div class="memo-data-button-area">
+                                <button class="memo-data-button" type="button" onclick="location='{{ route('getBookDetail', $lastestCommentInfo['b_id']) }}'">자세히 보기</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="memo-comment-area">
+                <div class="memo-title">
+                    <p class="memo-comment-title">좋아요가 쏟아지고 있어요</p>
+                    <div class="memo-comment-data">
+                        <div class="memo-comment-content-img">
+                            <img src=" {{ $lastestCommentInfo['b_img_url'] }} " alt="">
+                        </div>
+                        <div class="memo-comment-content-content">
+                            <div class="memo-data-comment-container">
+                                <p class="memo-data-title">{{$lastestCommentInfo['b_title']}}</p>
+                                <p class="memo-data-email">{{$lastestCommentInfo['u_email']}}</p>
+                                <div class="memo-data-comment-area">
+                                    <p class="memo-data-comment">{{$lastestCommentInfo['bdc_comment']}}</p>
+                                </div>
+                            </div>
+                            <div class="memo-data-button-area">
+                                <button class="memo-data-button" type="button" onclick="location='{{ route('getBookDetail', $lastestCommentInfo['b_id']) }}'">자세히 보기</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>   
 
     {{-- 광고 영역1 --}}
     <section class="tour-section-2">
@@ -203,68 +274,7 @@
                 @endforelse
             </ul>
         </div>             
-    </section>
-    
-    {{-- 광고 영역2 --}}
-    <section class="tour-section-5">
-        <div class="tour-memo-container">
-            <div class="memo-many-comment-area">                
-                {{-- <div class="memo-title">
-                    <p class="memo-many-comment-title">가장 많은 댓글이 모인 인기 책</p>
-                    <div class="memo-many-comment-data">
-                        <div class="memo-many-comment-content-img">
-                            <img src=" {{ $lastestCommentInfo['b_img_url'] }} " alt="">
-                        </div>
-                        <div class="memo-many-comment-content-content">
-                            <p class="memo-data-title">{{$lastestCommentInfo['b_title']}}</p>
-                            <p class="memo-data-email">{{$lastestCommentInfo['u_email']}}</p>
-                            <p class="memo-data-comment">{{$lastestCommentInfo['bdc_comment']}}</p>
-                            <div class="memo-data-button-area">
-                                <button class="memo-data-button" type="button" onclick="location='{{ route('getBookDetail', $lastestCommentInfo['b_id']) }}'">자세히 보기</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="memo-title">
-                    <p class="memo-many-comment-title">최신 댓글에는 새로운 시선이 담겨 있어요</p>
-                    <div class="memo-many-comment-data">
-                        <div class="memo-many-comment-content-img">
-                            <img src=" {{ $lastestCommentInfo['b_img_url'] }} " alt="">
-                        </div>
-                        <div class="memo-many-comment-content-content">
-                            <p class="memo-data-title">{{$lastestCommentInfo['b_title']}}</p>
-                            <p class="memo-data-email">{{$lastestCommentInfo['u_email']}}</p>
-                            <p class="memo-data-comment">{{$lastestCommentInfo['bdc_comment']}}</p>
-                            <div class="memo-data-button-area">
-                                <button class="memo-data-button" type="button" onclick="location='{{ route('getBookDetail', $lastestCommentInfo['b_id']) }}'">자세히 보기</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="memo-title">
-                    <p class="memo-many-comment-title">좋아요가 쏟아지고 있어요</p>
-                    <div class="memo-many-comment-data">
-                        <div class="memo-many-comment-content-img">
-                            <img src=" {{ $lastestCommentInfo['b_img_url'] }} " alt="">
-                        </div>
-                        <div class="memo-many-comment-content-content">
-                            <p class="memo-data-title">{{$lastestCommentInfo['b_title']}}</p>
-                            <p class="memo-data-email">{{$lastestCommentInfo['u_email']}}</p>
-                            <p class="memo-data-comment">{{$lastestCommentInfo['bdc_comment']}}</p>
-                            <div class="memo-data-button-area">
-                                <button class="memo-data-button" type="button" onclick="location='{{ route('getBookDetail', $lastestCommentInfo['b_id']) }}'">자세히 보기</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                
-            </div>
-        </div>
-    </section>
-
-    
-    
-    
+    </section>    
 </div>
 @endsection
 
