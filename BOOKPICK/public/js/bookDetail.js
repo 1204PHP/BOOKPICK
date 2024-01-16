@@ -383,7 +383,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 			var likeBox = document.createElement('a');
 			likeBox.className = 'bdc-list-area-like-box';
-	
+			likeBox.onclick = function() {
+				likeInsert(bdc_id);
+			};
 			var likeImg = document.createElement('img');
 			likeImg.className = 'bdc-dis-like-btn';
 			likeImg.src = '/img/book_detail_like.png';
