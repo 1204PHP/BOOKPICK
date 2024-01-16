@@ -383,7 +383,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 			var likeBox = document.createElement('a');
 			likeBox.className = 'bdc-list-area-like-box';
-	
+			likeBox.onclick = function() {
+				likeInsert(bdc_id);
+			};
 			var likeImg = document.createElement('img');
 			likeImg.className = 'bdc-dis-like-btn';
 			likeImg.src = '/img/book_detail_like.png';
@@ -814,6 +816,35 @@ function replyInsertFormCheck(bdc_id) {
 					document.getElementById(contentStr).value = "";
 					document.getElementById(countStr).innerHTML = "0 / 700";
     				document.querySelector(labelStr).style.display = 'block';
+				}
+			})
+			.catch(error => {
+				console.error('오류 발생:', error);
+			})
+	}
+}
+
+function replyInsertFormCheck(bdc_id) {
+	if (contentValue.trim() === "") {
+		alert("내용을 입력해주세요.");
+	} else {
+		let formData = new FormData();
+			let bId = document.getElementById("bdc_b_id").value;
+			formData.append('b_id', bId);
+			formData.append('bdc_id', bdc_id);
+			fetch('/book/detail/reply/insert', {
+				method: 'POST',
+				body: formData,
+			})
+			.then(response => response.json())
+			.then(data => {
+				let errorMsg = data.errorMsg;
+				if(errorMsg) {
+					if(confirm("로그인을 하신 후 이용해 주시기 바랍니다.")){
+						window.location.href = "/login";
+					}
+				} else {
+
 				}
 			})
 			.catch(error => {

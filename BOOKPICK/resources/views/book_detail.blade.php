@@ -107,6 +107,7 @@
 	<input id="bdc_b_id" type="hidden" value="{{$result->b_id}}">
 	@if(Auth::check())
 	<input id="ac_flg" type="hidden" value="1">
+	<input id="u_id" type="hidden" value="{{ Auth::user()->u_id }}">
 	<input id="u_name" type="hidden" value="{{ Auth::user()->u_name }}">
 	@else
 	<input id="ac_flg" type="hidden" value="2">

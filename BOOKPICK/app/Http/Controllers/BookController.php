@@ -399,6 +399,48 @@ class BookController extends Controller
             return redirect()->route( 'index' );
         }
     }
+
+    public function bookDetailCommentLikeInsert(Request $request)
+    {
+        try {
+            Log::debug( "--------도서 좋아요 ajax 시작---------" );
+            $userId = Session::get('u_id');
+            $comment = $request->content;
+            $id = $request->b_id;
+            $bdc_id = $request->bdc_id;
+            if($comment === NULL) {
+                $comment = "";
+            }
+
+            if ($userId) {
+                $commentResult = Book_detail_reply::create([
+                    'bdr_comment' => $comment,
+                    'u_id' => $userId,
+                    'bdc_id' => $bdc_id,
+                ]);
+                $uNameResult = User::select('u_name')
+                                ->where('u_id',$userId)
+                                ->first();
+                $responseData = [
+                    'commentResult' => $commentResult,
+                    'uNameResult' => $uNameResult,
+                ];
+                Log::debug( "userId : ". $userId );
+                Log::debug( "comment : ". $comment );
+                return response()->json($responseData);
+            } else {
+                $responseData = [
+                    'errorMsg' => "로그인 후 이용 바랍니다.",
+                ];
+                return response()->json($responseData);
+            }
+        } catch(Exception $e) {
+            Log::error( "--------서재 도서 대댓글 삽입  에러발생---------" );
+            Log::error( "에러내용:".$e->getMessage());
+            Log::error( "------------------------------------" );
+            return redirect()->route( 'index' );
+        }
+    }
 }
 
 

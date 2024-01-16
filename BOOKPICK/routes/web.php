@@ -118,6 +118,9 @@ Route::post( '/book/detail/reply/insert', [BookController::class, 'bookDetailRep
 ->name( 'postbookDetailReply' );
 Route::post( '/book/detail/reply/print', [BookController::class, 'bookDetailReplyPrint'])
 ->name( 'postbookDetailReplyPrint' );
+// 도서 상세 페이지 - 좋아요, 싫어요
+Route::post( '/book/detail/comment/like', [BookController::class, 'bookDetailCommentLikeInsert'])
+->name( 'postBookDetailCommentLikeInsert' );
 
 
 
