@@ -292,7 +292,11 @@ class BookController extends Controller
         try {
             Log::debug( "--------댓글 출력 ajax 시작---------" );
             $id= $request->b_id;
-            $commentResult = Book_detail_comment::join('users', 'book_detail_comments.u_id', '=', 'users.u_id')
+            $cateNum = $request->cateNum;
+            $userId = Session::get('u_id');
+            $userLikeResultArr=[];
+            $userDislikeResultArr=[];
+            $commentResultQuery = Book_detail_comment::join('users', 'book_detail_comments.u_id', '=', 'users.u_id')
             ->select('book_detail_comments.*','users.u_name')
             ->where('book_detail_comments.b_id', $id)
             ->addSelect(['like' => Book_detail_comment_state::selectRaw('COUNT(*)')
@@ -305,18 +309,57 @@ class BookController extends Controller
             ])
             ->addSelect(['reply_count' => Book_detail_reply::selectRaw('COUNT(*)')
                 ->whereColumn('book_detail_replies.bdc_id', 'book_detail_comments.bdc_id')
-            ])
-            ->orderby('book_detail_comments.created_at', 'desc')
-            // ->limit(5)
-            ->get();
-            
+            ]);
+            if ($cateNum == "1") {
+                $commentResultQuery->orderby('book_detail_comments.created_at', 'desc');
+            } else if ($cateNum == "2") {
+                    $commentResultQuery->orderby('like', 'desc');
+            } else if ($cateNum == "3") {
+                $commentResultQuery->orderby('reply_count', 'desc');
+            } else if ($cateNum == "4") {
+                $commentResultQuery->orderby('book_detail_comments.created_at', 'asc');
+            }
+            $commentResult = $commentResultQuery->get();
+
             $commentCount = Book_detail_comment::where('b_id', $id)
                 ->count();
 
-            $responseData = [
-                'commentResult' => $commentResult,
-                'commentCount' => $commentCount,
-            ];
+            if($userId){
+                $userLikeResult = Book_detail_comment_state::select('book_detail_comments.bdc_id')
+                    ->join('book_detail_comments', 'book_detail_comments.bdc_id', '=', 'book_detail_comment_states.bdc_id')
+                    ->where('book_detail_comments.b_id', $id)
+                    ->where('book_detail_comment_states.u_id', $userId)
+                    ->where('book_detail_comment_states.bdcs_flg', 1)
+                    ->get();
+                $userDislikeResult = Book_detail_comment_state::select('book_detail_comments.bdc_id')
+                    ->join('book_detail_comments', 'book_detail_comments.bdc_id', '=', 'book_detail_comment_states.bdc_id')
+                    ->where('book_detail_comments.b_id', $id)
+                    ->where('book_detail_comment_states.u_id', $userId)
+                    ->where('book_detail_comment_states.bdcs_flg', 2)
+                    ->get();
+                foreach($userLikeResult as $value) {
+                    $userLikeResultArr[] = $value['bdc_id'];
+                }
+                foreach($userDislikeResult as $value) {
+                    $userDislikeResultArr[] = $value['bdc_id'];
+                }
+                $responseData = [
+                    'commentResult' => $commentResult,
+                    'commentCount' => $commentCount,
+                    'userLikeResultArr' => $userLikeResultArr,
+                    'userDislikeResultArr' => $userDislikeResultArr,
+                ];
+            } else {
+                $userLikeResultArr = [];
+                $userDislikeResultArr = [];
+
+                $responseData = [
+                    'commentResult' => $commentResult,
+                    'commentCount' => $commentCount,
+                    'userLikeResultArr' => $userLikeResultArr,
+                    'userDislikeResultArr' => $userDislikeResultArr,
+                ];
+            }
             Log::debug( "--------댓글 출력 ajax 끝---------" );
             return response()->json($responseData);
         } catch(Exception $e) {
@@ -332,6 +375,9 @@ class BookController extends Controller
         try {
             Log::debug( "--------대댓글 출력 ajax 시작---------" );
             $bdcId= $request->bdc_id;
+            $userLikeResultArr=[];
+            $userDislikeResultArr=[];
+            $userId = Session::get('u_id');
             $replyResult = Book_detail_reply::join('users', 'Book_detail_replies.u_id', '=', 'users.u_id')
             ->select('Book_detail_replies.*','users.u_name')
             ->where('Book_detail_replies.bdc_id', $bdcId)
@@ -345,9 +391,39 @@ class BookController extends Controller
             ])
             ->orderby('Book_detail_replies.created_at', 'asc')
             ->get();
-            $responseData = [
-                'replyResult' => $replyResult,
-            ];
+            if($userId){
+                $userLikeResult = Book_detail_reply_state::select('book_detail_reply_states.bdr_id')
+                    ->join('book_detail_replies', 'book_detail_replies.bdr_id', '=', 'book_detail_reply_states.bdr_id')
+                    ->where('book_detail_replies.bdc_id', $bdcId)
+                    ->where('book_detail_reply_states.u_id', $userId)
+                    ->where('book_detail_reply_states.bdrs_flg', 1)
+                    ->get();
+                $userDislikeResult = Book_detail_reply_state::select('book_detail_reply_states.bdr_id')
+                    ->join('book_detail_replies', 'book_detail_replies.bdr_id', '=', 'book_detail_reply_states.bdr_id')
+                    ->where('book_detail_replies.bdc_id', $bdcId)
+                    ->where('book_detail_reply_states.u_id', $userId)
+                    ->where('book_detail_reply_states.bdrs_flg', 2)
+                    ->get();
+                foreach($userLikeResult as $value) {
+                    $userLikeResultArr[] = $value['bdr_id'];
+                }
+                foreach($userDislikeResult as $value) {
+                    $userDislikeResultArr[] = $value['bdr_id'];
+                }
+                $responseData = [
+                    'replyResult' => $replyResult,
+                    'userLikeResultArr' => $userLikeResultArr,
+                    'userDislikeResultArr' => $userDislikeResultArr,
+                ];
+            } else {
+                $userLikeResultArr = [];
+                $userDislikeResultArr = [];
+                $responseData = [
+                    'replyResult' => $replyResult,
+                    'userLikeResultArr' => $userLikeResultArr,
+                    'userDislikeResultArr' => $userDislikeResultArr,
+                ];
+            }
             Log::debug( "--------대댓글 출력 ajax 끝---------" );
             return response()->json($responseData);
         } catch(Exception $e) {
