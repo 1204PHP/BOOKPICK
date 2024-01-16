@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\book_info;
 use App\Models\Book_detail_comment;
+use App\Models\Book_detail_comment_state;
 use App\Models\Book_api;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +39,7 @@ class TourController extends Controller
         ->pluck('b_id');
         Log::debug("광고배너 책pk: " . $adBookId);
 
-        // 가장 많은 댓글이 달린 책(책pk, 유저pk, 책imgurl, 유저 이메일, 책 제목, 댓글 내용)
+        // ### 가장 많은 댓글이 달린 책(책pk, 유저pk, 책imgurl, 유저 이메일, 책 제목, 댓글 내용)
         $popularBookComment = book_info::select(
             'manycom.b_id',
             'manycom.u_id',
@@ -72,7 +73,7 @@ class TourController extends Controller
         // 가장 많은 댓글이 달린 책 정보
         Log::debug("가장 많은 댓글 관련 정보", $popularBookComment->toArray());
 
-        // 최신 댓글과 책pk, 유저pk
+        // ### 최신 댓글이 달린 책(책pk, 유저pk, 책imgurl, 유저 이메일, 책 제목, 댓글 내용)
         $lastestComment = Book_detail_comment::orderByDesc('created_at')->first();
 
         if ($lastestComment) {
@@ -105,12 +106,58 @@ class TourController extends Controller
             Log::debug("최신 댓글 관련 정보" , $lastestCommentInfo);                
         }
 
+        // ### 좋아요가 가장 많이 달린 책(책pk, 유저pk, 책imgurl, 유저 이메일, 책 제목, 댓글 내용)
+        $likeBookBdcsInfo = Book_detail_comment_state::where('bdcs_flg', 1)
+            ->whereNull('deleted_at')
+            ->groupBy('bdcs_flg', 'bdc_id')
+            ->select('bdcs_flg', 'bdc_id', DB::raw('COUNT(bdc_id) as count'))
+            ->orderByDesc('count')
+            ->limit(1)
+            ->first();
+
+        // 좋아요가 가장 많이 달린 책의 bdc_id 저장
+        $likeBookBdcId = $likeBookBdcsInfo->bdc_id;
+
+        $likeBookBdcInfo = Book_detail_comment::where('bdc_id', $likeBookBdcId)->first();
+
+        if ($likeBookBdcInfo) {
+            // 좋아요가 가장 많이 달린 책 정보
+            // 책pk
+            $b_id = $likeBookBdcInfo->b_id;
+            // 유저pk
+            $u_id = $likeBookBdcInfo->u_id;
+            // 최신 댓글 내용
+            $bdc_comment = $likeBookBdcInfo->bdc_comment;
+
+            // 최신 댓글 댓글이 달린 책 정보
+            $bookInfo = book_info::find($b_id);
+            $b_title = $bookInfo->b_title;
+            $b_img_url = $bookInfo->b_img_url;
+
+            // 좋아요가 가장 많이 달린 책 유저정보
+            $user = User::find($u_id);
+            $u_email = $user->u_email;
+
+            // 결과 저장
+            $likeBookinfo = [
+                'b_id' => $b_id,
+                'u_id' => $u_id,
+                'b_img_url' => $b_img_url,
+                'u_email' => $u_email,
+                'b_title' => $b_title,
+                'bdc_comment' => $bdc_comment,
+            ];
+            // 최신 댓글이 달린 책 정보
+            Log::debug("최다 좋아요 정보" , $likeBookinfo);  
+        }
+
         return view('book_tour')
             ->with('newBook', $newBook)            
             ->with('attentionBook', $attentionBook)
             ->with('bestSellerBook', $bestSellerBook)
             ->with('adBookId', $adBookId)
             ->with('popularBookComment', $popularBookComment) // 가장 많은 댓글
-            ->with('lastestCommentInfo', $lastestCommentInfo); // 최신 댓글
+            ->with('lastestCommentInfo', $lastestCommentInfo) // 최신 댓글
+            ->with('likeBookinfo', $likeBookinfo); // 좋아요 최다
     }
 }

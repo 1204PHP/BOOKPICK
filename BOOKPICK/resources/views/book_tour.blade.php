@@ -208,18 +208,18 @@
                     <p class="memo-comment-title">좋아요가 쏟아지고 있어요</p>
                     <div class="memo-comment-data">
                         <div class="memo-comment-content-img">
-                            <img src=" {{ $lastestCommentInfo['b_img_url'] }} " alt="">
+                            <img src=" {{ $likeBookinfo['b_img_url'] }} " alt="">
                         </div>
                         <div class="memo-comment-content-content">
                             <div class="memo-data-comment-container">
-                                <p class="memo-data-title">{{$lastestCommentInfo['b_title']}}</p>
-                                <p class="memo-data-email">{{$lastestCommentInfo['u_email']}}</p>
+                                <p class="memo-data-title">{{$likeBookinfo['b_title']}}</p>
+                                <p class="memo-data-email">{{$likeBookinfo['u_email']}}</p>
                                 <div class="memo-data-comment-area">
-                                    <p class="memo-data-comment">{{$lastestCommentInfo['bdc_comment']}}</p>
+                                    <p class="memo-data-comment">{{$likeBookinfo['bdc_comment']}}</p>
                                 </div>
                             </div>
                             <div class="memo-data-button-area">
-                                <button class="memo-data-button" type="button" onclick="location='{{ route('getBookDetail', $lastestCommentInfo['b_id']) }}'">자세히 보기</button>
+                                <button class="memo-data-button" type="button" onclick="location='{{ route('getBookDetail', $likeBookinfo['b_id']) }}'">자세히 보기</button>
                             </div>
                         </div>
                     </div>

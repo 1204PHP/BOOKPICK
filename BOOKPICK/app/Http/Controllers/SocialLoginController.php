@@ -30,6 +30,7 @@ class SocialLoginController extends Controller
                 ->user();
             // 기존 세션 정보 삭제
             session()->forget('kakaoUser');
+            // dd($kakaoUser);
 
             // 새로운 세션 생성
             session(['kakaoAccessToken' => $kakaoUser->token]);
@@ -86,6 +87,7 @@ class SocialLoginController extends Controller
         $kakaoAccessToken = session('kakaoAccessToken');
         // 세션에 저장 
         $kakaoUser = session('kakaoUser');
+
         // 카카오 로그아웃 API 호출
         try {
             $client = new Client([
@@ -117,6 +119,9 @@ class SocialLoginController extends Controller
         } catch (Exception $e) {
             // 다른 예외 처리
             Log::error('카카오 로그아웃 중 예외 발생: ' . $e->getMessage());
+            Auth::logout();
+            session()->flush();
+            return redirect()->route('index');
         }
     }
 }
