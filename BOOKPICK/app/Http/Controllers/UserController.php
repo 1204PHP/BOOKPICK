@@ -51,7 +51,7 @@ class UserController extends Controller
             return view( 'user_login' )->withErrors( $errorMsg );
         }
         Log::debug("로그인한 유저 이름: " . $result->u_name);
-        return redirect()->route( 'home' )->with('userdata', $result);
+        return redirect()->route( 'index' )->with('userdata', $result);
     }
 
     // 회원가입 화면 이동

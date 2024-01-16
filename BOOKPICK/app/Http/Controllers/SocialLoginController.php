@@ -77,7 +77,7 @@ class SocialLoginController extends Controller
         }
         Log::debug("로그인 후 사용자 정보: " . Auth::user());
         Log::debug("로그인한 카카오 유저 닉네임: " . $result->u_name);
-        return redirect()->route('home')->with('kakaoUserData', $result);
+        return redirect()->route('index')->with('kakaoUserData', $result);
     }
 
     public function logoutKakao()
