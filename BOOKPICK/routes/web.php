@@ -113,14 +113,22 @@ Route::post( '/book/detail/comment/insert', [BookController::class, 'bookDetailC
     ->name( 'postbookDetailComment' );
 Route::post( '/book/detail/comment/print', [BookController::class, 'bookDetailCommentPrint'])
 ->name( 'postbookDetailPrint' );
+// 도서 상세 페이지 - 댓글 좋아요, 싫어요
+Route::post( '/book/detail/comment/like', [BookController::class, 'bookDetailCommentLikeInsert'])
+->name( 'postBookDetailCommentLikeInsert' );
+Route::post( '/book/detail/comment/dislike', [BookController::class, 'bookDetailCommentDislikeInsert'])
+->name( 'postBookDetailCommentDislikeInsert');
+
 // 도서 상세 페이지 - 대댓글
 Route::post( '/book/detail/reply/insert', [BookController::class, 'bookDetailReplyInsert'])
 ->name( 'postbookDetailReply' );
 Route::post( '/book/detail/reply/print', [BookController::class, 'bookDetailReplyPrint'])
 ->name( 'postbookDetailReplyPrint' );
-// 도서 상세 페이지 - 좋아요, 싫어요
-Route::post( '/book/detail/comment/like', [BookController::class, 'bookDetailCommentLikeInsert'])
+// 도서 상세 페이지 - 대댓글 좋아요, 싫어요
+Route::post( '/book/detail/reply/like', [BookController::class, 'bookDetailReplyLikeInsert'])
 ->name( 'postBookDetailCommentLikeInsert' );
+Route::post( '/book/detail/reply/dislike', [BookController::class, 'bookDetailReplyDislikeInsert'])
+->name( 'postBookDetailReplyDislikeInsert');
 
 
 
