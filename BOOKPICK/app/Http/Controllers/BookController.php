@@ -393,7 +393,7 @@ class BookController extends Controller
                 return response()->json($responseData);
             }
         } catch(Exception $e) {
-            Log::error( "--------서재 도서 대댓글 삽입  에러발생---------" );
+            Log::error( "--------도서 상세 대댓글 삽입  에러발생---------" );
             Log::error( "에러내용:".$e->getMessage());
             Log::error( "------------------------------------" );
             return redirect()->route( 'index' );
@@ -403,30 +403,41 @@ class BookController extends Controller
     public function bookDetailCommentLikeInsert(Request $request)
     {
         try {
-            Log::debug( "--------도서 좋아요 ajax 시작---------" );
+            Log::debug( "--------도서 댓글 좋아요 ajax 시작---------" );
             $userId = Session::get('u_id');
-            $comment = $request->content;
-            $id = $request->b_id;
             $bdc_id = $request->bdc_id;
-            if($comment === NULL) {
-                $comment = "";
-            }
 
             if ($userId) {
-                $commentResult = Book_detail_reply::create([
-                    'bdr_comment' => $comment,
-                    'u_id' => $userId,
-                    'bdc_id' => $bdc_id,
-                ]);
-                $uNameResult = User::select('u_name')
-                                ->where('u_id',$userId)
+                // 삭제된것 까지 검색
+                $likeTableCheck = Book_detail_comment_state::where('u_id',$userId)
+                                ->where('bdc_id',$bdc_id)
+                                ->where('bdcs_flg', 1)
+                                ->withTrashed()
                                 ->first();
+                if($likeTableCheck) {
+                    if ($likeTableCheck->deleted_at !== null) {
+                        // 이미 삭제된 경우, 다시 활성화
+                        $likeTableCheck->restore();
+                    } else {
+                        // 삭제되지 않은 경우, 삭제 처리
+                        $likeTableCheck->delete();
+                    }
+                } else {
+                    // 처음 누르는 경우
+                    $likeResult = Book_detail_comment_state::create([
+                        'u_id' => $userId,
+                        'bdc_id' => $bdc_id,
+                        'bdcs_flg' => 1
+                    ]);
+                }
+
+                $likeCountResult = Book_detail_comment_state::where('bdc_id', $bdc_id)
+                ->where('bdcs_flg', 1)
+                ->count();
                 $responseData = [
-                    'commentResult' => $commentResult,
-                    'uNameResult' => $uNameResult,
+                    'likeCountResult' => $likeCountResult,
                 ];
-                Log::debug( "userId : ". $userId );
-                Log::debug( "comment : ". $comment );
+
                 return response()->json($responseData);
             } else {
                 $responseData = [
@@ -435,7 +446,164 @@ class BookController extends Controller
                 return response()->json($responseData);
             }
         } catch(Exception $e) {
-            Log::error( "--------서재 도서 대댓글 삽입  에러발생---------" );
+            Log::error( "--------도서 댓글 좋아요 ajax 에러발생---------" );
+            Log::error( "에러내용:".$e->getMessage());
+            Log::error( "------------------------------------" );
+            return redirect()->route( 'index' );
+        }
+    }
+
+    public function bookDetailCommentDislikeInsert(Request $request)
+    {
+        try {
+            Log::debug( "--------도서 댓글 싫어요 ajax 시작---------" );
+            $userId = Session::get('u_id');
+            $bdc_id = $request->bdc_id;
+
+            if ($userId) {
+                // 삭제된것 까지 검색
+                $dislikeTableCheck = Book_detail_comment_state::where('u_id',$userId)
+                                ->where('bdc_id',$bdc_id)
+                                ->where('bdcs_flg', 2)
+                                ->withTrashed()
+                                ->first();
+                if($dislikeTableCheck) {
+                    if ($dislikeTableCheck->deleted_at !== null) {
+                        // 이미 삭제된 경우, 다시 활성화
+                        $dislikeTableCheck->restore();
+                    } else {
+                        // 삭제되지 않은 경우, 삭제 처리
+                        $dislikeTableCheck->delete();
+                    }
+                } else {
+                    // 처음 누르는 경우
+                    $dislikeResult = Book_detail_comment_state::create([
+                        'u_id' => $userId,
+                        'bdc_id' => $bdc_id,
+                        'bdcs_flg' => 2
+                    ]);
+                }
+
+                $dislikeCountResult = Book_detail_comment_state::where('bdc_id', $bdc_id)
+                ->where('bdcs_flg', 2)
+                ->count();
+                $responseData = [
+                    'dislikeCountResult' => $dislikeCountResult,
+                ];
+
+                return response()->json($responseData);
+            } else {
+                $responseData = [
+                    'errorMsg' => "로그인 후 이용 바랍니다.",
+                ];
+                return response()->json($responseData);
+            }
+        } catch(Exception $e) {
+            Log::error( "--------도서 댓글 좋아요 ajax 에러발생---------" );
+            Log::error( "에러내용:".$e->getMessage());
+            Log::error( "------------------------------------" );
+            return redirect()->route( 'index' );
+        }
+    }
+
+    public function bookDetailReplyLikeInsert(Request $request)
+    {
+        try {
+            Log::debug( "--------도서 대댓글 좋아요 ajax 시작---------" );
+            $userId = Session::get('u_id');
+            $bdr_id = $request->bdr_id;
+            if ($userId) {
+                // 삭제된것 까지 검색
+                $replylikeTableCheck = Book_detail_reply_state::where('u_id',$userId)
+                                ->where('bdr_id',$bdr_id)
+                                ->where('bdrs_flg', 1)
+                                ->withTrashed()
+                                ->first();
+                if($replylikeTableCheck) {
+                    if ($replylikeTableCheck->deleted_at !== null) {
+                        // 이미 삭제된 경우, 다시 활성화
+                        $replylikeTableCheck->restore();
+                    } else {
+                        // 삭제되지 않은 경우, 삭제 처리
+                        $replylikeTableCheck->delete();
+                    }
+                } else {
+                    // 처음 누르는 경우
+                    $likeResult = Book_detail_reply_state::create([
+                        'u_id' => $userId,
+                        'bdr_id' => $bdr_id,
+                        'bdrs_flg' => 1
+                    ]);
+                }
+
+                $likeCountResult = Book_detail_reply_state::where('bdr_id', $bdr_id)
+                ->where('bdrs_flg', 1)
+                ->count();
+                $responseData = [
+                    'likeCountResult' => $likeCountResult,
+                ];
+
+                return response()->json($responseData);
+            } else {
+                $responseData = [
+                    'errorMsg' => "로그인 후 이용 바랍니다.",
+                ];
+                return response()->json($responseData);
+            }
+        } catch(Exception $e) {
+            Log::error( "--------도서 대댓글 좋아요 ajax 에러발생---------" );
+            Log::error( "에러내용:".$e->getMessage());
+            Log::error( "------------------------------------" );
+            return redirect()->route( 'index' );
+        }
+    }
+    
+    public function bookDetailReplyDislikeInsert(Request $request)
+    {
+        try {
+            Log::debug( "--------도서 대댓글 싫어요 ajax 시작---------" );
+            $userId = Session::get('u_id');
+            $bdr_id = $request->bdr_id;
+            if ($userId) {
+                // 삭제된것 까지 검색
+                $replydislikeTableCheck = Book_detail_reply_state::where('u_id',$userId)
+                                ->where('bdr_id',$bdr_id)
+                                ->where('bdrs_flg', 2)
+                                ->withTrashed()
+                                ->first();
+                if($replydislikeTableCheck) {
+                    if ($replydislikeTableCheck->deleted_at !== null) {
+                        // 이미 삭제된 경우, 다시 활성화
+                        $replydislikeTableCheck->restore();
+                    } else {
+                        // 삭제되지 않은 경우, 삭제 처리
+                        $replydislikeTableCheck->delete();
+                    }
+                } else {
+                    // 처음 누르는 경우
+                    $dislikeResult = Book_detail_reply_state::create([
+                        'u_id' => $userId,
+                        'bdr_id' => $bdr_id,
+                        'bdrs_flg' => 2
+                    ]);
+                }
+
+                $dislikeCountResult = Book_detail_reply_state::where('bdr_id', $bdr_id)
+                ->where('bdrs_flg', 2)
+                ->count();
+                $responseData = [
+                    'dislikeCountResult' => $dislikeCountResult,
+                ];
+
+                return response()->json($responseData);
+            } else {
+                $responseData = [
+                    'errorMsg' => "로그인 후 이용 바랍니다.",
+                ];
+                return response()->json($responseData);
+            }
+        } catch(Exception $e) {
+            Log::error( "--------도서 대댓글 싫어요 ajax 에러발생---------" );
             Log::error( "에러내용:".$e->getMessage());
             Log::error( "------------------------------------" );
             return redirect()->route( 'index' );

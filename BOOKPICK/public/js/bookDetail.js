@@ -244,7 +244,10 @@ function insertFormCheck() {
 			
 					var likeBox = document.createElement('a');
 					likeBox.className = 'bdc-list-area-like-box';
-			
+					likeBox.onclick = function() {
+						var StrNum = commentResult['bdc_id'];
+						likeInsert(StrNum);
+					};
 					var likeImg = document.createElement('img');
 					likeImg.className = 'bdc-dis-like-btn';
 					likeImg.src = '/img/book_detail_like.png';
@@ -252,12 +255,18 @@ function insertFormCheck() {
 					
 					var likeCount = document.createElement('span');
 					likeCount.textContent = '0';
-		
+					var StrNum = commentResult['bdc_id'];
+					likeCount.id= 'like-count' + StrNum;
+
 					likeBox.appendChild(likeImg);
 					likeBox.appendChild(likeCount);
 					var dislikeBox = document.createElement('a');
 					dislikeBox.className = 'bdc-list-area-dislike-box';
-			
+					dislikeBox.onclick = function() {
+						var StrNum = commentResult['bdc_id'];
+						dislikeInsert(StrNum);
+					};
+
 					var dislikeImg = document.createElement('img');
 					dislikeImg.className = 'bdc-dis-like-btn';
 					dislikeImg.src = '/img/book_detail_dislike.png';
@@ -265,6 +274,7 @@ function insertFormCheck() {
 			
 					var dislikeCount = document.createElement('span');
 					dislikeCount.textContent = '0';
+					dislikeCount.id= 'dislike-count' + StrNum;
 			
 					dislikeBox.appendChild(dislikeImg);
 					dislikeBox.appendChild(dislikeCount);
@@ -384,7 +394,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			var likeBox = document.createElement('a');
 			likeBox.className = 'bdc-list-area-like-box';
 			likeBox.onclick = function() {
-				likeInsert(bdc_id);
+				var StrNum = commentResult[i]['bdc_id'];
+				likeInsert(StrNum);
 			};
 			var likeImg = document.createElement('img');
 			likeImg.className = 'bdc-dis-like-btn';
@@ -393,13 +404,19 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 			var likeCount = document.createElement('span');
 			likeCount.textContent = commentResult[i]['like'];
-
+			var StrNum = commentResult[i]['bdc_id'];
+			likeCount.id= 'like-count' + StrNum;
 			likeBox.appendChild(likeImg);
 			likeBox.appendChild(likeCount);
 	
 			var dislikeBox = document.createElement('a');
 			dislikeBox.className = 'bdc-list-area-dislike-box';
-	
+			dislikeBox.onclick = function() {
+				var StrNum = commentResult[i]['bdc_id'];
+				dislikeInsert(StrNum);
+			};
+
+
 			var dislikeImg = document.createElement('img');
 			dislikeImg.className = 'bdc-dis-like-btn';
 			dislikeImg.src = '/img/book_detail_dislike.png';
@@ -407,6 +424,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 			var dislikeCount = document.createElement('span');
 			dislikeCount.textContent = commentResult[i]['dislike'];
+			dislikeCount.id= 'dislike-count' + StrNum;
 	
 			dislikeBox.appendChild(dislikeImg);
 			dislikeBox.appendChild(dislikeCount);
@@ -505,6 +523,10 @@ function replyOpen(bdc_id) {
 				// 좋아요 링크 생성
 				var likeLink = document.createElement('a');
 				likeLink.className = 'bdc-list-area-like-box';
+				likeLink.onclick = function() {
+					var replyStrNum = replyResult[i]['bdr_id'];
+					replyLikeInsert(replyStrNum);
+				};
 
 				var likeImage = document.createElement('img');
 				likeImage.className = 'bdc-dis-like-btn';
@@ -512,14 +534,18 @@ function replyOpen(bdc_id) {
 
 				var likeCount = document.createElement('span');
 				likeCount.textContent = replyResult[i]['like'];
-
+				var replyStrNum = replyResult[i]['bdr_id'];
+				likeCount.id= 'reply-like-count' + replyStrNum;
 				likeLink.appendChild(likeImage);
 				likeLink.appendChild(likeCount);
-
+				
 				// 싫어요 링크 생성
 				var dislikeLink = document.createElement('a');
 				dislikeLink.className = 'bdc-list-area-dislike-box';
-
+				dislikeLink.onclick = function() {
+					var replyStrNum = replyResult[i]['bdr_id'];
+					replyDislikeInsert(replyStrNum);
+				};
 				var dislikeImage = document.createElement('img');
 				dislikeImage.className = 'bdc-dis-like-btn';
 				dislikeImage.src = '/img/book_detail_dislike.png';
@@ -527,6 +553,7 @@ function replyOpen(bdc_id) {
 
 				var dislikeCount = document.createElement('span');
 				dislikeCount.textContent = replyResult[i]['dislike'];
+				dislikeCount.id= 'reply-dislike-count' + replyStrNum;
 
 				dislikeLink.appendChild(dislikeImage);
 				dislikeLink.appendChild(dislikeCount);
@@ -770,13 +797,18 @@ function replyInsertFormCheck(bdc_id) {
 					// 좋아요 링크 생성
 					var likeLink = document.createElement('a');
 					likeLink.className = 'bdc-list-area-like-box';
-	
+					likeLink.onclick = function() {
+						var replyStrNum = replyResult['bdr_id'];
+						replyLikeInsert(replyStrNum);
+					};
 					var likeImage = document.createElement('img');
 					likeImage.className = 'bdc-dis-like-btn';
 					likeImage.src = '/img/book_detail_like.png';
 	
 					var likeCount = document.createElement('span');
 					likeCount.textContent = '0';
+					var replyStrNum = replyResult['bdr_id'];
+					likeCount.id= 'reply-like-count' + replyStrNum;
 	
 					likeLink.appendChild(likeImage);
 					likeLink.appendChild(likeCount);
@@ -784,7 +816,10 @@ function replyInsertFormCheck(bdc_id) {
 					// 싫어요 링크 생성
 					var dislikeLink = document.createElement('a');
 					dislikeLink.className = 'bdc-list-area-dislike-box';
-	
+					dislikeLink.onclick = function() {
+						var replyStrNum = replyResult['bdr_id'];
+						replyDislikeInsert(replyStrNum);
+					};
 					var dislikeImage = document.createElement('img');
 					dislikeImage.className = 'bdc-dis-like-btn';
 					dislikeImage.src = '/img/book_detail_dislike.png';
@@ -792,6 +827,7 @@ function replyInsertFormCheck(bdc_id) {
 	
 					var dislikeCount = document.createElement('span');
 					dislikeCount.textContent = '0';
+					dislikeCount.id= 'reply-dislike-count' + replyStrNum;
 	
 					dislikeLink.appendChild(dislikeImage);
 					dislikeLink.appendChild(dislikeCount);
@@ -824,15 +860,14 @@ function replyInsertFormCheck(bdc_id) {
 	}
 }
 
-function replyInsertFormCheck(bdc_id) {
-	if (contentValue.trim() === "") {
-		alert("내용을 입력해주세요.");
-	} else {
-		let formData = new FormData();
-			let bId = document.getElementById("bdc_b_id").value;
-			formData.append('b_id', bId);
+// 댓글 좋아요 생성
+function likeInsert(bdc_id) {
+
+	let formData = new FormData();
+		let ac_flg = document.getElementById("ac_flg").value;
+		if(ac_flg==="1") {
 			formData.append('bdc_id', bdc_id);
-			fetch('/book/detail/reply/insert', {
+			fetch('/book/detail/comment/like', {
 				method: 'POST',
 				body: formData,
 			})
@@ -844,11 +879,127 @@ function replyInsertFormCheck(bdc_id) {
 						window.location.href = "/login";
 					}
 				} else {
-
+					
+					let likeCountStr = 'like-count' + bdc_id;
+					document.getElementById(likeCountStr).innerHTML = data.likeCountResult;
 				}
 			})
 			.catch(error => {
 				console.error('오류 발생:', error);
 			})
-	}
+		}
+		else if(ac_flg ==="2") {
+			if(confirm("로그인을 하신 후 이용해 주시기 바랍니다.")){
+				window.location.href = "/login";
+			} else {
+			}
+		}
+}
+
+// 댓글 싫어요 생성
+function dislikeInsert(bdc_id) {
+
+	let formData = new FormData();
+		let ac_flg = document.getElementById("ac_flg").value;
+		if(ac_flg==="1") {
+			formData.append('bdc_id', bdc_id);
+			fetch('/book/detail/comment/dislike', {
+				method: 'POST',
+				body: formData,
+			})
+			.then(response => response.json())
+			.then(data => {
+				let errorMsg = data.errorMsg;
+				if(errorMsg) {
+					if(confirm("로그인을 하신 후 이용해 주시기 바랍니다.")){
+						window.location.href = "/login";
+					}
+				} else {
+					
+					let dislikeCountStr = 'dislike-count' + bdc_id;
+					document.getElementById(dislikeCountStr).innerHTML = data.dislikeCountResult;
+				}
+			})
+			.catch(error => {
+				console.error('오류 발생:', error);
+			})
+		}
+		else if(ac_flg ==="2") {
+			if(confirm("로그인을 하신 후 이용해 주시기 바랍니다.")){
+				window.location.href = "/login";
+			} else {
+			}
+		}
+}
+
+// 대댓글 좋아요 생성
+function replyLikeInsert(bdr_id) {
+
+	let formData = new FormData();
+		let ac_flg = document.getElementById("ac_flg").value;
+		if(ac_flg==="1") {
+			formData.append('bdr_id', bdr_id);
+			fetch('/book/detail/reply/like', {
+				method: 'POST',
+				body: formData,
+			})
+			.then(response => response.json())
+			.then(data => {
+				let errorMsg = data.errorMsg;
+				if(errorMsg) {
+					if(confirm("로그인을 하신 후 이용해 주시기 바랍니다.")){
+						window.location.href = "/login";
+					}
+				} else {
+					
+					let likeCountStr = 'reply-like-count' + bdr_id;
+					document.getElementById(likeCountStr).innerHTML = data.likeCountResult;
+				}
+			})
+			.catch(error => {
+				console.error('오류 발생:', error);
+			})
+		}
+		else if(ac_flg ==="2") {
+			if(confirm("로그인을 하신 후 이용해 주시기 바랍니다.")){
+				window.location.href = "/login";
+			} else {
+			}
+		}
+}
+
+// 대댓글 싫어요 생성
+function replyDislikeInsert(bdr_id) {
+
+	let formData = new FormData();
+		let ac_flg = document.getElementById("ac_flg").value;
+		if(ac_flg==="1") {
+			formData.append('bdr_id', bdr_id);
+			fetch('/book/detail/reply/dislike', {
+				method: 'POST',
+				body: formData,
+			})
+			.then(response => response.json())
+			.then(data => {
+				let errorMsg = data.errorMsg;
+				if(errorMsg) {
+					if(confirm("로그인을 하신 후 이용해 주시기 바랍니다.")){
+						window.location.href = "/login";
+					}
+				} else {
+					
+					let dislikeCountStr = 'reply-dislike-count' + bdr_id;
+					document.getElementById(dislikeCountStr).innerHTML = data.dislikeCountResult;
+				}
+			})
+			.catch(error => {
+				console.error('오류 발생:', error);
+			})
+		}
+		else if(ac_flg ==="2") {
+			if(confirm("로그인을 하신 후 이용해 주시기 바랍니다.")){
+				window.location.href = "/login";
+			} else {
+			}
+		}
 }

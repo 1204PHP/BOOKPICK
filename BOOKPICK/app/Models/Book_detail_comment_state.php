@@ -13,6 +13,12 @@ class Book_detail_comment_state extends Model
     protected $primaryKey = 'bdcs_id';
     public $timestamps = true;
 
+    protected $fillable = [
+        'bdcs_flg',
+        'bdc_id',
+        'u_id',
+    ];
+
     public function bookDetailComment() {
         return $this->belongsTo(Book_detail_comment::class, 'bdc_id')->withTrashed();
     }

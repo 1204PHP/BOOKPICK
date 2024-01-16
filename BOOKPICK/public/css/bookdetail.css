@@ -722,10 +722,12 @@
 .bdc-list-area-like-box{
 	margin-right: 15px;
 	color: #555;
+	cursor: pointer;
 }
 .bdc-list-area-dislike-box{
 	margin-right: 10px;
 	color: #555;
+	cursor: pointer;
 }
 .bdc-dis-like-btn{
 	width: 13px;
