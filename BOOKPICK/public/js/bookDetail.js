@@ -823,3 +823,32 @@ function replyInsertFormCheck(bdc_id) {
 			})
 	}
 }
+
+function replyInsertFormCheck(bdc_id) {
+	if (contentValue.trim() === "") {
+		alert("내용을 입력해주세요.");
+	} else {
+		let formData = new FormData();
+			let bId = document.getElementById("bdc_b_id").value;
+			formData.append('b_id', bId);
+			formData.append('bdc_id', bdc_id);
+			fetch('/book/detail/reply/insert', {
+				method: 'POST',
+				body: formData,
+			})
+			.then(response => response.json())
+			.then(data => {
+				let errorMsg = data.errorMsg;
+				if(errorMsg) {
+					if(confirm("로그인을 하신 후 이용해 주시기 바랍니다.")){
+						window.location.href = "/login";
+					}
+				} else {
+
+				}
+			})
+			.catch(error => {
+				console.error('오류 발생:', error);
+			})
+	}
+}

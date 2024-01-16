@@ -403,7 +403,7 @@ class BookController extends Controller
     public function bookDetailCommentLikeInsert(Request $request)
     {
         try {
-            Log::debug( "--------도서 좋아요 시작---------" );
+            Log::debug( "--------도서 좋아요 ajax 시작---------" );
             $userId = Session::get('u_id');
             $comment = $request->content;
             $id = $request->b_id;
