@@ -6,27 +6,12 @@
 <div class="tour-container">    
     {{-- 광고 영역3 --}}
     <section class="tour-section-4">
-        {{-- <div class="tour-text-area">
-            <h2 class="tour-text-h2">망설이는 당신을 위해, 이 책 어때요?</h2>
-            <p class="tour-text-p">선택의 어려움을 덜어줄 다양한 추천 도서를 만나보세요</p>
-        </div> --}}
         {{-- 캐러셀 --}}
         <div class="slide-container-1">
-            @forelse ($adBookId as $val)
-            {{-- <div class="slide-content">
-                <a href="{{ route('getBookDetail', ['id' => 8]) }}">
-                    <img src="{{ asset('img/ad-01.png') }}" alt="...">
-                </a>
-            </div>
-            <div class="slide-content">
-                <a href="{{ route('getBookDetail', ['id' => 77]) }}">
-                    <img src="{{ asset('img/ad-02.png') }}" alt="...">
-                </a>
-            </div>             --}}
             <div class="slide-content">
                 <a href="{{ route('getBookDetail', ['id' => 132]) }}">
                     <img src="{{ asset('img/ad-03.png') }}" alt="...">
-                </a>            
+                </a>
             </div>
             <div class="slide-content">
                 <a href="{{ route('getBookDetail', ['id' => 113]) }}">
@@ -58,17 +43,8 @@
                     <img src="{{ asset('img/ad-09.png') }}" alt="...">
                 </a>            
             </div>
-            {{-- <div class="slide-content">
-                <a href="{{ route('getBookDetail', ['id' => 176]) }}">
-                    <img src="{{ asset('img/ad-10.png') }}" alt="...">
-                </a>            
-            </div> --}}
-            @empty
-                <p>없음</p>
-            @endforelse
-
             <a class="prev" onclick="plusSlide(-1)">&#10094</a>
-            <a class="next" onclick="plusSlide(1)">&#10095</a>
+            <a class="next" onclick="plusSlide(1)">&#10095</a>            
             <div id="pagination">
                 <div class="ball" onclick="currentSlide(1)"></div>
                 <div class="ball" onclick="currentSlide(2)"></div>
@@ -77,12 +53,10 @@
                 <div class="ball" onclick="currentSlide(5)"></div>
                 <div class="ball" onclick="currentSlide(6)"></div>
                 <div class="ball" onclick="currentSlide(7)"></div>
-                {{-- <div class="ball" onclick="currentSlide(8)"></div> --}}
-                {{-- <div class="ball" onclick="currentSlide(9)"></div>
-                <div class="ball" onclick="currentSlide(10)"></div> --}}
             </div>
-        </div>        
+        </div>
     </section>
+    
     {{-- 광고 영역4 --}}
     <section class="tour-section-3">
         {{-- <div class="tour-text-area">
