@@ -183,6 +183,12 @@
 				</p>
 			</div>
 			<div id="bdc-list" class="bdc-list">
+				{{-- <div id="bdc-list-area-no-text" class="bdc-list-area">
+					<img src="{{ asset('img/book_detail_comment_noimg.png') }}" class="bdc-list-area-no-img" alt="...">
+					<br>
+					댓글이 없습니다.<br>
+					첫번째 댓글을 남겨주세요.
+				</div> --}}
 				{{-- <div class="bdc-list-area">
 
 					<div class="bdc-list-top-area">

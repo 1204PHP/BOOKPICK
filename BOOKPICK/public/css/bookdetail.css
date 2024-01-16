@@ -651,6 +651,16 @@
 	padding-bottom: 10px;
 }
 
+#bdc-list-area-no-text {
+	text-align: center;
+}
+
+.bdc-list-area-no-img {
+	width: 100px;
+	height: 100px;
+	margin: 20px 0;
+}
+
 .bdc-list-reply-area {
 	border-bottom: 1px solid #ccc;
 	background-color: rgba(204, 204, 204, 0.146);
