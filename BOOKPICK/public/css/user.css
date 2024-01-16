@@ -4,11 +4,20 @@
     .register-container,
     .info-container,
     .login-container,
-    .password-reconfirm-container,
+    .password-reconfirm-container {
+        width: 85%;
+        margin: 20px auto 40px auto;
+        padding: 2em 3em 2em 3em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .login-container,
     .verification-container {
         width: 85%;
-        margin: 60px auto 20px auto;
-        padding: 2em 3em 2em 3em;
+        margin: 100px auto 40px auto;
+        padding: 2em 1em 2em 1em;
         border: 1px solid #ccc;
         border-radius: 7px;
         background-color: #FCFDFD;
@@ -16,7 +25,7 @@
 
     .withdrawal-container {
         width: 100%;
-        margin: 100px auto 20px auto;
+        margin: 20px auto 40px auto;
         padding: 2em 1.2em 2em 1.2em;
         border: 1px solid #ccc;
         border-radius: 7px;
@@ -352,11 +361,20 @@
 
     .register-container,
     .info-container,
-    .login-container,
     .password-reconfirm-container,
     .verification-container {
         width: 600px;
-        margin: 60px auto 20px auto;
+        margin: 20px auto 40px auto;
+        padding: 2em 3em 2em 3em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
+    .login-container,
+    .verification-container {
+        width: 600px;
+        margin: 100px auto 40px auto;
         padding: 2em 3em 2em 3em;
         border: 1px solid #ccc;
         border-radius: 7px;
@@ -365,7 +383,7 @@
 
     .withdrawal-container {
         width: 750px;
-        margin: 100px auto 20px auto;
+        margin: 20px auto 40px auto;
         padding: 2em 1.2em 2em 1.2em;
         border: 1px solid #ccc;
         border-radius: 7px;
@@ -665,20 +683,29 @@
 
     .register-container,
     .info-container,
-    .login-container,
     .password-reconfirm-container,
     .verification-container {
         width: 600px;
-        margin: 60px auto 20px auto;
+        margin: 20px auto 40px auto;
         padding: 2em 3em 2em 3em;
         border: 1px solid #ccc;
         border-radius: 7px;
         background-color: #FCFDFD;
     }  
 
+    .login-container,
+    .verification-container {
+        width: 600px;
+        margin: 100px auto 40px auto;
+        padding: 2em 3em 2em 3em;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        background-color: #FCFDFD;
+    }
+
     .withdrawal-container {
         width: 750px;
-        margin: 100px auto 20px auto;
+        margin: 20px auto 40px auto;
         padding: 2em 1.2em 2em 1.2em;
         border: 1px solid #ccc;
         border-radius: 7px;

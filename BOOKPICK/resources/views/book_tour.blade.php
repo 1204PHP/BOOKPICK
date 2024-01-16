@@ -157,7 +157,7 @@
             </div>
             <div class="memo-comment-area">
                 <div class="memo-title">
-                    <p class="memo-comment-title">최신 댓글에는 새로운 시선이 담겨 있어요</p>
+                    <p class="memo-comment-title">새로운 시선이 담겨 있어요</p>
                     <div class="memo-comment-data">
                         <div class="memo-comment-content-img">
                             <img src=" {{ $lastestCommentInfo['b_img_url'] }} " alt="">
@@ -206,7 +206,7 @@
     <section class="tour-section-2">
         <!-- 왼쪽에서 오른쪽으로 이동하는 책 이미지 배너 -->
         <div class="tour-banner-container">
-            <ul class="left-banner-area">
+            <ul class="left-banner-area" id="leftBannerArea">
                 @forelse($newBook as $val)
                 <li class="left-banner">
                     <a href="{{ route('getBookDetail', $val['b_id']) }}">
@@ -221,7 +221,7 @@
 
         <!-- 오른쪽에서 왼쪽으로 이동하는 책 이미지 배너 (반대 방향) -->
         <div class="tour-banner-container">
-            <ul class="left-banner-reverse-area">
+            <ul class="left-banner-reverse-area" id="rightBannerArea">
                 @forelse($attentionBook as $val)
                 <li class="left-banner-reverse">
                     <a href="{{ route('getBookDetail', $val['b_id']) }}">
@@ -236,7 +236,7 @@
 
         <!-- 왼쪽에서 오른쪽으로 이동하는 책 이미지 배너 -->
         <div class="tour-banner-container">
-            <ul class="left-banner-area">
+            <ul class="left-banner-area" id="leftBannerArea">
                 @forelse($bestSellerBook as $val)
                 <li class="left-banner">
                     <a href="{{ route('getBookDetail', $val['b_id']) }}">

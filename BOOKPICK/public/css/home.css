@@ -477,7 +477,7 @@ section {
 
 .tour-text-p {
 	text-align: center;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 }
 
 /* 광고 영역(그림배너)-둘러보기로 이동 */
@@ -598,10 +598,15 @@ section {
 	overflow: hidden;
 	position: relative;
 	width: 100%;
-	height: 200px;
+	height: 230px;
 	box-sizing: border-box;
 	margin-bottom: 20px;
+	border-bottom: 20px solid #d1b081;
+	/* border-radius: 15px; */
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+	background: linear-gradient(#D2B48C, #7D5B33);
 }
+
 
 .left-banner-area {
 	width: 100%;
@@ -611,10 +616,15 @@ section {
 	animation: leftbanner 60s linear infinite;
 }
 
+.left-banner-area li, 
+.left-banner-reverse-area li {
+	margin: 10px auto;
+}
+
 .left-banner img {
 	width: 140px;
     height: 200px;
-	margin: 0 10px;
+	margin: 0 25px;
 }
 
 @keyframes leftbanner {
@@ -624,6 +634,10 @@ section {
 	100% {
 		transform: translate(-100%);
 	}
+}
+
+.left-banner-area:hover {
+    animation-play-state: paused;
 }
 
 .left-banner-reverse-area {
@@ -638,7 +652,7 @@ section {
 .left-banner-reverse img {
 	width: 140px;
     height: 200px;
-	margin: 0 10px;
+	margin: 0 25px;
 }
 
 @keyframes leftreversebanner {
@@ -648,6 +662,10 @@ section {
 	100% {
 		transform: translateX(100%);
 	}
+}
+
+.left-banner-reverse-area:hover {
+    animation-play-state: paused;
 }
 
 /* 휴대폰 */
@@ -751,6 +769,7 @@ section {
 		font-size: 1.5rem;
 		font-weight: bold;
 		color: #487968;
+		margin-top: 20px;
 		margin-bottom: 5px;
 	}
 	
@@ -765,7 +784,7 @@ section {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin-top: 10px;
+		/* margin-top: 10px; */
 	}
 }
 

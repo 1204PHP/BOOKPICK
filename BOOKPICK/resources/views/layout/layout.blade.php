@@ -31,6 +31,7 @@
         <br>        
         @yield('content')
     </div>
+    @if (!isset($hideFooter) || !$hideFooter)
     <div class="layout_footer">
         @section('footer')
         <footer>
@@ -61,6 +62,7 @@
         </footer>
         @show
     </div>
+    @endif
     @yield('defer-js')
 </body>
 </html>

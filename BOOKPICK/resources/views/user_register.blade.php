@@ -76,11 +76,14 @@
     </form>
 </div>
 @endsection
+@php
+    $hideFooter = true;
+@endphp
+
 
 @section('defer-js')
     <script src="{{ asset('/js/UserRegisterValidation.js') }}" defer></script>
     <script src="{{ asset('/js/UserAddress.js') }}" defer></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 @endsection
-
 

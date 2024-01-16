@@ -34,7 +34,11 @@
 </div>
 @endsection
 
-@section('footer')
+@php
+    $hideFooter = true;
+@endphp
+
+{{-- @section('footer')
         
     <footer class="user-footer">
         <div class="footer-container">
@@ -62,4 +66,4 @@
             </div>
         </div>
     </footer>
-@endsection
+@endsection --}}

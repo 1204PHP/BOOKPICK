@@ -146,4 +146,31 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 });
 
+// 책장 애니메이션 조절
+function stopAnimation(element) {
+	element.style.animationPlayState = 'stop';
+}
+
+function playAnimation(element) {
+	element.style.animationPlayState = 'play';
+}
+
+const leftBannerArea = document.getElementById('leftBannerArea');
+const rightBannerArea = document.getElementById('rightBannerArea');
+
+leftBannerArea.addEventListener('mouseenter', () => {
+	stopAnimation(leftBannerArea);
+});
+
+leftBannerArea.addEventListener('mouseleave', () => {
+	playAnimation(leftBannerArea);
+});
+
+rightBannerArea.addEventListener('mouseenter', () => {
+	stopAnimation(rightBannerArea);
+});
+
+rightBannerArea.addEventListener('mouseleave', () => {
+	playAnimation(rightBannerArea);
+});
 
