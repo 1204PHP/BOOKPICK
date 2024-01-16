@@ -105,7 +105,7 @@ $currentRoute = Route::currentRouteName();
 			</div>
 		@endif
 		@if(!in_array(Route::currentRouteName(), ['getLogin', 'getRegister', 'postLogin', 'postRegister', 'getPasswordReconfirm', 'getInfo', 'getWithdrawal', 'getVerification', 'sendVerification', 'reSendVerification', 'mailTokenExpired', 'loginKakao', 'handleLoginKakaoCallback']))
-		<a id="top-button" class="top-button" href="javascript:void(0);"><img src="{{ asset('img/top-button.png') }}" alt=""></a>
+		<a id="top-button" class="top-button" href="javascript:window.scrollTo(0,0);"><img src="{{ asset('img/top-button.png') }}" alt=""></a>
 		@endif
 	</header>
 

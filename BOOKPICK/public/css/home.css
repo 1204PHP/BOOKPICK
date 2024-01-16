@@ -591,6 +591,7 @@ section {
 /* 광고 영역1 */
 
 .tour-section-2 {
+	width: 100%;
 	margin: 20px auto;
 }
 
@@ -602,7 +603,6 @@ section {
 	box-sizing: border-box;
 	margin-bottom: 20px;
 	border-bottom: 20px solid #d1b081;
-	/* border-radius: 15px; */
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 	background: linear-gradient(#D2B48C, #7D5B33);
 }
