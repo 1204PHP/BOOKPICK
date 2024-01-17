@@ -60,6 +60,7 @@
     user-select: none;
     cursor: pointer;
 	margin-right: 5px;
+	position: relative;
 }
 
 .book_detail_zzim, .book_detail_zzim1 {

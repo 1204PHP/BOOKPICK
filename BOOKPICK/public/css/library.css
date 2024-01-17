@@ -28,6 +28,12 @@
 	background-color: transparent;
 	cursor: pointer;
 }
+
+.library-title-button:hover {
+	text-decoration: underline;
+	text-underline-position : under;
+}
+
 .library-title-p {
 	padding-top: 15px;
 	font-weight: bold;
@@ -37,6 +43,8 @@
 .library-title-button.active{
 	color: #4dac27;
 	font-weight: bold;
+	text-decoration: underline;
+	text-underline-position : under;
 }
 /* 그리드부분 */
 .library_layout_container {
