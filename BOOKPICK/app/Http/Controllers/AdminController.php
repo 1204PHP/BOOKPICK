@@ -50,6 +50,7 @@ class AdminController extends Controller
                 default:
                     break;
             }
+            // 123 18번까지 루프(각 1000개씩), 4 2번까지 루프(100개)
             $cnt=1;
             DB::beginTransaction();
             Log::debug("#트랜잭션 시작");
