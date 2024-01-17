@@ -150,6 +150,7 @@ class TourController extends Controller
             // 최신 댓글이 달린 책 정보
             Log::debug("최다 좋아요 정보" , $likeBookinfo);  
         }
+        Log::info('Client IP: ' . request()->ip());
 
         return view('book_tour')
             ->with('newBook', $newBook)            

@@ -179,7 +179,6 @@ class HomeController extends Controller
             }
             Log::debug($formattedKey . " : " . $formattedValue);
         }
-        Log::info('Client IP: ' . request()->ip());
         Log::debug("--------------홈 화면 출력 끝------------------------");
         return view( 'home' )
             ->with('bestSellerBook', $bestSellerBook)
