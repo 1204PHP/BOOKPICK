@@ -135,7 +135,7 @@
         <div class="tour-memo-container">
             <div class="memo-comment-area">                
                 <div class="memo-title">
-                    <p class="memo-comment-title"><img src="{{asset ('./img/popular.gif')}}" alt=""> 가장 많은 댓글이 모인 인기 책</p>
+                    <p class="memo-comment-title"><img src="{{asset ('./img/popular.gif')}}" alt=""> 많은 댓글이 모인 인기 책</p>
                     <div class="memo-comment-data">
                         <div class="memo-comment-content-img">
                             <img src=" {{ $popularBookComment['b_img_url'] }} " alt="">

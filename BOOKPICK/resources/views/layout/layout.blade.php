@@ -23,18 +23,17 @@
     {{-- <script src="{{ asset('/js/Loading.js') }}" defer></script> --}}
     <title>@yield('title', 'bookpick')</title>
 </head>
-<body>   
-    <div class="layout_header">
-        @include('layout.header')
-    </div>
-    <div class="layout_body">
-        <br>        
-        @yield('content')
-    </div>
+<body>
+        <div class="layout_header">
+            @include('layout.header')
+        </div>
+        <div class="layout_body">
+            <br>        
+            @yield('content')
+        </div>
     @if (!isset($hideFooter) || !$hideFooter)
     <div class="layout_footer">
-        @section('footer')
-        <footer>
+        {{-- @section('footer') --}}
             <div class="footer-container">
                 <div class="footer-section-left">
                     <div class="footer-logo">
@@ -59,8 +58,7 @@
                     </div>
                 </div>
             </div>
-        </footer>
-        @show
+        {{-- @show --}}
     </div>
     @endif
     @yield('defer-js')
