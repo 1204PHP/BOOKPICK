@@ -126,7 +126,7 @@ Route::post( '/book/detail/reply/print', [BookController::class, 'bookDetailRepl
 ->name( 'postbookDetailReplyPrint' );
 // 도서 상세 페이지 - 대댓글 좋아요, 싫어요
 Route::post( '/book/detail/reply/like', [BookController::class, 'bookDetailReplyLikeInsert'])
-->name( 'postBookDetailCommentLikeInsert' );
+->name( 'postBookDetailReplyLikeInsert' );
 Route::post( '/book/detail/reply/dislike', [BookController::class, 'bookDetailReplyDislikeInsert'])
 ->name( 'postBookDetailReplyDislikeInsert');
 
