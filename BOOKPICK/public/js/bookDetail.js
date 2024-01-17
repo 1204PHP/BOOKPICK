@@ -172,6 +172,7 @@ function insertFormCheck() {
 					} else {
 					}
 				} else {
+					categoryBtn(1);
 					let commentResult = data.commentResult;
 					let uNameResult = data.uNameResult;
 					var parentElement = document.getElementById('bdc-list');
@@ -295,7 +296,6 @@ function insertFormCheck() {
 					BinDiv.appendChild(topArea);
 					BinDiv.appendChild(middleArea);
 					BinDiv.appendChild(bottomArea);
-		
 					newDivElement.appendChild(BinDiv);
 			
 					// 부모 요소에 새로운 div 요소 추가

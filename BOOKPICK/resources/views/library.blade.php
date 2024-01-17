@@ -103,7 +103,7 @@
 								@for($i=0; $i<3-count($libraryRecentComment); $i++)
 								<div class="library-recent-comment-grid">
 									<div class="library-recent-comment-grid-item">
-										<div class="library-recent-comment-grid-txt">
+										<div class="library-recent-comment-grid-txt1">
 											<p class="library-recent-comment-txt-at"></p>
 											<p class="library-recent-comment-txt-title"></p>
 											<p class="library-recent-comment-txt-content"></p>
@@ -145,9 +145,11 @@
 					<div class="library-pichart-list">
 						@forelse($pichartData as $key => $val)
 							<div class="library-pichart-list-div">
-								<div class="library-pichart-list-div-bg library-pichart-list-div-bg{{$key}}">
-								</div>
-								{{$key+1}}위 : {{$val->b_sub_cate}}
+									<div class="library-pichart-list-div-bg library-pichart-list-div-bg{{$key}}">
+									</div>
+								<span class="library-pichart-list-rank">{{$key+1}}.
+								</span>
+								{{$val->b_sub_cate}}
 								<span class="library-pichart-list-count" data-value="{{$val->count}}" id="pichartlist{{$key}}">
 									({{$val->count}})
 								</span>

@@ -80,7 +80,8 @@ function commentConfirmDelete() {
 		var detailModal = document.getElementById(elementId);
 		detailModal.classList.toggle('show');
 	}
-	
+
+
 	// 사용 예시
 	for (var i = 0; i < ulcIdCntIntValue; i++) {
 		// 클로저를 사용하여 각 이벤트 핸들러에 대한 독립적인 스코프 생성
@@ -101,6 +102,17 @@ function commentConfirmDelete() {
 			document.getElementById('dropbtn' + index).addEventListener('click', function() {
 				toggleModal(dropdownContent);
 			});
+
+			document.addEventListener('click', function(event) {
+				var detailModal = document.getElementById('dropbtn' + index);
+				var detaiDropDown = document.getElementById('dropdown-content' + index);
+				var isClickInsideModal = detailModal.contains(event.target);
+				var isModalActive = detaiDropDown.classList.contains('show');
+				if (isModalActive && !isClickInsideModal) {
+					detaiDropDown.classList.remove('show');
+				}
+			});
+			
 			document.getElementById('library_detail_comment_delete_modal_btn' + index).addEventListener('click', function() {
 				toggleModal(dropdownContent);
 			});

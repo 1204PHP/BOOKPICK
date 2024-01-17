@@ -62,8 +62,8 @@
             </li>
             @forelse($hotWishListNum as $key => $val)
                 <li class="home-booking">
-                    {{$key+1}}. 
-                    <a href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
+                    <span class="home-booking-box">{{$key+1}}</span>
+                    <a class="home-booking-move" href="{{ route('getBookDetail', ['id' => $val->b_id]) }}">
                         {{$val->b_title}}
                     </a>
                 </li>
@@ -71,14 +71,14 @@
                     @if ( ($loop->iteration) === 5)
                     @else
                         @for ($i=($loop->iteration); $i < 5; $i++)
-                            <li class="home-booking">{{$i+1}}. 없음</li>
+                            <li class="home-booking"><span class="home-booking-box">{{$i+1}}</span>없음</li>
                         @endfor
 
                     @endif
                 @endif
             @empty
                 @for($i = 1; $i <= 5; $i++)
-                    <li class="home-booking">{{$i}}. 없음</li>
+                    <li class="home-booking"><span class="home-booking-box">{{$i}}</span>없음</li>
                 @endfor
             @endforelse
         </ul>

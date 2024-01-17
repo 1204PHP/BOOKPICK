@@ -313,11 +313,13 @@ class BookController extends Controller
             if ($cateNum == "1") {
                 $commentResultQuery->orderby('book_detail_comments.created_at', 'desc');
             } else if ($cateNum == "2") {
-                    $commentResultQuery->orderby('like', 'desc');
-            } else if ($cateNum == "3") {
-                $commentResultQuery->orderby('reply_count', 'desc');
-            } else if ($cateNum == "4") {
                 $commentResultQuery->orderby('book_detail_comments.created_at', 'asc');
+            } else if ($cateNum == "3") {
+                $commentResultQuery->orderby('like', 'desc');
+            } else if ($cateNum == "4") {
+                $commentResultQuery->orderby('like', 'asc');
+            } else if ($cateNum == "5") {
+                $commentResultQuery->orderby('reply_count', 'desc');
             }
             $commentResult = $commentResultQuery->get();
 

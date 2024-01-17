@@ -223,6 +223,22 @@
 	white-space: nowrap;
 }
 
+.home-booking-box {
+	display: inline-block;
+	width: 20px;
+	background-color: #4dac27;
+	text-align: center;
+	color: #fff;
+	border-radius: 5px 0 5px 0;
+	padding-top: 2px;
+	margin-right: 7px;
+}
+
+.home-booking-move:hover {
+	text-decoration: underline;
+	text-underline-position : under;
+}
+
 .home-baaner {
 	width: 100%;
 	height: 100%;
@@ -1493,4 +1509,8 @@ section {
 		transition-duration: 0s;
 		}
 	}
+}
+
+.tour-section-1 {
+	margin-bottom: 0px;
 }

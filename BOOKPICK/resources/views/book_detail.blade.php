@@ -173,13 +173,16 @@
 					최신순
 				</p>
 				<p onclick="categoryBtn(2)" id="categoryBtn2" class="bdc-list-cate">
-					순공감순
+					과거순
 				</p>
 				<p onclick="categoryBtn(3)" id="categoryBtn3" class="bdc-list-cate">
-					답글순
+					공감순
 				</p>
 				<p onclick="categoryBtn(4)" id="categoryBtn4" class="bdc-list-cate">
-					과거순
+					비공감순
+				</p>
+				<p onclick="categoryBtn(5)" id="categoryBtn5" class="bdc-list-cate">
+					답글순
 				</p>
 			</div>
 			<div id="bdc-list" class="bdc-list">
