@@ -24,6 +24,7 @@
     <title>@yield('title', 'bookpick')</title>
 </head>
 <body>
+    <div class="layout_header_body">
         <div class="layout_header">
             @include('layout.header')
         </div>
@@ -31,6 +32,7 @@
             <br>        
             @yield('content')
         </div>
+    </div>
     @if (!isset($hideFooter) || !$hideFooter)
     <div class="layout_footer">
         {{-- @section('footer') --}}
