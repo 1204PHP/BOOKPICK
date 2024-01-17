@@ -39,12 +39,17 @@ class book_info extends Model
             'b_sub_cate' => $this->b_sub_cate,
             'b_title' => $this->b_title,
             'b_author' => $this->b_author,
-            'b_summary' => $this->b_summary,
-            'b_main_cate' => $this->b_main_cate,
-            'b_publisher' => $this->b_publisher,
-            'b_img_url' => $this->b_img_url,
         ];
-    }    
+    }
+    // 강조 표시 필드 설정
+    public function searchableAttributes()
+    {
+        return [
+            'b_sub_cate',
+            'b_title',
+            // 다른 필드들도 추가할 수 있습니다.
+        ];
+    }
 
     // 외래키 연결목적 설정
     

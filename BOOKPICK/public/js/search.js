@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     autoSearchArea.style.display = 'none';
                 }
             }
-        }, 150);
+        }, 200);
     });
 
     function isKorean(text) {
@@ -71,9 +71,15 @@ document.addEventListener('DOMContentLoaded', function () {
                         const spaceSpan = document.createElement('span');                    
                         const titleSpan = document.createElement('span');
 
-                        li.addEventListener('click', function () {
+                        titleSpan.addEventListener('click', function () {
                             const inputValue = suggestion.b_title.replace(/ - .*$/, '');
                             searchInput.value = inputValue;
+                            submitSearch();
+                        });
+                        cateSpan.addEventListener('click', function () {
+                            const inputValue = suggestion.b_sub_cate.replace(/ - .*$/, '');
+                            searchInput.value = inputValue;
+                            submitSearch();
                         });
 
                         cateSpan.textContent = suggestion.b_sub_cate;
@@ -87,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         titleSpan.style.color = '#000';
                         cateSpan.style.fontSize = '0.8rem';
                         titleSpan.style.cursor = 'pointer';
+                        cateSpan.style.cursor = 'pointer';
 
                         li.appendChild(titleSpan);
                         li.appendChild(spaceSpan);
