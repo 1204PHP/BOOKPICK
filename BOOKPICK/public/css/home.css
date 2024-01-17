@@ -28,33 +28,15 @@
 	.home-container {
 		width: 1300px;
 	}
-	#slide {
-		scroll-behavior: smooth;
-		transition: scroll 100s ease-in-out;
-	}
-	#slide1 {
-		scroll-behavior: smooth;
-		transition: scroll 100s ease-in-out;
-	}
-	#slide2 {
-		scroll-behavior: smooth;
-		transition: scroll 100s ease-in-out;
-	}
-	#slide3 {
-		scroll-behavior: smooth;
-		transition: scroll 100s ease-in-out;
-	}
-	#slide4 {
-		scroll-behavior: smooth;
-		transition: scroll 100s ease-in-out;
-	}
-	#slide5 {
-		scroll-behavior: smooth;
-		transition: scroll 100s ease-in-out;
-	}
+	#slide, 
+	#slide1,
+	#slide2,
+	#slide3,
+	#slide4,
+	#slide5,
 	#slide6 {
 		scroll-behavior: smooth;
-		transition: scroll 100s ease-in-out;
+		transition: scroll 6s ease-in-out;
 	}
 }
 
@@ -640,7 +622,12 @@ section {
 .left-banner img {
 	width: 140px;
     height: 200px;
-	margin: 0 25px;
+	margin: 0 25px;	
+}
+
+.left-banner img:hover {
+	transform: scale(1.1);
+	transition: transform 0.3s;
 }
 
 @keyframes leftbanner {
@@ -669,6 +656,11 @@ section {
 	width: 140px;
     height: 200px;
 	margin: 0 25px;
+}
+
+.left-banner-reverse img:hover {
+	transform: scale(1.1);
+	transition: transform 0.3s;
 }
 
 @keyframes leftreversebanner {
@@ -822,6 +814,11 @@ section {
 		grid-template-columns: repeat(3, 1fr);
 	}
 
+	.memo-comment-area:hover {
+		transform: scale(1.1);
+		transition: transform 1.2s;
+	}
+
 	.memo-comment-area {
 		border-radius: 5px;
 	}
@@ -831,10 +828,10 @@ section {
 	}
 
 	.memo-title {
-		border: 1px solid #4dac27;
-		border-radius: 5px;
+		border-radius: 20px;
 		margin: 0 5px;
 		width: 100%;
+		background-color: #4dac270f;
 	}
 
 	.memo-comment-title {
@@ -844,7 +841,12 @@ section {
 		text-align: center;
 		font-size: 1.2rem;
 		font-weight: bold;
-		border-bottom: 1px solid #4dac27;
+		border-bottom: 3px solid #4dac27;
+	}
+
+	.memo-comment-title img {
+		width: 25px;
+		height: 15px;
 	}
 
 	.memo-comment-data {
@@ -953,11 +955,12 @@ section {
 	}
 
 	.memo-title {
-		border: 1px solid #4dac27;
-		border-radius: 5px;
+		border-radius: 20px;
 		margin: 0 auto;
 		width: 85%;
+		background-color: #4dac270f;
 	}
+		
 
 	.memo-comment-title {
 		width: 100%;
@@ -966,7 +969,7 @@ section {
 		text-align: center;
 		font-size: 1.2rem;
 		font-weight: bold;
-		border-bottom: 1px solid #4dac27;
+		border-bottom: 3px solid #4dac27;
 	}
 
 	.memo-comment-data {
@@ -1033,6 +1036,11 @@ section {
 		position: absolute;
 		bottom: 5%;
 		right: 5%;
+	}
+
+	.memo-comment-title img {
+		width: 25px;
+		height: 15px;
 	}
 
 	.memo-data-button {

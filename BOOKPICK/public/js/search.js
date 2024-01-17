@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     autoSearchArea.style.display = 'none';
                 }
             }
-        }, 300);
+        }, 150);
     });
 
     function isKorean(text) {
