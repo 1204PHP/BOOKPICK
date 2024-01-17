@@ -44,30 +44,28 @@ Route::get( '/home', [HomeController::class, 'index'])
 
 // 로그인 시 나의 서재 페이지로 이동
 // 비로그인 시 로그인 페이지로 이동 
+
 // 서재 도서 페이지
-Route::middleware(['auth'])->group(function () {
-    // 서재 도서 페이지
-    Route::get( '/library/finished', [LibraryController::class, 'libraryFinished'])
-    ->name( 'getLibraryFinished' );
-    Route::get( '/library/reading', [LibraryController::class, 'libraryReading'])
-    ->name( 'getLibraryReading' );
-    Route::get( '/library/wishlist', [LibraryController::class, 'librarywishlist'])
-    ->name( 'getLibrarywishlist' );
-    
-    // 서재 도서 상세 페이지
-    Route::get( '/library/detail/{id}', [LibraryController::class, 'libraryDetailIndex'])
-    ->name( 'getLibraryDetail' );
-    Route::post( '/library/detail', [LibraryController::class, 'libraryDetailUpdate'])
-    ->name( 'postLibraryDetail' );
-    Route::delete( '/library/detail', [LibraryController::class, 'libraryDetailDelete'])
-    ->name( 'deleteLibraryDetail' );
-    Route::post( '/library/detail/{id}', [LibraryController::class, 'libraryDetailCommentInsert'])
-    ->name( 'postLibraryDetailComment' );
-    Route::put( '/library/detail/{id}/comment', [LibraryController::class, 'libraryDetailCommentUpdate'])
-    ->name( 'putLibraryDetailComment' );
-    Route::delete( '/library/detail/{id}/comment', [LibraryController::class, 'libraryDetailCommentDelete'])
-    ->name( 'deleteLibraryDetailComment' );
-});
+Route::get( '/library/finished', [LibraryController::class, 'libraryFinished'])
+->name( 'getLibraryFinished' );
+Route::get( '/library/reading', [LibraryController::class, 'libraryReading'])
+->name( 'getLibraryReading' );
+Route::get( '/library/wishlist', [LibraryController::class, 'librarywishlist'])
+->name( 'getLibrarywishlist' );
+
+// 서재 도서 상세 페이지
+Route::get( '/library/detail/{id}', [LibraryController::class, 'libraryDetailIndex'])
+->name( 'getLibraryDetail' );
+Route::post( '/library/detail', [LibraryController::class, 'libraryDetailUpdate'])
+->name( 'postLibraryDetail' );
+Route::delete( '/library/detail', [LibraryController::class, 'libraryDetailDelete'])
+->name( 'deleteLibraryDetail' );
+Route::post( '/library/detail/{id}', [LibraryController::class, 'libraryDetailCommentInsert'])
+->name( 'postLibraryDetailComment' );
+Route::put( '/library/detail/{id}/comment', [LibraryController::class, 'libraryDetailCommentUpdate'])
+->name( 'putLibraryDetailComment' );
+Route::delete( '/library/detail/{id}/comment', [LibraryController::class, 'libraryDetailCommentDelete'])
+->name( 'deleteLibraryDetailComment' );
 
 // 검색 결과 페이지
 // Route::get('/search', [SearchController::class, 'index'])
