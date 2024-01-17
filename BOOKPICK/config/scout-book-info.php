@@ -16,17 +16,8 @@ return [
     |
     */
 
-    'searchableAttributes' => [
-        'b_ISBN',
-        'b_price',
-        'b_title',
-        'b_author',
-        'b_summary',
-        'b_main_cate',
-        'b_sub_cate',
-        'b_publication_date',
-        'b_publisher',
-    ],
+    // 'searchableAttributes' => ['b_sub_cate', 'b_title', 'b_author'],
+    'searchableAttributes' => ["ordered(b_title)", "b_sub_cate"],
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +33,7 @@ return [
     |
     */
 
-    'customRanking' => ['desc(created_at)', 'desc(updated_at)', 'desc(deleted_at)'],
+    'customRanking' => ['desc(b_title)', 'desc(b_sub_cate)'],
 
     /*
     |--------------------------------------------------------------------------
@@ -136,7 +127,7 @@ return [
     |
     */
 
-    'queryLanguages' => ['ko'],
+    'queryLanguages' => ['ko_KR', 'en'],
 
     /*
     |--------------------------------------------------------------------------
@@ -165,5 +156,6 @@ return [
     | configuration, just use the command `scout:sync` to get remote settings in this file.
     |
     */
-    'indexLanguages' => ['ko'],
+    'hitsPerPage' => 1000,
+    'indexLanguages' => [],
 ];

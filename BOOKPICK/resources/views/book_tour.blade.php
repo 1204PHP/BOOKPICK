@@ -9,38 +9,53 @@
         {{-- 캐러셀 --}}
         <div class="slide-container-1">
             <div class="slide-content">
-                <a href="{{ route('getBookDetail', ['id' => 132]) }}">
-                    <img src="{{ asset('img/ad-03.png') }}" alt="...">
+                <a href="{{ route('getBookDetail', ['id' => 1045]) }}">
+                    <img src="{{ asset('img/ad-01.png') }}" alt="...">
                 </a>
             </div>
             <div class="slide-content">
-                <a href="{{ route('getBookDetail', ['id' => 113]) }}">
+                <a href="{{ route('getBookDetail', ['id' => 1062]) }}">
+                    <img src="{{ asset('img/ad-02.png') }}" alt="...">
+                </a>            
+            </div>
+            <div class="slide-content">
+                <a href="{{ route('getBookDetail', ['id' => 1067]) }}">
+                    <img src="{{ asset('img/ad-03.png') }}" alt="...">
+                </a>            
+            </div>
+            <div class="slide-content">
+                <a href="{{ route('getBookDetail', ['id' => 1078]) }}">
                     <img src="{{ asset('img/ad-04.png') }}" alt="...">
                 </a>            
             </div>
             <div class="slide-content">
-                <a href="{{ route('getBookDetail', ['id' => 101]) }}">
+                <a href="{{ route('getBookDetail', ['id' => 1965]) }}">
                     <img src="{{ asset('img/ad-05.png') }}" alt="...">
                 </a>            
             </div>
             <div class="slide-content">
-                <a href="{{ route('getBookDetail', ['id' => 108]) }}">
+                <a href="{{ route('getBookDetail', ['id' => 1972]) }}">
                     <img src="{{ asset('img/ad-06.png') }}" alt="...">
                 </a>            
             </div>
             <div class="slide-content">
-                <a href="{{ route('getBookDetail', ['id' => 111]) }}">
+                <a href="{{ route('getBookDetail', ['id' => 1974]) }}">
                     <img src="{{ asset('img/ad-07.png') }}" alt="...">
                 </a>            
             </div>
             <div class="slide-content">
-                <a href="{{ route('getBookDetail', ['id' => 115]) }}">
+                <a href="{{ route('getBookDetail', ['id' => 1976]) }}">
                     <img src="{{ asset('img/ad-08.png') }}" alt="...">
                 </a>            
             </div>
             <div class="slide-content">
-                <a href="{{ route('getBookDetail', ['id' => 120]) }}">
+                <a href="{{ route('getBookDetail', ['id' => 1981]) }}">
                     <img src="{{ asset('img/ad-09.png') }}" alt="...">
+                </a>            
+            </div>
+            <div class="slide-content">
+                <a href="{{ route('getBookDetail', ['id' => 1211]) }}">
+                    <img src="{{ asset('img/ad-10.png') }}" alt="...">
                 </a>            
             </div>
             <a class="prev" onclick="plusSlide(-1)">&#10094</a>
@@ -53,6 +68,9 @@
                 <div class="ball" onclick="currentSlide(5)"></div>
                 <div class="ball" onclick="currentSlide(6)"></div>
                 <div class="ball" onclick="currentSlide(7)"></div>
+                <div class="ball" onclick="currentSlide(8)"></div>
+                <div class="ball" onclick="currentSlide(9)"></div>
+                <div class="ball" onclick="currentSlide(10)"></div>
             </div>
         </div>
     </section>

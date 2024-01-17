@@ -70,10 +70,8 @@ class SearchController extends Controller
         $bookInfo->b_summary = request('b_summary');
         $bookInfo->b_main_cate = request('b_main_cate');
         $bookInfo->b_sub_cate = request('b_sub_cate');
-        // $bookInfo->b_publication_date = request('b_publication_date');
         $bookInfo->b_publisher = request('b_publisher');
         $bookInfo->b_img_url = request('b_img_url');
-        // $bookInfo->b_product_url = request('b_product_url');
         // 인덱스 업데이트
         $bookInfo->update();
         Log::debug("Algolia 저장완료");
@@ -85,22 +83,16 @@ class SearchController extends Controller
         try {
             // 유저 검색 쿼리 저장
             $query = $request->input('query');
+
             // 유저 검색어 저장
             $searchResult = trim($request->input('query'));
             Log::debug('Algolia Query: ' . $query);
-            // algolia 인덱스 내 모든 정보 저장
-            $bookInfo = book_info::search($query)->get();
-            Log::debug('Algolia return: ' . json_encode($bookInfo, JSON_UNESCAPED_UNICODE));
 
             if ($searchResult) {
                 // 검색어가 있는 경우
                 $bookInfo = book_info::search($query)
                     ->orderBy('b_title', 'asc')
-                    ->orderBy('b_author', 'asc')
-                    ->orderBy('b_summary', 'asc')
-                    ->orderBy('b_main_cate', 'asc')
                     ->orderBy('b_sub_cate', 'asc')
-                    ->orderBy('b_publisher', 'asc')
                     ->get();                
                 $algoliaCnt = $bookInfo->count();
             } else {
@@ -109,9 +101,9 @@ class SearchController extends Controller
                 $algoliaCnt = $bookInfo->count();
             }
 
+            // 1페이지당 최대 60개의 데이터
             $perPage = 60;
             $currentPage = Paginator::resolveCurrentPage('page');
-            // 1페이지당 최대 60개의 데이터
             $bookInfoSlice = $bookInfo->slice(($currentPage - 1) * $perPage, $perPage);
 
             $algoliaResult = new \Illuminate\Pagination\LengthAwarePaginator(
@@ -123,8 +115,6 @@ class SearchController extends Controller
             );
 
             Log::debug("검색 내용: " . $searchResult);
-            Log::debug('책 pk, 제목, 저자, 장르, 이미지url: ' 
-                . json_encode($algoliaResult, JSON_UNESCAPED_UNICODE));
             return view('search', [
                     'algoliaResult' => $algoliaResult,
                     'searchResult' => $searchResult,
@@ -143,10 +133,9 @@ class SearchController extends Controller
     {
         try {
             $query = $request->input('query');
+            log::debug("유저 검색어: " . $query);
             if ($query) {
-                // $autoSearch = Book_info::search($query)->take(5)->get(['b_sub_cate', 'b_title'])->toArray();
-                $autoSearch = Book_info_autoSearch::search($query)->get(['b_sub_cate', 'b_title'])->toArray();
-                Log::debug('책 장르, 제목: ' . json_encode($autoSearch, JSON_UNESCAPED_UNICODE));
+                $autoSearch = Book_info_autoSearch::search($query)->get(['b_title', 'b_sub_cate'])->toArray();
                 return response()->json(['autoSearch' => $autoSearch]);
             } else {
                 Log::debug('검색어 없음');

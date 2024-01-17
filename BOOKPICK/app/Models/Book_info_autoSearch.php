@@ -44,7 +44,20 @@ class book_info_autoSearch extends Model
             'b_sub_cate' => $this->b_sub_cate,
             'b_title' => $this->b_title,
         ];
-    }   
+    }
+
+    // 검색 가능 속성 지정
+    public function searchableAttributes()
+    {
+        return [
+            'b_sub_cate',
+            'b_title',
+        ];
+    }
+
+    // protected $searchable = [
+    //     'attributesToHighlight' => ['b_title', 'b_sub_cate'],
+    // ];
 }
 
 // migrate 실행 시 책 삽입 후 알고리아 처리

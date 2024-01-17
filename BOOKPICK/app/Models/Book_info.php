@@ -32,6 +32,7 @@ class book_info extends Model
     public function searchableAs() {
         return 'book_info';
     }
+    
     // 검색결과 import 컬럼 설정
     public function toSearchableArray()
     {
@@ -41,13 +42,13 @@ class book_info extends Model
             'b_author' => $this->b_author,
         ];
     }
-    // 강조 표시 필드 설정
+
+    // 검색 가능 속성 지정
     public function searchableAttributes()
     {
         return [
             'b_sub_cate',
             'b_title',
-            // 다른 필드들도 추가할 수 있습니다.
         ];
     }
 

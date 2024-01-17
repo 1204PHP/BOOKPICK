@@ -33,7 +33,18 @@ class TourController extends Controller
         ->get();
 
         // 캐러셀 슬라이드 배너 b_id 연동
-        $adBookIds = [132, 113, 101, 108, 111, 115, 120];
+        $adBookIds = [
+            1045,
+            1062, 
+            1067, 
+            1078, 
+            1965, 
+            1972, 
+            1974,
+            1976,
+            1981,
+            1211,
+        ];
 
         $adBookId = book_info::whereIn('b_id', $adBookIds)
         ->pluck('b_id');
