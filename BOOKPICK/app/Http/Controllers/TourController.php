@@ -69,7 +69,17 @@ class TourController extends Controller
         ->join('users', 'manycom.u_id', '=', 'users.u_id')
         ->orderByDesc('book_detail_comments.created_at')
         ->first();
-    
+        if (!$popularBookComment) {
+            $popularBook = book_info::find(1);
+            $popularBookComment = [
+                'b_id' => $popularBook->b_id,
+                'u_id' => '',
+                'b_img_url' => $popularBook->b_img_url,
+                'u_email' => '',
+                'b_title' => $popularBook->b_title,
+                'bdc_comment' => '',
+            ];
+        }
         // 가장 많은 댓글이 달린 책 정보
         Log::debug("가장 많은 댓글 관련 정보", $popularBookComment->toArray());
 
@@ -104,6 +114,16 @@ class TourController extends Controller
             ];
             // 최신 댓글이 달린 책 정보
             Log::debug("최신 댓글 관련 정보" , $lastestCommentInfo);                
+        } else {
+            $lastestComment = book_info::find(2);
+            $lastestCommentInfo = [
+                'b_id' => $lastestComment->b_id,
+                'u_id' => '',
+                'b_img_url' => $lastestComment->b_img_url,
+                'u_email' => '',
+                'b_title' => $lastestComment->b_title,
+                'bdc_comment' => '',
+            ];
         }
 
         // ### 좋아요가 가장 많이 달린 책(책pk, 유저pk, 책imgurl, 유저 이메일, 책 제목, 댓글 내용)
@@ -149,6 +169,16 @@ class TourController extends Controller
             ];
             // 최신 댓글이 달린 책 정보
             Log::debug("최다 좋아요 정보" , $likeBookinfo);  
+        } else {
+            $likeBookBdc = book_info::find(3);
+            $likeBookBdcInfo = [
+                'b_id' => $likeBookBdc->b_id,
+                'u_id' => '',
+                'b_img_url' => $likeBookBdc->b_img_url,
+                'u_email' => '',
+                'b_title' => $likeBookBdc->b_title,
+                'bdc_comment' => '',
+            ];
         }
         Log::info('Client IP: ' . request()->ip());
 
