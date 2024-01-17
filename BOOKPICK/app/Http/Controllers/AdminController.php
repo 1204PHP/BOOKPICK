@@ -51,10 +51,12 @@ class AdminController extends Controller
                     break;
             }
             // 123 18번까지 루프(각 1000개씩), 4 2번까지 루프(100개)
-            $cnt=1;
+            Log::debug("----------DB BookInfo INSERT 시작-----------");
             DB::beginTransaction();
             Log::debug("#트랜잭션 시작");
-            for($start=1; $start<=10; $start++) {
+            $cnt=0;
+            $noCnt=0;
+            for($start=1; $start<=20; $start++) {
                 $apiUrl = "http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbckstjddh11142001&QueryType="
                 .$QueryType
                 ."&MaxResults=50&start="
@@ -62,7 +64,7 @@ class AdminController extends Controller
                 "&SearchTarget=Book&output=JS&Version=20131101&cover=big";
                 $response = Http::get($apiUrl);
                 $responseData = $response->json();
-                Log::debug("----------DB BookInfo INSERT 시작-----------");
+                $realResultdata=[];
                 foreach ($responseData['item'] as $val) {
                     $priceStandard = empty($val['priceStandard']) ? "" : $val['priceStandard'];
                     $author = empty($val['author']) ? "" : $val['author'];
@@ -84,14 +86,19 @@ class AdminController extends Controller
                     $existingRecord = Book_info::where('b_isbn', $resultdata['b_ISBN'])->first();
                     
                     if(!$existingRecord) {
-                        Book_info::create($resultdata);
-                        Log::debug($cnt.'-'.$QueryType.' 책 삽입 성공  ISBN:' . $resultdata['b_ISBN']);
+                        $realResultdata[] = $resultdata;
+                        // Log::debug($cnt.'-'.$QueryType.' 책 삽입 성공  ISBN:' . $resultdata['b_ISBN']);
+                        $cnt++;
                     } else {
-                        Log::debug($cnt.'-'.$QueryType.' 해당 ISBN이 존재 ISBN:' . $resultdata['b_ISBN']);
+                        // Log::debug($cnt.'-'.$QueryType.' 해당 ISBN이 존재 ISBN:' . $resultdata['b_ISBN']);
+                        $noCnt++;
                     }
-                    $cnt++;
                 }
+                
+                Book_info::insert($realResultdata);
             }
+            Log::debug("삽입된 책의 수 : ". $cnt);
+            Log::debug("삽입 되지않은 책의 수 : ". $noCnt);
             DB::commit();
             Log::debug("#트랜잭션 커밋");
             Log::debug("----------DB BookInfo INSERT 끝-----------");
