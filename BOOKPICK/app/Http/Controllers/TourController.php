@@ -80,8 +80,6 @@ class TourController extends Controller
                 'bdc_comment' => '',
             ];
         }
-        // 가장 많은 댓글이 달린 책 정보
-        Log::debug("가장 많은 댓글 관련 정보", $popularBookComment->toArray());
 
         // ### 최신 댓글이 달린 책(책pk, 유저pk, 책imgurl, 유저 이메일, 책 제목, 댓글 내용)
         $lastestComment = Book_detail_comment::orderByDesc('created_at')->first();
@@ -134,44 +132,46 @@ class TourController extends Controller
             ->orderByDesc('count')
             ->limit(1)
             ->first();
+        if($likeBookBdcsInfo) {
+            // 좋아요가 가장 많이 달린 책의 bdc_id 저장
+            $likeBookBdcId = $likeBookBdcsInfo->bdc_id;
 
-        // 좋아요가 가장 많이 달린 책의 bdc_id 저장
-        $likeBookBdcId = $likeBookBdcsInfo->bdc_id;
+            $likeBookBdcInfo = Book_detail_comment::where('bdc_id', $likeBookBdcId)->first();
 
-        $likeBookBdcInfo = Book_detail_comment::where('bdc_id', $likeBookBdcId)->first();
+            if ($likeBookBdcInfo) {
+                // 좋아요가 가장 많이 달린 책 정보
+                // 책pk
+                $b_id = $likeBookBdcInfo->b_id;
+                // 유저pk
+                $u_id = $likeBookBdcInfo->u_id;
+                // 최신 댓글 내용
+                $bdc_comment = $likeBookBdcInfo->bdc_comment;
 
-        if ($likeBookBdcInfo) {
-            // 좋아요가 가장 많이 달린 책 정보
-            // 책pk
-            $b_id = $likeBookBdcInfo->b_id;
-            // 유저pk
-            $u_id = $likeBookBdcInfo->u_id;
-            // 최신 댓글 내용
-            $bdc_comment = $likeBookBdcInfo->bdc_comment;
+                // 최신 댓글 댓글이 달린 책 정보
+                $bookInfo = book_info::find($b_id);
+                $b_title = $bookInfo->b_title;
+                $b_img_url = $bookInfo->b_img_url;
 
-            // 최신 댓글 댓글이 달린 책 정보
-            $bookInfo = book_info::find($b_id);
-            $b_title = $bookInfo->b_title;
-            $b_img_url = $bookInfo->b_img_url;
+                // 좋아요가 가장 많이 달린 책 유저정보
+                $user = User::find($u_id);
+                $u_email = $user->u_email;
 
-            // 좋아요가 가장 많이 달린 책 유저정보
-            $user = User::find($u_id);
-            $u_email = $user->u_email;
-
-            // 결과 저장
-            $likeBookinfo = [
-                'b_id' => $b_id,
-                'u_id' => $u_id,
-                'b_img_url' => $b_img_url,
-                'u_email' => $u_email,
-                'b_title' => $b_title,
-                'bdc_comment' => $bdc_comment,
-            ];
-            // 최신 댓글이 달린 책 정보
-            Log::debug("최다 좋아요 정보" , $likeBookinfo);  
-        } else {
+                // 결과 저장
+                $likeBookinfo = [
+                    'b_id' => $b_id,
+                    'u_id' => $u_id,
+                    'b_img_url' => $b_img_url,
+                    'u_email' => $u_email,
+                    'b_title' => $b_title,
+                    'bdc_comment' => $bdc_comment,
+                ];
+                // 최신 댓글이 달린 책 정보
+                Log::debug("최다 좋아요 정보" , $likeBookinfo);  
+            }
+        }
+        else {
             $likeBookBdc = book_info::find(3);
-            $likeBookBdcInfo = [
+            $likeBookinfo = [
                 'b_id' => $likeBookBdc->b_id,
                 'u_id' => '',
                 'b_img_url' => $likeBookBdc->b_img_url,
