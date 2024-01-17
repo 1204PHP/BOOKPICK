@@ -44,6 +44,7 @@ Route::get( '/home', [HomeController::class, 'index'])
 
 // 로그인 시 나의 서재 페이지로 이동
 // 비로그인 시 로그인 페이지로 이동 
+
 // 서재 도서 페이지
 Route::get( '/library/finished', [LibraryController::class, 'libraryFinished'])
 ->name( 'getLibraryFinished' );
@@ -51,44 +52,20 @@ Route::get( '/library/reading', [LibraryController::class, 'libraryReading'])
 ->name( 'getLibraryReading' );
 Route::get( '/library/wishlist', [LibraryController::class, 'librarywishlist'])
 ->name( 'getLibrarywishlist' );
-    // TODO: auth처리 해줘야함
 
 // 서재 도서 상세 페이지
 Route::get( '/library/detail/{id}', [LibraryController::class, 'libraryDetailIndex'])
-    ->name( 'getLibraryDetail' );
+->name( 'getLibraryDetail' );
 Route::post( '/library/detail', [LibraryController::class, 'libraryDetailUpdate'])
-    ->name( 'postLibraryDetail' );
+->name( 'postLibraryDetail' );
 Route::delete( '/library/detail', [LibraryController::class, 'libraryDetailDelete'])
-    ->name( 'deleteLibraryDetail' );
+->name( 'deleteLibraryDetail' );
 Route::post( '/library/detail/{id}', [LibraryController::class, 'libraryDetailCommentInsert'])
-    ->name( 'postLibraryDetailComment' );
+->name( 'postLibraryDetailComment' );
 Route::put( '/library/detail/{id}/comment', [LibraryController::class, 'libraryDetailCommentUpdate'])
-    ->name( 'putLibraryDetailComment' );
+->name( 'putLibraryDetailComment' );
 Route::delete( '/library/detail/{id}/comment', [LibraryController::class, 'libraryDetailCommentDelete'])
-    ->name( 'deleteLibraryDetailComment' );
-    // TODO: auth처리 해줘야함
-
-// Route::middleware('auth')->prefix('library')->group(function () {
-//     Route::resource('detail', LibraryCommentController::class, [
-//         'names' => [
-//             'index' => 'lcDetailIndex', // (GET)나의 서재 도서 상세 화면 이동
-//             'create' => 'lcDetailCreate', // (GET)나의 서재 도서 상세 화면 이동(게시판 작성 화면 이동)
-//             'store' => 'lcDetailStore', // (POST)나의 서재 도서 상세 화면 게시글 insert 처리
-//             'show' => 'lcDetailShow', // (GET)나의 서재 도서 상세 화면 이동(게시판 디테일 화면 이동)
-//             'edit' => 'lcDetailEdit', // (GET)나의 서재 도서 상세 화면 이동(게시판 수정 화면 이동)
-//             'update' => 'lcDetailUpdate', // (PUT)나의 서재 도서 상세 화면 게시글 update 처리
-//             'destory' => 'lcDetailDestory', // (DELETE)나의 서재 도서 상세 화면 게시글 delete 처리
-//         ]
-//     ]);
-// });
-// Route::get("/search",[AutoSearchController::class, 'autoSearch'])
-//     ->name('getsearch.index');
-
-
-
-
-
-
+->name( 'deleteLibraryDetailComment' );
 
 // 검색 결과 페이지
 // Route::get('/search', [SearchController::class, 'index'])
@@ -99,9 +76,6 @@ Route::get('/search', [SearchController::class, 'index'])->name('getsearch.index
 Route::get('/query-autosearch', [SearchController::class, 'autoSearch']);
 
 // 도서 상세 페이지
-// Route::get( '/book/detail/{id}', function ($id) {
-//     return view( 'book_detail', ['id' => $id] );
-// })->name( 'bookDetail' );
 Route::get( '/book/detail/{id}', [BookController::class, 'index'])
     ->name( 'getBookDetail' );
 Route::post( '/book/detail/wish', [BookController::class, 'bookDetailWishList'])
@@ -133,16 +107,16 @@ Route::post( '/book/detail/reply/dislike', [BookController::class, 'bookDetailRe
 
 
 // 관리자 페이지
-Route::get( '/admin', [AdminController::class, 'index']
-)->name( 'getAdmin' );
-Route::post( '/admin/bookInfo', [AdminController::class, 'adminbookInfo'])
-->name( 'postAdminbookInfo' );
-Route::post( '/admin/bookApi', [AdminController::class, 'adminbookApi'])
-->name( 'postAdminbookApi' );
-Route::post( '/admin/apiCate', [AdminController::class, 'adminApiCate'])
-->name( 'postAdminApiCate' );
-Route::post( '/admin/apiCateAuto', [AdminController::class, 'adminApiCateAuto'])
-->name( 'postAdminApiCateAuto' );
+// Route::get( '/admin', [AdminController::class, 'index']
+// )->name( 'getAdmin' );
+// Route::post( '/admin/bookInfo', [AdminController::class, 'adminbookInfo'])
+// ->name( 'postAdminbookInfo' );
+// Route::post( '/admin/bookApi', [AdminController::class, 'adminbookApi'])
+// ->name( 'postAdminbookApi' );
+// Route::post( '/admin/apiCate', [AdminController::class, 'adminApiCate'])
+// ->name( 'postAdminApiCate' );
+// Route::post( '/admin/apiCateAuto', [AdminController::class, 'adminApiCateAuto'])
+// ->name( 'postAdminApiCateAuto' );
 
 // ### 유저관련(유효성 검사 포함) ###
 
