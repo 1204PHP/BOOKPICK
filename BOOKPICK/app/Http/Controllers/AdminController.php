@@ -51,11 +51,11 @@ class AdminController extends Controller
                     break;
             }
             // 123 18번까지 루프(각 1000개씩), 4 2번까지 루프(100개)
+            Log::debug("----------DB BookInfo INSERT 시작-----------");
             DB::beginTransaction();
             Log::debug("#트랜잭션 시작");
             $cnt=0;
             $noCnt=0;
-            Log::debug("----------DB BookInfo INSERT 시작-----------");
             for($start=1; $start<=20; $start++) {
                 $apiUrl = "http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbckstjddh11142001&QueryType="
                 .$QueryType
