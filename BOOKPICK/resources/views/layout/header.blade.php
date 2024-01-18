@@ -26,7 +26,7 @@ $currentRoute = Route::currentRouteName();
 				<form class="desktop-search-bar" action="{{ route('getsearch.index') }}" method="GET">
 					<div class="search-input-container">
 						<div class="search-input">
-							<input type="text" class="search-bar" id= "query" name="query" value="" autocomplete="off" spellcheck="false" placeholder="2글자 이상 검색어를 입력해 주세요">
+							<input type="search" class="search-bar" id= "query" name="query" value="" autocomplete="off" spellcheck="false" placeholder="2글자 이상 검색어를 입력해 주세요">
 						</div>
 						
 						<div class="search-button">
@@ -67,10 +67,10 @@ $currentRoute = Route::currentRouteName();
 			<form class="desktop-search-bar" action="{{ route('getsearch.index') }}" method="GET">
 				<div class="search-input-container">
 					<div class="search-input">
-						<input type="search" class="search-bar" name="result" value="" autocomplete="off" placeholder="검색어를 입력해 주세요">
+						<input type="search" class="search-bar" id="query" name="query" value="" autocomplete="off" spellcheck="false" placeholder="검색어를 입력해 주세요">
 					</div>					
 					<div class="search-button">
-						<a href="#" class="header-search-btn" onclick="submitSearch()">
+						<a href="javascript:void(0);" class="header-search-btn" onclick="submitSearch()">
 							<img src="{{ asset('img/search.png') }}" class="search-icon" alt="...">
 						</a>
 					</div>
@@ -132,8 +132,8 @@ $currentRoute = Route::currentRouteName();
             };
 
             topButton.addEventListener('click', function () {
-                document.body.scrollTop = 0; // For Safari
-                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+                document.body.scrollTop = 0; 
+                document.documentElement.scrollTop = 0; 
             });
         });
 	</script>

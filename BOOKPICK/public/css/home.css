@@ -1,5 +1,5 @@
 .home-container {
-	margin: 50px auto 0px auto;
+	margin: 0 auto;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
@@ -482,7 +482,7 @@ section {
 
 .tour-main-area {
 	width: 100%;
-	height: 300px;
+	height: 330px;
 	background-color: #f0f0f0;
 	display: flex;
 	flex-direction: row;
@@ -496,6 +496,7 @@ section {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		display: none;
 	}
 
 	.tour-main-text {
@@ -511,33 +512,35 @@ section {
 	.tour-main-img-container {
 		width: 100%;
 		height: 100%;
-		display: none;
+		text-align: center;
+		/* display: none; */
 	}
 
 	.tour-main-img-container img {
 		max-width: 100%;
 		height: 100%;
-		margin-right: 30px;
-		float: right;
+		/* margin-right: 30px; */
+		/* float: right; */
 	}
 }
 
 /* 태블릿 */
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
 	.tour-main-text-container {
-		width: 100%;
+		max-width: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		margin-left: 50px;
 	}
 
 	.tour-main-text {
-		font-size: 1.5rem;
+		font-size: 1.4rem;
 		margin: 40px auto;
 	}
 
 	.tour-main-text-p {
-		font-size: 1.2rem;
+		font-size: 1.1rem;
 		margin: 20px auto;
 	}
 
@@ -549,7 +552,6 @@ section {
 	.tour-main-img-container img {
 		max-width: 100%;
 		height: 100%;
-		margin-right: 30px;
 		float: right;
 	}
 }
@@ -587,7 +589,6 @@ section {
 }
 
 /* 광고 영역1 */
-
 .tour-section-2 {
 	width: 100%;
 	margin: 20px auto;
@@ -621,7 +622,7 @@ section {
 
 .left-banner img {
 	width: 140px;
-    height: 200px;
+	height: 200px;
 	margin: 0 25px;	
 }
 
@@ -640,7 +641,7 @@ section {
 }
 
 .left-banner-area:hover {
-    animation-play-state: paused;
+	animation-play-state: paused;
 }
 
 .left-banner-reverse-area {
@@ -654,7 +655,7 @@ section {
 
 .left-banner-reverse img {
 	width: 140px;
-    height: 200px;
+	height: 200px;
 	margin: 0 25px;
 }
 
@@ -673,9 +674,11 @@ section {
 }
 
 .left-banner-reverse-area:hover {
-    animation-play-state: paused;
+	animation-play-state: paused;
 }
 
+
+/* 로그인 배너 */
 /* 휴대폰 */
 @media only screen and (max-width: 767px) {
 	.tour-loginbanner {
@@ -761,7 +764,7 @@ section {
 	.tour-loginbanner {
 		width: 100%;
 		height: 150px;
-		margin-top: 20px;
+		margin-top: 50px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -792,18 +795,8 @@ section {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		/* margin-top: 10px; */
 	}
 }
-
-
-
-
-
-
-
-
-
 
 /* 광고 영역2 */
 @media only screen and (min-width: 1360px) {
@@ -1334,10 +1327,9 @@ section {
 }
 
 /* 광고 영역4 */
-
 .tour-card-area {
 	display: grid;
-	grid-gap: 1rem;
+	grid-gap: 3rem;
 	padding: 1rem;
 	max-width: 1300px;
 	margin: 0 auto;

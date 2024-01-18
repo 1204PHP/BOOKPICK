@@ -136,17 +136,7 @@
                     </div>
                 </div>
             </a>           
-        </div>
-        {{-- 로그인유도 배너 --}}
-        @if(!(Auth::check()))
-        <a href="{{ route('getLogin') }}">
-            <div class="tour-loginbanner">
-                <p class="tour-loginbanner-p">독서에서 찾은 미소와 감동을 독서기록으로 남겨보세요</p>
-                <p class="tour-text-p">BOOKPICK'은 여러분의 독서 이야기를 기다리고 있어요</p>
-                <span class="loginbanner-loginbtn">로그인하기</span>
-            </div>
-        </a>
-        @endif  
+        </div> 
     </section>
     {{-- 광고 영역2 --}}
     <section class="tour-section-5">
@@ -218,6 +208,16 @@
                 </div>
             </div>
         </div>
+        {{-- 로그인유도 배너 --}}
+        @if(!(Auth::check()))
+        <a href="{{ route('getLogin') }}">
+            <div class="tour-loginbanner">
+                <p class="tour-loginbanner-p">독서에서 찾은 미소와 감동을 독서기록으로 남겨보세요</p>
+                <p class="tour-text-p">BOOKPICK'은 여러분의 독서 이야기를 기다리고 있어요</p>
+                <span class="loginbanner-loginbtn">로그인하기</span>
+            </div>
+        </a>
+        @endif 
     </section>   
 
     {{-- 광고 영역1 --}}
