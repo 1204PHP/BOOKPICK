@@ -87,6 +87,8 @@ Route::post( '/book/detail/comment/insert', [BookController::class, 'bookDetailC
     ->name( 'postbookDetailComment' );
 Route::post( '/book/detail/comment/print', [BookController::class, 'bookDetailCommentPrint'])
 ->name( 'postbookDetailPrint' );
+Route::post( '/book/detail/comment/delete', [BookController::class, 'bookDetailCommentDelete'])
+->name( 'postbookDetailCommentDelete' );
 // 도서 상세 페이지 - 댓글 좋아요, 싫어요
 Route::post( '/book/detail/comment/like', [BookController::class, 'bookDetailCommentLikeInsert'])
 ->name( 'postBookDetailCommentLikeInsert' );

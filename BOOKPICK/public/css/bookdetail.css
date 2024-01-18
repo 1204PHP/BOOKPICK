@@ -514,6 +514,16 @@
 	color:black;
 }
 
+.bdc-list-delete {
+	display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 5px;
+	cursor: pointer;
+}
+
 /* 작성 영역 */
 .bdc-write {
 	border: 1px solid #b0b3be;

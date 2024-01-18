@@ -294,6 +294,7 @@ class BookController extends Controller
             $id= $request->b_id;
             $cateNum = $request->cateNum;
             $userId = Session::get('u_id');
+            $userCommentResultArr=[];
             $userLikeResultArr=[];
             $userDislikeResultArr=[];
             $commentResultQuery = Book_detail_comment::join('users', 'book_detail_comments.u_id', '=', 'users.u_id')
@@ -327,6 +328,10 @@ class BookController extends Controller
                 ->count();
 
             if($userId){
+                $userCommentResult = Book_detail_comment::select('book_detail_comments.bdc_id')
+                    ->where('book_detail_comments.b_id', $id)    
+                    ->where('book_detail_comments.u_id', $userId)
+                    ->get();
                 $userLikeResult = Book_detail_comment_state::select('book_detail_comments.bdc_id')
                     ->join('book_detail_comments', 'book_detail_comments.bdc_id', '=', 'book_detail_comment_states.bdc_id')
                     ->where('book_detail_comments.b_id', $id)
@@ -339,6 +344,9 @@ class BookController extends Controller
                     ->where('book_detail_comment_states.u_id', $userId)
                     ->where('book_detail_comment_states.bdcs_flg', 2)
                     ->get();
+                foreach($userCommentResult as $value) {
+                    $userCommentResultArr[] = $value['bdc_id'];
+                }
                 foreach($userLikeResult as $value) {
                     $userLikeResultArr[] = $value['bdc_id'];
                 }
@@ -348,16 +356,19 @@ class BookController extends Controller
                 $responseData = [
                     'commentResult' => $commentResult,
                     'commentCount' => $commentCount,
+                    'userCommentResultArr' => $userCommentResultArr,
                     'userLikeResultArr' => $userLikeResultArr,
                     'userDislikeResultArr' => $userDislikeResultArr,
                 ];
             } else {
+                $userCommentResultArr=[];
                 $userLikeResultArr = [];
                 $userDislikeResultArr = [];
 
                 $responseData = [
                     'commentResult' => $commentResult,
                     'commentCount' => $commentCount,
+                    'userCommentResultArr' => $userCommentResultArr,
                     'userLikeResultArr' => $userLikeResultArr,
                     'userDislikeResultArr' => $userDislikeResultArr,
                 ];
@@ -671,6 +682,47 @@ class BookController extends Controller
                 ->count();
                 $responseData = [
                     'dislikeCountResult' => $dislikeCountResult,
+                ];
+
+                return response()->json($responseData);
+            } else {
+                $responseData = [
+                    'errorMsg' => "로그인 후 이용 바랍니다.",
+                ];
+                return response()->json($responseData);
+            }
+        } catch(Exception $e) {
+            Log::error( "--------도서 대댓글 싫어요 ajax 에러발생---------" );
+            Log::error( "에러내용:".$e->getMessage());
+            Log::error( "------------------------------------" );
+            return redirect()->route( 'index' );
+        }
+    }
+
+    public function bookDetailCommentDelete(Request $request)
+    {
+        try {
+            Log::debug( "--------도서 댓글 삭제 ajax 시작---------" );
+            $userId = Session::get('u_id');
+            $bdc_id = $request->bdc_id;
+            $bId = $request->bId;
+            if ($userId) {
+                Log::debug($userId);
+                Log::debug($bdc_id);
+                Log::debug($bId);
+                $deleteResult = Book_detail_comment::where('u_id',$userId)
+                                ->where('bdc_id',$bdc_id)
+                                ->where('b_id', $bId)
+                                ->first();
+                if ($deleteResult) {
+                    $deleteResult->delete();
+                }
+                $CountResult = Book_detail_comment::where('b_id', $bId)
+                ->count();
+
+                $responseData = [
+                    'deleteResult' => $deleteResult,
+                    'CountResult' => $CountResult,
                 ];
 
                 return response()->json($responseData);

@@ -172,6 +172,7 @@ function insertFormCheck() {
 					} else {
 					}
 				} else {
+			
 					categoryBtn(1);
 					let commentResult = data.commentResult;
 					let uNameResult = data.uNameResult;
@@ -206,10 +207,17 @@ function insertFormCheck() {
 					dateElement.textContent = new Date(commentResult['created_at'])
 												.toLocaleString('ko-KR', 
 													{year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: false});
-			
+					var deleteElement = document.createElement('img');
+					deleteElement.className = 'bdc-list-delete';
+					deleteElement.src = '/img/book_detail_trash.png';
+					deleteElement.onclick = function() {
+						var StrNum = commentResult['bdc_id'];
+						deleteComment(StrNum);
+					};
 					topArea.appendChild(imgElement);
 					topArea.appendChild(nameElement);
 					topArea.appendChild(dateElement);
+					topArea.appendChild(deleteElement);
 		
 					// 리스트 중단 영역 생성
 					var middleArea = document.createElement('div');
@@ -316,159 +324,7 @@ function insertFormCheck() {
 
 // 처음 로드시 댓글 출력
 document.addEventListener('DOMContentLoaded', function() {
-    let formData = new FormData();
-	let bId = document.getElementById("bdc_b_id").value;
-    formData.append('b_id', bId);
-    formData.append('cateNum', 1);
-	var cateNumDOM = document.getElementById("categoryBtn1");
-	cateNumDOM.className = "bdc-list-cate bdc-list-cate-bold";
-    fetch('/book/detail/comment/print', {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => response.json())
-    .then(data => {
-		let commentResult = data.commentResult;
-        let commentCount = data.commentCount;
-        let userLikeResultArr = data.userLikeResultArr;
-        let userDislikeResultArr = data.userDislikeResultArr;
-		var BinDiv = document.createElement('div');
-		var bdcHeadTxtCount = document.getElementById('bdc-head-txt-count');
-		bdcHeadTxtCount.innerHTML = commentCount;
-		for (let i = 0; i < commentResult.length; i++) {
-			var parentElement = document.getElementById('bdc-list');
-
-			// 새로운 div 요소 생성
-			var newDivElement = document.createElement('div');
-			var StrNum = commentResult[i]['bdc_id'];
-			newDivElement.id = "bdc-list-area" + StrNum;
-	
-			// 리스트 상단 영역 생성
-			var topArea = document.createElement('div');
-			topArea.className = 'bdc-list-top-area';
-	
-			var imgElement = document.createElement('img');
-			imgElement.className = 'bdc-list-area-img';
-			imgElement.src = '/img/user.png';
-			imgElement.alt = '';
-	
-			var nameElement = document.createElement('span');
-			nameElement.className = 'bdc-list-area-name';
-			nameElement.textContent = commentResult[i]['u_name'];
-	
-			var dateElement = document.createElement('span');
-			dateElement.className = 'bdc-list-area-at';
-			dateElement.textContent = new Date(commentResult[i]['created_at'])
-										.toLocaleString('ko-KR', 
-											{year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: false});
-	
-			topArea.appendChild(imgElement);
-			topArea.appendChild(nameElement);
-			topArea.appendChild(dateElement);
-
-			// 리스트 중단 영역 생성
-			var middleArea = document.createElement('div');
-			middleArea.className = 'bdc-list-middle-area font-1';
-	
-			var contentElement = document.createElement('p');
-			contentElement.className = 'bdc-list-area-content';
-			contentElement.textContent = commentResult[i]['bdc_comment'];
-	
-			middleArea.appendChild(contentElement);
-	
-			// 리스트 하단 영역 생성
-			var bottomArea = document.createElement('div');
-			bottomArea.className = 'bdc-list-bottom-area';
-	
-			var replyLink = document.createElement('a');
-			replyLink.className = 'bdc-list-area-reply';
-			replyLink.textContent = '답글';
-			replyLink.onclick = function() {
-				var StrNum = commentResult[i]['bdc_id'];
-				replyOpen(StrNum);
-			};
-
-			var replyCount = document.createElement('span');
-			replyCount.className = 'bdc-list-area-reply-cnt';
-			replyCount.textContent = commentResult[i]['reply_count'];
-			replyCount.id = 'bdc-list-area-reply-cnt' + StrNum;
-	
-			replyLink.appendChild(replyCount);
-	
-			var recommendArea = document.createElement('div');
-			recommendArea.className = 'bdc-list-recommend-area';
-	
-			var likeBox = document.createElement('a');
-			likeBox.className = 'bdc-list-area-like-box';
-			likeBox.id = 'bdc-list-area-like-box' + StrNum;
-			likeBox.onclick = function() {
-				var StrNum = commentResult[i]['bdc_id'];
-				likeInsert(StrNum);
-			};
-
-			if(userLikeResultArr.includes(commentResult[i]['bdc_id'])) {
-				likeBox.classList.add('book_detail_likein_user');
-			}
-
-			var likeImg = document.createElement('img');
-			likeImg.className = 'bdc-dis-like-btn';
-			likeImg.src = '/img/book_detail_like.png';
-			likeImg.alt = '';
-	
-			var likeCount = document.createElement('span');
-			likeCount.textContent = commentResult[i]['like'];
-			var StrNum = commentResult[i]['bdc_id'];
-			likeCount.id= 'like-count' + StrNum;
-			likeBox.appendChild(likeImg);
-			likeBox.appendChild(likeCount);
-	
-			var dislikeBox = document.createElement('a');
-			dislikeBox.className = 'bdc-list-area-dislike-box';
-			dislikeBox.id = 'bdc-list-area-dislike-box' + StrNum;
-			dislikeBox.onclick = function() {
-				var StrNum = commentResult[i]['bdc_id'];
-				dislikeInsert(StrNum);
-			};
-			if(userDislikeResultArr.includes(commentResult[i]['bdc_id'])) {
-				dislikeBox.classList.add('book_detail_likein_user');
-			}
-
-			var dislikeImg = document.createElement('img');
-			dislikeImg.className = 'bdc-dis-like-btn';
-			dislikeImg.src = '/img/book_detail_dislike.png';
-			dislikeImg.alt = '';
-	
-			var dislikeCount = document.createElement('span');
-			dislikeCount.textContent = commentResult[i]['dislike'];
-			dislikeCount.id= 'dislike-count' + StrNum;
-	
-			dislikeBox.appendChild(dislikeImg);
-			dislikeBox.appendChild(dislikeCount);
-	
-			recommendArea.appendChild(likeBox);
-			recommendArea.appendChild(dislikeBox);
-	
-			bottomArea.appendChild(replyLink);
-			bottomArea.appendChild(recommendArea);
-	
-			var BinDiv = document.createElement('div');
-			BinDiv.className = 'bdc-list-area';
-
-			// 새로운 div 요소에 생성한 영역들 추가
-			BinDiv.appendChild(topArea);
-			BinDiv.appendChild(middleArea);
-			BinDiv.appendChild(bottomArea);
-
-			newDivElement.appendChild(BinDiv);
-	
-			// 부모 요소에 새로운 div 요소 추가
-			parentElement.appendChild(newDivElement);
-		}
-
-		})
-		.catch(error => {
-			console.error('오류 발생:', error);
-		})
+	categoryBtn(1);
 });
 
 
@@ -499,6 +355,7 @@ function categoryBtn(cateNum) {
 		}
 		let commentResult = data.commentResult;
 		let commentCount = data.commentCount;
+		let userCommentResultArr = data.userCommentResultArr;
 		let userLikeResultArr = data.userLikeResultArr;
 		let userDislikeResultArr = data.userDislikeResultArr;
 		var BinDiv = document.createElement('div');
@@ -530,10 +387,19 @@ function categoryBtn(cateNum) {
 			dateElement.textContent = new Date(commentResult[i]['created_at'])
 										.toLocaleString('ko-KR', 
 											{year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: false});
-	
 			topArea.appendChild(imgElement);
 			topArea.appendChild(nameElement);
 			topArea.appendChild(dateElement);
+			if(userCommentResultArr.includes(commentResult[i]['bdc_id'])) {
+				var deleteElement = document.createElement('img');
+				deleteElement.className = 'bdc-list-delete';
+				deleteElement.src = '/img/book_detail_trash.png';
+				deleteElement.onclick = function() {
+					var StrNum = commentResult[i]['bdc_id'];
+					deleteComment(StrNum);
+				};
+				topArea.appendChild(deleteElement);
+			}
 
 			// 리스트 중단 영역 생성
 			var middleArea = document.createElement('div');
@@ -1114,7 +980,6 @@ function dislikeInsert(bdc_id) {
 						window.location.href = "/login";
 					}
 				} else {
-					
 					let dislikeCountStr = 'dislike-count' + bdc_id;
 					document.getElementById(dislikeCountStr).innerHTML = data.dislikeCountResult;
 					let dislikeBoxStr = 'bdc-list-area-dislike-box' + bdc_id;
@@ -1209,4 +1074,49 @@ function replyDislikeInsert(bdr_id) {
 			} else {
 			}
 		}
+}
+
+// 댓글 삭제
+function deleteComment(bdc_id) {
+	if(confirm("댓글을 삭제하시겠습니까?")){
+		let formData = new FormData();
+		let ac_flg = document.getElementById("ac_flg").value;
+		let bId = document.getElementById("bdc_b_id").value;
+		if(ac_flg==="1") {
+			formData.append('bdc_id', bdc_id);
+			formData.append('bId', bId);
+			fetch('/book/detail/comment/delete', {
+				method: 'POST',
+				body: formData,
+			})
+			.then(response => response.json())
+			.then(data => {
+				let errorMsg = data.errorMsg;
+				if(errorMsg) {
+					if(confirm("로그인을 하신 후 이용해 주시기 바랍니다.")){
+						window.location.href = "/login";
+					}
+				} else {
+					let deleteResult = data.deleteResult;
+					let CountResult = data.CountResult;
+					
+					var bdcListAreaStr = 'bdc-list-area' + deleteResult.bdc_id;
+					var bdcListArea = document.getElementById(bdcListAreaStr);
+					bdcListArea.remove();
+					var bdcHeadTxtCount = document.getElementById('bdc-head-txt-count');
+					bdcHeadTxtCount.innerText = CountResult;
+				}
+			})
+			.catch(error => {
+				console.error('오류 발생:', error);
+			})
+		}
+		else if(ac_flg ==="2") {
+			if(confirm("로그인을 하신 후 이용해 주시기 바랍니다.")){
+				window.location.href = "/login";
+			} else {
+			}
+		}
+	} else {
+	}
 }
