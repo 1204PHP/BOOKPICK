@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     autoSearchArea.style.display = 'none';
                 }
             }
-        }, 200);
+        }, 300);
     });
 
     function isKorean(text) {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     data.autoSearch.forEach(suggestion => {
                         const li = document.createElement('li');
                         const cateSpan = document.createElement('span');
-                        const spaceSpan = document.createElement('span');                    
+                        const spaceSpan = document.createElement('span');
                         const titleSpan = document.createElement('span');
 
                         titleSpan.addEventListener('click', function () {
@@ -88,12 +88,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         cateSpan.style.color = '#4dac27';
                         cateSpan.style.fontSize = '1rem';
-                        cateSpan.style.textDecoration = 'underline';
-                        spaceSpan.style.whiteSpace = 'pre';
+                        cateSpan.style.marginLeft = '10px';
+                        cateSpan.style.fontSize = '0.8rem';                        
+                        cateSpan.style.display = 'inline-block';
+
                         titleSpan.style.color = '#000';
-                        cateSpan.style.fontSize = '0.8rem';
-                        titleSpan.style.cursor = 'pointer';
-                        cateSpan.style.cursor = 'pointer';
+                        titleSpan.style.display = 'inline-block';
+                        titleSpan.style.marginLeft = '10px';
+
+                        spaceSpan.style.whiteSpace = 'pre-line';                        
+
+                        cateSpan.addEventListener('mouseover', function() {
+                            cateSpan.style.textDecoration = 'underline';
+                            cateSpan.style.cursor = 'pointer';
+                        });
+
+                        cateSpan.addEventListener('mouseout', function() {
+                            cateSpan.style.textDecoration = 'none';
+                        });
+
+                        titleSpan.addEventListener('mouseover', function() {
+                            titleSpan.style.textDecoration = 'underline';
+                            titleSpan.style.cursor = 'pointer';
+                        });
+
+                        titleSpan.addEventListener('mouseout', function() {
+                            titleSpan.style.textDecoration = 'none';
+                        });
+
 
                         li.appendChild(titleSpan);
                         li.appendChild(spaceSpan);
