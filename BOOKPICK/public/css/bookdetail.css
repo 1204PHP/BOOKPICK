@@ -679,8 +679,7 @@
 .bdc-list-reply-area {
 	border-bottom: 1px solid #ccc;
 	background-color: rgba(204, 204, 204, 0.146);
-	padding-top: 10px;
-    padding-bottom: 10px;
+	padding: 10px 0 10px 15px;
 }
 
 .bdc-list-reply-area.display-none, .bdc-reply-write.display-none, .bdc-reply-fold-box.display-none {
