@@ -2,6 +2,24 @@
 {{-- layout.blade.php 상속 --}}
 @section('title', '책상세 페이지')
 {{-- title로 Main 표기 --}}
+
+@php
+	function maskEmail($email) {
+		// @이메일 주소 찾기
+		$atIndex = strpos($email, "@");
+		
+		// 이메일 앞 아이디 저장
+		$username = substr($email, 0, $atIndex);
+		
+		// 이름 2자 제외 나머지 마스킹 처리
+		$maskUsername = substr($username, 0, 2) . str_repeat("*", strlen($username) - 2);
+		
+		$maskedEmail = $maskUsername . substr($email, $atIndex);
+		
+		return $maskedEmail;
+	}
+@endphp
+
 @section('content')
 	<div class="book_detail_layout">
 		<div class="book_detail_layout1">
@@ -107,7 +125,7 @@
 	<input id="bdc_b_id" type="hidden" value="{{$result->b_id}}">
 	@if(Auth::check())
 	<input id="ac_flg" type="hidden" value="1">
-	<input id="u_name" type="hidden" value="{{ Auth::user()->u_name }}">
+	<input id="u_email" type="hidden" value="{{maskEmail(Auth::user()->u_email)}}">
 	@else
 	<input id="ac_flg" type="hidden" value="2">
 	@endif
@@ -121,7 +139,7 @@
 					<img class="bdc-profile-img" src="{{ asset('img/user.png') }}" alt="">
 					@if(Auth::check())
 						<p class="bdc-profile-name">
-							{{ Auth::user()->u_name }}
+							{{maskEmail(Auth::user()->u_email)}}
 						</p>
 					@else
 						<p class="bdc-profile-noname">
