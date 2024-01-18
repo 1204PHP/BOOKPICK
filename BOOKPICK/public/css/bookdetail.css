@@ -695,9 +695,6 @@
 .bdc-list-area-img, .bdc-list-area-name, .bdc-list-area-at {
 	position: absolute;
 }
-.bdc-list-area-name {
-	font-size: 15px;
-}
 .bdc-list-area-img {
 	left: 5px;
 	top:5px;
@@ -706,11 +703,16 @@
 }
 
 .bdc-list-area-name {
+	font-size: 15px;
 	left: 50px;
 	top:5px;
 	letter-spacing: 2px;
 }
-
+@media only screen and (max-width: 600px) {
+    .bdc-list-area-name {
+		font-size: 12px;
+	}
+}
 .bdc-list-area-at{
 	left: 50px;
 	top: 25px;
