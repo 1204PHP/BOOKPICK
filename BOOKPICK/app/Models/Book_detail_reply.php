@@ -18,5 +18,7 @@ class Book_detail_reply extends Model
         'bdc_id',
         'u_id',
     ];
-
+    public function book_detail_reply_state() {
+        return $this->hasMany(Book_detail_reply_state::class, 'bdr_id');
+    }
 }
