@@ -1001,10 +1001,10 @@ section {
 	}
 
 	.memo-data-title {
-		font-size: 1.2rem;
+		font-size: 1.1rem;
 		color: #4dac27;
 		margin-bottom: 20px;
-		width: 75%;
+		width: 90%;
 	}
 
 	.memo-data-email {
@@ -1032,6 +1032,7 @@ section {
 
 
 	.memo-comment-content-content {
+		width: 100%;
 		position: relative;
 	}
 
@@ -1138,7 +1139,8 @@ section {
 	}
 
 	.memo-data-title {
-		font-size: 1.2rem;
+		font-size: 1.0rem;
+		text-align: center;
 		color: #4dac27;
 		margin-bottom: 20px;
 		width: 80%;
@@ -1211,30 +1213,7 @@ section {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* 광고 영역3 */
-
 .slide-container-1 {
 	max-width: 1300px;
 	height: auto;
@@ -1269,13 +1248,11 @@ section {
 .next {
 	cursor: pointer;
 	position: absolute;
-	width: auto;
-	margin-top: -22px;
-	padding: 16px;
-	top: 57%;
-	transform: translateY(-50%);
+	padding: 0 20px;
+	top: 60%;
+	transform: translateY(-100%);
 	color: #fff;
-	font-size: 2rem;
+	font-size: 2.5rem;
 	font-weight: bold;
 	border-radius: 0 3px 3px 0;
 	transition: 600ms ease;
@@ -1319,6 +1296,41 @@ section {
 .ball.active {
 	background: #717171;
 	width: 35px;
+}
+
+@media only screen and  (max-width: 768px) {
+	.prev, 
+	.next {
+		cursor: pointer;
+		position: absolute;
+		padding: 0 7px;
+		top: 65%;
+		transform: translateY(-100%);
+		color: #fff;
+		font-size: 1.5rem;
+		font-weight: bold;
+		border-radius: 0 3px 3px 0;
+		transition: 600ms ease;
+	}
+
+	.prev {
+		left: 0;
+		
+	}
+
+	.next {
+		right: 0;
+	}
+
+	.ball {
+		height: 9px;
+		width: 9px;
+		background-color: white;
+		border-radius: 20px;
+		margin: 5px;
+		cursor: pointer;
+		transition: width 0.5s;
+	}
 }
 
 /* 광고 영역4 */
