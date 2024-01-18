@@ -205,11 +205,7 @@ header {
 }
 
 #auto-search li {
-    margin: 0 20px 10px 20px; 
-}
-
-#auto-search li:first-child {
-    margin-top: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
 /* 실시간 연관 검색어 끝 */

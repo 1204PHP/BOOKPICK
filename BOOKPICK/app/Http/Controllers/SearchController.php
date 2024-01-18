@@ -90,29 +90,32 @@ class SearchController extends Controller
 
             if ($searchResult) {
                 // 검색어가 있는 경우
-                $bookInfo = book_info::search($query)
-                    ->orderBy('b_title', 'asc')
-                    ->orderBy('b_sub_cate', 'asc')
-                    ->get();                
-                $algoliaCnt = $bookInfo->count();
+                $bookInfo = book_info::search($query)->paginate(60);
+                $algoliaCnt = $bookInfo->total();
+                Log::debug('검색결과 수 : ' . $algoliaCnt);
             } else {
                 // 검색어가 없는 경우, 모든 정보를 가져옴                
                 $bookInfo = book_info::all();
                 $algoliaCnt = $bookInfo->count();
             }
 
-            // 1페이지당 최대 60개의 데이터
             $perPage = 60;
-            $currentPage = Paginator::resolveCurrentPage('page');
-            $bookInfoSlice = $bookInfo->slice(($currentPage - 1) * $perPage, $perPage);
+            $currentPage = $request->input('page', 1); // 현재 페이지 default = 1
+
+            // $bookInfoSlice = $bookInfo->slice(($currentPage - 1) * $perPage, $perPage);
+            if ($bookInfo instanceof \Illuminate\Pagination\LengthAwarePaginator) {
+                $algoliaResult = $bookInfo;
+            } else {
+                $bookInfoSlice = $bookInfo->slice(($currentPage - 1) * $perPage, $perPage);
 
             $algoliaResult = new \Illuminate\Pagination\LengthAwarePaginator(
-                $bookInfoSlice,
-                $bookInfo->count(),
+                $bookInfoSlice, 
+                $algoliaCnt, // 전체 결과의 개수
                 $perPage,
                 $currentPage,
-                ['path' => Paginator::resolveCurrentPath()]
+                ['path' => $request->url()]
             );
+        }
 
             Log::debug("검색 내용: " . $searchResult);
             return view('search', [
