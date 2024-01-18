@@ -94,6 +94,19 @@ setupSliderEvents(slider6);
 
 // *************상세 페이지 댓글 부분 자바스크립트 구현*************
 // 댓글 삽입 placeholder + 글자 체크
+
+// 이메일 마스킹 처리
+function maskEmail(email) {
+	// @이메일 주소 찾기
+	var atIndex = email.indexOf("@");
+	// 이메일 앞 아이디 저장
+	var username = email.substring(0, atIndex);
+	// 이름 2자 제외 나머지 마스킹 처리
+	var maskUsername = username.substring(0, 2) + "*".repeat(username.length - 2);
+	var maskedEmail = maskUsername + email.substring(atIndex);
+	return maskedEmail;
+}
+
 function handleInput(textarea) {
     // 텍스트 영역의 값이 비어 있으면 레이블을 표시
     const label = document.querySelector('label[for="content"]');
@@ -175,7 +188,7 @@ function insertFormCheck() {
 			
 					categoryBtn(1);
 					let commentResult = data.commentResult;
-					let uNameResult = data.uNameResult;
+					let uEmailResult = data.uEmailResult;
 					var parentElement = document.getElementById('bdc-list');
 
 					var bdcHeadTxtCountDOM = document.getElementById('bdc-head-txt-count');
@@ -200,7 +213,9 @@ function insertFormCheck() {
 			
 					var nameElement = document.createElement('span');
 					nameElement.className = 'bdc-list-area-name';
-					nameElement.textContent = uNameResult['u_name'];
+					var uEmailResultMask = maskEmail(uEmailResult['u_email']);
+					nameElement.textContent = uEmailResultMask;
+
 			
 					var dateElement = document.createElement('span');
 					dateElement.className = 'bdc-list-area-at';
@@ -380,7 +395,9 @@ function categoryBtn(cateNum) {
 	
 			var nameElement = document.createElement('span');
 			nameElement.className = 'bdc-list-area-name';
-			nameElement.textContent = commentResult[i]['u_name'];
+			var uEmailResultMask = maskEmail(commentResult[i]['u_email']);
+			nameElement.textContent = uEmailResultMask;
+
 	
 			var dateElement = document.createElement('span');
 			dateElement.className = 'bdc-list-area-at';
@@ -528,7 +545,7 @@ function replyOpen(bdc_id) {
 			let userLikeResultArr = data.userLikeResultArr;
 			let userDislikeResultArr = data.userDislikeResultArr;
 			if(acFlg == 1 ) {
-				var uName = document.getElementById("u_name").value;
+				var uEmail = document.getElementById("u_email").value;
 			}
 
 			for (let i = 0; i < replyResult.length; i++) {
@@ -550,7 +567,8 @@ function replyOpen(bdc_id) {
 				// 이름 생성
 				var nameElement = document.createElement('span');
 				nameElement.className = 'bdc-list-area-name';
-				nameElement.textContent = replyResult[i]['u_name'];
+				var uEmailResultMask = maskEmail(replyResult[i]['u_email']);
+				nameElement.textContent = uEmailResultMask;
 
 				// 시간 생성
 				var timeElement = document.createElement('span');
@@ -667,7 +685,7 @@ function replyOpen(bdc_id) {
 			if( acFlg == 1 ) {
 				var profileName = document.createElement('p');
 				profileName.classList.add('bdc-profile-name');
-				profileName.textContent = uName;
+				profileName.textContent = uEmail;
 				profileAreaDiv.appendChild(profileName);
 			} else if (acFlg == 2) {
 				var profileNoName = document.createElement('p');
@@ -810,7 +828,7 @@ function replyInsertFormCheck(bdc_id) {
 				} else {
 					// 주 처리부분
 					let replyResult = data.commentResult;
-					let uNameResult = data.uNameResult;
+					let uEmailResult = data.uEmailResult;
 					let contentStr = 'replycontent' + bdc_id;
 					let labelStr = 'label[for="replycontent'+bdc_id+'"]';
 					let countStr = 'replycount' + bdc_id;
@@ -841,7 +859,8 @@ function replyInsertFormCheck(bdc_id) {
 					// 이름 생성
 					var nameElement = document.createElement('span');
 					nameElement.className = 'bdc-list-area-name';
-					nameElement.textContent = uNameResult.u_name;
+					var uEmailResultMask = maskEmail(uEmailResult.u_email);
+					nameElement.textContent = uEmailResultMask;
 	
 					// 시간 생성
 					var timeElement = document.createElement('span');

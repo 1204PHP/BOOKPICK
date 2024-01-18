@@ -263,12 +263,12 @@ class BookController extends Controller
                     'b_id' => $id,
                     'u_id' => $userId,
                 ]);
-                $uNameResult = User::select('u_name')
+                $uEmailResult = User::select('u_email')
                                 ->where('u_id',$userId)
                                 ->first();
                 $responseData = [
                     'commentResult' => $commentResult,
-                    'uNameResult' => $uNameResult,
+                    'uEmailResult' => $uEmailResult,
                 ];
                 Log::debug( "userId : ". $userId );
                 Log::debug( "comment : ". $comment );
@@ -298,7 +298,7 @@ class BookController extends Controller
             $userLikeResultArr=[];
             $userDislikeResultArr=[];
             $commentResultQuery = Book_detail_comment::join('users', 'book_detail_comments.u_id', '=', 'users.u_id')
-            ->select('book_detail_comments.*','users.u_name')
+            ->select('book_detail_comments.*','users.u_email')
             ->where('book_detail_comments.b_id', $id)
             ->addSelect(['like' => Book_detail_comment_state::selectRaw('COUNT(*)')
                 ->whereColumn('book_detail_comment_states.bdc_id', 'book_detail_comments.bdc_id')
@@ -393,7 +393,7 @@ class BookController extends Controller
             $userReplyResultArr=[];
             $userId = Session::get('u_id');
             $replyResult = Book_detail_reply::join('users', 'Book_detail_replies.u_id', '=', 'users.u_id')
-            ->select('Book_detail_replies.*','users.u_name')
+            ->select('Book_detail_replies.*','users.u_email')
             ->where('Book_detail_replies.bdc_id', $bdcId)
             ->addSelect(['like' => Book_detail_reply_state::selectRaw('COUNT(*)')
                 ->whereColumn('book_detail_reply_states.bdr_id', 'Book_detail_replies.bdr_id')
@@ -477,12 +477,12 @@ class BookController extends Controller
                     'u_id' => $userId,
                     'bdc_id' => $bdc_id,
                 ]);
-                $uNameResult = User::select('u_name')
+                $uEmailResult = User::select('u_email')
                                 ->where('u_id',$userId)
                                 ->first();
                 $responseData = [
                     'commentResult' => $commentResult,
-                    'uNameResult' => $uNameResult,
+                    'uEmailResult' => $uEmailResult,
                 ];
                 Log::debug( "userId : ". $userId );
                 Log::debug( "comment : ". $comment );

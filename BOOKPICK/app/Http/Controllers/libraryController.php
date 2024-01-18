@@ -386,7 +386,6 @@ class LibraryController extends Controller
                     Log::debug( "--------서재 도서 상세 책 삭제 끝1---------" );
                     return redirect()->route('getLibraryReading');
                 } else {
-                    // TODO redirect 경로 생각
                     Log::debug( "--------서재 도서 상세 책 삭제 끝2---------" );
                     return redirect()->route('getLibraryFinished');
                 }
