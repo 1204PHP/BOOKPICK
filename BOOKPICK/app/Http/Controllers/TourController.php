@@ -66,6 +66,7 @@ class TourController extends Controller
                     ->groupBy('b_id', 'u_id')  // 여기에 'u_id' 추가
                     ->orderByDesc(DB::raw('count(*)'))
                     ->orderByDesc(DB::raw('MAX(created_at)'))
+                    ->where('book_detail_comments.deleted_at', null)
                     ->limit(1);
             },
             'manycom',

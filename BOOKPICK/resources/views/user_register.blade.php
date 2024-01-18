@@ -12,7 +12,7 @@
         <p class="register-h2">*는 필수입력 사항입니다(이메일은 아이디로 사용됩니다)</p>
 
         <div class="register-input-area">
-            <input class="register-input" type="email" id="u_email" name="u_email" readonly
+            <input class="register-input" type="email" id="u_email" name="u_email" readonly maxlength="50"
             value="{{ $userData['u_email'] }}">
         </div>
         
