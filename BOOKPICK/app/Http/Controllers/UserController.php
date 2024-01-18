@@ -326,18 +326,15 @@ class UserController extends Controller
             $loginUser->delete();
             // 사용자 계정 소프트 삭제(users 테이블)
 
-            $loginUser->user_library()->delete();
-            // u_id 연결된 외래키 사용하는 user_library 테이블 softdelete처리
-            Log::debug("### user_library 데이터 softdelete 처리성공 ###");
-
+            $loginUser->User_library_comment()->delete();
+            $loginUser->User_library()->delete();
             $loginUser->user_wishlist()->delete();
-            // u_id 연결된 외래키 사용하는  user_wishlist 테이블 softdelete처리
-            Log::debug("### user_wishlist 데이터 softdelete 처리성공 ###");
-
             $loginUser->book_detail_comment()->delete();
-            // u_id 연결된 외래키 사용하는  book_detail_comment 테이블 softdelete처리
-            Log::debug("### book_detail_comment 데이터 softdelete 처리성공 ###");
-
+            $loginUser->book_detail_reply()->delete();
+            $loginUser->book_detail_comment_state()->delete();
+            $loginUser->book_detail_reply_state()->delete();
+            
+            Log::debug("### user 데이터 softdelete 처리성공 ###");
             DB::commit();
             Log::debug("### 커밋 완료 ###");
 

@@ -18,11 +18,8 @@ class Book_detail_reply_state extends Model
         'bdr_id',
         'u_id',
     ];
-    public function bookDetailReply() {
-        return $this->belongsTo(Book_detail_reply::class, 'bdr_id')->withTrashed();
-    }
-    public function user() {
-        return $this->belongsTo(User::class, 'u_id')->withTrashed();
-    }
 
+    public function book_detail_reply_state() {
+        return $this->hasMany(Book_detail_reply_state::class, 'bdr_id');
+    }
 }

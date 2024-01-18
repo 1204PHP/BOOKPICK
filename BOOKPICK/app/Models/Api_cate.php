@@ -14,7 +14,4 @@ class Api_cate extends Model
     protected $fillable = [
         'ac_name',
     ];
-    public function book_info() {
-        return $this->belongsTo(Book_info::class, 'b_id')->withTrashed();
-    }
 }

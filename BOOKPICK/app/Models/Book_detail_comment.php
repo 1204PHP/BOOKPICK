@@ -18,14 +18,9 @@ class Book_detail_comment extends Model
         'b_id',
         'u_id',
     ];
-    public function user() {
-        return $this->belongsTo(User::class, 'u_id')->withTrashed();
+    public function book_detail_reply_state() {
+        return $this->hasManyThrough(book_detail_reply_state::class, book_detail_reply::class, 'bdc_id', 'bdr_id');
     }
-
-    public function book_info() {
-        return $this->belongsTo(Book_info::class, 'b_id')->withTrashed();
-    }
-
     public function book_detail_reply() {
         return $this->hasMany(Book_detail_reply::class, 'bdc_id');
     }

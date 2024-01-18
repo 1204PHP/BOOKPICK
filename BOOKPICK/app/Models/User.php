@@ -39,24 +39,24 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     // 외래키 연결목적 설정
-    
-    // 유저 서재 테이블
-    public function user_library() {
-        return $this->hasMany(User_library::class, 'u_id');
+    public function User_library_comment() {
+        return $this->hasManyThrough(User_library_comment::class, User_library::class, 'u_id', 'ul_id');
     }
 
-    // 유저 찜 목록 테이블
+    public function User_library() {
+        return $this->hasMany(User_library::class, 'u_id');
+    }
+    
     public function user_wishlist() {
         return $this->hasMany(User_wishlist::class, 'u_id');
     }
-
+    
     public function book_detail_comment() {
         return $this->hasMany(Book_detail_comment::class, 'u_id');
     }
     public function book_detail_reply() {
         return $this->hasMany(Book_detail_reply::class, 'u_id');
     }
-        
     public function book_detail_comment_state() {
         return $this->hasMany(Book_detail_comment_state::class, 'u_id');
     }

@@ -14,11 +14,4 @@ class User_wishlist extends Model
     protected $fillable = ['u_id', 'b_id','uw_flg'];
     public $timestamps = true;
 
-    public function user() {
-        return $this->belongsTo(User::class, 'u_id')->withTrashed();
-    }
-
-    public function book_info() {
-        return $this->belongsTo(Book_info::class, 'b_id')->withTrashed();
-    }
 }

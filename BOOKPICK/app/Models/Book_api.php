@@ -16,14 +16,9 @@ class Book_api extends Model
         'ac_id',
     ];
     public $timestamps = true;
-    public function book_info() {
-        return $this->belongsTo(Book_info::class, 'b_id')->withTrashed();
-    }
+
 
     // 외래키 연결목적 설정
 
     // api카테고리 테이블
-    public function book_api() {
-        return $this->hasMany(Book_api::class, 'ba_id');
-    }
 }

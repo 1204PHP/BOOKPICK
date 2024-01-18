@@ -716,6 +716,9 @@ class BookController extends Controller
                                 ->first();
                 if ($deleteResult) {
                     $deleteResult->delete();
+                    $deleteResult->book_detail_comment_state()->delete();
+                    $deleteResult->book_detail_reply_state()->delete();
+                    $deleteResult->book_detail_reply()->delete();
                 }
                 $CountResult = Book_detail_comment::where('b_id', $bId)
                 ->count();
@@ -733,7 +736,7 @@ class BookController extends Controller
                 return response()->json($responseData);
             }
         } catch(Exception $e) {
-            Log::error( "--------도서 대댓글 싫어요 ajax 에러발생---------" );
+            Log::error( "-------도서 댓글 삭제 ajax 에러발생---------" );
             Log::error( "에러내용:".$e->getMessage());
             Log::error( "------------------------------------" );
             return redirect()->route( 'index' );

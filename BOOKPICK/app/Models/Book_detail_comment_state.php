@@ -19,10 +19,4 @@ class Book_detail_comment_state extends Model
         'u_id',
     ];
 
-    public function bookDetailComment() {
-        return $this->belongsTo(Book_detail_comment::class, 'bdc_id')->withTrashed();
-    }
-    public function user() {
-        return $this->belongsTo(User::class, 'u_id')->withTrashed();
-    }
 }
