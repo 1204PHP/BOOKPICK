@@ -390,6 +390,7 @@ class BookController extends Controller
             $bdcId= $request->bdc_id;
             $userLikeResultArr=[];
             $userDislikeResultArr=[];
+            $userReplyResultArr=[];
             $userId = Session::get('u_id');
             $replyResult = Book_detail_reply::join('users', 'Book_detail_replies.u_id', '=', 'users.u_id')
             ->select('Book_detail_replies.*','users.u_name')
@@ -405,6 +406,10 @@ class BookController extends Controller
             ->orderby('Book_detail_replies.created_at', 'asc')
             ->get();
             if($userId){
+                $userReplyResult = Book_detail_reply::select('book_detail_replies.bdr_id')
+                    ->where('book_detail_replies.bdc_id', $bdcId)    
+                    ->where('book_detail_replies.u_id', $userId)
+                    ->get();
                 $userLikeResult = Book_detail_reply_state::select('book_detail_reply_states.bdr_id')
                     ->join('book_detail_replies', 'book_detail_replies.bdr_id', '=', 'book_detail_reply_states.bdr_id')
                     ->where('book_detail_replies.bdc_id', $bdcId)
@@ -417,6 +422,10 @@ class BookController extends Controller
                     ->where('book_detail_reply_states.u_id', $userId)
                     ->where('book_detail_reply_states.bdrs_flg', 2)
                     ->get();
+                    
+                foreach($userReplyResult as $value) {
+                    $userReplyResultArr[] = $value['bdr_id'];
+                }
                 foreach($userLikeResult as $value) {
                     $userLikeResultArr[] = $value['bdr_id'];
                 }
@@ -425,14 +434,17 @@ class BookController extends Controller
                 }
                 $responseData = [
                     'replyResult' => $replyResult,
+                    'userReplyResultArr' => $userReplyResultArr,
                     'userLikeResultArr' => $userLikeResultArr,
                     'userDislikeResultArr' => $userDislikeResultArr,
                 ];
             } else {
+                $userReplyResultArr = [];
                 $userLikeResultArr = [];
                 $userDislikeResultArr = [];
                 $responseData = [
                     'replyResult' => $replyResult,
+                    'userReplyResultArr' => $userReplyResultArr,
                     'userLikeResultArr' => $userLikeResultArr,
                     'userDislikeResultArr' => $userDislikeResultArr,
                 ];
@@ -707,9 +719,6 @@ class BookController extends Controller
             $bdc_id = $request->bdc_id;
             $bId = $request->bId;
             if ($userId) {
-                Log::debug($userId);
-                Log::debug($bdc_id);
-                Log::debug($bId);
                 $deleteResult = Book_detail_comment::where('u_id',$userId)
                                 ->where('bdc_id',$bdc_id)
                                 ->where('b_id', $bId)
@@ -737,6 +746,44 @@ class BookController extends Controller
             }
         } catch(Exception $e) {
             Log::error( "-------도서 댓글 삭제 ajax 에러발생---------" );
+            Log::error( "에러내용:".$e->getMessage());
+            Log::error( "------------------------------------" );
+            return redirect()->route( 'index' );
+        }
+    }
+
+    public function bookDetailReplyDelete(Request $request)
+    {
+        try {
+            Log::debug( "--------도서 대댓글 삭제 ajax 시작---------" );
+            $userId = Session::get('u_id');
+            $bdr_id = $request->bdr_id;
+            if ($userId) {
+                $deleteResult = Book_detail_reply::where('u_id',$userId)
+                                ->where('bdr_id',$bdr_id)
+                                ->first();
+                if ($deleteResult) {
+                    $deleteResult->delete();
+                    $deleteResult->book_detail_reply_state()->delete();
+                }
+                $bdc_id = $deleteResult['bdc_id'];
+                $countResult = Book_detail_reply::where('bdc_id', $bdc_id)
+                ->count();
+
+                $responseData = [
+                    'deleteResult' => $deleteResult,
+                    'countResult' => $countResult,
+                ];
+
+                return response()->json($responseData);
+            } else {
+                $responseData = [
+                    'errorMsg' => "로그인 후 이용 바랍니다.",
+                ];
+                return response()->json($responseData);
+            }
+        } catch(Exception $e) {
+            Log::error( "-------도서 대댓글 삭제 ajax 에러발생---------" );
             Log::error( "에러내용:".$e->getMessage());
             Log::error( "------------------------------------" );
             return redirect()->route( 'index' );

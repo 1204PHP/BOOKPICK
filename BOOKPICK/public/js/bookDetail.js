@@ -524,6 +524,7 @@ function replyOpen(bdc_id) {
 			let strNum = "bdc-list-area" + bdc_id;
 			let parentElement = document.getElementById(strNum);
 			let acFlg = document.getElementById("ac_flg").value;
+			let userReplyResultArr = data.userReplyResultArr;
 			let userLikeResultArr = data.userLikeResultArr;
 			let userDislikeResultArr = data.userDislikeResultArr;
 			if(acFlg == 1 ) {
@@ -532,8 +533,10 @@ function replyOpen(bdc_id) {
 
 			for (let i = 0; i < replyResult.length; i++) {
 				// 새로운 댓글 영역을 생성
+				var replyStrNum = replyResult[i]['bdr_id'];
 				var newReplyArea = document.createElement('div');
 				newReplyArea.className = 'bdc-list-reply-area';
+				newReplyArea.id = 'bdc-list-reply-area'+ replyStrNum;
 
 				// 리스트 상단 영역 생성
 				var topArea = document.createElement('div');
@@ -555,8 +558,19 @@ function replyOpen(bdc_id) {
 				timeElement.textContent = new Date(replyResult[i]['created_at'])
 											.toLocaleString('ko-KR', 
 												{year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: false});
-
-
+				topArea.appendChild(imgElement);
+				topArea.appendChild(nameElement);
+				topArea.appendChild(timeElement);
+				if(userReplyResultArr.includes(replyResult[i]['bdr_id'])) {
+					var deleteElement = document.createElement('img');
+					deleteElement.className = 'bdc-list-delete';
+					deleteElement.src = '/img/book_detail_trash.png';
+					deleteElement.onclick = function() {
+						var replyStrNum = replyResult[i]['bdr_id'];
+						deleteReply(replyStrNum);
+					};
+					topArea.appendChild(deleteElement);
+				}
 				// 리스트 중단 영역 생성
 				var middleArea = document.createElement('div');
 				middleArea.className = 'bdc-list-middle-area font-1';
@@ -575,7 +589,6 @@ function replyOpen(bdc_id) {
 				// 좋아요 링크 생성
 				var likeLink = document.createElement('a');
 				likeLink.className = 'bdc-list-area-like-box';
-				var replyStrNum = replyResult[i]['bdr_id'];
 				likeLink.id = 'bdc-list-area-like-box-reply' + replyStrNum;
 				likeLink.onclick = function() {
 					var replyStrNum = replyResult[i]['bdr_id'];
@@ -625,9 +638,6 @@ function replyOpen(bdc_id) {
 
 				middleArea.appendChild(contentElement);
 
-				topArea.appendChild(imgElement);
-				topArea.appendChild(nameElement);
-				topArea.appendChild(timeElement);
 
 				newReplyArea.appendChild(topArea);
 				newReplyArea.appendChild(middleArea);
@@ -805,6 +815,7 @@ function replyInsertFormCheck(bdc_id) {
 					let labelStr = 'label[for="replycontent'+bdc_id+'"]';
 					let countStr = 'replycount' + bdc_id;
 					let ParentStr = 'bdc-reply-write' + bdc_id;
+					var replyStrNum = replyResult['bdr_id'];
 
 					let bdcListAreaReplyStr = 'bdc-list-area-reply-cnt' + bdc_id;
 					var bdcListAreaReplyDOM = document.getElementById(bdcListAreaReplyStr);
@@ -816,7 +827,8 @@ function replyInsertFormCheck(bdc_id) {
 
 					var newReplyArea = document.createElement('div');
 					newReplyArea.className = 'bdc-list-reply-area';
-	
+					newReplyArea.id = 'bdc-list-reply-area'+ replyStrNum;
+
 					// 리스트 상단 영역 생성
 					var topArea = document.createElement('div');
 					topArea.className = 'bdc-list-top-area';
@@ -838,7 +850,13 @@ function replyInsertFormCheck(bdc_id) {
 												.toLocaleString('ko-KR', 
 													{year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: false});
 	
-	
+					var deleteElement = document.createElement('img');
+					deleteElement.className = 'bdc-list-delete';
+					deleteElement.src = '/img/book_detail_trash.png';
+					deleteElement.onclick = function() {
+						var replyStrNum = replyResult['bdr_id'];
+						deleteReply(replyStrNum);
+					};
 					// 리스트 중단 영역 생성
 					var middleArea = document.createElement('div');
 					middleArea.className = 'bdc-list-middle-area font-1';
@@ -853,8 +871,6 @@ function replyInsertFormCheck(bdc_id) {
 	
 					var recommendArea = document.createElement('div');
 					recommendArea.className = 'bdc-list-recommend-area';
-	
-					var replyStrNum = replyResult['bdr_id'];
 					// 좋아요 링크 생성
 					var likeLink = document.createElement('a');
 					likeLink.className = 'bdc-list-area-like-box';
@@ -904,6 +920,7 @@ function replyInsertFormCheck(bdc_id) {
 					topArea.appendChild(imgElement);
 					topArea.appendChild(nameElement);
 					topArea.appendChild(timeElement);
+					topArea.appendChild(deleteElement);
 	
 					newReplyArea.appendChild(topArea);
 					newReplyArea.appendChild(middleArea);
@@ -1105,6 +1122,48 @@ function deleteComment(bdc_id) {
 					bdcListArea.remove();
 					var bdcHeadTxtCount = document.getElementById('bdc-head-txt-count');
 					bdcHeadTxtCount.innerText = CountResult;
+				}
+			})
+			.catch(error => {
+				console.error('오류 발생:', error);
+			})
+		}
+		else if(ac_flg ==="2") {
+			if(confirm("로그인을 하신 후 이용해 주시기 바랍니다.")){
+				window.location.href = "/login";
+			} else {
+			}
+		}
+	} else {
+	}
+}
+
+function deleteReply(bdr_id) {
+	if(confirm("댓글을 삭제하시겠습니까?")){
+		let formData = new FormData();
+		let ac_flg = document.getElementById("ac_flg").value;
+		if(ac_flg==="1") {
+			formData.append('bdr_id', bdr_id);
+			fetch('/book/detail/reply/delete', {
+				method: 'POST',
+				body: formData,
+			})
+			.then(response => response.json())
+			.then(data => {
+				let errorMsg = data.errorMsg;
+				if(errorMsg) {
+					if(confirm("로그인을 하신 후 이용해 주시기 바랍니다.")){
+						window.location.href = "/login";
+					}
+				} else {
+					let deleteResult = data.deleteResult;
+					let countResult = data.countResult;
+					var bdrListAreaStr = 'bdc-list-reply-area' + deleteResult.bdr_id;
+					var bdrListArea = document.getElementById(bdrListAreaStr);
+					bdrListArea.remove();
+					var bdcHeadTxtCountStr = 'bdc-list-area-reply-cnt' + deleteResult.bdc_id;
+					var bdcHeadTxtCount = document.getElementById(bdcHeadTxtCountStr);
+					bdcHeadTxtCount.innerText = countResult;
 				}
 			})
 			.catch(error => {

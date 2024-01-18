@@ -519,11 +519,15 @@
     width: 30px;
     height: 30px;
     position: absolute;
-    right: 0;
+    right: 13px;
     top: 5px;
 	cursor: pointer;
+    transition: transform 0.3s;
 }
 
+.bdc-list-delete:hover{
+    transform: scale(1.2);
+}
 /* 작성 영역 */
 .bdc-write {
 	border: 1px solid #b0b3be;
@@ -675,7 +679,8 @@
 .bdc-list-reply-area {
 	border-bottom: 1px solid #ccc;
 	background-color: rgba(204, 204, 204, 0.146);
-	padding: 10px 0px 20px 20px;
+	padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .bdc-list-reply-area.display-none, .bdc-reply-write.display-none, .bdc-reply-fold-box.display-none {
@@ -724,8 +729,13 @@
 	margin-right: 0px;
     letter-spacing: -.3px;
 	word-wrap: break-word;
+	padding: 3px 5px 7px 5px;
 }
-
+@media only screen and (max-width: 768px) {
+	.bdc-list-area-content {
+		padding: 3px 5px 7px 5px;
+	}
+}
 
 /* 리스트 하단 영역 */
 .bdc-list-bottom-area {
@@ -761,7 +771,7 @@
 	width: 100px;
 }
 .bdc-list-area-like-box{
-	margin-right: 20px;
+	margin-right: 25px;
 	color: #777;
 	cursor: pointer;
 	position: absolute;
@@ -785,10 +795,15 @@
 	opacity: 1;
 }
 
-.bdc-dis-like-btn{
+.bdc-dis-like-btn {
 	width: 20px;
 	height: 20px;
 	margin-right: 3px;
+	transition: transform 0.3s;
+}
+
+.bdc-dis-like-btn:hover {
+    transform: scale(1.1);
 }
 
 #book_detail_comment_modal_btn {
