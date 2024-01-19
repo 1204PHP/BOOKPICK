@@ -146,18 +146,18 @@
                     <p class="memo-comment-title"><img src="{{asset ('./img/popular.gif')}}" alt=""> 많은 댓글이 모인 인기 책</p>
                     <div class="memo-comment-data">
                         <div class="memo-comment-content-img">
-                            <img src=" {{ $popularBookComment['b_img_url'] }} " alt="">
+                            <img src=" {{ $popularBookinfo['b_img_url'] }} " alt="">
                         </div>
                         <div class="memo-comment-content-content">
                             <div class="memo-data-comment-container">
-                                <p class="memo-data-title">{{$popularBookComment['b_title']}}</p>
-                                <p class="memo-data-email">{{$popularBookComment['u_email']}}</p>
+                                <p class="memo-data-title">{{$popularBookinfo['b_title']}}</p>
+                                <p class="memo-data-email">{{$popularBookinfo['u_email']}}</p>
                                 <div class="memo-data-comment-area">
-                                    <p class="memo-data-comment">{{$popularBookComment['bdc_comment']}}</p>
+                                    <p class="memo-data-comment">{{$popularBookinfo['bdc_comment']}}</p>
                                 </div>
                             </div>
                             <div class="memo-data-button-area">
-                                <button class="memo-data-button" type="button" onclick="location='{{ route('getBookDetail', $popularBookComment['b_id']) }}'">자세히 보기</button>
+                                <button class="memo-data-button" type="button" onclick="location='{{ route('getBookDetail', $popularBookinfo['b_id']) }}'">자세히 보기</button>
                             </div>
                         </div>
                     </div>
