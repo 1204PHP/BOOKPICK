@@ -49,6 +49,7 @@ class book_info extends Model
         return [
             'b_sub_cate',
             'b_title',
+            'b_author',
         ];
     }
 
