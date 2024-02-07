@@ -318,7 +318,7 @@ class BookController extends Controller
             } else if ($cateNum == "3") {
                 $commentResultQuery->orderby('like', 'desc');
             } else if ($cateNum == "4") {
-                $commentResultQuery->orderby('like', 'asc');
+                $commentResultQuery->orderby('dislike', 'desc');
             } else if ($cateNum == "5") {
                 $commentResultQuery->orderby('reply_count', 'desc');
             }
