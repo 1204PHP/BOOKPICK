@@ -2,7 +2,6 @@
 ## 주제: 도서추천 및 독서 커뮤니티
 ## 팀원: 오성찬, 여중기
 ## 프로젝트 기간: 2023년 12월 10일 - 2024년 1월 19일
-## 링크 : http://112.222.157.156:6003
 algolia api 관련하여 무료버전 사용으로 index설정이 초기화 되는 경우가 있습니다.<br>
 재연동 시 실시간 연관검색어가 문제없이 작동가능합니다.
 ![1](https://github.com/1204PHP/BOOKPICK/assets/142575013/dc1a2ec0-20b0-4f9e-8344-3762d55a50ad)
@@ -27,5 +26,3 @@ algolia api 관련하여 무료버전 사용으로 index설정이 초기화 되�
 ![20](https://github.com/1204PHP/BOOKPICK/assets/142575013/f0b57246-8f81-4cee-a5a1-a687ca05cf06)
 ![21](https://github.com/1204PHP/BOOKPICK/assets/142575013/ceef4f3d-4d98-4e7a-a612-aa93fd11dd2a)
 ![22](https://github.com/1204PHP/BOOKPICK/assets/142575013/be1f97bc-d6f6-4618-88e0-f96ec856cb11)
-![23](https://github.com/1204PHP/BOOKPICK/assets/142575013/d1a74312-58c6-4863-80af-c5a2c025ad22)
-![24](https://github.com/1204PHP/BOOKPICK/assets/142575013/f910a157-472b-4824-a23d-6b04fde67f74)
