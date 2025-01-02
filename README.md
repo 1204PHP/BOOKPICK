@@ -4,7 +4,6 @@
 ## 프로젝트 기간: 2023년 12월 10일 - 2024년 1월 19일
 algolia api 관련하여 무료버전 사용으로 index설정이 초기화 되는 경우가 있습니다.<br>
 재연동 시 실시간 연관검색어가 문제없이 작동가능합니다.
-![1](https://github.com/1204PHP/BOOKPICK/assets/142575013/dc1a2ec0-20b0-4f9e-8344-3762d55a50ad)
 ![2](https://github.com/1204PHP/BOOKPICK/assets/142575013/f7791fd1-9a0d-451c-b773-4685ef0e73e0)
 ![3](https://github.com/1204PHP/BOOKPICK/assets/142575013/b8244b34-b2e0-4f8a-860d-2547e26995c8)
 ![4](https://github.com/1204PHP/BOOKPICK/assets/142575013/e1755e75-5b57-4b3b-b20e-614b7501b70f)
